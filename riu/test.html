@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+
+
+<body>
+
+  <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-left" style="width:200px;" id="mySidebar">
+    <button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Close &times;</button>
+
+    <button aria-controls="nav" aria-expanded="false" class="btn btn-sm collapsed d-lg-none" data-bs-target="aside > nav" data-bs-toggle="collapse">
+      Menu
+    </button>
+
+    <a href="index.html" class="w3-bar-item w3-button">Home</a>
+    <a href="#" class="w3-bar-item w3-button">Research</a>
+    <a href="#" class="w3-bar-item w3-button">Innovation</a>
+    <a href="#" class="w3-bar-item w3-button">Publication</a>
+    <a href="#" class="w3-bar-item w3-button">Expertise & Consultation</a>
+    <a href="#" class="w3-bar-item w3-button">Commercialization</a>
+    <a href="events.html" class="w3-bar-item w3-button">Events</a>
+    <a href="#" class="w3-bar-item w3-button">Gallery</a>
+    <a href="test.html" class="w3-bar-item w3-button">Test</a>
+    <!-- <a href="https://cs50.harvard.edu/x/2023/"  target="_blank" class="w3-bar-item w3-button">CS50</a> -->
+
+    
+  </div>
+
+  <div class="w3-main" style="margin-left:200px">
+    <div class="w3-teal">
+      <button class="w3-button w3-teal w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
+      <div class="w3-container">
+        <h1>Welcome to RIU (test)</h1>
+      </div>
+    </div>
+
+    <div class="w3-container">
+      <h3>Responsive Sidebar</h3>
+      <p>The sidebar in this example will always be displayed on screens wider than 992px, and hidden on tablets or mobile phones (screens less than 993px wide).</p>
+      <p>On tablets and mobile phones the sidebar is replaced with a menu icon to open the sidebar.</p>
+      <p>The sidebar will overlay of the page content.</p>
+      <p><b>Resize the browser window to see how it works.</b></p>
+
+      <hr>
+
+      <p>This is CS50, Harvard University’s introduction to the intellectual enterprises of computer science and the art of programming, for concentrators and non-concentrators alike, with or without prior programming experience. (Two thirds of CS50 students have never taken CS before.) This course teaches you how to solve problems, both with and without code, with an emphasis on correctness, design, and style. Topics include computational thinking, abstraction, algorithms, data structures, and computer science more generally. Problem sets inspired by the arts, humanities, social sciences, and sciences. More than teach you how to program in one language, this course teaches you how to program fundamentally and how to teach yourself new languages ultimately. The course starts with a traditional but omnipresent language called C that underlies today’s newer languages, via which you’ll learn not only about functions, variables, conditionals, loops, and more, but also about how computers themselves work underneath the hood, memory and all. The course then transitions to Python, a higher-level language that you’ll understand all the more because of C. Toward term’s end, the course introduces SQL, via which you can store data in databases, along with HTML, CSS, and JavaScript, via which you can create web and mobile apps alike. Course culminates in a final project.</p>
+      <hr>
+    </div>
+  </div>
+
+     
+</body>
+</html>
+
+
