@@ -68,17 +68,67 @@ hr{border:0;border-top:1px solid #f2cccc;margin:20px 0}
 
 /* new CSS */
 
+/* main image container */
 .image-container {
-    max-width: 100%; /* Ensure the container doesn't exceed the screen width */
-    overflow: hidden; /* Hide any overflow if the image exceeds the container size */
-  }
+  max-width: 100%; /* Ensure the container doesn't exceed the screen width */
+  overflow: hidden; /* Hide any overflow if the image exceeds the container size */
+}
+
+.full-width-image {
+  width: 100%; /* Make the image take up 100% of its parent container's width */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Ensure proper block display */
+}
+
+
   
   .full-width-image {
     width: 100%; /* Make the image take up 100% of its parent container's width */
     height: auto; /* Maintain aspect ratio */
     display: block; /* Ensure proper block display */
   }
-
   
+  .container-side {
+    display: flex;
+    flex-direction: row;
+}
 
-  
+.image-side {
+    flex: 1;
+    /* This will make the image take up half of the container */
+    /* You can adjust the width as needed */
+}
+
+.text-side {
+    flex: 1;
+    /* This will make the text take up the other half of the container */
+}
+
+img {
+    max-width: 100%; /* Adjusted to 90% to allow for a 10% right indent */
+    max-height: 485px;
+    height: auto;
+    margin-right: 10%; /* Creates a 10% indent to the right */
+}
+
+@media screen and (max-width: 600px) {
+    .container-side {
+        flex-direction: column;
+    }
+
+    img {
+        max-width: 100%; /* Image will take up full width */
+        max-height: none; /* Allowing the image to resize freely */
+        margin-right: 0; /* No right margin on small screens */
+    }
+
+    .image-side,
+    .text-side {
+        width: 100%;
+        margin-right: 0; /* No right margin on small screens */
+        /* Stacking both image and text on top of each other */
+    }
+}
+
+
+

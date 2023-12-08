@@ -68,6 +68,8 @@ hr{border:0;border-top:1px solid #f2cccc;margin:20px 0}
 
 /* new CSS */
 
+
+/* main image container */
 .image-container {
   max-width: 100%; /* Ensure the container doesn't exceed the screen width */
   overflow: hidden; /* Hide any overflow if the image exceeds the container size */
