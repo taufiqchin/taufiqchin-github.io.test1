@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iConsuLt</title>
+  <!-- Link your CSS file using the specified URL -->
+  <link rel="stylesheet" type="text/css" href="/stylecss/styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+  <div class="container-fluid content">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-2 sidebar button-group" id="sidebar">
+        <h1>iConsuLt</h1>
+        <h4>userIConsuLt 2024</h4>
+        <h6>userIConsuLt@gmail.com </h6><br>
+        <form >
+          <button class="btn btn-primary text-white flex-grow-1 me-2" type="submit">Logout</button><hr>
+        </form>
+
+        <h4>Accessibility Tools</h4>
+
+        <button class="btn btn-dark text-white btn-lg btn-block mb-2" onclick="toggleContrast()">Toggle Contrast</button>
+        <button class="btn btn-secondary text-white btn-lg btn-block mb-2" onclick="toggleGreyscale()">Greyscale</button>
+
+        <select id="font-size-select" class="form-select mb-3" onchange="changeFontSize(this.value)">
+            <option value="18px" selected>Font Size</option>
+            <div class="dropdown-divider"></div>
+            <option value="24px">24px</option>
+            <option value="36px">36px</option>
+            <option value="42px">42px</option>
+        </select>
+        
+        <div class="sidebar-footer">
+          <p>Copyright &copy; <span id="currentYear"></span> iConsuLt</p>
+          <script>
+            // JavaScript code here to set the current year
+            const currentYear = new Date().getFullYear();
+            document.getElementById('currentYear').textContent = currentYear;
+          </script>
+        </div>
+      </div>
+      <div class="col-md-10 content"><ul></ul>
+        <ul><h1>Welcome!</h1> </ul>
+        <!-- <button id="sidebar-toggle">Menu</button> -->
+            <div class="mb-auto">
+              <ul>
+                  <div class="col-m-1 m-2">
+                    <div class="card" style="width: 100%">
+                      <div class="card-body">
+                        <h6 class="card-title d-flex justify-content-between align-items-center card-title question-text">
+                          <i><b>Chapter/Discussion: </b>Discussion</i>
+                        </h6>
+                          <div>
+                            <div id="myModal" class="modal"><span class="close" onclick="closeModal()">&times;</span><img class="modal-content" id="modalImg"></div>
+                          </div>
+                        <h6 class="card-title question-text" style="white-space: pre-line;">
+                          <b><i><span style="color: red;">Question: </span></b></i>The problem right is that i just realized all the telephone calls can't be considered "Mass Media" as all but one instance takes place with multiple people. Does that mean we have to look for a different device?
+                        </h6>
+                        <hr>
+                        <h6 class="card-title answer-text" style="white-space: pre-line;">
+                          <b><i><span style="color: red;">Answer: </span></b></i>Telephone by default is not a media as it is actually part of telecommunication devices. Smartphone, is a device as well. but, it can be use for social media setting or mass media setting. You use smartphone, for Instagram. It's mass media usage. You use smartphone for newspaper reading/news watching. It's mass media usage.
+                        </h6>
+                          <div>
+                            <img src="images/1714458895752.png" style="width: 40%;" onclick="openModal(this.src)">
+                            <div id="myModal" class="modal"><span class="close" onclick="closeModal()">&times;</span><img class="modal-content" id="modalImg"></div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+              </ul>
+
+              <ul>
+                <div class="col-m-1 m-2">
+                  <div class="card" style="width: 100%">
+                    <div class="card-body">
+                      <h6 class="card-title d-flex justify-content-between align-items-center card-title question-text">
+                        <i><b>Chapter/Discussion: </b>Discussion</i>
+                      </h6>
+                        <div>
+                          <img src="images/1714463678266.png" style="width: 40%;" onclick="openModal(this.src)">
+                          <div id="myModal" class="modal"><span class="close" onclick="closeModal()">&times;</span><img class="modal-content" id="modalImg"></div>
+                        </div>
+                      <h6 class="card-title question-text" style="white-space: pre-line;">
+                        <b><i><span style="color: red;">Question: </span></b></i>Mdm, What is encoding & decoding?
+                      </h6>
+                      <hr>
+                      <h6 class="card-title answer-text" style="white-space: pre-line;">
+                        <b><i><span style="color: red;">Answer: </span></b></i>
+                      </h6>
+                        <div>
+                          <img src="" style="width: 40%;" onclick="openModal(this.src)">
+                          <div id="myModal" class="modal"><span class="close" onclick="closeModal()">&times;</span><img class="modal-content" id="modalImg"></div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </ul>
+            
+            </div>
+            <!-- END - Display all posted question -->
+
+            
+
+            <script>
+              function confirmDeletion(questionId) {
+                var confirmDelete = confirm("Are you sure you want to delete this question?");
+                if (confirmDelete) {
+                  window.location.href = "/student-delete-question?id=" + questionId;
+                } else {
+                  // Do something else or nothing if the user cancels
+                }
+              }
+            </script>
+
+            <!-- Form submit question -->
+            <div class="mb-auto">
+              <ul>
+                <div class="col-m-1 m-2">
+                  <div class="card" style="width: 100%">
+                    <div class="card-body">
+                      <form action="/stdSubmitQuestion" method="post" id="submitForm" enctype="multipart/form-data">
+                        <!-- type as hidden bcs use to store in database not to view in form -->
+                        <input type="hidden" value="<%= user.name%>" name="name" />
+                        <input type="hidden" value="<%= user.matricNo%>" name="matricNo" />
+
+                        <div class="row">
+                          <div class="col-5 card-title question-text">
+                            <label for="chapter"><b>Select Chapter or Discussion: </b></label>
+                          </div>
+
+                          
+
+
+                          <div class="col-95 card-title question-text">
+                            <select id="chapter" name="chapter" required style="width: 100%;">
+                              <option disabled selected value> -- select the chapter -- </option>
+                              <option value="Chapter 1: Introduction to Communication">Chapter 1: Introduction to Communication</option>
+                              <option value="Chapter 2: Mass Media Communication">Chapter 2: Mass Media Communication</option>
+                              <option value="Chapter 3: Social Media Communication">Chapter 3: Social Media Communication</option>
+                              <option value="Chapter 4: Developing Social Media Literacy">Chapter 4: Developing Social Media Literacy</option>
+                              <option value="Chapter 5: Strategic Communication">Chapter 5: Strategic Communication</option>
+                              <option value="Chapter 6: Integrated Marketing Journalism">Chapter 6: Integrated Marketing Journalism</option>
+                              <option value="Chapter 7: Presentation Skills">Chapter 7: Presentation Skills </option>
+                              <option value="Chapter 8: Languages">Chapter 8: Languages</option>
+                              <option value="Discussion">Discussion</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="row wrapper">
+                          <div class="col-5 card-title question-text">
+                            <label for="question" class="form-label flex-grow-1 me-2"><b>Question: </b></label>
+                          </div>
+                          <div class="mb-3 d-flex align-items-start">
+                            <textarea class="form-control  me-1  " style="width: 70%;"id="question" name="question" placeholder="Inquiry.."  rows="3"  required></textarea>
+                            <!-- <label for="fileInput" class="form-label">Upload Image</label> -->
+                            <input type="file" id="fileInput" name="imageFile" accept="image/*" class="form-control"style="width: 30%;">
+                          </div>
+
+                          <div class="mb-3 d-flex align-items-start">
+                            <!-- Include an input field for staffno with a specific value =   6824   -->
+                            <input type="text" name="staffno" id="staffno" placeholder="Enter Staff Number" value="6824" readonly required style="display: none;"/>  
+                          </div>
+
+                          
+
+                          <!--  
+                          <div class="mb-3 d-flex align-items-start">
+                            <button class="flex-grow-1 me-1" id="recordButton">Record</button>
+                            <button class="me-1" id="stopButton" disabled>Stop</button>
+                            <button class="me-1" id="playButton">Play</button>
+                            <audio id="audioPlayer" controls></audio>
+                             Include an input field for the audio file 
+                            <input type="file" id="audioFileInput" name="audioFile" accept="audio/*" class="form-control" style="display: none;">
+                        </div>  -->
+                      
+                          
+
+                          <div class="mb-3 d-flex align-items-start">
+                            <button type="button" class="btn btn-danger flex-grow-1 me-1" style="width: 20%;" onclick="resetPage()">Reset</button>
+                            <button type="submit" class="btn btn-primary flex-grow-1 me-1" style="width: 80%;">Send</button>
+                          </div>
+
+
+                          <div class="image-box">
+                            <div id="imagePreview">
+                          </div>
+                        </div>
+                        <label for="question" class="form-label flex-grow-1 me-2"><b> </b></label>
+                          <hr>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </ul>
+            </div>
+            <!-- End Form submit question -->
+      </div> <!-- END - Main content -->
+    </div>
+  </div>
+
+  <!-- Record Audio Test here -->
+
+  <script>
+    
+    let mediaRecorder;
+let recordedChunks = [];
+
+const recordButton = document.getElementById('recordButton');
+const stopButton = document.getElementById('stopButton');
+const playButton = document.getElementById('playButton');
+const audioPlayer = document.getElementById('audioPlayer');
+const audioFileInput = document.getElementById('audioFileInput');
+const sendButton = document.getElementById('sendButton');
+
+recordButton.addEventListener('click', startRecording);
+stopButton.addEventListener('click', stopRecording);
+playButton.addEventListener('click', playRecording);
+sendButton.addEventListener('click', sendAudio);
+
+// Function to start audio recording
+async function startRecording() {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    mediaRecorder = new MediaRecorder(stream);
+    mediaRecorder.ondataavailable = handleDataAvailable;
+    mediaRecorder.start();
+    recordButton.disabled = true;
+    stopButton.disabled = false;
+}
+
+// Function to stop audio recording
+function stopRecording() {
+    mediaRecorder.stop();
+    recordButton.disabled = false;
+    stopButton.disabled = true;
+}
+
+// Function to handle data available during recording
+function handleDataAvailable(event) {
+    recordedChunks.push(event.data);
+}
+
+// Function to play the recorded audio
+async function playRecording() {
+    const blob = new Blob(recordedChunks, { type: 'audio/webm' });
+    const url = URL.createObjectURL(blob);
+    audioPlayer.src = url;
+    audioPlayer.play();
+}
+
+// Function to send the recorded audio to the server
+async function sendAudio() {
+    const blob = new Blob(recordedChunks, { type: 'audio/webm' });
+    const formData = new FormData();
+    formData.append('audioFile', blob, 'recording.webm');
+
+    try {
+        const response = await fetch('/save-audio', {
+            method: 'POST',
+            body: formData
+        });
+        if (response.ok) {
+            console.log('Audio recording sent successfully.');
+            // Reset recordedChunks array
+            recordedChunks = [];
+        } else {
+            console.error('Failed to send audio recording.');
+        }
+    } catch (error) {
+        console.error('Error sending audio recording:', error);
+    }
+}
+
+
+    </script>
+
+<!-- END - Record Audio Test here -->
+
+
+<!-- Accessbile tool -->
+<script>
+    // change font and contrast
+    function toggleContrast() {
+      const body = document.body;
+      body.classList.toggle('high-contrast');
+    }
+
+    // Function to toggle contrast for the entire document
+    function toggleContrast() {
+        const body = document.body;
+        body.classList.toggle('high-contrast');
+    }
+
+    // Function to toggle greyscale for the entire document
+    function toggleGreyscale() {
+      const body = document.body;
+      body.classList.toggle('greyscale');
+    }
+
+    // Function to change font size
+    function changeFontSize(size) {
+        const questionTextElements = document.querySelectorAll('.question-text');
+        const answerTextElements = document.querySelectorAll('.answer-text');
+
+        // Loop through question text elements and set font size
+        questionTextElements.forEach(element => {
+            element.style.fontSize = size;
+        });
+
+        // Loop through answer text elements and set font size
+        answerTextElements.forEach(element => {
+            element.style.fontSize = size;
+        });
+      }
+
+      // Toggle sidebar
+      // Toggle the sidebar visibility on button click
+      const toggleButton = document.getElementById('sidebar-toggle');
+      const sidebar = document.getElementById('sidebar');
+
+      toggleButton.addEventListener('click', () => {
+        sidebar.classList.toggle('show-sidebar');
+      });
+</script>
+
+      <!-- END - Accessbile tool -->
+    <script>
+      //## drag-drop image in textarea
+      // Get necessary elements from the DOM
+      const imageText = document.getElementById('imageText');
+      const fileInput = document.getElementById('fileInput');
+      const imagePreview = document.getElementById('imagePreview');
+
+      // Function to handle image preview
+      function previewImage(file) {
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+          const img = new Image();
+          img.src = event.target.result;
+          img.classList.add('preview-img');
+          imagePreview.innerHTML = '';
+          imagePreview.appendChild(img);
+        };
+
+        reader.readAsDataURL(file);
+      }
+
+      // Function to handle file selection
+      function handleFileSelect(event) {
+        const file = event.target.files[0];
+        if (file) {
+          previewImage(file);
+        }
+      }
+
+      // Event listeners
+      imageText.addEventListener('dragover', function(event) {
+        event.preventDefault();
+      });
+
+      imageText.addEventListener('drop', function(event) {
+        event.preventDefault();
+        const file = event.dataTransfer.files[0];
+        previewImage(file);
+      });
+
+      fileInput.addEventListener('change', handleFileSelect);
+      //## END drag-drop image in textarea
+
+      // reset button
+      function resetPage() {
+        location.reload(); // Reloads the page
+    }
+
+    // Function to handle form submission
+  function handleSubmit(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const form = document.getElementById('submitForm'); // Get the form by its ID
+    const formData = new FormData(form); // Create FormData object from the form
+
+    // Send form data to the server using fetch
+    fetch('/stdSubmitQuestion', {
+      method: 'POST',
+      body: formData // Send FormData object as the request body
+    })
+    .then(response => {
+      if (response.ok) {
+        // Handle success, e.g., display a success message
+        console.log('Form submitted successfully!');
+      } else {
+        // Handle error, e.g., display an error message
+        console.error('Form submission failed.');
+      }
+    })
+    .catch(error => {
+      console.error('An error occurred:', error);
+    });
+  }
+
+  const form = document.getElementById('submitForm');
+form.addEventListener('submit', handleSubmit);
+
+// Only declare the form variable once and use it for further actions
+// Here's the updated event listener
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(form);
+  const fileInput = document.getElementById('fileInput');
+  const files = fileInput.files;
+
+  // Append file(s) to form data
+  for (let i = 0; i < files.length; i++) {
+    formData.append('imageFile', files[i]);
+  }
+
+  // Send form data with fetch
+  try {
+    const response = await fetch('/stdSubmitQuestion', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (response.ok) {
+      console.log('Form submitted successfully!');
+    } else {
+      console.error('Form submission failed.');
+    }
+  } catch (error) {
+    console.error('An error occurred:', error);
+  }
+});
+
+// Function to open the modal and display the image
+function openModal(src) {
+  const modal = document.getElementById('myModal');
+  const modalImg = document.getElementById('modalImg');
+  modal.style.display = 'block';
+  modalImg.src = src;
+}
+
+// Function to close the modal
+function closeModal() {
+  const modal = document.getElementById('myModal');
+  modal.style.display = 'none';
+}
+// END - Function to open the modal and display the image
+
+</script>
+
+<!-- Scritp to == html go to bottom of page on load 
+<script>
+  function scrollToBottom() {
+      window.scrollTo(0, document.body.scrollHeight);
+  }
+  history.scrollRestoration = "manual";
+  window.onload = scrollToBottom;
+</script>
+-->
+
+<script>
+  // Function to apply user preferences on page load
+  function applyUserPreferences() {
+      const contrastMode = localStorage.getItem('contrastMode');
+      const greyscaleMode = localStorage.getItem('greyscaleMode');
+      const fontSize = localStorage.getItem('fontSize');
+  
+      if (contrastMode === 'enabled') {
+          toggleContrast();
+      }
+  
+      if (greyscaleMode === 'enabled') {
+          toggleGreyscale();
+      }
+  
+      if (fontSize) {
+          changeFontSize(fontSize);
+          document.getElementById('font-size-select').value = fontSize;
+      }
+  }
+  
+  // Apply user preferences when the page loads
+  document.addEventListener('DOMContentLoaded', applyUserPreferences);
+  
+  // Event listener for contrast and greyscale buttons
+  document.addEventListener('click', function (event) {
+      const target = event.target;
+  
+      if (target.matches('.btn-contrast')) {
+          toggleContrast();
+      }
+  
+      if (target.matches('.btn-greyscale')) {
+          toggleGreyscale();
+      }
+  });
+  
+  // Event listener for font size change
+  document.getElementById('font-size-select').addEventListener('change', function () {
+      const fontSize = this.value;
+      changeFontSize(fontSize);
+      localStorage.setItem('fontSize', fontSize);
+  });
+  
+  // Function to toggle contrast
+  function toggleContrast() {
+      const body = document.body;
+      body.classList.toggle('high-contrast');
+  
+      const contrastMode = body.classList.contains('high-contrast') ? 'enabled' : 'disabled';
+      localStorage.setItem('contrastMode', contrastMode);
+  }
+  
+  // Function to toggle greyscale
+  function toggleGreyscale() {
+      const body = document.body;
+      body.classList.toggle('greyscale');
+  
+      const greyscaleMode = body.classList.contains('greyscale') ? 'enabled' : 'disabled';
+      localStorage.setItem('greyscaleMode', greyscaleMode);
+  }
+  
+  // Function to change font size
+  function changeFontSize(size) {
+      const questionTextElements = document.querySelectorAll('.question-text');
+      const answerTextElements = document.querySelectorAll('.answer-text');
+  
+      // Loop through question text elements and set font size
+      questionTextElements.forEach(element => {
+          element.style.fontSize = size;
+      });
+  
+      // Loop through answer text elements and set font size
+      answerTextElements.forEach(element => {
+          element.style.fontSize = size;
+      });
+  
+      // Save font size to local storage
+      localStorage.setItem('fontSize', size);
+  }
+  
+  </script>
+
+
+<!-- Scritp to == html go to bottom of page on load -->
+<script>
+  function scrollToBottom() {
+      window.scrollTo(0, document.body.scrollHeight);
+  }
+  history.scrollRestoration = "manual";
+  window.onload = scrollToBottom;
+</script> 
+
+</body>
+</html>
