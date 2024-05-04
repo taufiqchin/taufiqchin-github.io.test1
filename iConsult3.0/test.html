@@ -198,7 +198,7 @@ select {
       <!-- Sidebar -->
       <div class="col-md-2 sidebar button-group" id="sidebar">
         <h1>iConsuLt</h1>
-        <h4>userIConsuLt 2024</h4>
+        <h4>userIConsuLt</h4>
         <h6>userIConsuLt@gmail.com </h6><br>
         <form >
           <button class="btn btn-primary text-white flex-grow-1 me-2" type="submit">Logout</button><hr>
@@ -206,11 +206,11 @@ select {
 
         <h4>Accessibility Tools</h4>
 
-        <button class="btn btn-dark text-white btn-lg btn-block mb-2" onclick="toggleContrast()">Toggle Contrast</button>
+        <button class="btn btn-dark text-white btn-lg btn-block mb-2" onclick="toggleContrast()">High Contrast</button>
         <button class="btn btn-secondary text-white btn-lg btn-block mb-2" onclick="toggleGreyscale()">Greyscale</button>
 
         <select id="font-size-select" class="form-select mb-3" onchange="changeFontSize(this.value)">
-            <option value="18px" selected>Font Size</option>
+            <option value="18px" selected>Font Size (18px)</option>
             <div class="dropdown-divider"></div>
             <option value="24px">24px</option>
             <option value="36px">36px</option>
@@ -235,7 +235,7 @@ select {
                     <div class="card" style="width: 100%">
                       <div class="card-body">
                         <h6 class="card-title d-flex justify-content-between align-items-center card-title question-text">
-                          <i><b>Chapter/Discussion: </b>Discussion</i>
+                          <i>Chapter 4: Developing Social Media Literacy</i>
                         </h6>
                           <div>
                             <div id="myModal" class="modal"><span class="close" onclick="closeModal()">&times;</span><img class="modal-content" id="modalImg"></div>
@@ -261,7 +261,7 @@ select {
                   <div class="card" style="width: 100%">
                     <div class="card-body">
                       <h6 class="card-title d-flex justify-content-between align-items-center card-title question-text">
-                        <i><b>Chapter/Discussion: </b>Discussion</i>
+                        <i>Chapter 4: Developing Social Media Literacy</i>
                       </h6>
                         <div>
                           <img src="images/1714463678266.PNG" style="width: 40%;" onclick="openModal(this.src)">
@@ -311,13 +311,9 @@ select {
                         <input type="hidden" value="<%= user.matricNo%>" name="matricNo" />
 
                         <div class="row">
-                          <div class="col-5 card-title question-text">
+                          <!-- <div class="col-5 card-title question-text"> 
                             <label for="chapter"><b>Select Chapter or Discussion: </b></label>
                           </div>
-
-                          
-
-
                           <div class="col-95 card-title question-text">
                             <select id="chapter" name="chapter" required style="width: 100%;">
                               <option disabled selected value> -- select the chapter -- </option>
@@ -331,7 +327,7 @@ select {
                               <option value="Chapter 8: Languages">Chapter 8: Languages</option>
                               <option value="Discussion">Discussion</option>
                             </select>
-                          </div>
+                          </div> -->
                         </div>
 
                         <div class="row wrapper">
@@ -339,7 +335,7 @@ select {
                             <label for="question" class="form-label flex-grow-1 me-2"><b>Question: </b></label>
                           </div>
                           <div class="mb-3 d-flex align-items-start">
-                            <textarea class="form-control  me-1  " style="width: 70%;"id="question" name="question" placeholder="Inquiry.."  rows="3"  required></textarea>
+                            <textarea class="form-control  me-1  " style="width: 70%;"id="question" name="question" placeholder="Place your question/inquiry here"  rows="3"  required></textarea>
                             <!-- <label for="fileInput" class="form-label">Upload Image</label> -->
                             <input type="file" id="fileInput" name="imageFile" accept="image/*" class="form-control"style="width: 30%;">
                           </div>
