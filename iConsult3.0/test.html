@@ -216,6 +216,8 @@ select {
             <option value="36px">36px</option>
             <option value="42px">42px</option>
         </select>
+
+        <p style="text-align: center;"><b>Universal Education - Providing Education to All Individuals</b></p>
         
         <div class="sidebar-footer">
           <p>Copyright &copy; <span id="currentYear"></span> iConsuLt</p>
@@ -227,16 +229,13 @@ select {
         </div>
       </div>
       <div class="col-md-10 content"><ul></ul>
-        <ul><h1>Welcome!</h1> </ul> <button id="sidebar-toggle">Menu</button>
+        <ul><h1>Chapter 2: Mass Media Communication</h1> </ul> <button id="sidebar-toggle">Menu</button>
         <!-- <button id="sidebar-toggle">Menu</button> -->
             <div class="mb-auto">
               <ul>
                   <div class="col-m-1 m-2">
                     <div class="card" style="width: 100%">
                       <div class="card-body">
-                        <h6 class="card-title d-flex justify-content-between align-items-center card-title question-text">
-                          <i>Chapter 4: Developing Social Media Literacy</i>
-                        </h6>
                           <div>
                             <div id="myModal" class="modal"><span class="close" onclick="closeModal()">&times;</span><img class="modal-content" id="modalImg"></div>
                           </div>
@@ -260,9 +259,6 @@ select {
                 <div class="col-m-1 m-2">
                   <div class="card" style="width: 100%">
                     <div class="card-body">
-                      <h6 class="card-title d-flex justify-content-between align-items-center card-title question-text">
-                        <i>Chapter 4: Developing Social Media Literacy</i>
-                      </h6>
                         <div>
                           <img src="images/1714463678266.PNG" style="width: 40%;" onclick="openModal(this.src)">
                           <div id="myModal" class="modal"><span class="close" onclick="closeModal()">&times;</span><img class="modal-content" id="modalImg"></div>
@@ -305,62 +301,20 @@ select {
                 <div class="col-m-1 m-2">
                   <div class="card" style="width: 100%">
                     <div class="card-body">
-                      <form action="/stdSubmitQuestion" method="post" id="submitForm" enctype="multipart/form-data">
-                        <!-- type as hidden bcs use to store in database not to view in form -->
-                        <input type="hidden" value="<%= user.name%>" name="name" />
-                        <input type="hidden" value="<%= user.matricNo%>" name="matricNo" />
-
-                        <div class="row">
-                          <!-- <div class="col-5 card-title question-text"> 
-                            <label for="chapter"><b>Select Chapter or Discussion: </b></label>
-                          </div>
-                          <div class="col-95 card-title question-text">
-                            <select id="chapter" name="chapter" required style="width: 100%;">
-                              <option disabled selected value> -- select the chapter -- </option>
-                              <option value="Chapter 1: Introduction to Communication">Chapter 1: Introduction to Communication</option>
-                              <option value="Chapter 2: Mass Media Communication">Chapter 2: Mass Media Communication</option>
-                              <option value="Chapter 3: Social Media Communication">Chapter 3: Social Media Communication</option>
-                              <option value="Chapter 4: Developing Social Media Literacy">Chapter 4: Developing Social Media Literacy</option>
-                              <option value="Chapter 5: Strategic Communication">Chapter 5: Strategic Communication</option>
-                              <option value="Chapter 6: Integrated Marketing Journalism">Chapter 6: Integrated Marketing Journalism</option>
-                              <option value="Chapter 7: Presentation Skills">Chapter 7: Presentation Skills </option>
-                              <option value="Chapter 8: Languages">Chapter 8: Languages</option>
-                              <option value="Discussion">Discussion</option>
-                            </select>
-                          </div> -->
-                        </div>
+                      <form method="post" id="submitForm" enctype="multipart/form-data">
 
                         <div class="row wrapper">
                           <div class="col-5 card-title question-text">
-                            <label for="question" class="form-label flex-grow-1 me-2"><b>Question: </b></label>
+                            <label for="question" class="form-label flex-grow-1 me-2"><b>Send a new question </b></label>
                           </div>
                           <div class="mb-3 d-flex align-items-start">
-                            <textarea class="form-control  me-1  " style="width: 70%;"id="question" name="question" placeholder="Place your question/inquiry here"  rows="3"  required></textarea>
+                            <textarea class="form-control  me-1  " style="width: 70%;"id="question" name="question" placeholder="In this space, type your question/query.. "  rows="3"  required></textarea>
                             <!-- <label for="fileInput" class="form-label">Upload Image</label> -->
                             <input type="file" id="fileInput" name="imageFile" accept="image/*" class="form-control"style="width: 30%;">
                           </div>
-
+            
                           <div class="mb-3 d-flex align-items-start">
-                            <!-- Include an input field for staffno with a specific value =   6824   -->
-                            <input type="text" name="staffno" id="staffno" placeholder="Enter Staff Number" value="6824" readonly required style="display: none;"/>  
-                          </div>
-
-                          
-
-                          <!--  
-                          <div class="mb-3 d-flex align-items-start">
-                            <button class="flex-grow-1 me-1" id="recordButton">Record</button>
-                            <button class="me-1" id="stopButton" disabled>Stop</button>
-                            <button class="me-1" id="playButton">Play</button>
-                            <audio id="audioPlayer" controls></audio>
-                             Include an input field for the audio file 
-                            <input type="file" id="audioFileInput" name="audioFile" accept="audio/*" class="form-control" style="display: none;">
-                        </div>  -->
-                      
-                          
-
-                          <div class="mb-3 d-flex align-items-start">
-                            <button type="button" class="btn btn-danger flex-grow-1 me-1" style="width: 20%;" onclick="resetPage()">Reset</button>
+                            <button type="button" class="btn btn-danger flex-grow-1 me-1" style="width: 20%;" onclick="resetPage()">Clear / Reset</button>
                             <button type="submit" class="btn btn-primary flex-grow-1 me-1" style="width: 80%;">Send</button>
                           </div>
 
@@ -382,83 +336,6 @@ select {
       </div> <!-- END - Main content -->
     </div>
   </div>
-
-  <!-- Record Audio Test here -->
-
-  <script>
-    
-    let mediaRecorder;
-let recordedChunks = [];
-
-const recordButton = document.getElementById('recordButton');
-const stopButton = document.getElementById('stopButton');
-const playButton = document.getElementById('playButton');
-const audioPlayer = document.getElementById('audioPlayer');
-const audioFileInput = document.getElementById('audioFileInput');
-const sendButton = document.getElementById('sendButton');
-
-recordButton.addEventListener('click', startRecording);
-stopButton.addEventListener('click', stopRecording);
-playButton.addEventListener('click', playRecording);
-sendButton.addEventListener('click', sendAudio);
-
-// Function to start audio recording
-async function startRecording() {
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    mediaRecorder = new MediaRecorder(stream);
-    mediaRecorder.ondataavailable = handleDataAvailable;
-    mediaRecorder.start();
-    recordButton.disabled = true;
-    stopButton.disabled = false;
-}
-
-// Function to stop audio recording
-function stopRecording() {
-    mediaRecorder.stop();
-    recordButton.disabled = false;
-    stopButton.disabled = true;
-}
-
-// Function to handle data available during recording
-function handleDataAvailable(event) {
-    recordedChunks.push(event.data);
-}
-
-// Function to play the recorded audio
-async function playRecording() {
-    const blob = new Blob(recordedChunks, { type: 'audio/webm' });
-    const url = URL.createObjectURL(blob);
-    audioPlayer.src = url;
-    audioPlayer.play();
-}
-
-// Function to send the recorded audio to the server
-async function sendAudio() {
-    const blob = new Blob(recordedChunks, { type: 'audio/webm' });
-    const formData = new FormData();
-    formData.append('audioFile', blob, 'recording.webm');
-
-    try {
-        const response = await fetch('/save-audio', {
-            method: 'POST',
-            body: formData
-        });
-        if (response.ok) {
-            console.log('Audio recording sent successfully.');
-            // Reset recordedChunks array
-            recordedChunks = [];
-        } else {
-            console.error('Failed to send audio recording.');
-        }
-    } catch (error) {
-        console.error('Error sending audio recording:', error);
-    }
-}
-
-
-    </script>
-
-<!-- END - Record Audio Test here -->
 
 
 <!-- Accessbile tool -->
