@@ -1,0 +1,37 @@
+[
+    {
+       "id": 1,
+       "subject": "Programming in C",
+       "code": "BCS 1153",
+       "topic1": "Thinking skill & Problem solving",
+       "topic2": "C",
+       "topic3": "Control Structures",
+       "topic4": "Function in C",
+       "topic5": "Arrays",
+       "topic6": "String"
+    },
+    {
+       "id": 2,
+       "subject": "Communication Skills",
+       "code": "COM 1143",
+       "topic1": "Introduction to Communication",
+       "topic2": "Mass Media Communication",
+       "topic3": "Social Media Communication"
+    },
+    {
+      "id": 3,
+      "subject": "System Analysis and Design",
+      "code": "BCS 1143",
+      "topic1": "The System Development Environtment",
+      "topic2": "The Origins of Software",
+      "topic3": "Managing the Information System Project",
+      "topic4": "Identifying and Selecting System Development Projects",
+      "topic5": "Initiating and Planning System Development Projects",
+      "topic6": "Determining System Requirements",
+      "topic7": "Structure System Process Requirements",
+      "topic8": "Object-Oriented Analysis and Design Use Cases",
+      "topic9": "Object-Oriented Analysis and Design Activity Diagrams",
+      "topic10": "Object-Oriented Analysis and Design Sequence Diagrams",
+      "topic11": "Object-Oriented Analysis and Design Object Modeling - Class Diagrams"
+   }
+ ]
