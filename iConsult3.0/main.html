@@ -246,14 +246,14 @@
                   .then(data => {
                     const cardsContainer = document.getElementById('cards');
                     data.forEach(item => {
-                      const card = document.createElement('div');
+                      const card = document.createElement('h6');
                       card.classList.add('card', 'mb-3');
               
-                      const cardHeader = document.createElement('div');
+                      const cardHeader = document.createElement('h6');
                       cardHeader.classList.add('card-header');
                       cardHeader.textContent = `${item.code}: ${item.subject}`;
               
-                      const cardBody = document.createElement('div');
+                      const cardBody = document.createElement('h6');
                       cardBody.classList.add('card-body');
               
                       const cardTopics = document.createElement('ul');
