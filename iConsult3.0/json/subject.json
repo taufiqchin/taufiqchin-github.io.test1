@@ -2,7 +2,7 @@
     {
        "id": 1,
        "subject": "Programming in C",
-       "code": "BCS 1153",
+       "code": "BCS1153",
        "topic1": "Thinking skill & Problem solving",
        "topic2": "C",
        "topic3": "Control Structures",
@@ -13,7 +13,7 @@
     {
        "id": 2,
        "subject": "Communication Skills",
-       "code": "COM 1143",
+       "code": "COM1143",
        "topic1": "Introduction to Communication",
        "topic2": "Mass Media Communication",
        "topic3": "Social Media Communication"
@@ -21,7 +21,7 @@
     {
       "id": 3,
       "subject": "System Analysis and Design",
-      "code": "BCS 1143",
+      "code": "BCS1143",
       "topic1": "The System Development Environtment",
       "topic2": "The Origins of Software",
       "topic3": "Managing the Information System Project",
