@@ -32,21 +32,44 @@
   background-color: rgb(189, 240, 196);
 }
 
+/* Wrapper dari IG tapi x jadi */
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(11.25rem, 100%), 1fr)); /* Corrected */
+  grid-gap: 1rem; /* Corrected */
+}
+
+
 
 /* Margin between buttons */
 .button-group button {
   margin-bottom: 2px; /* Adjust the margin between buttons */
 }
 
+/* Apply a wider width to the select dropdown */
+select {
+  width: 200px; /* Adjust this value to set the desired width */
+}
 
-/* Sidebar smaller screens -----------------------------------------------------------*/
+/* remove underlines from all anchor (<a>) elements */
+.card-link {
+  text-decoration: none;
+}
+
+
+
+
+/* Media query for smaller screens */
 @media screen and (max-width: 768px) {
   .sidebar {
     display: none; /* Hide sidebar by default */
   }
 
+  .content {
+    margin-left: 0; /* Adjust content for no sidebar */
+  }
 
-  /* button toggle styles */
+  /* Additional styles for the button toggle */
   #sidebar-toggle {
     display: block;
     cursor: pointer;
@@ -61,19 +84,18 @@
     width: 200px;
   }
 }
-/* END Sidebar smaller screens #############################################  */
 
-/* Hide toggle button on larger screens -----------------------------------------------------------*/
+/* Media query for larger screens */
 @media screen and (min-width: 769px) {
   #sidebar-toggle {
     display: none; /* Hide toggle button on larger screens */
   }
 }
-/* END Hide toggle button on larger screens ############################################# */
 
 
 
-/* CSS for high contrast -----------------------------------------------------------*/
+
+/* CSS for high contrast */
 .high-contrast {   /* Adjust colors and background for high contrast */
   background-color: black;
   color: white;
@@ -97,9 +119,9 @@
   background-color: rgb(51, 48, 48);
   color: white;
 }
-/* END - CSS for high contrast #############################################  */
+/* END - CSS for high contrast */
 
-/* CSS for greyscale effect -----------------------------------------------------------*/
+/* CSS for greyscale effect */
 .greyscale {
   filter: grayscale(100%);
 }
@@ -109,10 +131,31 @@
 .greyscale .card-body {
   filter: grayscale(100%);
 }
-/* END - CSS for greyscale effect #############################################  */
+/* END - CSS for greyscale effect */
 
 
-/* Style for the modal (popout image) ----------------------------------------------------------- */
+/* drag-drop-image */
+.drop-area {
+  width: 100%;
+  height: 150px;
+  border: 2px dashed #ccc;
+  border-radius: 5px;
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.form-control {
+  width: calc(100% - 40px);
+}
+
+.preview-img {
+  max-width: 60%;
+  height: auto;
+}
+  /* END drag-drop-image */
+
+/* Style for the modal (popout image) */
 .modal {
   display: none;
   position: fixed;
@@ -132,7 +175,7 @@
   max-height: 80%;
 }
 
-/* Style 'X' close button */
+/* Style for the close button */
 .close {
   color: white;
   position: absolute;
@@ -142,7 +185,7 @@
   font-weight: bold;
   cursor: pointer;
 }
-/* END - Style for the modal (popout image) #############################################  */
+/* END - Style for the modal (popout image) */
 
 
 
@@ -307,8 +350,26 @@
   </div>
 
 
-<!-- JS Accessbile tool -->
+<!-- Accessbile tool -->
 <script>
+    // change font and contrast
+    function toggleContrast() {
+      const body = document.body;
+      body.classList.toggle('high-contrast');
+    }
+
+    // Function to toggle contrast for the entire document
+    function toggleContrast() {
+        const body = document.body;
+        body.classList.toggle('high-contrast');
+    }
+
+    // Function to toggle greyscale for the entire document
+    function toggleGreyscale() {
+      const body = document.body;
+      body.classList.toggle('greyscale');
+    }
+
     // Function to change font size
     function changeFontSize(size) {
         const questionTextElements = document.querySelectorAll('.question-text');
@@ -324,10 +385,9 @@
             element.style.fontSize = size;
         });
       }
-</script>
 
-<script>
-      // 'MENU' Toggle the sidebar visibility
+      // Toggle sidebar
+      // Toggle the sidebar visibility on button click
       const toggleButton = document.getElementById('sidebar-toggle');
       const sidebar = document.getElementById('sidebar');
 
@@ -338,9 +398,48 @@
 
       <!-- END - Accessbile tool -->
     <script>
+      //## drag-drop image in textarea
+      // Get necessary elements from the DOM
+      const imageText = document.getElementById('imageText');
+      const fileInput = document.getElementById('fileInput');
+      const imagePreview = document.getElementById('imagePreview');
 
+      // Function to handle image preview
+      function previewImage(file) {
+        const reader = new FileReader();
 
-     
+        reader.onload = function(event) {
+          const img = new Image();
+          img.src = event.target.result;
+          img.classList.add('preview-img');
+          imagePreview.innerHTML = '';
+          imagePreview.appendChild(img);
+        };
+
+        reader.readAsDataURL(file);
+      }
+
+      // Function to handle file selection
+      function handleFileSelect(event) {
+        const file = event.target.files[0];
+        if (file) {
+          previewImage(file);
+        }
+      }
+
+      // Event listeners
+      imageText.addEventListener('dragover', function(event) {
+        event.preventDefault();
+      });
+
+      imageText.addEventListener('drop', function(event) {
+        event.preventDefault();
+        const file = event.dataTransfer.files[0];
+        previewImage(file);
+      });
+
+      fileInput.addEventListener('change', handleFileSelect);
+      //## END drag-drop image in textarea
 
       // reset button
       function resetPage() {
@@ -424,6 +523,16 @@ function closeModal() {
 
 </script>
 
+<!-- Scritp to == html go to bottom of page on load 
+<script>
+  function scrollToBottom() {
+      window.scrollTo(0, document.body.scrollHeight);
+  }
+  history.scrollRestoration = "manual";
+  window.onload = scrollToBottom;
+</script>
+-->
+
 <script>
   // Function to apply user preferences on page load
   function applyUserPreferences() {
@@ -486,9 +595,26 @@ function closeModal() {
       localStorage.setItem('greyscaleMode', greyscaleMode);
   }
   
+  // Function to change font size
+  function changeFontSize(size) {
+      const questionTextElements = document.querySelectorAll('.question-text');
+      const answerTextElements = document.querySelectorAll('.answer-text');
   
+      // Loop through question text elements and set font size
+      questionTextElements.forEach(element => {
+          element.style.fontSize = size;
+      });
   
-</script>
+      // Loop through answer text elements and set font size
+      answerTextElements.forEach(element => {
+          element.style.fontSize = size;
+      });
+  
+      // Save font size to local storage
+      localStorage.setItem('fontSize', size);
+  }
+  
+  </script>
 
 
 <!-- Scritp to == html go to bottom of page on load 
