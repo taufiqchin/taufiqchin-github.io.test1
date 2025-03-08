@@ -30,6 +30,7 @@
       "links": [
         { "text": "FAQs", "url": "faqs/" },
         { "text": "Office Hours", "url": "hours/" },
+        { "text": "Research", "url": "MyResearch.html" },
         { "text": "Staff", "url": "staff/" },
         { "text": "Syllabus", "url": "syllabus/" }
       ]
