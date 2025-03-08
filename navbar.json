@@ -1,0 +1,9 @@
+{
+    "navigation": [
+        { "name": "Home", "link": "index.html", "class": "w3-theme-l1" },
+        { "name": "About", "link": "index2.html", "class": "w3-hide-small w3-hover-white" },
+        { "name": "CyberSecurityHubNews", "link": "https://www.instagram.com/thecybersecurityhub/", "class": "w3-hide-small w3-hover-white", "target": "_blank" },
+        { "name": "backuphtml", "link": "backupHTML1.html", "class": "w3-hide-small w3-hover-white" },
+        { "name": "Python", "link": "python.html", "class": "w3-hide-small w3-hide-medium w3-hover-white" }
+    ]
+}
