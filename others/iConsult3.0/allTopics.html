@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>iConsuLt</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Link your CSS file using the specified URL -->
+  <link rel="stylesheet" type="text/css" href="/stylecss/styles.css">
+
+    <style>
+        body, html {
+        height: 100%;
+        margin: 0;
+        font-size: 18px; /* Set your desired font size */
+        background-color: rgb(189, 240, 196);
+      }
+      
+      .sidebar {
+        min-height: 100%;
+        width: 320px;
+        background-color: #888787;
+        padding: 10px;
+      }
+      
+      .content {
+        flex: 1;
+        overflow-y: auto; /* Adjust overflow as needed */
+        background-color: rgb(189, 240, 196);
+      }
+      
+      /* Wrapper dari IG tapi x jadi */
+      .wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(11.25rem, 100%), 1fr)); /* Corrected */
+        grid-gap: 1rem; /* Corrected */
+      }
+      
+      
+      
+      /* Margin between buttons */
+      .button-group button {
+        margin-bottom: 2px; /* Adjust the margin between buttons */
+      }
+      
+      /* Apply a wider width to the select dropdown */
+      select {
+        width: 200px; /* Adjust this value to set the desired width */
+      }
+      
+      /* remove underlines from all anchor (<a>) elements */
+      .card-link {
+        text-decoration: none;
+      }
+      
+      
+      
+      
+      /* Media query for smaller screens */
+      @media screen and (max-width: 768px) {
+        .sidebar {
+          display: none; /* Hide sidebar by default */
+        }
+      
+        .content {
+          margin-left: 0; /* Adjust content for no sidebar */
+        }
+      
+        /* Additional styles for the button toggle */
+        #sidebar-toggle {
+          display: block;
+          cursor: pointer;
+          margin: 10px auto; /* Auto margin for centering */
+          text-align: center; /* Center text inside button */
+      
+        }
+      
+        /* Show sidebar on toggle */
+        .show-sidebar {
+          display: block !important;
+          width: 200px;
+        }
+      }
+      
+      /* Media query for larger screens */
+      @media screen and (min-width: 769px) {
+        #sidebar-toggle {
+          display: none; /* Hide toggle button on larger screens */
+        }
+      }
+      
+      
+      
+      
+      /* CSS for high contrast */
+      .high-contrast {   /* Adjust colors and background for high contrast */
+        background-color: black;
+        color: white;
+      }
+      
+      /* Additional CSS to set text color in high-contrast mode */
+      .high-contrast .card-body {
+        color: white; /* Set text color to black within the card body */
+        background-color: rgb(51, 48, 48);
+      }
+      
+      /* Styles for high contrast sidebar */
+      .high-contrast .sidebar {
+          background-color: rgb(51, 48, 48);
+          color: white;
+          border-right: 2px solid #fff; /* Add border to the right side */
+      }
+      
+      /* Styles for high contrast content */
+      .high-contrast .content {
+        background-color: rgb(51, 48, 48);
+        color: white;
+      }
+      /* END - CSS for high contrast */
+      
+      /* CSS for greyscale effect */
+      .greyscale {
+        filter: grayscale(100%);
+      }
+      
+      /* Apply greyscale to specific elements */
+      .greyscale .sidebar,
+      .greyscale .card-body {
+        filter: grayscale(100%);
+      }
+      /* END - CSS for greyscale effect */
+      
+      
+      /* drag-drop-image */
+      .drop-area {
+        width: 100%;
+        height: 150px;
+        border: 2px dashed #ccc;
+        border-radius: 5px;
+        text-align: center;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+      
+      .form-control {
+        width: calc(100% - 40px);
+      }
+      
+      .preview-img {
+        max-width: 60%;
+        height: auto;
+      }
+        /* END drag-drop-image */
+      
+      /* Style for the modal (popout image) */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+      
+      /* Style for the modal content */
+      .modal-content {
+        margin: auto;
+        display: block;
+        max-width: 60%;
+        max-height: 80%;
+      }
+      
+      /* Style for the close button */
+      .close {
+        color: white;
+        position: absolute;
+        top: 10px;
+        right: 25px;
+        font-size: 35px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      /* END - Style for the modal (popout image) */
+      
+      
+      
+        </style>
+  </head>
+  <body>
+    <div class="container-fluid content">
+        <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-2 sidebar button-group" id="sidebar">
+        <h1>iConsuLt</h1>
+        <h4>userIConsuLt</h4>
+        <h6>userIConsuLt@gmail.com </h6><br>
+        <form >
+          <a href="chapter2.html" class="btn btn-primary text-white flex-grow-1 me-2">Logout</a><hr>
+        </form>
+
+        <h4>Accessibility Tools</h4>
+
+        <button class="btn btn-dark text-white btn-lg btn-block mb-2" onclick="toggleContrast()">High Contrast</button>
+        <button class="btn btn-secondary text-white btn-lg btn-block mb-2" onclick="toggleGreyscale()">Greyscale</button>
+
+        <select id="font-size-select" class="form-select mb-3" onchange="changeFontSize(this.value)">
+            <option value="18px" selected>Font Size (18px)</option>
+            <div class="dropdown-divider"></div>
+            <option value="24px">24px</option>
+            <option value="36px">36px</option>
+            <option value="42px">42px</option>
+        </select>
+
+        <p style="text-align: center;"><b>Universal Education - Providing Education to All Individuals</b></p>
+        
+        <div class="sidebar-footer">
+          <p>Copyright &copy; <span id="currentYear"></span> iConsuLt</p>
+          <script>
+            // JavaScript code here to set the current year
+            const currentYear = new Date().getFullYear();
+            document.getElementById('currentYear').textContent = currentYear;
+          </script>
+        </div>
+      </div>
+      <!-- END Sidebar -->
+
+      <div class="col-md-10 content"><ul></ul>
+      <section id="cards" ></section>
+        <!-- main contains -->
+      <!-- Modal -->
+              <script>
+                fetch('json/subject.json')
+                  .then(response => response.json())
+                  .then(data => {
+                    const cardsContainer = document.getElementById('cards');
+                    data.forEach(item => {
+                      const card = document.createElement('h6');
+                      card.classList.add('card', 'mb-3');
+              
+                      const cardHeader = document.createElement('h6');
+                      cardHeader.classList.add('card-header');
+                      cardHeader.textContent = `${item.code}: ${item.subject}`;
+              
+                      const cardBody = document.createElement('h6');
+                      cardBody.classList.add('card-body');
+              
+                      const cardTopics = document.createElement('ul');
+                      cardTopics.classList.add('list-group', 'list-group-flush', 'd-none'); // Add 'd-none' class to hide the topic list initially
+              
+                      let topicNumber = 1; // Initialize the topic number
+              
+                      for (const topicKey in item) {
+                        if (topicKey !== 'id' && topicKey !== 'subject' && topicKey !== 'code') {
+                          const topic = document.createElement('li');
+                          topic.classList.add('list-group-item');
+                          topic.textContent = `${topicNumber}. ${item[topicKey]}`;
+                          cardTopics.appendChild(topic);
+                          topicNumber++; // Increment the topic number
+                        }
+                      }
+              
+                      const showTopicsBtn = document.createElement('button');
+                      showTopicsBtn.classList.add('btn', 'btn-primary', 'show-topics-btn');
+                      showTopicsBtn.textContent = 'Show Topics';
+                      showTopicsBtn.addEventListener('click', () => {
+                        cardTopics.classList.toggle('d-none'); // Toggle the 'd-none' class to show/hide the topic list
+                        showTopicsBtn.textContent = cardTopics.classList.contains('d-none') ? 'Show Topics' : 'Hide Topics'; // Update the button text based on the visibility of the topic list
+                      });
+              
+                      cardBody.appendChild(cardTopics);
+                      cardBody.appendChild(showTopicsBtn);
+              
+                      card.appendChild(cardHeader);
+                      card.appendChild(cardBody);
+              
+                      cardsContainer.appendChild(card);
+                    });
+                  });
+              </script>
+          
+
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+    <!-- javascript  -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+
+
+
+
+
+    
+<!-- Accessbile tool -->
+<script>
+    // change font and contrast
+    function toggleContrast() {
+      const body = document.body;
+      body.classList.toggle('high-contrast');
+    }
+
+    // Function to toggle contrast for the entire document
+    function toggleContrast() {
+        const body = document.body;
+        body.classList.toggle('high-contrast');
+    }
+
+    // Function to toggle greyscale for the entire document
+    function toggleGreyscale() {
+      const body = document.body;
+      body.classList.toggle('greyscale');
+    }
+
+    // Function to change font size
+    function changeFontSize(size) {
+        const questionTextElements = document.querySelectorAll('.question-text');
+        const answerTextElements = document.querySelectorAll('.answer-text');
+
+        // Loop through question text elements and set font size
+        questionTextElements.forEach(element => {
+            element.style.fontSize = size;
+        });
+
+        // Loop through answer text elements and set font size
+        answerTextElements.forEach(element => {
+            element.style.fontSize = size;
+        });
+      }
+
+      // Toggle sidebar
+      // Toggle the sidebar visibility on button click
+      const toggleButton = document.getElementById('sidebar-toggle');
+      const sidebar = document.getElementById('sidebar');
+
+      toggleButton.addEventListener('click', () => {
+        sidebar.classList.toggle('show-sidebar');
+      });
+</script>
+
+      <!-- END - Accessbile tool -->
+    <script>
+      //## drag-drop image in textarea
+      // Get necessary elements from the DOM
+      const imageText = document.getElementById('imageText');
+      const fileInput = document.getElementById('fileInput');
+      const imagePreview = document.getElementById('imagePreview');
+
+      // Function to handle image preview
+      function previewImage(file) {
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+          const img = new Image();
+          img.src = event.target.result;
+          img.classList.add('preview-img');
+          imagePreview.innerHTML = '';
+          imagePreview.appendChild(img);
+        };
+
+        reader.readAsDataURL(file);
+      }
+
+      // Function to handle file selection
+      function handleFileSelect(event) {
+        const file = event.target.files[0];
+        if (file) {
+          previewImage(file);
+        }
+      }
+
+      // Event listeners
+      imageText.addEventListener('dragover', function(event) {
+        event.preventDefault();
+      });
+
+      imageText.addEventListener('drop', function(event) {
+        event.preventDefault();
+        const file = event.dataTransfer.files[0];
+        previewImage(file);
+      });
+
+      fileInput.addEventListener('change', handleFileSelect);
+      //## END drag-drop image in textarea
+
+      // reset button
+      function resetPage() {
+        location.reload(); // Reloads the page
+    }
+
+    // Function to handle form submission
+  function handleSubmit(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const form = document.getElementById('submitForm'); // Get the form by its ID
+    const formData = new FormData(form); // Create FormData object from the form
+
+    // Send form data to the server using fetch
+    fetch('/stdSubmitQuestion', {
+      method: 'POST',
+      body: formData // Send FormData object as the request body
+    })
+    .then(response => {
+      if (response.ok) {
+        // Handle success, e.g., display a success message
+        console.log('Form submitted successfully!');
+      } else {
+        // Handle error, e.g., display an error message
+        console.error('Form submission failed.');
+      }
+    })
+    .catch(error => {
+      console.error('An error occurred:', error);
+    });
+  }
+
+  const form = document.getElementById('submitForm');
+form.addEventListener('submit', handleSubmit);
+
+// Only declare the form variable once and use it for further actions
+// Here's the updated event listener
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(form);
+  const fileInput = document.getElementById('fileInput');
+  const files = fileInput.files;
+
+  // Append file(s) to form data
+  for (let i = 0; i < files.length; i++) {
+    formData.append('imageFile', files[i]);
+  }
+
+  // Send form data with fetch
+  try {
+    const response = await fetch('/stdSubmitQuestion', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (response.ok) {
+      console.log('Form submitted successfully!');
+    } else {
+      console.error('Form submission failed.');
+    }
+  } catch (error) {
+    console.error('An error occurred:', error);
+  }
+});
+
+// Function to open the modal and display the image
+function openModal(src) {
+  const modal = document.getElementById('myModal');
+  const modalImg = document.getElementById('modalImg');
+  modal.style.display = 'block';
+  modalImg.src = src;
+}
+
+// Function to close the modal
+function closeModal() {
+  const modal = document.getElementById('myModal');
+  modal.style.display = 'none';
+}
+// END - Function to open the modal and display the image
+
+</script>
+
+<!-- Scritp to == html go to bottom of page on load 
+<script>
+  function scrollToBottom() {
+      window.scrollTo(0, document.body.scrollHeight);
+  }
+  history.scrollRestoration = "manual";
+  window.onload = scrollToBottom;
+</script>
+-->
+
+<script>
+  // Function to apply user preferences on page load
+  function applyUserPreferences() {
+      const contrastMode = localStorage.getItem('contrastMode');
+      const greyscaleMode = localStorage.getItem('greyscaleMode');
+      const fontSize = localStorage.getItem('fontSize');
+  
+      if (contrastMode === 'enabled') {
+          toggleContrast();
+      }
+  
+      if (greyscaleMode === 'enabled') {
+          toggleGreyscale();
+      }
+  
+      if (fontSize) {
+          changeFontSize(fontSize);
+          document.getElementById('font-size-select').value = fontSize;
+      }
+  }
+  
+  // Apply user preferences when the page loads
+  document.addEventListener('DOMContentLoaded', applyUserPreferences);
+  
+  // Event listener for contrast and greyscale buttons
+  document.addEventListener('click', function (event) {
+      const target = event.target;
+  
+      if (target.matches('.btn-contrast')) {
+          toggleContrast();
+      }
+  
+      if (target.matches('.btn-greyscale')) {
+          toggleGreyscale();
+      }
+  });
+  
+  // Event listener for font size change
+  document.getElementById('font-size-select').addEventListener('change', function () {
+      const fontSize = this.value;
+      changeFontSize(fontSize);
+      localStorage.setItem('fontSize', fontSize);
+  });
+  
+  // Function to toggle contrast
+  function toggleContrast() {
+      const body = document.body;
+      body.classList.toggle('high-contrast');
+  
+      const contrastMode = body.classList.contains('high-contrast') ? 'enabled' : 'disabled';
+      localStorage.setItem('contrastMode', contrastMode);
+  }
+  
+  // Function to toggle greyscale
+  function toggleGreyscale() {
+      const body = document.body;
+      body.classList.toggle('greyscale');
+  
+      const greyscaleMode = body.classList.contains('greyscale') ? 'enabled' : 'disabled';
+      localStorage.setItem('greyscaleMode', greyscaleMode);
+  }
+  
+  // Function to change font size
+  function changeFontSize(size) {
+      const questionTextElements = document.querySelectorAll('.question-text');
+      const answerTextElements = document.querySelectorAll('.answer-text');
+  
+      // Loop through question text elements and set font size
+      questionTextElements.forEach(element => {
+          element.style.fontSize = size;
+      });
+  
+      // Loop through answer text elements and set font size
+      answerTextElements.forEach(element => {
+          element.style.fontSize = size;
+      });
+  
+      // Save font size to local storage
+      localStorage.setItem('fontSize', size);
+  }
+  
+  </script>
+
+
+<!-- Scritp to == html go to bottom of page on load -->
+<script>
+  function scrollToBottom() {
+      window.scrollTo(0, document.body.scrollHeight);
+  }
+  history.scrollRestoration = "manual";
+  window.onload = scrollToBottom;
+</script> 
+  </body>
+</html>

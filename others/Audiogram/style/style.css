@@ -1,0 +1,26 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+table {
+    border-collapse: collapse;
+    margin-right: 20px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    width: 20%;
+}
+th {
+    background-color: #f8e4e4;
+}
+canvas {
+    border: 1px solid black;
+    background-color: #fff;
+}
+#download-button {
+    margin-top: 10px;
+}

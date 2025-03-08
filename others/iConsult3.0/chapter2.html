@@ -1,0 +1,530 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iConsuLt</title>
+  <!-- Link your CSS file using the specified URL -->
+  <link rel="stylesheet" type="text/css" href="/stylecss/styles.css">
+  <style>
+  body, html {
+  height: 100%;
+  margin: 0;
+  font-size: 18px; /* Set your desired font size */
+  background-color: rgb(189, 240, 196);
+}
+
+.container {
+  display: flex;
+}
+
+.sidebar {
+  min-height: 100%;
+  width: 200px;
+  background-color: #888787;
+  padding: 10px;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto; /* Adjust overflow as needed */
+  background-color: rgb(189, 240, 196);
+}
+
+
+/* Margin between buttons */
+.button-group button {
+  margin-bottom: 2px; /* Adjust the margin between buttons */
+}
+
+
+/* Sidebar smaller screens -----------------------------------------------------------*/
+@media screen and (max-width: 768px) {
+  .sidebar {
+    display: none; /* Hide sidebar by default */
+  }
+
+
+  /* button toggle styles */
+  #sidebar-toggle {
+    display: block;
+    cursor: pointer;
+    margin: 10px auto; /* Auto margin for centering */
+    text-align: center; /* Center text inside button */
+
+  }
+
+  /* Show sidebar on toggle */
+  .show-sidebar {
+    display: block !important;
+    width: 200px;
+  }
+}
+/* END Sidebar smaller screens #############################################  */
+
+/* Hide toggle button on larger screens -----------------------------------------------------------*/
+@media screen and (min-width: 769px) {
+  #sidebar-toggle {
+    display: none; /* Hide toggle button on larger screens */
+  }
+}
+/* END Hide toggle button on larger screens ############################################# */
+
+
+
+/* CSS for high contrast -----------------------------------------------------------*/
+.high-contrast {   /* Adjust colors and background for high contrast */
+  background-color: black;
+  color: white;
+}
+
+/* Additional CSS to set text color in high-contrast mode */
+.high-contrast .card-body {
+  color: white; /* Set text color to black within the card body */
+  background-color: rgb(51, 48, 48);
+}
+
+/* Styles for high contrast sidebar */
+.high-contrast .sidebar {
+    background-color: rgb(51, 48, 48);
+    color: white;
+    border-right: 2px solid #fff; /* Add border to the right side */
+}
+
+/* Styles for high contrast content */
+.high-contrast .content {
+  background-color: rgb(51, 48, 48);
+  color: white;
+}
+/* END - CSS for high contrast #############################################  */
+
+/* CSS for greyscale effect -----------------------------------------------------------*/
+.greyscale {
+  filter: grayscale(100%);
+}
+
+/* Apply greyscale to specific elements */
+.greyscale .sidebar,
+.greyscale .card-body {
+  filter: grayscale(100%);
+}
+/* END - CSS for greyscale effect #############################################  */
+
+
+/* Style for the modal (popout image) ----------------------------------------------------------- */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Style for the modal content */
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 60%;
+  max-height: 80%;
+}
+
+/* Style 'X' close button */
+.close {
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+}
+/* END - Style for the modal (popout image) #############################################  */
+
+
+
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+  <div class="container-fluid content">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-2 sidebar button-group" id="sidebar">
+        <h1>iConsuLt</h1>
+        <h4>userIConsuLt</h4>
+        <h6>userIConsuLt@gmail.com </h6><br>
+        <form >
+          <a href="allTopics.html" class="btn btn-primary text-white flex-grow-1 me-2">Logout</a><hr>
+        </form>
+
+        <h4>Accessibility Tools</h4>
+
+        <button class="btn btn-dark text-white btn-lg btn-block mb-2" onclick="toggleContrast()">High Contrast</button>
+        <button class="btn btn-secondary text-white btn-lg btn-block mb-2" onclick="toggleGreyscale()">Greyscale</button>
+
+        <select id="font-size-select" class="form-select mb-3" onchange="changeFontSize(this.value)">
+            <option value="18px" selected>Font Size (18px)</option>
+            <div class="dropdown-divider"></div>
+            <option value="24px">24px</option>
+            <option value="36px">36px</option>
+            <option value="42px">42px</option>
+            <option value="72px">72px</option>
+            <option value="104px">104px</option>
+        </select>
+
+        <p style="text-align: center;"><b>Universal Education - Providing Education to All Individuals</b></p>
+        
+        <div class="sidebar-footer">
+          <p>Copyright &copy; <span id="currentYear"></span> iConsuLt</p>
+          <script>
+            // JavaScript code here to set the current year
+            const currentYear = new Date().getFullYear();
+            document.getElementById('currentYear').textContent = currentYear;
+          </script>
+        </div>
+      </div>
+      <div class="col-md-10 content"><ul></ul>
+        <ul><h1>Chapter 2: Mass Media Communication</h1> </ul> <button id="sidebar-toggle">Menu</button>
+        <!-- <button id="sidebar-toggle">Menu</button> -->
+            <div class="mb-auto">
+<!-- QNo.1  -->
+              <ul>
+                  <div class="col-m-1 m-2">
+                    <div class="card" style="width: 100%">
+                      <div class="card-body">
+                          <div>
+                            <div id="myModal" class="modal"><span class="close" onclick="closeModal()">&times;</span><img class="modal-content" id="modalImg"></div>
+                          </div>
+                        <h6 class="card-title question-text" style="white-space: pre-line;">
+                          <b><i><span style="color: red;">Question: </span></b></i>The problem right is that i just realized all the telephone calls can't be considered "Mass Media" as all but one instance takes place with multiple people. Does that mean we have to look for a different device?
+                        </h6>
+                        <hr>
+                        <h6 class="card-title answer-text" style="white-space: pre-line;">
+                          <b><i><span style="color: red;">Answer: </span></b></i>Telephone by default is not a media as it is actually part of telecommunication devices. Smartphone, is a device as well. but, it can be use for social media setting or mass media setting. You use smartphone, for Instagram. It's mass media usage. You use smartphone for newspaper reading/news watching. It's mass media usage.
+                        </h6>
+                          <div>
+                            <img src="images/1714458895752.PNG" style="width: 40%;" onclick="openModal(this.src)">
+                            <div id="myModal" class="modal"><span class="close" onclick="closeModal()">&times;</span><img class="modal-content" id="modalImg"></div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+              </ul>
+       
+<!-- QNo.2  -->
+              <ul>
+                <div class="col-m-1 m-2">
+                  <div class="card" style="width: 100%">
+                    <div class="card-body">
+                      <h6 class="card-title question-text" style="white-space: pre-line;">
+                        <b><i><span style="color: red;">Question: </span></b></i>Assalamualaikum madam. I want to ask you regarding to the movie assignment. do CCTV footage is considered media too? if so, is it social media because CCTV is not giving information to mass people right?
+                      </h6>
+                      <hr>
+                      <h6 class="card-title answer-text" style="white-space: pre-line;">
+                        <b><i><span style="color: red;">Answer: </span></b></i> CCTV footage, spread by YouTube. YouTube is a social media. CCTV footage is the content.
+                      </h6>
+                        <div>
+                          <img src="" style="width: 40%;" onclick="openModal(this.src)">
+                          <div id="myModal" class="modal"><span class="close" onclick="closeModal()">&times;</span><img class="modal-content" id="modalImg"></div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </ul>  
+
+<!-- QNo.3  -->
+              <ul>
+                <div class="col-m-1 m-2">
+                  <div class="card" style="width: 100%">
+                    <div class="card-body">
+                        <div>
+                          <img src="images/1714463678266.PNG" style="width: 40%;" onclick="openModal(this.src)">
+                          <div id="myModal" class="modal"><span class="close" onclick="closeModal()">&times;</span><img class="modal-content" id="modalImg"></div>
+                        </div>
+                      <h6 class="card-title question-text" style="white-space: pre-line;">
+                        <b><i><span style="color: red;">Question: </span></b></i>Mdm, What is encoding & decoding?
+                      </h6>
+                      <hr>
+                      <h6 class="card-title answer-text" style="white-space: pre-line;">
+                        <b><i><span style="color: red;">Answer: </span></b></i>
+                      </h6>
+                        <div>
+                          <img src="" style="width: 40%;" onclick="openModal(this.src)">
+                          <div id="myModal" class="modal"><span class="close" onclick="closeModal()">&times;</span><img class="modal-content" id="modalImg"></div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </ul>
+              
+<!-- QNo.4  -->
+              <ul>
+                <div class="col-m-1 m-2">
+                  <div class="card" style="width: 100%">
+                    <div class="card-body">
+                        <div>
+                          <img src="images/miss_info_socmed.jpeg" style="width: 40%;" onclick="openModal(this.src)">
+                          <div id="myModal" class="modal"><span class="close" onclick="closeModal()">&times;</span><img class="modal-content" id="modalImg"></div>
+                        </div>
+                      <h6 class="card-title question-text" style="white-space: pre-line;">
+                        <b><i><span style="color: red;">Question: </span></b></i>Dear madam, i found this information on website. 5 in 10 Americans Get (Mis)informed on Social Media
+                        Source: https://www.statista.com/chart/28490/news-consumption-on-social-media/ 
+                      </h6>
+                      <hr>
+                      <h6 class="card-title answer-text" style="white-space: pre-line;">
+                        <b><i><span style="color: red;">Answer: </span></b></i>
+                      </h6>
+                        <div>
+                          <img src="" style="width: 40%;" onclick="openModal(this.src)">
+                          <div id="myModal" class="modal"><span class="close" onclick="closeModal()">&times;</span><img class="modal-content" id="modalImg"></div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </ul> 
+
+
+
+              
+            </div>
+            <script>
+              function confirmDeletion(questionId) {
+                var confirmDelete = confirm("Are you sure you want to delete this question?");
+                if (confirmDelete) {
+                  window.location.href = "/student-delete-question?id=" + questionId;
+                } else {
+                  // Do something else or nothing if the user cancels
+                }
+              }
+            </script>
+            <!-- Form submit question -->
+            <div class="mb-auto">
+              <ul>
+                <div class="col-m-1 m-2">
+                  <div class="card" style="width: 100%">
+                    <div class="card-body">
+                      <form method="post" id="submitForm" enctype="multipart/form-data">
+
+                        <div class="row wrapper">
+                          <div class="col-5 card-title question-text">
+                            <label for="question" class="form-label flex-grow-1 me-2"><b>Send a new question </b></label>
+                          </div>
+                          <div class="mb-3 d-flex align-items-start">
+                            <textarea class="form-control  me-1  " style="width: 70%;"id="question" name="question" placeholder="In this space, type your question/query.. "  rows="3"  required></textarea>
+                            <!-- <label for="fileInput" class="form-label">Upload Image</label> -->
+                            <input type="file" id="fileInput" name="imageFile" accept="image/*" class="form-control"style="width: 30%;">
+                          </div>
+            
+                          <div class="mb-3 d-flex align-items-start">
+                            <button type="button" class="btn btn-danger flex-grow-1 me-1" style="width: 20%;" onclick="resetPage()">Clear / Reset</button>
+                            <button type="submit" class="btn btn-primary flex-grow-1 me-1" style="width: 80%;">Send</button>
+                          </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </ul>
+            </div>
+            <!-- End Form submit question -->
+      </div> <!-- END - Main content -->
+    </div>
+  </div>
+
+
+<!-- JS Accessbile tool -->
+<script>
+    // Function to change font size
+    function changeFontSize(size) {
+        const questionTextElements = document.querySelectorAll('.question-text');
+        const answerTextElements = document.querySelectorAll('.answer-text');
+
+        // Loop through question text elements and set font size
+        questionTextElements.forEach(element => {
+            element.style.fontSize = size;
+        });
+
+        // Loop through answer text elements and set font size
+        answerTextElements.forEach(element => {
+            element.style.fontSize = size;
+        });
+      }
+</script>
+
+<script>
+      // 'MENU' Toggle the sidebar visibility
+      const toggleButton = document.getElementById('sidebar-toggle');
+      const sidebar = document.getElementById('sidebar');
+
+      toggleButton.addEventListener('click', () => {
+        sidebar.classList.toggle('show-sidebar');
+      });
+</script>
+
+      <!-- END - Accessbile tool -->
+    <script>
+      // reset button
+      function resetPage() {
+        location.reload(); // Reloads the page
+    }
+
+    // Function to handle form submission
+  function handleSubmit(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const form = document.getElementById('submitForm'); // Get the form by its ID
+    const formData = new FormData(form); // Create FormData object from the form
+
+    // Send form data to the server using fetch
+    fetch('/stdSubmitQuestion', {
+      method: 'POST',
+      body: formData // Send FormData object as the request body
+    })
+    .then(response => {
+      if (response.ok) {
+        // Handle success, e.g., display a success message
+        console.log('Form submitted successfully!');
+      } else {
+        // Handle error, e.g., display an error message
+        console.error('Form submission failed.');
+      }
+    })
+    .catch(error => {
+      console.error('An error occurred:', error);
+    });
+  }
+
+  const form = document.getElementById('submitForm');
+form.addEventListener('submit', handleSubmit);
+
+// Only declare the form variable once and use it for further actions
+// Here's the updated event listener
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(form);
+  const fileInput = document.getElementById('fileInput');
+  const files = fileInput.files;
+
+  // Append file(s) to form data
+  for (let i = 0; i < files.length; i++) {
+    formData.append('imageFile', files[i]);
+  }
+
+  // Send form data with fetch
+  try {
+    const response = await fetch('/stdSubmitQuestion', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (response.ok) {
+      console.log('Form submitted successfully!');
+    } else {
+      console.error('Form submission failed.');
+    }
+  } catch (error) {
+    console.error('An error occurred:', error);
+  }
+});
+
+// Function to open the modal and display the image
+function openModal(src) {
+  const modal = document.getElementById('myModal');
+  const modalImg = document.getElementById('modalImg');
+  modal.style.display = 'block';
+  modalImg.src = src;
+}
+
+// Function to close the modal
+function closeModal() {
+  const modal = document.getElementById('myModal');
+  modal.style.display = 'none';
+}
+// END - Function to open the modal and display the image
+
+</script>
+
+<script>
+  // Function to apply user preferences on page load
+  function applyUserPreferences() {
+      const contrastMode = localStorage.getItem('contrastMode');
+      const greyscaleMode = localStorage.getItem('greyscaleMode');
+      const fontSize = localStorage.getItem('fontSize');
+  
+      if (contrastMode === 'enabled') {
+          toggleContrast();
+      }
+  
+      if (greyscaleMode === 'enabled') {
+          toggleGreyscale();
+      }
+  
+      if (fontSize) {
+          changeFontSize(fontSize);
+          document.getElementById('font-size-select').value = fontSize;
+      }
+  }
+  
+  // Apply user preferences when the page loads
+  document.addEventListener('DOMContentLoaded', applyUserPreferences);
+  
+  // Event listener for contrast and greyscale buttons
+  document.addEventListener('click', function (event) {
+      const target = event.target;
+  
+      if (target.matches('.btn-contrast')) {
+          toggleContrast();
+      }
+  
+      if (target.matches('.btn-greyscale')) {
+          toggleGreyscale();
+      }
+  });
+  
+  // Event listener for font size change
+  document.getElementById('font-size-select').addEventListener('change', function () {
+      const fontSize = this.value;
+      changeFontSize(fontSize);
+      localStorage.setItem('fontSize', fontSize);
+  });
+  
+  // Function to toggle contrast
+  function toggleContrast() {
+      const body = document.body;
+      body.classList.toggle('high-contrast');
+  
+      const contrastMode = body.classList.contains('high-contrast') ? 'enabled' : 'disabled';
+      localStorage.setItem('contrastMode', contrastMode);
+  }
+  
+  // Function to toggle greyscale
+  function toggleGreyscale() {
+      const body = document.body;
+      body.classList.toggle('greyscale');
+  
+      const greyscaleMode = body.classList.contains('greyscale') ? 'enabled' : 'disabled';
+      localStorage.setItem('greyscaleMode', greyscaleMode);
+  }
+  
+  
+  
+</script>
+
+
+<!-- Scritp to == html go to bottom of page on load 
+<script>
+  function scrollToBottom() {
+      window.scrollTo(0, document.body.scrollHeight);
+  }
+  history.scrollRestoration = "manual";
+  window.onload = scrollToBottom;
+</script> 
+-->
+
+</body>
+</html>
