@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Innovation in Teaching
             const innovationContainer = document.getElementById("innovation-content");
-            let innovationContent = `<h2>${data.innovation_teaching.title}</h2>`;
+            let innovationContent = ``;
             innovationContent += `<p>${data.innovation_teaching.description}</p>`;
 
             // Video Resources
@@ -136,30 +136,30 @@ document.addEventListener("DOMContentLoaded", function () {
             innovationContent += `</div>`;
 
             // Case Study
-innovationContent += `<h3>Case Study</h3>`;
-innovationContent += `<p>${data.innovation_teaching.case_study.overview}</p><ul>`;
-data.innovation_teaching.case_study.content.forEach(item => {
-    innovationContent += `<li>${item}</li>`;
-});
-innovationContent += `</ul>`;
-innovationContent += `<p><strong>Poster Creation:</strong> ${data.innovation_teaching.case_study.poster_tool}</p>`;
+            innovationContent += `<h3>Case Study</h3>`;
+            innovationContent += `<p>${data.innovation_teaching.case_study.overview}</p><ul>`;
+            data.innovation_teaching.case_study.content.forEach(item => {
+                innovationContent += `<li>${item}</li>`;
+            });
+            innovationContent += `</ul>`;
+            innovationContent += `<p><strong>Poster Creation:</strong> ${data.innovation_teaching.case_study.poster_tool}</p>`;
 
-// Case Study PDFs
-if (data.innovation_teaching.case_study.case_studies && data.innovation_teaching.case_study.case_studies.length > 0) {
-    innovationContent += `<h4>Download Case Studies:</h4><ul>`;
-    data.innovation_teaching.case_study.case_studies.forEach(pdf => {
-        innovationContent += `<li><a href="${pdf.file}" target="_blank">${pdf.title}</a></li>`;
-    });
-    innovationContent += `</ul>`;
-} else {
-    innovationContent += `<p>No case studies available.</p>`;
-}
+            // Case Study PDFs
+            if (data.innovation_teaching.case_study.case_studies && data.innovation_teaching.case_study.case_studies.length > 0) {
+                innovationContent += `<h4>Download Case Studies:</h4><ul>`;
+                data.innovation_teaching.case_study.case_studies.forEach(pdf => {
+                    innovationContent += `<li><a href="${pdf.file}" target="_blank">${pdf.title}</a></li>`;
+                });
+                innovationContent += `</ul>`;
+            } else {
+                innovationContent += `<p>No case studies available.</p>`;
+            }
 
 
             
 
             // Image Gallery
-            innovationContent += `<h3>Gallery</h3><div style="display: flex; flex-wrap: wrap; gap: 10px;">`;
+            innovationContent += `<h3>Case Study Report to Canva</h3><div style="display: flex; flex-wrap: wrap; gap: 10px;">`;
             data.innovation_teaching.images.forEach(image => {
                 innovationContent += `<img src="image/${image}" alt="Innovation Teaching" class="clickable-image" style="width: 30%; border-radius: 10px; cursor: pointer;">`;
             });
@@ -169,7 +169,7 @@ if (data.innovation_teaching.case_study.case_studies && data.innovation_teaching
 
             // Student Engagement & Instructional Competencies
             const engagementContainer = document.getElementById("student-engagement");
-            let engagementContent = `<h2>${data.student_engagement.title}</h2>`;
+            let engagementContent = ``;
             data.student_engagement.criteria.forEach(section => {
                 engagementContent += `<h3>${section.title}</h3><ul>`;
                 section.content.forEach(point => {
@@ -182,7 +182,7 @@ if (data.innovation_teaching.case_study.case_studies && data.innovation_teaching
 
             // Class Gallery
             const galleryContainer = document.getElementById("class-gallery");
-            let galleryContent = `<h2>${data.class_gallery.title}</h2><div style="display: flex; flex-wrap: wrap; gap: 10px;">`;
+            let galleryContent = ``;
 
             data.class_gallery.images.forEach(image => {
                 galleryContent += `<img src="image/Class/${image}" alt="Class Gallery Image" class="clickable-image" style="width: 30%; border-radius: 10px; cursor: pointer;">`;
