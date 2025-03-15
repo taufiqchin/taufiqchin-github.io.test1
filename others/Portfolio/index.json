@@ -1,0 +1,67 @@
+{
+    "education_teaching_philosophy": {
+        "title": "Education & Teaching Philosophy",
+        "description": "As an educator, my goal is to equip students with essential Ethical Digital Literacy skills, preparing them to navigate and contribute to the modern digital landscape responsibly. My teaching philosophy is built on three key pillars:",
+        "pillars": [
+            {
+                "title": "Understanding the Fundamentals",
+                "points": [
+                    "Students begin by learning about computer components and how they function.",
+                    "Exposure to current technology trends, including Industrial Revolution (IR) 4.0 & 5.0, and understanding how these revolutions differ.",
+                    "Introducing emerging technologies like Artificial Intelligence (AI) and Cloud Computing to help students grasp their impact on society."
+                ]
+            },
+            {
+                "title": "Digital Awareness & Cybersecurity",
+                "points": [
+                    "Teaching the internet ecosystem, including websites, Creative Commons Licensing (CCL), and digital rights.",
+                    "Enhancing students’ awareness of cybersecurity threats such as malware, cookies, viruses, and encryption (e.g., cipher text in HTTPS).",
+                    "Understanding ethical concerns, including plagiarism detection and digital responsibility."
+                ]
+            },
+            {
+                "title": "Practical Digital Skills for the Real World",
+                "points": [
+                    "Hands-on training in email communication, including writing effective emails, attachments, and email security.",
+                    "Using Canva for creative content creation and visual communication.",
+                    "Introducing data analysis using Python, empowering students with fundamental coding and analytical skills."
+                ]
+            }
+        ]
+    },
+
+    
+        "title": "Innovation in Teaching",
+        "description": "Use of technology or creative methods in the classroom. Examples of unique lesson plans or instructional techniques.",
+        "videos": [
+          {
+            "title": "CS50 2018 - Phone Book",
+            "url": "https://www.youtube.com/embed/DSffdCT5Cx4"
+          },
+          {
+            "title": "CS50 2019 - Binary Bulbs",
+            "url": "https://www.youtube.com/embed/gs4Sb4ar4qw"
+          }
+        ],
+        "case_study": {
+          "overview": "Students apply ethical internet usage to research and submit a case study report using the APA format via their @iium.live email accounts.",
+          "content": [
+            "Case study Introduction & Objectives",
+            "Background/Literature Review",
+            "Analysis",
+            "Findings & Results",
+            "BOOLEAN search used",
+            "Conclusion",
+            "References"
+          ],
+          "poster_tool": "Students create a research poster using Canva in A4 size, demonstrating their findings using digital tools."
+        },
+        "images": [
+          "image1.jpg",
+          "image2.jpg",
+          "image3.jpg",
+          "image4.jpg"
+        ]
+      
+      
+}

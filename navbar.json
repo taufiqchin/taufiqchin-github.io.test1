@@ -4,6 +4,6 @@
         { "name": "About", "link": "index2.html", "class": "w3-hide-small w3-hover-white" },
         { "name": "CyberSecurityHubNews", "link": "https://www.instagram.com/thecybersecurityhub/", "class": "w3-hide-small w3-hover-white", "target": "_blank" },
         { "name": "backuphtml", "link": "backupHTML1.html", "class": "w3-hide-small w3-hover-white" },
-        { "name": "Python", "link": "python.html", "class": "w3-hide-small w3-hide-medium w3-hover-white" }
+        { "name": "Portfolio", "link": "others/Portfolio/index.html", "class": "w3-hide-small w3-hide-medium w3-hover-white" }
     ]
 }
