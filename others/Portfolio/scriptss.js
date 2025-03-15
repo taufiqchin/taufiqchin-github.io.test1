@@ -136,13 +136,27 @@ document.addEventListener("DOMContentLoaded", function () {
             innovationContent += `</div>`;
 
             // Case Study
-            innovationContent += `<h3>Case Study</h3>`;
-            innovationContent += `<p>${data.innovation_teaching.case_study.overview}</p><ul>`;
-            data.innovation_teaching.case_study.content.forEach(item => {
-                innovationContent += `<li>${item}</li>`;
-            });
-            innovationContent += `</ul>`;
-            innovationContent += `<p><strong>Poster Creation:</strong> ${data.innovation_teaching.case_study.poster_tool}</p>`;
+innovationContent += `<h3>Case Study</h3>`;
+innovationContent += `<p>${data.innovation_teaching.case_study.overview}</p><ul>`;
+data.innovation_teaching.case_study.content.forEach(item => {
+    innovationContent += `<li>${item}</li>`;
+});
+innovationContent += `</ul>`;
+innovationContent += `<p><strong>Poster Creation:</strong> ${data.innovation_teaching.case_study.poster_tool}</p>`;
+
+// Case Study PDFs
+if (data.innovation_teaching.case_study.case_studies && data.innovation_teaching.case_study.case_studies.length > 0) {
+    innovationContent += `<h4>Download Case Studies:</h4><ul>`;
+    data.innovation_teaching.case_study.case_studies.forEach(pdf => {
+        innovationContent += `<li><a href="${pdf.file}" target="_blank">${pdf.title}</a></li>`;
+    });
+    innovationContent += `</ul>`;
+} else {
+    innovationContent += `<p>No case studies available.</p>`;
+}
+
+
+            
 
             // Image Gallery
             innovationContent += `<h3>Gallery</h3><div style="display: flex; flex-wrap: wrap; gap: 10px;">`;
@@ -203,61 +217,4 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => console.error("Error loading JSON data:", error));
 });
-
-
-
-        /*
-        // Image Gallery (With Clickable Modal)
-            html += `<h3 style="color: black;">Gallery</h3>`;
-            html += `<div style="display: flex; flex-wrap: wrap; gap: 10px;">`;
-            data.images.forEach(image => {
-                html += `
-                    <img src="image/${image}" alt="Student Work" class="clickable-image" style="width: 30%; border-radius: 10px; cursor: pointer;">
-                `;
-            });
-            html += `</div>`;
-
-            // Modal for Full-Screen Image
-            html += `
-                <div id="imageModal" class="modal">
-                    <span class="close">&times;</span>
-                    <img class="modal-content" id="fullImage">
-                </div>
-            `;
-
-            contentContainer.innerHTML = html;
-
-            // Handle Image Click Event
-            const images = document.querySelectorAll(".clickable-image");
-            const modal = document.getElementById("imageModal");
-            const modalImg = document.getElementById("fullImage");
-            const closeModal = document.querySelector(".close");
-
-            images.forEach(img => {
-                img.addEventListener("click", function () {
-                    modal.style.display = "block";
-                    modalImg.src = this.src;
-                });
-            });
-
-            // Close the Modal When Clicking the Close Button
-            closeModal.addEventListener("click", function () {
-                modal.style.display = "none";
-            });
-
-            // Close Modal When Clicking Outside the Image
-            modal.addEventListener("click", function (event) {
-                if (event.target === modal) {
-                    modal.style.display = "none";
-                }
-            });
-
-        })
-        .catch(error => console.error("Error loading innovation data:", error));
-
-
-
-
-        */
-        
 

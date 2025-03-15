@@ -58,7 +58,7 @@
                 "References"
             ],
             "poster_tool": "Students create a research poster using Canva in A4 size, demonstrating their Case Study findings using digital tools.",
-            "books": [
+            "case_studies": [
                 {
                     "title": "Case Study ICTF0513 (AI Predicting Mental Health)",
                     "file": "pdf/1. Case Study ICTF0513 (AI Predicting Mental Health).pdf"
@@ -82,11 +82,11 @@
             ]
         },
         "images": [
-            "2. Case Study Poster on How Graphics Cards Make Games Look Awesome .PNG",
+            "2.Case_Study_Poster_on_How_Graphics_Cards_.PNG",
             "1. caesarean section.PNG",
             "9. G558.PNG",
-            "7. G558.PNG",
-            "5G.PNG",
+            "1. Case Study G558.PNG",
+            "1. Case Study 5G.PNG",
             "1. Case Study Canva Poster.PNG"
         ]
     },
