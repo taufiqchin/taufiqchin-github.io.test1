@@ -25,43 +25,111 @@
                     "Hands-on training in email communication, including writing effective emails, attachments, and email security.",
                     "Using Canva for creative content creation and visual communication.",
                     "Introducing data analysis using Python, empowering students with fundamental coding and analytical skills."
+                ],
+                "images": [
+                    "Excel.PNG",
+                    "ExcelTest.jpeg"
                 ]
             }
         ]
     },
-
-    
+    "innovation_teaching": {
         "title": "Innovation in Teaching",
         "description": "Use of technology or creative methods in the classroom. Examples of unique lesson plans or instructional techniques.",
         "videos": [
-          {
-            "title": "CS50 2018 - Phone Book",
-            "url": "https://www.youtube.com/embed/DSffdCT5Cx4"
-          },
-          {
-            "title": "CS50 2019 - Binary Bulbs",
-            "url": "https://www.youtube.com/embed/gs4Sb4ar4qw"
-          }
+            {
+                "title": "CS50 2018 - Phone Book",
+                "url": "https://www.youtube.com/embed/DSffdCT5Cx4"
+            },
+            {
+                "title": "CS50 2019 - Binary Bulbs",
+                "url": "https://www.youtube.com/embed/gs4Sb4ar4qw"
+            }
         ],
         "case_study": {
-          "overview": "Students apply ethical internet usage to research and submit a case study report using the APA format via their @iium.live email accounts.",
-          "content": [
-            "Case study Introduction & Objectives",
-            "Background/Literature Review",
-            "Analysis",
-            "Findings & Results",
-            "BOOLEAN search used",
-            "Conclusion",
-            "References"
-          ],
-          "poster_tool": "Students create a research poster using Canva in A4 size, demonstrating their findings using digital tools."
+            "overview": "Students apply ethical internet usage to research and submit a case study report using the APA format via their @iium.live email accounts.",
+            "content": [
+                "Case study Introduction & Objectives",
+                "Background/Literature Review",
+                "Analysis",
+                "Findings & Results",
+                "BOOLEAN search used",
+                "Conclusion",
+                "References"
+            ],
+            "poster_tool": "Students create a research poster using Canva in A4 size, demonstrating their Case Study findings using digital tools.",
+            "books": [
+                {
+                    "title": "Case Study ICTF0513 (AI Predicting Mental Health)",
+                    "file": "pdf/1. Case Study ICTF0513 (AI Predicting Mental Health).pdf"
+                },
+                {
+                    "title": "SKIN CANCER - ICT",
+                    "file": "pdf/1. SKIN CANCER - ICT.pdf"
+                },
+                {
+                    "title": "Understanding Cesarean Birth: A Comprehensive Overview",
+                    "file": "pdf/3. 558_Case Study_Understanding Cesarean Birth_ A Comprehensive Overview.pdf"
+                },
+                {
+                    "title": "Traditional Medicine and Modern Medicine from Natural Products",
+                    "file": "pdf/4. 558 Case Study THE TRADIONAL MEDICINE AND MODERN MEDICINE FROM NATURAL PRODUCTS.pdf"
+                },
+                {
+                    "title": "How Graphics Cards Make Games Look Awesome",
+                    "file": "pdf/6. SEC130_Case Study_How Graphics Card Make Games Look Awesome.pdf"
+                }
+            ]
         },
         "images": [
-          "image1.jpg",
-          "image2.jpg",
-          "image3.jpg",
-          "image4.jpg"
+            "2. Case Study Poster on How Graphics Cards Make Games Look Awesome .PNG",
+            "1. caesarean section.PNG",
+            "9. G558.PNG",
+            "7. G558.PNG",
+            "5G.PNG",
+            "1. Case Study Canva Poster.PNG"
         ]
-      
-      
+    },
+    "student_engagement": {
+        "title": "Student Engagement, Instructional Competencies, and Research-Driven Teaching",
+        "criteria": [
+            {
+                "title": "Student Motivation",
+                "content": [
+                    "Interactive Learning using Canva and data analysis using Microsoft Excel.",
+                    "Case study and using digital tools for learning to solve real-world problems."
+                ]
+            },
+            {
+                "title": "Instructional Competencies",
+                "content": [
+                    "Blended Learning approach with Moodle (iTaLeEM), Canva, and YouTube.",
+                    "Outcome-Based Teaching aligned with learning objectives."
+                ]
+            },
+            {
+                "title": "Application of Research in Teaching",
+                "content": [
+                    "AI in Healthcare: Case studies on predicting mental health issues.",
+                    "Cybersecurity Awareness: Ethical hacking and privacy laws.",
+                    "Data Science & Analytics: Applying Python in data-driven decisions."
+                ]
+            },
+            {
+                "title": "Teaching Quality & Impact",
+                "content": [
+                    "Continuous assessment through student feedback and performance.",
+                    "Publication & Collaboration in research conferences.",
+                    "Participation in curriculum development and faculty training programs."
+                ]
+            }
+        ]
+    },
+    "class_gallery": {
+        "title": "Class Gallery",
+        "images": [
+            "G1.jpeg",
+            "G2.jpeg"
+        ]
+    }
 }

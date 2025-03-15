@@ -52,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const profileInfo = document.getElementById("profile-info");
 
             profileInfo.innerHTML = `
-                
                 <p style="color: white; font-size: 22px; margin: 3px 0;"> <strong>${profile.name}</strong></p>
                 <p style="color: white; font-size: 14px; margin: 3px 0;"><strong>Position:</strong> ${profile.position}</p>
                 <p style="color: white; font-size: 14px; margin: 3px 0;"><strong>Department:</strong> ${profile.department}</p>
@@ -60,10 +59,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 <p style="color: white; font-size: 14px; margin: 3px 0;"><strong>Confirmation Date:</strong> ${profile.confirmationDate}</p>
                 <p style="color: white; font-size: 14px; margin: 3px 0;"><strong>Expertise:</strong> ${profile.expertise}</p>
                 <p style="color: white; font-size: 14px; margin: 3px 0;"><strong>Quote:</strong> <i>"${profile.quote}"</i></p>
+                <img src="${profile.image1}" alt="Profile Image 1" style="width: 100%; height: auto; display: block; margin-top: 10px;"> <br>
+                <img src="${profile.image2}" alt="Profile Image 2" style="width: 100%; height: auto; display: block; margin-bottom: 10px;">
             `;
         })
         .catch(error => console.error("Error loading profile data:", error));
 });
+
 
 
 // main content for personal info
@@ -90,79 +92,172 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // Main content - Education & Teaching Philosophy
+
 document.addEventListener("DOMContentLoaded", function () {
     fetch("index.json")
         .then(response => response.json())
         .then(data => {
-            const philosophy = data.education_teaching_philosophy;
-            const container = document.getElementById("teaching-philosophy");
+            // Education & Teaching Philosophy
+            const philosophyContainer = document.getElementById("teaching-philosophy");
+            let philosophyContent = `<p>${data.education_teaching_philosophy.description}</p>`;
 
-            let content = `
-                <p>${philosophy.description}</p>
-            `;
-
-            philosophy.pillars.forEach(pillar => {
-                content += `<h3>${pillar.title}</h3><ul>`;
+            data.education_teaching_philosophy.pillars.forEach(pillar => {
+                philosophyContent += `<h3>${pillar.title}</h3><ul>`;
                 pillar.points.forEach(point => {
-                    content += `<li>${point}</li>`;
+                    philosophyContent += `<li>${point}</li>`;
                 });
-                content += `</ul>`;
+                philosophyContent += `</ul>`;
+
+                if (pillar.images) {
+                    philosophyContent += `<div style="display: flex; flex-wrap: wrap; gap: 10px;">`;
+                    pillar.images.forEach(image => {
+                        philosophyContent += `<img src="image/Class/${image}" alt="${pillar.title}" class="clickable-image" style="width: 30%; border-radius: 10px; cursor: pointer;">`;
+                    });
+                    philosophyContent += `</div>`;
+                }
             });
 
-            container.innerHTML = content;
+            philosophyContainer.innerHTML = philosophyContent;
+
+            // Innovation in Teaching
+            const innovationContainer = document.getElementById("innovation-content");
+            let innovationContent = `<h2>${data.innovation_teaching.title}</h2>`;
+            innovationContent += `<p>${data.innovation_teaching.description}</p>`;
+
+            // Video Resources
+            innovationContent += `<h3>Video Resources</h3><div style="display: flex; gap: 15px; flex-wrap: wrap;">`;
+            data.innovation_teaching.videos.forEach(video => {
+                innovationContent += `
+                    <div style="flex: 1; min-width: 300px;">
+                        <p><strong>${video.title}</strong></p>
+                        <iframe width="100%" height="200" src="${video.url}" frameborder="0" allowfullscreen></iframe>
+                    </div>`;
+            });
+            innovationContent += `</div>`;
+
+            // Case Study
+            innovationContent += `<h3>Case Study</h3>`;
+            innovationContent += `<p>${data.innovation_teaching.case_study.overview}</p><ul>`;
+            data.innovation_teaching.case_study.content.forEach(item => {
+                innovationContent += `<li>${item}</li>`;
+            });
+            innovationContent += `</ul>`;
+            innovationContent += `<p><strong>Poster Creation:</strong> ${data.innovation_teaching.case_study.poster_tool}</p>`;
+
+            // Image Gallery
+            innovationContent += `<h3>Gallery</h3><div style="display: flex; flex-wrap: wrap; gap: 10px;">`;
+            data.innovation_teaching.images.forEach(image => {
+                innovationContent += `<img src="image/${image}" alt="Innovation Teaching" class="clickable-image" style="width: 30%; border-radius: 10px; cursor: pointer;">`;
+            });
+            innovationContent += `</div>`;
+
+            innovationContainer.innerHTML = innovationContent;
+
+            // Student Engagement & Instructional Competencies
+            const engagementContainer = document.getElementById("student-engagement");
+            let engagementContent = `<h2>${data.student_engagement.title}</h2>`;
+            data.student_engagement.criteria.forEach(section => {
+                engagementContent += `<h3>${section.title}</h3><ul>`;
+                section.content.forEach(point => {
+                    engagementContent += `<li>${point}</li>`;
+                });
+                engagementContent += `</ul>`;
+            });
+
+            engagementContainer.innerHTML = engagementContent;
+
+            // Class Gallery
+            const galleryContainer = document.getElementById("class-gallery");
+            let galleryContent = `<h2>${data.class_gallery.title}</h2><div style="display: flex; flex-wrap: wrap; gap: 10px;">`;
+
+            data.class_gallery.images.forEach(image => {
+                galleryContent += `<img src="image/Class/${image}" alt="Class Gallery Image" class="clickable-image" style="width: 30%; border-radius: 10px; cursor: pointer;">`;
+            });
+
+            galleryContent += `</div>`;
+            galleryContainer.innerHTML = galleryContent;
+
+            // 🔥 Fix: Ensure Click Events Attach After Content is Loaded
+            setTimeout(() => {
+                const modal = document.getElementById("imageModal");
+                const modalImg = document.getElementById("fullImage");
+                const closeModal = document.querySelector(".close");
+
+                document.querySelectorAll(".clickable-image").forEach(img => {
+                    img.addEventListener("click", function () {
+                        modal.style.display = "block";
+                        modalImg.src = this.src;
+                    });
+                });
+
+                closeModal.addEventListener("click", function () {
+                    modal.style.display = "none";
+                });
+
+                modal.addEventListener("click", function (event) {
+                    if (event.target === modal) {
+                        modal.style.display = "none";
+                    }
+                });
+            }, 500); // Delay to ensure images are in the DOM
         })
         .catch(error => console.error("Error loading JSON data:", error));
 });
 
 
-// Main Content - Innovation JS
-document.addEventListener("DOMContentLoaded", function () {
-    fetch("index.json")
-        .then(response => response.json())
-        .then(data => {
-            const contentContainer = document.getElementById("innovation-content");
 
-            // Title and Description
-            let html = `<h2 style="color: black;">${data.title}</h2>`;
-            html += `<p style="color: black;">${data.description}</p>`;
-
-            // Video Section (Side by Side)
-            html += `<h3 style="color: black;">Video Resources</h3>`;
-            html += `<div style="display: flex; gap: 15px; flex-wrap: wrap;">`;
-            data.videos.forEach(video => {
+        /*
+        // Image Gallery (With Clickable Modal)
+            html += `<h3 style="color: black;">Gallery</h3>`;
+            html += `<div style="display: flex; flex-wrap: wrap; gap: 10px;">`;
+            data.images.forEach(image => {
                 html += `
-                    <div style="flex: 1; min-width: 300px;">
-                        <p style="color: black;"><strong>${video.title}</strong></p>
-                        <iframe width="100%" height="200" src="${video.url}" frameborder="0" allowfullscreen></iframe>
-                    </div>
+                    <img src="image/${image}" alt="Student Work" class="clickable-image" style="width: 30%; border-radius: 10px; cursor: pointer;">
                 `;
             });
             html += `</div>`;
 
-            // Case Study Section
-            html += `<h3 style="color: black;">Case Study</h3>`;
-            html += `<p style="color: black;">${data.case_study.overview}</p>`;
-            html += `<ul style="color: black;">`;
-            data.case_study.content.forEach(item => {
-                html += `<li>${item}</li>`;
-            });
-            html += `</ul>`;
-            html += `<p style="color: black;"><strong>Poster Creation:</strong> ${data.case_study.poster_tool}</p>`;
-
-            // Image Gallery
-            html += `<h3 style="color: black;">Gallery</h3>`;
-            html += `<div style="display: flex; flex-wrap: wrap; gap: 10px;">`;
-            data.images.forEach(image => {
-                html += `<img src="${image}" alt="Student Work" style="width: 150px; border-radius: 10px;">`;
-            });
-            html += `</div>`;
+            // Modal for Full-Screen Image
+            html += `
+                <div id="imageModal" class="modal">
+                    <span class="close">&times;</span>
+                    <img class="modal-content" id="fullImage">
+                </div>
+            `;
 
             contentContainer.innerHTML = html;
+
+            // Handle Image Click Event
+            const images = document.querySelectorAll(".clickable-image");
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("fullImage");
+            const closeModal = document.querySelector(".close");
+
+            images.forEach(img => {
+                img.addEventListener("click", function () {
+                    modal.style.display = "block";
+                    modalImg.src = this.src;
+                });
+            });
+
+            // Close the Modal When Clicking the Close Button
+            closeModal.addEventListener("click", function () {
+                modal.style.display = "none";
+            });
+
+            // Close Modal When Clicking Outside the Image
+            modal.addEventListener("click", function (event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+
         })
         .catch(error => console.error("Error loading innovation data:", error));
-});
 
 
 
 
+        */
+        
 

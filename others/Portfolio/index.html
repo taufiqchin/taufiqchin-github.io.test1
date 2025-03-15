@@ -47,45 +47,81 @@
 					<div class="w3-twothird w3-container" id="profile-section">
 					</div>
 					
-					<div class="w3-third w3-container">
-						<iframe width="auto" src="https://www.youtube.com/embed/DSffdCT5Cx4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-						<p>CS50 2018 - Lecture 0 - Phone Book</p>
+					<div class="w3-third w3-container">        
+						<!-- First Image -->
+						<img src="image/E1.PNG" alt="CS50 Image 1" style="width: 100%; height: auto; display: block; margin-bottom: 10px;">
+						
+						<!-- Second Image -->
+						<img src="image/E2.PNG" alt="CS50 Image 2" style="width: 100%; height: auto; display: block; margin-bottom: 10px;">
+						
+						<!-- Hyperlink -->
+						<p>
+							<a href="https://bigthink.com/starts-with-a-bang/einstein-famous-quote-misunderstood/" 
+							   target="_blank" 
+							   style="color: blue; text-decoration: underline;">
+								Read more about Einstein's Famous Quote
+							</a>
+						</p>
+					</div>
 					
-						<iframe width="auto" src="https://www.youtube.com/embed/gs4Sb4ar4qw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-						<p>CS50 2019 - Lecture 0 - Binary Bulbs</p>
-					</div>				
-					
-				  
 
 					<div class="w3-container">
-					  <h1 class="w3-text-teal">Education & Teaching Philosophy</h1>
-					  <div id="teaching-philosophy"></div>
-					  
+						<h1 class="w3-text-teal">Education & Teaching Philosophy</h1>
+						<div id="teaching-philosophy"></div>
 					</div><br><hr>
-
+				
 					<div class="w3-container">
 						<h1 class="w3-text-teal">Innovation in Teaching</h1>
 						<div id="innovation-content"></div>				
-					  </div><br><hr>
-
-
-
-
-
-				  <div class="w3-row">
-					<div class="w3-twothird w3-container">
-					  <h1 class="w3-text-teal">Heading</h1>
-					  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
-						dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+					</div><br><hr>
+				
+					<div class="w3-container">
+						<h1 class="w3-text-teal">Student Engagement, Instructional Competencies, and Research-Driven Teaching</h1>
+						<div id="student-engagement"></div>				
+					</div><br><hr>
+				
+					<div class="w3-container">
+						<h1 class="w3-text-teal">Gallery</h1>
+						<div id="class-gallery"></div>				
+					</div><br><hr>
+				
+					<!-- 🖼️ Image Modal (for displaying clicked images) -->
+					<div id="imageModal" class="modal">
+						<span class="close">&times;</span>
+						<img class="modal-content" id="fullImage">
 					</div>
-					<div class="w3-third w3-container">
-					  <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
-					  <p class="w3-border w3-padding-large w3-padding-64 w3-center">AD</p>
-					</div>
+				
+					<script>
+						document.addEventListener("DOMContentLoaded", function () {
+							const modal = document.getElementById("imageModal");
+							const modalImg = document.getElementById("fullImage");
+							const closeModal = document.querySelector(".close");
+				
+							document.querySelectorAll(".clickable-image").forEach(img => {
+								img.addEventListener("click", function () {
+									modal.style.display = "block";
+									modalImg.src = this.src;
+								});
+							});
+				
+							closeModal.addEventListener("click", function () {
+								modal.style.display = "none";
+							});
+				
+							modal.addEventListener("click", function (event) {
+								if (event.target === modal) {
+									modal.style.display = "none";
+								}
+							});
+						});
+					</script>
+
+
+
+
+
+
 					
-				  </div>
-
-
 
 
 
