@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Image Gallery
             innovationContent += `<h3>Case Study Report to Canva</h3><div style="display: flex; flex-wrap: wrap; gap: 10px;">`;
             data.innovation_teaching.images.forEach(image => {
-                innovationContent += `<img src="image/${image}" alt="Innovation Teaching" class="clickable-image" style="width: 30%; border-radius: 10px; cursor: pointer;">`;
+                innovationContent += `<img src="image/${image}" alt="Innovation Teaching" class="clickable-image" style="width: 20%; border-radius: 10px; cursor: pointer;">`;
             });
             innovationContent += `</div>`;
 
