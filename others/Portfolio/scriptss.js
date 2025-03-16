@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (pillar.images) {
                     philosophyContent += `<div style="display: flex; flex-wrap: wrap; gap: 10px;">`;
                     pillar.images.forEach(image => {
-                        philosophyContent += `<img src="image/Class/${image}" alt="${pillar.title}" class="clickable-image" style="width: 30%; border-radius: 10px; cursor: pointer;">`;
+                        philosophyContent += `<img src="picture/Class/${image}" alt="${pillar.title}" class="clickable-image" style="width: 30%; border-radius: 10px; cursor: pointer;">`;
                     });
                     philosophyContent += `</div>`;
                 }
@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Image Gallery
             innovationContent += `<h3>Case Study Report to Canva</h3><div style="display: flex; flex-wrap: wrap; gap: 10px;">`;
             data.innovation_teaching.images.forEach(image => {
-                innovationContent += `<img src="image/${image}" alt="Innovation Teaching" class="clickable-image" style="width: 20%; border-radius: 10px; cursor: pointer;">`;
+                innovationContent += `<img src="picture/case/${image}" alt="Innovation Teaching" class="clickable-image" style="width: 30%; border-radius: 10px; cursor: pointer;">`;
             });
             innovationContent += `</div>`;
 
@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let galleryContent = ``;
 
             data.class_gallery.images.forEach(image => {
-                galleryContent += `<img src="image/Class/${image}" alt="Class Gallery Image" class="clickable-image" style="width: 30%; border-radius: 10px; cursor: pointer;">`;
+                galleryContent += `<img src="picture/Class/${image}" alt="Class Gallery Image" class="clickable-image" style="width: 30%; border-radius: 10px; cursor: pointer;">`;
             });
 
             galleryContent += `</div>`;
