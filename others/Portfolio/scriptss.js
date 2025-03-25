@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Case Study PDFs
             if (data.innovation_teaching.case_study.case_studies && data.innovation_teaching.case_study.case_studies.length > 0) {
-                innovationContent += `<h4>Download Case Studies:</h4><ul>`;
+                innovationContent += `<h4>View Students Case Studies Report:</h4><ul>`;
                 data.innovation_teaching.case_study.case_studies.forEach(pdf => {
                     innovationContent += `<li><a href="${pdf.file}" target="_blank">${pdf.title}</a></li>`;
                 });
