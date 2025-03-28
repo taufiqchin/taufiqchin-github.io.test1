@@ -35,6 +35,30 @@
 
     <div id="profile-info">
     </div>
+
+	<p id="visit-counter">Visits: <span id="count">0</span></p>
+
+	<script>
+	// Get the counter element
+	const counterElement = document.getElementById('count');
+
+	// Check if the counter value is stored in local storage
+	let count = localStorage.getItem('visitCount');
+
+	// If the counter value is not stored, set it to 0
+	if (count === null) {
+		count = 0;
+	}
+
+	// Increment the counter value
+	count++;
+
+	// Update the counter element with the new value
+	counterElement.textContent = count;
+
+	// Store the updated counter value in local storage
+	localStorage.setItem('visitCount', count);
+	</script>
 </nav>
 
 <!-- Overlay effect when opening sidebar on small screens -->
