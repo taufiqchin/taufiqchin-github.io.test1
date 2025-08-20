@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Capture Moments</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+    #camera {
+      width: 100%;
+      max-width: 480px;
+      border: 1px solid black;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    #momentsWrapper {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    #momentsContainer {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 10px;
+      max-width: 100%;
+    }
+    .momentCard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #fafafa;
+      padding: 5px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .momentCard img {
+      width: 100%;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+    .momentCard p {
+      font-size: 0.8em;
+      color: #555;
+      margin: 5px 0 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body class="w3-container">
+
+  <h2>📸 Capture a Moment CFS Open Day 2025!</h2>
+
+  <div id="momentsWrapper">
+    <!-- Left side (Camera feed + capture button) -->
+    <div class="w3-half">
+      <video id="camera" autoplay playsinline></video><br>
+      <button class="w3-button w3-blue" onclick="captureMoment()">Capture</button>
+      <p>Use the live camera above. Each click saves an image.</p>
+    </div>
+
+    <!-- Right side (Captured moments gallery) -->
+    <div class="w3-half">
+      <div id="momentsContainer"></div>
+    </div>
+  </div>
+
+  <script>
+    const video = document.getElementById('camera');
+    const container = document.getElementById('momentsContainer');
+    const hiddenCanvas = document.createElement('canvas');
+    const ctx = hiddenCanvas.getContext('2d');
+
+    // Start camera
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => {
+        video.srcObject = stream;
+        return video.play();
+      })
+      .catch(err => console.error("Camera access error:", err));
+
+    // Capture a frame from the camera
+    function captureMoment() {
+      if (video.videoWidth === 0) {
+        alert("Camera not ready yet. Please wait.");
+        return;
+      }
+      hiddenCanvas.width = video.videoWidth;
+      hiddenCanvas.height = video.videoHeight;
+      ctx.drawImage(video, 0, 0, hiddenCanvas.width, hiddenCanvas.height);
+
+      const imageData = hiddenCanvas.toDataURL("image/png");
+      saveMoment(imageData);
+    }
+
+    // Send snapshot to server
+    async function saveMoment(imageData) {
+      const response = await fetch('/save-moment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ image: imageData })
+      });
+      const savedMoment = await response.json();
+      addMomentToPage(savedMoment, true);
+    }
+
+    // Add snapshot to gallery
+    function addMomentToPage(moment, prepend = false) {
+      const card = document.createElement('div');
+      card.className = 'momentCard';
+
+      const img = document.createElement('img');
+      img.src = moment.path;
+
+      const caption = document.createElement('p');
+      caption.textContent = new Date(moment.date).toLocaleString();
+
+      card.appendChild(img);
+      card.appendChild(caption);
+
+      if (prepend) {
+        container.prepend(card);
+      } else {
+        container.appendChild(card);
+      }
+
+      // Keep only latest 12
+      while (container.children.length > 12) {
+        container.removeChild(container.lastChild);
+      }
+    }
+
+    // Load previously saved moments
+    async function loadMoments() {
+      const response = await fetch('/moments');
+      const data = await response.json();
+      container.innerHTML = "";
+
+      // Only show latest 12
+      const moments = data.slice(-12);
+      moments.reverse().forEach(m => addMomentToPage(m));
+    }
+
+    window.onload = loadMoments;
+  </script>
+</body>
+</html>

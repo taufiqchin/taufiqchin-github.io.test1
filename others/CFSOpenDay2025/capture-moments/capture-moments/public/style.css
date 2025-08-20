@@ -1,0 +1,14 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+video {
+  width: 300px;
+  border: 2px solid #333;
+  border-radius: 10px;
+}
+#moment-feed img {
+  margin: 5px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+}
