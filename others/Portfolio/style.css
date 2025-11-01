@@ -1,11 +1,12 @@
 body{
-  background-color: #F5F5F5 
+  background-color: #F5F5F5 ;
+  font-size: 18px;
   /*background-color: #EAEAEA */
 }
 
 .w3-sidebar {
   z-index: 4;
-  width: 250px;
+  width: 290px;
   top: 42px;
   bottom: 0;
   height: inherit;
@@ -25,8 +26,21 @@ body{
 	color: black;
 }
 
+/* Sidebar links */
+.leftnavi a {
+	color: white;
+}
+.leftnavi a.active {
+	background-color: rgba(255,255,255,0.15);
+}
+
+/* Anchor offset for fixed navbar */
+.w3-container, #profile-section {
+	scroll-margin-top: 80px;
+}
+
 #profile-info {
-  font-size: 14px; /* Default font size */
+  font-size: 16px; /* Default font size */
 }
 
 
@@ -53,7 +67,7 @@ body{
   max-width: 90%;
   max-height: 90%;
   width: auto;
-  height: auto;
+  height: 90%;
 }
 
 /* Close Button */
@@ -71,3 +85,70 @@ body{
   color: red;
 }
 
+/* Print styles for PDF export */
+@media print {
+	body {
+		background: #ffffff;
+    font-size: 16px;
+	}
+	.w3-top, #mySidebar, #myOverlay {
+		display: none !important;
+	}
+	.w3-main {
+		margin: 0 !important;
+	}
+	/* Remove link URLs in print */
+	a[href]:after {
+		content: "" !important;
+	}
+	/* Optional page breaks */
+	.print-break-before {
+		page-break-before: always;
+	}
+}
+
+/* ===== Responsive layout ===== */
+/* Large screens: align main content margin with sidebar width */
+@media (min-width: 993px) {
+  .w3-main {
+    margin-left: 300px !important; /* accommodate ~290px sidebar + gutter */
+    margin-right: 50px;
+  }
+}
+
+/* Tablets and down: collapse sidebar, remove left margin */
+@media (max-width: 992px) {
+  .w3-sidebar {
+    width: 85%;
+    top: 0;
+    height: 100%;
+  }
+  .w3-main {
+    margin-left: 0 !important;
+    margin-right: 16px;
+  }
+  .w3-top {
+    position: sticky;
+    top: 0;
+  }
+  .w3-container, #profile-section {
+    scroll-margin-top: 64px;
+  }
+}
+
+/* Small phones: full-width sidebar overlay */
+@media (max-width: 480px) {
+  .w3-sidebar {
+    width: 100%;
+  }
+  #profile-info {
+    font-size: 13px;
+  }
+}
+
+/* Gallery spacing */
+#class-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}

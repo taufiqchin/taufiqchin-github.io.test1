@@ -27,7 +27,7 @@
                     "Introducing data analysis using Python, empowering students with fundamental coding and analytical skills."
                 ],
                 "images": [
-                    "Excel.PNG",
+                    "ppv.PNG",
                     "ExcelTest.jpeg"
                 ]
             }
@@ -128,11 +128,74 @@
         "title": "Class Gallery",
         "images": [
             "G1.jpeg",
-            "G2.jpeg",
+            "G302S12526.JPEG",
             "SFS1.PNG",
             "SFS2.PNG",
             "SFS3.PNG",
             "SFS4.PNG"
         ]
-    }
+  },
+  "research": {
+    "description": "Research interests include software engineering with focus on requirements engineering, ethical AI, and computing education.",
+    "areas": [
+      "Requirements Engineering",
+      "Ethical AI",
+      "Computing Education"
+    ],
+    "featured": [
+      { "title": "Requirements Patterns for Educational Systems", "link": "MyResearch.html" }
+    ]
+  },
+  "publications": {
+    "journals": [
+      "[Sample] Journal Article Title, Journal Name, Year."
+    ],
+    "conferences": [
+      "[Sample] Conference Paper Title, Conference Name, Year."
+    ],
+    "books": []
+  },
+  "achievements": {
+    "awards": [
+      "[Sample] Teaching Excellence Award (Year)",
+      "[Sample] Best Paper Award (Year)"
+    ]
+  },
+  "grants_projects": {
+    "items": [
+      {"title": "[Sample] Digital Literacy Initiative", "role": "Co-Investigator", "year": "2024"}
+    ]
+  },
+  "supervision": {
+    "students": [
+      {"name": "[Sample] Student A", "level": "Undergraduate Project"}
+    ]
+  },
+  "service_leadership": {
+    "roles": [
+      "[Sample] Program Committee Member, Computing Week (2023)",
+      "[Sample] Curriculum Review Panel (2022)"
+    ]
+  },
+  "certifications": {
+    "items": [
+      "[Sample] Google Certified Educator",
+      "[Sample] AWS Cloud Practitioner"
+    ]
+  },
+  "skills": {
+    "items": [
+      "Python",
+      "Excel & Data Analysis",
+      "Canva",
+      "Moodle/iTaLeEM",
+      "Instructional Design"
+    ]
+  },
+  "outreach": {
+    "activities": [
+      "[Sample] Public talk on Ethical AI (2024)",
+      "[Sample] Workshop: Digital Safety for Students (2023)"
+    ]
+  }
 }

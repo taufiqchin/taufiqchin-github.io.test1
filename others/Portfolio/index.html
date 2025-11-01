@@ -5,154 +5,253 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css"> <!-- navi and sidebar color -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto"> 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <!-- https://www.algolia.com/doc/guides/building-search-ui/installation/js/ -->
-<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.0.0/dist/algoliasearch-lite.umd.js" integrity="sha256-MfeKq2Aw9VAkaE9Caes2NOxQf6vUa8Av0JqcUXUGkd0=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.0.0/dist/instantsearch.production.min.js" integrity="sha256-6S7q0JJs/Kx4kb/fv0oMjS855QTz5Rc2hh9AkIUjUsk=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.0.0/dist/algoliasearch-lite.umd.js"
+	integrity="sha256-MfeKq2Aw9VAkaE9Caes2NOxQf6vUa8Av0JqcUXUGkd0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.0.0/dist/instantsearch.production.min.js"
+	integrity="sha256-6S7q0JJs/Kx4kb/fv0oMjS855QTz5Rc2hh9AkIUjUsk=" crossorigin="anonymous"></script>
 
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <link rel="stylesheet" href="style.css">
 
 <body>
 
-<!-- Navbar -->
-<div class="w3-top">
-    <div class="w3-bar w3-theme w3-left-align w3-large" id="navbar">
-        <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()">
-            <i class="fa fa-bars"></i>
-        </a>
-    </div>
-</div>
+	<!-- Navbar -->
+	<div class="w3-top">
+		<div class="w3-bar w3-theme w3-left-align w3-large" id="navbar">
+			<a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1"
+				href="javascript:void(0)" onclick="w3_open()">
+				<i class="fa fa-bars"></i>
+			</a>
+		</div>
+	</div>
 
-<!-- Sidebar -->
-<nav id="mySidebar" class="col-md w3-sidebar leftnavi w3-bar-block w3-collapse w3-large w3-animate-left">
-    <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large">
-        <i class="fa fa-remove"></i>
-    </a>
+	<!-- Sidebar -->
+	<nav id="mySidebar" class="col-md w3-sidebar leftnavi w3-bar-block w3-collapse w3-large w3-animate-left">
 
-    <div id="profile-info">
-    </div>
+		<script>
+			// Get the counter element
+			const counterElement = document.getElementById('count');
 
-	<p id="visit-counter">Visits: <span id="count">0</span></p>
+			// Check if the counter value is stored in local storage
+			let count = localStorage.getItem('visitCount');
 
-	<script>
-	// Get the counter element
-	const counterElement = document.getElementById('count');
+			// If the counter value is not stored, set it to 0
+			if (count === null) {
+				count = 0;
+			}
 
-	// Check if the counter value is stored in local storage
-	let count = localStorage.getItem('visitCount');
+			// Increment the counter value
+			count++;
 
-	// If the counter value is not stored, set it to 0
-	if (count === null) {
-		count = 0;
-	}
+			// Update the counter element with the new value
+			counterElement.textContent = count;
 
-	// Increment the counter value
-	count++;
+			// Store the updated counter value in local storage
+			localStorage.setItem('visitCount', count);
+		</script>
 
-	// Update the counter element with the new value
-	counterElement.textContent = count;
+		<!-- Table of Contents -->
+		<div id="toc" style="margin-top: 10px;">
+			<a class="w3-bar-item w3-button sidebar-link" href="#overview" style="color: white;">Overview</a>
+			<a class="w3-bar-item w3-button sidebar-link" href="#teaching" style="color: white;">Teaching Philosophy</a>
+			<a class="w3-bar-item w3-button sidebar-link" href="#innovation" style="color: white;">Teaching
+				Innovations</a>
+			<a class="w3-bar-item w3-button sidebar-link" href="#engagement" style="color: white;">Student
+				Engagement</a>
+			<a class="w3-bar-item w3-button sidebar-link" href="#research" style="color: white;">Research</a>
+			<a class="w3-bar-item w3-button sidebar-link" href="#publications" style="color: white;">Publications</a>
+			<a class="w3-bar-item w3-button sidebar-link" href="#achievements" style="color: white;">Achievements &
+				Awards</a>
+			<a class="w3-bar-item w3-button sidebar-link" href="#grants" style="color: white;">Grants & Projects</a>
+			<a class="w3-bar-item w3-button sidebar-link" href="#supervision" style="color: white;">Supervision</a>
+			<a class="w3-bar-item w3-button sidebar-link" href="#service" style="color: white;">Service & Leadership</a>
+			<a class="w3-bar-item w3-button sidebar-link" href="#certifications"
+				style="color: white;">Certifications</a>
+			<a class="w3-bar-item w3-button sidebar-link" href="#skills" style="color: white;">Skills</a>
+			<a class="w3-bar-item w3-button sidebar-link" href="#outreach" style="color: white;">Outreach</a>
+			<a class="w3-bar-item w3-button sidebar-link" href="#gallery" style="color: white;">Gallery</a>
+			<a class="w3-bar-item w3-button sidebar-link" href="#appendices" style="color: white;">Appendices</a>
+		</div>
+	</nav>
 
-	// Store the updated counter value in local storage
-	localStorage.setItem('visitCount', count);
-	</script>
-</nav>
+	<!-- Overlay effect when opening sidebar on small screens -->
+	<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+		id="myOverlay"></div>
 
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+	<!-- ******* Main content *********: shift it to the right by 250 pixels when the sidebar is visible -->
+	<div class="w3-main" style="margin-left:270px; margin-right:50px;">
 
-<!-- ******* Main content *********: shift it to the right by 250 pixels when the sidebar is visible -->
-<div class="w3-main" style="margin-left:270px; margin-right:50px;">
+		<div class="w3-row w3-padding-64" id="overview">
+			<div class="w3-third w3-container" id="profile-section">
+			</div>
 
-				  <div class="w3-row w3-padding-64">
-					<div class="w3-twothird w3-container" id="profile-section">
-					</div>
-					
-					<div class="w3-third w3-container">        
-						<!-- First Image -->
-						<img src="picture/E1.PNG" alt="CS50 Image 1" style="width: 100%; height: auto; display: block; margin-bottom: 10px;">
-						
-						<!-- Second Image -->
-						<img src="picture/E2.PNG" alt="CS50 Image 2" style="width: 100%; height: auto; display: block; margin-bottom: 10px;">
-						
-						<!-- Hyperlink -->
-						<p>
-							<a href="https://bigthink.com/starts-with-a-bang/einstein-famous-quote-misunderstood/" 
-							   target="_blank" 
-							   style="color: blue; text-decoration: underline;">
-								Read more about Einstein's Famous Quote
-							</a>
-						</p>
-					</div>
-					
+			<div class="w3-third w3-container">
+				<!-- First Image -->
+				<img src="picture/E1.PNG" alt="CS50 Image 1"
+					style="width: 100%; height: auto; display: block; margin-bottom: 10px;">
+			</div>
 
-					<div class="w3-container">
-						<h1 class="w3-text-teal">Education & Teaching Philosophy</h1>
-						<div id="teaching-philosophy"></div>
-					</div><br><hr>
-				
-					<div class="w3-container">
-						<h1 class="w3-text-teal">Innovation in Teaching</h1>
-						<div id="innovation-content"></div>				
-					</div><br><hr>
-				
-					<div class="w3-container">
-						<h1 class="w3-text-teal">Student Engagement, Instructional Competencies, and Research-Driven Teaching</h1>
-						<div id="student-engagement"></div>				
-					</div><br><hr>
-				
-					<div class="w3-container">
-						<h1 class="w3-text-teal">Gallery</h1>
-						<div id="class-gallery"></div>				
-					</div><br><hr>
-				
-					<!-- 🖼️ Image Modal (for displaying clicked images) -->
-					<div id="imageModal" class="modal">
-						<span class="close">&times;</span>
-						<img class="modal-content" id="fullImage">
-					</div>
-				
-					<script>
-						document.addEventListener("DOMContentLoaded", function () {
-							const modal = document.getElementById("imageModal");
-							const modalImg = document.getElementById("fullImage");
-							const closeModal = document.querySelector(".close");
-				
-							document.querySelectorAll(".clickable-image").forEach(img => {
-								img.addEventListener("click", function () {
-									modal.style.display = "block";
-									modalImg.src = this.src;
-								});
-							});
-				
-							closeModal.addEventListener("click", function () {
-								modal.style.display = "none";
-							});
-				
-							modal.addEventListener("click", function (event) {
-								if (event.target === modal) {
-									modal.style.display = "none";
-								}
-							});
+			<div class="w3-third w3-container">
+				<!-- Second Image -->
+				<img src="picture/E2.PNG" alt="CS50 Image 2"
+					style="width: 100%; height: auto; display: block; margin-bottom: 10px;">
+
+				<!-- Hyperlink -->
+				<p>
+					<a href="https://bigthink.com/starts-with-a-bang/einstein-famous-quote-misunderstood/"
+						target="_blank" style="color: blue; text-decoration: underline;">
+						Read more about Einstein's Famous Quote
+					</a>
+				</p>
+			</div>
+
+			<div class="w3-container" id="teaching">
+				<br><hr>
+				<h1 class="w3-text-teal">Education & Teaching Philosophy</h1>
+				<div id="teaching-philosophy"></div>
+			</div><br>
+			<hr>
+
+			<div class="w3-container" id="innovation">
+				<h1 class="w3-text-teal">Innovation in Teaching</h1>
+				<div id="innovation-content"></div>
+			</div><br>
+			<hr>
+
+			<div class="w3-container" id="engagement">
+				<h1 class="w3-text-teal">Student Engagement, Instructional Competencies, and Research-Driven Teaching
+				</h1>
+				<div id="student-engagement"></div>
+			</div><br>
+			<hr>
+
+			<!-- Research -->
+			<div class="w3-container" id="research">
+				<h1 class="w3-text-teal">Research</h1>
+				<div id="research-content"></div>
+			</div><br>
+			<hr>
+
+			<!-- Publications -->
+			<div class="w3-container" id="publications">
+				<h1 class="w3-text-teal">Publications</h1>
+				<div id="publications-content"></div>
+			</div><br>
+			<hr>
+
+			<!-- Achievements & Awards -->
+			<div class="w3-container" id="achievements">
+				<h1 class="w3-text-teal">Achievements & Awards</h1>
+				<div id="achievements-content"></div>
+			</div><br>
+			<hr>
+
+			<!-- Grants & Projects -->
+			<div class="w3-container" id="grants">
+				<h1 class="w3-text-teal">Grants & Projects</h1>
+				<div id="grants-content"></div>
+			</div><br>
+			<hr>
+
+			<!-- Supervision -->
+			<div class="w3-container" id="supervision">
+				<h1 class="w3-text-teal">Supervision</h1>
+				<div id="supervision-content"></div>
+			</div><br>
+			<hr>
+
+			<!-- Service & Leadership -->
+			<div class="w3-container" id="service">
+				<h1 class="w3-text-teal">Service & Leadership</h1>
+				<div id="service-content"></div>
+			</div><br>
+			<hr>
+
+			<!-- Certifications -->
+			<div class="w3-container" id="certifications">
+				<h1 class="w3-text-teal">Certifications</h1>
+				<div id="certifications-content"></div>
+			</div><br>
+			<hr>
+
+			<!-- Skills -->
+			<div class="w3-container" id="skills">
+				<h1 class="w3-text-teal">Skills</h1>
+				<div id="skills-content"></div>
+			</div><br>
+			<hr>
+
+			<!-- Outreach -->
+			<div class="w3-container" id="outreach">
+				<h1 class="w3-text-teal">Outreach</h1>
+				<div id="outreach-content"></div>
+			</div><br>
+			<hr>
+
+			<div class="w3-container" id="gallery">
+				<h1 class="w3-text-teal">Gallery</h1>
+				<div id="class-gallery"></div>
+			</div><br>
+			<hr>
+
+			<!-- Appendices -->
+			<div class="w3-container" id="appendices">
+				<h1 class="w3-text-teal">Appendices</h1>
+				<div id="appendices-content"></div>
+			</div><br>
+			<hr>
+
+			<!-- 🖼️ Image Modal (for displaying clicked images) -->
+			<div id="imageModal" class="modal">
+				<span class="close">&times;</span>
+				<img class="modal-content" id="fullImage">
+			</div>
+
+			<script>
+				document.addEventListener("DOMContentLoaded", function () {
+					const modal = document.getElementById("imageModal");
+					const modalImg = document.getElementById("fullImage");
+					const closeModal = document.querySelector(".close");
+
+					document.querySelectorAll(".clickable-image").forEach(img => {
+						img.addEventListener("click", function () {
+							modal.style.display = "block";
+							modalImg.src = this.src;
 						});
-					</script>
+					});
+
+					closeModal.addEventListener("click", function () {
+						modal.style.display = "none";
+					});
+
+					modal.addEventListener("click", function (event) {
+						if (event.target === modal) {
+							modal.style.display = "none";
+						}
+					});
+				});
+			</script>
 
 
 
 
 
 
-					
 
 
 
-<!-- END MAIN -->
-</div>
 
-<script src="scriptss.js"></script>
+			<!-- END MAIN -->
+		</div>
+
+		<script src="scriptss.js"></script>
 
 </body>
+
 </html>
