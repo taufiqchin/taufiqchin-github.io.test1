@@ -1,0 +1,28 @@
+{
+  "weeks": [
+    {
+      "id": "week-1",
+      "title": "Week 1 - HTML",
+      "description": "The foundation of the web. Learn everything about HTML in one place.",
+      "topics": [
+        {
+          "id": "introduction",
+          "title": "Full Week 1 Introduction",
+          "contentPath": "introduction.json"
+        }
+      ]
+    },
+    {
+      "id": "week-2",
+      "title": "Week 2 - HTML",
+      "description": "The foundation of the web. Learn everything about HTML in one place.",
+      "topics": [
+        {
+          "id": "html-multimedia",
+          "title": "Text, Multimedia and Embedding",
+          "contentPath": "html-multimedia.json"
+        }
+      ]
+    }
+  ]
+}
