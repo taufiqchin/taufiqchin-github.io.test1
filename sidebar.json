@@ -27,12 +27,14 @@
         {
           "text": "Portfolio",
           "url": "others/Portfolio/index.html",
-          "class": "w3-hover-white"
+          "class": "w3-hover-white",
+          "target": "_blank"
         },
         {
           "text": "Web Technologies",
           "url": "others/webTech/index.html",
-          "class": "w3-hover-white"
+          "class": "w3-hover-white",
+          "target": "_blank"
         }
       ]
     },

@@ -104,6 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => console.error("Error loading sidebar:", error));
 
     loadLatestUpdates();
+    loadKnowledgeBase();
 
     // Set current year in footer
     const yearSpan = document.getElementById("current-year");
@@ -130,8 +131,9 @@ function loadLatestUpdates() {
                         </div>
                         <div class="w3-twothird w3-container">
                             <p>
-                                <strong>${update.title}:</strong> ${update.description}
+                                <strong>${update.title}:</strong> ${update.description.replace(/\n/g, '<br><br>')}
                             </p>
+                            ${update.link ? `<p><strong>Link:</strong> <a href="${update.link}" target="_blank" style="color: #009688;">${update.link} <i class="fa fa-external-link"></i></a></p>` : ''}
                         </div>
                     </div>
                 </div>
@@ -139,3 +141,48 @@ function loadLatestUpdates() {
         })
         .catch(error => console.error("Error loading latest updates:", error));
 }
+
+function loadKnowledgeBase() {
+    const container = document.getElementById("knowledge-base-container");
+    if (!container) return;
+
+    fetch("knowledge.json")
+        .then(response => response.json())
+        .then(data => {
+            // Group items by category
+            const categories = {};
+            data.forEach(item => {
+                if (!categories[item.category]) {
+                    categories[item.category] = [];
+                }
+                categories[item.category].push(item);
+            });
+
+            // Generate HTML for each category
+            let html = '';
+            for (const [category, items] of Object.entries(categories)) {
+                html += `<h3 class="knowledge-category-title">${category}</h3>`;
+                html += `<div class="knowledge-grid">`;
+
+                items.forEach(item => {
+                    html += `
+                        <div class="knowledge-item">
+                            <div class="content-card">
+                                <iframe src="${item.videoUrl}" allowfullscreen></iframe>
+                                <div class="card-padding">
+                                    <h3>${item.title}</h3>
+                                    <p>${item.description}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `</div>`;
+            }
+
+            container.innerHTML = html;
+        })
+        .catch(error => console.error("Error loading knowledge base:", error));
+}
+

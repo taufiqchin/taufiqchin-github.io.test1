@@ -2,9 +2,10 @@
     {
         "id": 1,
         "order": 1,
-        "title": "Digital Landscapes",
-        "image": "image/im1.jpg",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. In this hub, I document my journey through the Harvard Summer School curriculum, sharing insights on everything from fundamental computer science concepts to advanced security protocols."
+        "title": "Speech AAC (Bahasa)",
+        "image": "image/Speech AAC.png",
+        "description": "This project aims to develop an AAC (Augmentative and Alternative Communication) application is designed to assists individuals with speech or communication difficulties in expressing themselves effectively through categorized icons, text, and voice output.\nIt supports both Bahasa Malaysia and English, allowing users to switch languages instantly. Each category displays words or phrases with clear visuals and optional text-to-speech playback, enabling effective daily communication.\nThe app is designed with open-source art and educational principles, to promote accessible, inclusive, user-friendly and responsive interface that ensures user comfort. The app also remembers language preferences on each launch, offering a smooth and personalized experience ideal for individuals, caregivers, therapists, and educators supporting communication needs.",
+        "link": "https://play.google.com/store/apps/details?id=com.taufiq.speechaac&pcampaignid=web_share"
     },
     {
         "id": 2,

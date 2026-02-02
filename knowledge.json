@@ -1,0 +1,46 @@
+[
+    {
+        "id": 1,
+        "category": "CS50",
+        "title": "CS50: Phone Book",
+        "videoUrl": "https://www.youtube.com/embed/DSffdCT5Cx4",
+        "description": "Diving into data structures and basic algorithms in the 2018 lecture series."
+    },
+    {
+        "id": 2,
+        "category": "CS50",
+        "title": "CS50: Binary Bulbs",
+        "videoUrl": "https://www.youtube.com/embed/gs4Sb4ar4qw",
+        "description": "Understanding how binary logic powers our world in the 2019 introduction."
+    },
+    {
+        "id": 3,
+        "category": "Artificial Intelligence",
+        "title": "How artificial intelligence is reshaping college for students and professors",
+        "videoUrl": "https://www.youtube.com/embed/rbCQKODKv1o"
+    },
+    {
+        "id": 4,
+        "category": "Research",
+        "title": "5 Unbelievably Useful AI Tools For Research in 2025 (better than ChatGPT)",
+        "videoUrl": "https://www.youtube.com/embed/wmQVdzBRnN4"
+    },
+    {
+        "id": 5,
+        "category": "Startup",
+        "title": "Sam Altman - How to Succeed with a Startup",
+        "videoUrl": "https://www.youtube.com/embed/0lJKucu6HJc"
+    },
+    {
+        "id": 6,
+        "category": "Startup",
+        "title": "I make $10K/month from 28 apps",
+        "videoUrl": "https://www.youtube.com/embed/vw2Yc4Y1PsU"
+    },
+    {
+        "id": 7,
+        "category": "Startup",
+        "title": "I make $40K/month with this one website",
+        "videoUrl": "https://www.youtube.com/embed/EF3uyvHHBfM"
+    }
+]

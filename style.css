@@ -232,6 +232,88 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* Latest Updates Image Sizing */
+#latest-updates-container img {
+  width: 60%;
+  height: auto;
+  margin: 0 36px;
+  display: block;
+}
+
+/* Latest Updates Content Alignment */
+#latest-updates-container .w3-twothird {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  padding: 20px;
+}
+
+#latest-updates-container .w3-third {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Knowledge Base Grid Layout */
+.knowledge-category-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-top: 16px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #009688;
+  display: inline-block;
+}
+
+.knowledge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* Responsive breakpoints for max 6 per row */
+@media (min-width: 1800px) {
+  .knowledge-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (min-width: 1400px) and (max-width: 1799px) {
+  .knowledge-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (min-width: 1100px) and (max-width: 1399px) {
+  .knowledge-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 800px) and (max-width: 1099px) {
+  .knowledge-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 500px) and (max-width: 799px) {
+  .knowledge-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 499px) {
+  .knowledge-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.knowledge-item {
+  width: 100%;
+}
+
 /* Main Footer Styling */
 .main-footer {
   padding: 40px 10px 32px 10px;
