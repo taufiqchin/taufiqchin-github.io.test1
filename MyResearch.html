@@ -5,94 +5,110 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css"> <!-- navi and sidebar color -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto"> 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <!-- https://www.algolia.com/doc/guides/building-search-ui/installation/js/ -->
-<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.0.0/dist/algoliasearch-lite.umd.js" integrity="sha256-MfeKq2Aw9VAkaE9Caes2NOxQf6vUa8Av0JqcUXUGkd0=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.0.0/dist/instantsearch.production.min.js" integrity="sha256-6S7q0JJs/Kx4kb/fv0oMjS855QTz5Rc2hh9AkIUjUsk=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.0.0/dist/algoliasearch-lite.umd.js"
+	integrity="sha256-MfeKq2Aw9VAkaE9Caes2NOxQf6vUa8Av0JqcUXUGkd0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.0.0/dist/instantsearch.production.min.js"
+	integrity="sha256-6S7q0JJs/Kx4kb/fv0oMjS855QTz5Rc2hh9AkIUjUsk=" crossorigin="anonymous"></script>
 
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <link rel="stylesheet" href="style.css">
 
 <body>
 
-<!-- Navbar -->
-<div class="w3-top">
-    <div class="w3-bar w3-theme w3-left-align w3-large" id="navbar">
-        <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()">
-            <i class="fa fa-bars"></i>
-        </a>
-    </div>
-</div>
-
-<!-- Sidebar -->
-<nav class="col-md w3-sidebar leftnavi w3-bar-block w3-collapse w3-large  w3-animate-left" id="mySidebar" >
-			<a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
-				<i class="fa fa-remove"></i>
-			</a>
- 
-                    <header><p></p>
-					<h1 data-id="this-is-cs50"><a href="index.html" style="color: white;">This is CS</a></h1>
-					<p><a href="https://www.summer.harvard.edu/" style="color: white;">Online Summer School</a><br>Summer 2020</p></header>
-                    <button class="btn btn-link d-block pl-0 pt-0" style="color: white;" data-search="" data-target="#search" data-toggle="modal" type="button">
-                        <i class="fas fa-search pr-2"></i>Search</button>
-                    <button aria-controls="nav" aria-expanded="false" class="btn btn-sm collapsed d-md-none" data-target="nav > nav" data-toggle="collapse">
-                        Menu
-                    </button>
-
-                <!--    <nav class="collapse d-md-block" id="nav">  -->
-					<hr>
-
-					<ul>
-					  <li data-marker="*"><a href="https://vault.cs50.io/9ef694f7-58bf-4090-9566-30222c264a5c" style="color: white;">Ed Discussion</a> for Q&amp;A</li>
-					  <li data-marker="*" class="small"><a href="quickstart.pdf" style="color: white;">Quick Start Guide</a></li>
-					</ul>
-
-					<hr>
-
-					<ul>
-					  <li data-marker="*"><a href="faqs/" style="color: white;">FAQs</a></li>
-					  <li data-marker="*">
-						<p><a href="hours/" style="color: white;">Office Hours</a></p>
-					  </li>
-					  <li data-marker="*"><a href="staff/" style="color: white;">Staff</a></li>
-					  <li data-marker="*"><a href="syllabus/" style="color: white;">Syllabus</a></li>
-					</ul>
-
-					<hr>
-
-					<!-- <p style="font-size: initial">With thanks to CS50’s team</p> -->
-
-										<footer></footer>
-
-</nav>
-
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-
-<!-- ******* Main content *********: shift it to the right by 250 pixels when the sidebar is visible -->
-<div class="w3-main" style="margin-left:270px; margin-right:50px;">
-	<div class="w3-twothird w3-container">
-		<h1 class="w3-text-teal">1</h1>
-		
-        <hr>
-        <p>Lorem ipsum dolor sit amet, </p>
 
 
-        <ul>
-            <li><a href="others/iConsult3.0/chapter2.html">iConsult3.0</a></li> <hr>
-            <li><a href="others/Audiogram/index.html">Audiogram</a></li>
-        </ul>
-    
-        </div>
-        
-        
-<!-- END MAIN -->
-</div>
+	<!-- Sidebar -->
+	<nav class="col-md w3-sidebar leftnavi w3-bar-block w3-large  w3-animate-left" id="mySidebar">
+		<a href="javascript:void(0)" onclick="w3_close()"
+			class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+			<i class="fa fa-remove"></i>
+		</a>
 
-<script src="scriptss.js"></script>
+		<header>
+			<p></p>
+			<h1 data-id="this-is-cs50"><a href="index.html" style="color: white;">This is CS</a></h1>
+			<p><a href="https://www.summer.harvard.edu/" style="color: white;">Online Summer School</a><br>Summer 2020
+			</p>
+		</header>
+		<button class="btn btn-link d-block pl-0 pt-0" style="color: white;" data-search="" data-target="#search"
+			data-toggle="modal" type="button">
+			<i class="fas fa-search pr-2"></i>Search</button>
+		<button aria-controls="nav" aria-expanded="false" class="btn btn-sm collapsed d-md-none" data-target="nav > nav"
+			data-toggle="collapse">
+			Menu
+		</button>
+
+		<!--    <nav class="collapse d-md-block" id="nav">  -->
+		<hr>
+
+		<ul>
+			<li data-marker="*"><a href="https://vault.cs50.io/9ef694f7-58bf-4090-9566-30222c264a5c"
+					style="color: white;">Ed Discussion</a> for Q&amp;A</li>
+			<li data-marker="*" class="small"><a href="quickstart.pdf" style="color: white;">Quick Start Guide</a></li>
+		</ul>
+
+		<hr>
+
+		<ul>
+			<li data-marker="*"><a href="faqs/" style="color: white;">FAQs</a></li>
+			<li data-marker="*">
+				<p><a href="hours/" style="color: white;">Office Hours</a></p>
+			</li>
+			<li data-marker="*"><a href="staff/" style="color: white;">Staff</a></li>
+			<li data-marker="*"><a href="syllabus/" style="color: white;">Syllabus</a></li>
+		</ul>
+
+		<hr>
+
+		<!-- <p style="font-size: initial">With thanks to CS50’s team</p> -->
+
+		<footer></footer>
+
+	</nav>
+
+	<!-- Overlay effect when opening sidebar on small screens -->
+	<div class="w3-overlay" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+	<!-- ******* Main content ********* -->
+	<div class="w3-main">
+		<!-- Hero Section -->
+		<div class="hero-section">
+			<button class="w3-button w3-xlarge menu-btn" onclick="w3_open()" id="openBtn">
+				<i class="fa fa-bars"></i>
+			</button>
+			<h1>My Research</h1>
+		</div>
+		<div class="w3-twothird w3-container">
+			<h1 class="w3-text-teal">1</h1>
+
+			<hr>
+			<p>Lorem ipsum dolor sit amet, </p>
+
+
+			<ul>
+				<li><a href="others/iConsult3.0/chapter2.html">iConsult3.0</a></li>
+				<hr>
+				<li><a href="others/Audiogram/index.html">Audiogram</a></li>
+			</ul>
+
+		</div>
+
+
+		<footer class="main-footer">
+			<p>&copy; <span id="current-year"></span> Taufiq Chin. All Rights Reserved.</p>
+		</footer>
+
+		<!-- END MAIN -->
+	</div>
+
+	<script src="scriptss.js"></script>
 
 </body>
+
 </html>

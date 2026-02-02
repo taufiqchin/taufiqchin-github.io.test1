@@ -1,18 +1,11 @@
 {
   "header": {
-    "title": "This is CS",
+    "title": "Welcome to my Hub",
     "link": "index.html",
     "subtitle": "Online Summer School",
-    "subLink": "https://www.summer.harvard.edu/",
-    "session": "Summer <span id='year'></span>"
+    "subLink": "https://www.summer.harvard.edu/"
   },
   "buttons": [
-    {
-      "label": "Search",
-      "icon": "fas fa-search pr-2",
-      "action": "#search",
-      "type": "modal"
-    },
     {
       "label": "Menu",
       "type": "toggle",
@@ -21,19 +14,57 @@
   ],
   "sections": [
     {
-      "calendar": "Malaysia Date & Time: <span id='malaysia-time'></span>"
+      "hr": true
+    },
+    {
+      "links": [
+        {
+          "text": "CyberSecurityHubNews",
+          "url": "https://www.instagram.com/thecybersecurityhub/",
+          "class": "w3-hover-white",
+          "target": "_blank"
+        },
+        {
+          "text": "Portfolio",
+          "url": "others/Portfolio/index.html",
+          "class": "w3-hover-white"
+        },
+        {
+          "text": "Web Technologies",
+          "url": "others/webTech/index.html",
+          "class": "w3-hover-white"
+        }
+      ]
     },
     {
       "hr": true
     },
     {
       "links": [
-        { "text": "FAQs", "url": "faqs/" },
-        { "text": "Office Hours", "url": "hours/" },
-        { "text": "Research", "url": "MyResearch.html" },
-        { "text": "Staff", "url": "staff/" },
-        { "text": "Syllabus", "url": "syllabus/" }
+        {
+          "text": "FAQs",
+          "url": "faqs/"
+        },
+        {
+          "text": "Office Hours",
+          "url": "hours/"
+        },
+        {
+          "text": "Research",
+          "url": "MyResearch.html"
+        },
+        {
+          "text": "Staff",
+          "url": "staff/"
+        },
+        {
+          "text": "Syllabus",
+          "url": "syllabus/"
+        }
       ]
     }
-  ]
+  ],
+  "footer": {
+    "text": "&copy; {year} Taufiq Chin. All Rights Reserved."
+  }
 }
