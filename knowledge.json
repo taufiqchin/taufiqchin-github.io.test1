@@ -42,5 +42,11 @@
         "category": "Startup",
         "title": "I make $40K/month with this one website",
         "videoUrl": "https://www.youtube.com/embed/EF3uyvHHBfM"
+    },
+    {
+        "id": 8,
+        "category": "Programming",
+        "title": "I Finally Understand How to Learn Coding",
+        "videoUrl": "https://www.youtube.com/embed/TOlL02slaag"
     }
 ]
