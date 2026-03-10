@@ -1,5 +1,13 @@
 [
     {
+        "id": 5,
+        "order": 0,
+        "title": "ClearCut AI - Background Remover",
+        "image": "image/im1.jpg",
+        "description": "ClearCut is a premium AI-powered tool designed for high-resolution background removal. It features a sleek, modern interface and sophisticated processing to deliver instant results with professional-grade transparency. Ideal for creating clean product shots or portrait cutouts.",
+        "link": "others/remove background image/index.html"
+    },
+    {
         "id": 1,
         "order": 1,
         "title": "Speech AAC (Bahasa)",
