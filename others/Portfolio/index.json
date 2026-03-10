@@ -27,8 +27,8 @@
                     "Introducing data analysis using Python, empowering students with fundamental coding and analytical skills."
                 ],
                 "images": [
-                    "ppv.PNG",
-                    "ExcelTest.jpeg"
+                    "E1.PNG",
+                    "E2.PNG"
                 ]
             }
         ]
@@ -82,11 +82,11 @@
             ]
         },
         "images": [
-            "P1.jpg",
-            "P2.PNG",
-            "P3.PNG",
+            "CS1.png",
+            "CS2.png",
             "CS3.PNG",
-            "P4.PNG",
+            "CS4.png",
+            "CS5.png",
             "CS6.PNG"
         ]
     },
@@ -128,11 +128,11 @@
         "title": "Class Gallery",
         "images": [
             "G1.jpeg",
-            "G302S12526.JPEG",
-            "SFS1.PNG",
-            "SFS2.PNG",
-            "SFS3.PNG",
-            "SFS4.PNG"
+            "G2.jpeg",
+            "G302S12526.jpeg",
+            "cs50.png",
+            "im1.jpg",
+            "space.jpg"
         ]
   },
   "research": {

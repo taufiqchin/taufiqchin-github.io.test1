@@ -2,22 +2,20 @@
   "header": {
     "title": "Welcome to my Hub",
     "link": "index.html",
-    "subtitle": "Online Summer School",
-    "subLink": "https://www.summer.harvard.edu/"
+    "subtitle": "Online Repository of Taufiq Chin",
+    "Email": "mtaufiq@iium.edu.my",
+    "session": "Spring 2025"  
   },
-  "buttons": [
-    {
-      "label": "Menu",
-      "type": "toggle",
-      "target": "nav > nav"
-    }
-  ],
   "sections": [
     {
       "hr": true
     },
     {
       "links": [
+        {
+          "text": "Research",
+          "url": "MyResearch.html"
+        },
         {
           "text": "CyberSecurityHubNews",
           "url": "https://www.instagram.com/thecybersecurityhub/",
@@ -51,10 +49,7 @@
           "text": "Office Hours",
           "url": "hours/"
         },
-        {
-          "text": "Research",
-          "url": "MyResearch.html"
-        },
+        
         {
           "text": "Staff",
           "url": "staff/"

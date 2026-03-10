@@ -1,419 +1,380 @@
-// Sidebar toggle helpers
+// Get the Sidebar
 var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
 var overlayBg = document.getElementById("myOverlay");
 
+// Toggle sidebar on mobile/tablet, always open on desktop
 function w3_open() {
-  if (!mySidebar || !overlayBg) return;
-  if (mySidebar.style.display === 'block') {
-    mySidebar.style.display = 'none';
-    overlayBg.style.display = "none";
-  } else {
-    mySidebar.style.display = 'block';
-    overlayBg.style.display = "block";
-  }
+    const isMobile = window.innerWidth <= 992;
+    if (isMobile) {
+        mySidebar.classList.toggle("show");
+        const openBtn = document.getElementById("openBtn");
+        if (mySidebar.classList.contains("show")) {
+            overlayBg.classList.add("show");
+            overlayBg.style.display = "block";
+            if (openBtn) openBtn.style.opacity = "0";
+        } else {
+            overlayBg.classList.remove("show");
+            overlayBg.style.display = "none";
+            if (openBtn) openBtn.style.opacity = "1";
+        }
+    }
 }
 
+// Close the sidebar on mobile/tablet
 function w3_close() {
-  if (!mySidebar || !overlayBg) return;
-  mySidebar.style.display = "none";
-  overlayBg.style.display = "none";
+    const isMobile = window.innerWidth <= 992;
+    if (isMobile) {
+        mySidebar.classList.remove("show");
+        overlayBg.classList.remove("show");
+        overlayBg.style.display = "none";
+        const openBtn = document.getElementById("openBtn");
+        if (openBtn) openBtn.style.opacity = "1";
+    }
 }
 
+// Handle window resize: reset sidebar state when switching between mobile and desktop
+window.addEventListener("resize", function() {
+    const isMobile = window.innerWidth <= 992;
+    if (!isMobile) {
+        // If resizing to desktop, show sidebar
+        mySidebar.classList.remove("show");
+        overlayBg.style.display = "none";
+        const openBtn = document.getElementById("openBtn");
+        if (openBtn) openBtn.style.opacity = "1";
+    }
+});
 
-// Navbar JSON
-document.addEventListener("DOMContentLoaded", function() {
-    fetch("navbar.json")
+
+
+// sidebar JSON
+document.addEventListener("DOMContentLoaded", function () {
+    fetch("sidebar.json")
         .then(response => response.json())
         .then(data => {
-            const navbar = document.getElementById("navbar");
+            const sidebar = document.getElementById("mySidebar");
+            sidebar.innerHTML = ""; // Clear existing content
 
-            data.navigation.forEach(item => {
-                const link = document.createElement("a");
-                link.href = item.link;
-                link.textContent = item.name;
-                link.className = `w3-bar-item w3-button ${item.class}`;
-                
-                if (item.target) {
-                    link.target = item.target;
+            // Add header
+            if (data.header) {
+                const header = document.createElement("header");
+                header.innerHTML = `
+                    <h1><a href="${data.header.link}">${data.header.title}</a></h1>
+                    <p><a href="${data.header.subLink}">${data.header.subtitle}</a><br>${data.header.Email}</p>
+                `;
+                sidebar.appendChild(header);
+            }
+
+            // Add buttons
+            if (data.buttons) {
+                data.buttons.forEach(button => {
+                    const btn = document.createElement("button");
+                    btn.textContent = button.label;
+                    btn.className = "btn btn-link d-block pl-0 pt-0";
+                    btn.style.color = "white";
+
+                    if (button.icon) {
+                        btn.innerHTML = `<i class="${button.icon}"></i> ${button.label}`;
+                    }
+                    if (button.type === "modal") {
+                        btn.setAttribute("data-toggle", "modal");
+                        btn.setAttribute("data-target", button.action);
+                    }
+                    if (button.type === "toggle") {
+                        btn.setAttribute("aria-controls", "nav");
+                        btn.setAttribute("aria-expanded", "false");
+                        btn.setAttribute("data-toggle", "collapse");
+                        btn.setAttribute("data-target", button.target);
+                    }
+                    sidebar.appendChild(btn);
+                });
+            }
+
+            // Add other sections
+            data.sections.forEach(section => {
+                if (section.hr) {
+                    sidebar.appendChild(document.createElement("hr"));
                 }
+                if (section.links) {
+                    section.links.forEach(link => {
+                        const a = document.createElement("a");
+                        a.href = link.url;
+                        a.textContent = link.text;
+                        a.className = "w3-bar-item w3-button";
 
-                navbar.appendChild(link);
+                        if (link.class) {
+                            a.className += ` ${link.class}`;
+                        }
+                        if (link.target) {
+                            a.target = link.target;
+                        }
+
+                        sidebar.appendChild(a);
+                    });
+                }
             });
+
+            // Add footer with dynamic year to sidebar
+            if (data.footer) {
+                const footer = document.createElement("footer");
+                const currentYear = new Date().getFullYear();
+                footer.innerHTML = data.footer.text.replace("{year}", currentYear);
+                sidebar.appendChild(footer);
+            }
+
+            // Also populate main footer
+            const mainFooter = document.querySelector(".main-footer");
+            if (mainFooter && data.footer) {
+                const currentYear = new Date().getFullYear();
+                const footerText = data.footer.text.replace("{year}", currentYear);
+                mainFooter.innerHTML = `<p>${footerText}</p>`;
+            }
         })
-        .catch(error => console.error("Error loading navbar:", error));
+        .catch(error => console.error("Error loading sidebar:", error));
+
+    // Load Portfolio Content from index.json
+    loadPortfolioContent();
+    
+    // Load Profile from infoSidebar.json
+    loadProfileCard();
 });
 
-
-
-
-// Sidebar infoSidebar.json for Portfolio
-
-document.addEventListener("DOMContentLoaded", function () {
-    fetch("infoSidebar.json")
-        .then(response => response.json())
-        .then(data => {
-            const profile = data.profile;
-            const profileInfo = document.getElementById("profile-info");
-
-            profileInfo.innerHTML = `
-                <p style="color: white; font-size: 22px; margin: 3px 0;"> <strong>${profile.name}</strong></p>
-                <p style="color: white; font-size: 14px; margin: 3px 0;"><strong>Position:</strong> ${profile.position}</p>
-                <p style="color: white; font-size: 14px; margin: 3px 0;"><strong>Department:</strong> ${profile.department}</p>
-                <p style="color: white; font-size: 14px; margin: 3px 0;"><strong>Date Joined:</strong> ${profile.dateJoin}</p>
-                <p style="color: white; font-size: 14px; margin: 3px 0;"><strong>Confirmation Date:</strong> ${profile.confirmationDate}</p>
-                <p style="color: white; font-size: 14px; margin: 3px 0;"><strong>Expertise:</strong> ${profile.expertise}</p>
-                <p style="color: white; font-size: 14px; margin: 3px 0;"><strong>Quote:</strong> <i>"${profile.quote}"</i></p>
-                <img src="${profile.image1}" alt="Profile Image 1" style="width: 100%; height: auto; display: block; margin-top: 10px;"> <br>
-                <img src="${profile.image2}" alt="Profile Image 2" style="width: 100%; height: auto; display: block; margin-bottom: 10px;">
-            `;
-        })
-        .catch(error => console.error("Error loading profile data:", error));
-});
-
-// Fallback loader for gallery images: try Class/, then root, then lowercase extension
-function handleImageFallback(img) {
-  try {
-    var original = img.getAttribute('data-image') || '';
-    var idxStr = img.getAttribute('data-fallback-idx') || '1';
-    var idx = parseInt(idxStr, 10);
-    var candidates = [];
-
-    // Try the two base paths with original name
-    candidates.push('picture/Class/' + original);
-    candidates.push('picture/' + original);
-
-    // Also try lowercase extension variants
-    var lowered = original.replace(/\.(JPEG|JPG|PNG)$/i, function(m){ return m.toLowerCase(); });
-    if (lowered !== original) {
-      candidates.push('picture/Class/' + lowered);
-      candidates.push('picture/' + lowered);
-    }
-
-    if (idx >= candidates.length) {
-      img.onerror = null;
-      return;
-    }
-
-    img.src = candidates[idx];
-    img.setAttribute('data-fallback-idx', String(idx + 1));
-  } catch (e) {
-    try { img.onerror = null; } catch(_) {}
-  }
-}
-
-
-
-// main content for personal info
-document.addEventListener("DOMContentLoaded", function () {
-    fetch("infoSidebar.json")
-        .then(response => response.json())
-        .then(data => {
-            const profile = data.profile;
-            const profileSection = document.getElementById("profile-section");
-
-            profileSection.innerHTML = `
-                <img src="${profile.image}" alt="Profile Picture" style="width:100px; border-radius:50%; display:block; margin-bottom:10px;">
-                <p style="color: black; font-size: 22px; margin: 3px 0;"> <strong>${profile.name}</strong></p>
-                <p style="color: black; font-size: 18px; margin: 3px 0;"><strong>Position:</strong> ${profile.position}</p>
-                <p style="color: black; font-size: 18px; margin: 3px 0;"><strong>Department:</strong> ${profile.department}</p>
-                <p style="color: black; font-size: 18px; margin: 3px 0;"><strong>Date Joined:</strong> ${profile.dateJoin}</p>
-                <p style="color: black; font-size: 18px; margin: 3px 0;"><strong>Confirmation Date:</strong> ${profile.confirmationDate}</p>
-                <p style="color: black; font-size: 18px; margin: 3px 0;"><strong>Expertise:</strong> ${profile.expertise}</p>
-                <p style="color: black; font-size: 18px; margin: 3px 0;"><strong>Quote:</strong> <i>"${profile.quote}"</i></p>
-            `;
-        })
-        .catch(error => console.error("Error loading profile data:", error));
-});
-
-
-// Main content - Education & Teaching Philosophy
-
-document.addEventListener("DOMContentLoaded", function () {
+function loadPortfolioContent() {
     fetch("index.json")
         .then(response => response.json())
         .then(data => {
-            // Education & Teaching Philosophy
-            const philosophyContainer = document.getElementById("teaching-philosophy");
-            let philosophyContent = `<p>${data.education_teaching_philosophy.description}</p>`;
-
-            data.education_teaching_philosophy.pillars.forEach(pillar => {
-                philosophyContent += `<h3>${pillar.title}</h3><ul>`;
-                pillar.points.forEach(point => {
-                    philosophyContent += `<li>${point}</li>`;
-                });
-                philosophyContent += `</ul>`;
-
-                if (pillar.images) {
-                    philosophyContent += `<div style="display: flex; flex-wrap: wrap; gap: 10px;">`;
-                    pillar.images.forEach(image => {
-                        philosophyContent += `<img src="picture/Class/${image}" alt="${pillar.title}" class="clickable-image" style="width: 30%; border-radius: 10px; cursor: pointer;">`;
+            // Load Teaching Philosophy
+            if (data.education_teaching_philosophy) {
+                const container = document.getElementById("teaching-content");
+                let html = `<p>${data.education_teaching_philosophy.description}</p>`;
+                
+                if (data.education_teaching_philosophy.pillars) {
+                    data.education_teaching_philosophy.pillars.forEach((pillar, index) => {
+                        html += `<h3>${pillar.title}</h3>`;
+                        html += `<ul>`;
+                        pillar.points.forEach(point => {
+                            html += `<li>${point}</li>`;
+                        });
+                        html += `</ul>`;
+                        
+                        if (pillar.images) {
+                            html += `<div class="w3-row">`;
+                            pillar.images.forEach(img => {
+                                html += `<div class="w3-half w3-container"><img src="picture/${img}" alt="Teaching" style="width:100%; margin-bottom:10px;"></div>`;
+                            });
+                            html += `</div>`;
+                        }
                     });
-                    philosophyContent += `</div>`;
                 }
-            });
-
-            philosophyContainer.innerHTML = philosophyContent;
-
-            // Innovation in Teaching
-            const innovationContainer = document.getElementById("innovation-content");
-            let innovationContent = ``;
-            innovationContent += `<p>${data.innovation_teaching.description}</p>`;
-
-            // Video Resources
-            innovationContent += `<h3>Video Resources</h3><div style="display: flex; gap: 15px; flex-wrap: wrap;">`;
-            data.innovation_teaching.videos.forEach(video => {
-                innovationContent += `
-                    <div style="flex: 1; min-width: 300px;">
-                        <p><strong>${video.title}</strong></p>
-                        <iframe width="100%" height="200" src="${video.url}" frameborder="0" allowfullscreen></iframe>
-                    </div>`;
-            });
-            innovationContent += `</div>`;
-
-            // Case Study
-            innovationContent += `<h3>Case Study</h3>`;
-            innovationContent += `<p>${data.innovation_teaching.case_study.overview}</p><ul>`;
-            data.innovation_teaching.case_study.content.forEach(item => {
-                innovationContent += `<li>${item}</li>`;
-            });
-            innovationContent += `</ul>`;
-            innovationContent += `<p><strong>Poster Creation:</strong> ${data.innovation_teaching.case_study.poster_tool}</p>`;
-
-            // Case Study PDFs
-            if (data.innovation_teaching.case_study.case_studies && data.innovation_teaching.case_study.case_studies.length > 0) {
-                innovationContent += `<h4>View Students Case Studies Report:</h4><ul>`;
-                data.innovation_teaching.case_study.case_studies.forEach(pdf => {
-                    innovationContent += `<li><a href="${pdf.file}" target="_blank">${pdf.title}</a></li>`;
-                });
-                innovationContent += `</ul>`;
-            } else {
-                innovationContent += `<p>No case studies available.</p>`;
+                container.innerHTML = html;
             }
 
-
-            
-
-            // Image Gallery
-            innovationContent += `<h3>Case Study Report to Canva</h3><div style="display: flex; flex-wrap: wrap; gap: 10px;">`;
-            data.innovation_teaching.images.forEach(image => {
-                innovationContent += `<img src="picture/case/${image}" alt="Innovation Teaching" class="clickable-image" style="width: 12%; border-radius: 10px; cursor: pointer;">`;
-            });
-            innovationContent += `</div>`;
-
-            innovationContainer.innerHTML = innovationContent;
-
-            // Student Engagement & Instructional Competencies
-            const engagementContainer = document.getElementById("student-engagement");
-            let engagementContent = ``;
-            data.student_engagement.criteria.forEach(section => {
-                engagementContent += `<h3>${section.title}</h3><ul>`;
-                section.content.forEach(point => {
-                    engagementContent += `<li>${point}</li>`;
-                });
-                engagementContent += `</ul>`;
-            });
-
-            engagementContainer.innerHTML = engagementContent;
-
-            // Class Gallery
-            const galleryContainer = document.getElementById("class-gallery");
-            let galleryContent = ``;
-
-            data.class_gallery.images.forEach(image => {
-                galleryContent += `<img data-image="${image}" data-fallback-idx="1" src="picture/Class/${image}" alt="Class Gallery Image" class="clickable-image" onerror="handleImageFallback(this)" style="width: 30%; border-radius: 10px; cursor: pointer;">`;
-            });
-
-            galleryContent += `</div>`;
-            galleryContainer.innerHTML = galleryContent;
-
-            // 🔥 Fix: Ensure Click Events Attach After Content is Loaded
-            setTimeout(() => {
-                const modal = document.getElementById("imageModal");
-                const modalImg = document.getElementById("fullImage");
-                const closeModal = document.querySelector(".close");
-
-                document.querySelectorAll(".clickable-image").forEach(img => {
-                    img.addEventListener("click", function () {
-                        modal.style.display = "block";
-                        modalImg.src = this.src;
+            // Load Innovation in Teaching
+            if (data.innovation_teaching) {
+                const container = document.getElementById("innovation-content");
+                let html = `<p>${data.innovation_teaching.description}</p>`;
+                
+                if (data.innovation_teaching.videos) {
+                    html += `<h3>Teaching Videos</h3>`;
+                    data.innovation_teaching.videos.forEach(video => {
+                        html += `<div class="w3-container w3-margin-bottom"><h4>${video.title}</h4><iframe width="100%" height="315" src="${video.url}" frameborder="0" allowfullscreen></iframe></div>`;
                     });
-                });
-
-                closeModal.addEventListener("click", function () {
-                    modal.style.display = "none";
-                });
-
-                modal.addEventListener("click", function (event) {
-                    if (event.target === modal) {
-                        modal.style.display = "none";
+                }
+                
+                if (data.innovation_teaching.case_study) {
+                    html += `<h3>Case Study Assignments</h3>`;
+                    html += `<p><strong>Overview:</strong> ${data.innovation_teaching.case_study.overview}</p>`;
+                    html += `<p><strong>Content:</strong></p><ul>`;
+                    data.innovation_teaching.case_study.content.forEach(item => {
+                        html += `<li>${item}</li>`;
+                    });
+                    html += `</ul>`;
+                    
+                    if (data.innovation_teaching.case_study.case_studies) {
+                        html += `<p><strong>Sample Case Studies:</strong></p><ul>`;
+                        data.innovation_teaching.case_study.case_studies.forEach(study => {
+                            html += `<li><a href="${study.file}" target="_blank">${study.title}</a></li>`;
+                        });
+                        html += `</ul>`;
                     }
-                });
-            }, 500); // Delay to ensure images are in the DOM
-
-            // Research
-            const researchContainer = document.getElementById("research-content");
-            if (researchContainer && data.research) {
-                let researchHtml = ``;
-                if (data.research.description) researchHtml += `<p>${data.research.description}</p>`;
-                if (data.research.areas && data.research.areas.length) {
-                    researchHtml += `<h3>Areas</h3><ul>`;
-                    data.research.areas.forEach(area => { researchHtml += `<li>${area}</li>`; });
-                    researchHtml += `</ul>`;
                 }
-                if (data.research.featured && data.research.featured.length) {
-                    researchHtml += `<h3>Featured Projects</h3><ul>`;
-                    data.research.featured.forEach(item => {
-                        researchHtml += `<li>${item.title}${item.link ? ` - <a href="${item.link}" target="_blank">Link</a>` : ''}</li>`;
+                
+                if (data.innovation_teaching.images) {
+                    html += `<div class="w3-row">`;
+                    data.innovation_teaching.images.forEach(img => {
+                        html += `<div class="w3-half w3-container"><img src="picture/${img}" alt="Innovation" style="width:100%; margin-bottom:10px;"></div>`;
                     });
-                    researchHtml += `</ul>`;
+                    html += `</div>`;
                 }
-                researchContainer.innerHTML = researchHtml || `<p>To be updated.</p>`;
+                container.innerHTML = html;
             }
 
-            // Publications
-            const publicationsContainer = document.getElementById("publications-content");
-            if (publicationsContainer && data.publications) {
-                let publicationsHtml = ``;
-                ["journals","conferences","books"].forEach(cat => {
-                    const list = data.publications[cat];
-                    if (list && list.length) {
-                        const label = cat.charAt(0).toUpperCase() + cat.slice(1);
-                        publicationsHtml += `<h3>${label}</h3><ol>`;
-                        list.forEach(p => { publicationsHtml += `<li>${p}</li>`; });
-                        publicationsHtml += `</ol>`;
-                    }
-                });
-                publicationsContainer.innerHTML = publicationsHtml || `<p>To be updated.</p>`;
-            }
-
-            // Achievements
-            const achievementsContainer = document.getElementById("achievements-content");
-            if (achievementsContainer && data.achievements) {
+            // Load Student Engagement
+            if (data.student_engagement) {
+                const container = document.getElementById("engagement-content");
                 let html = ``;
-                if (data.achievements.awards && data.achievements.awards.length) {
-                    html += `<ul>`;
-                    data.achievements.awards.forEach(a => { html += `<li>${a}</li>`; });
-                    html += `</ul>`;
+                
+                if (data.student_engagement.criteria) {
+                    data.student_engagement.criteria.forEach((criterion, index) => {
+                        html += `<h3>${criterion.title}</h3>`;
+                        criterion.content.forEach(text => {
+                            html += `<p>${text}</p>`;
+                        });
+                    });
                 }
-                achievementsContainer.innerHTML = html || `<p>To be updated.</p>`;
+                container.innerHTML = html;
             }
 
-            // Grants & Projects
-            const grantsContainer = document.getElementById("grants-content");
-            if (grantsContainer && data.grants_projects) {
+            // Load Class Gallery
+            if (data.class_gallery) {
+                const container = document.getElementById("gallery-content");
+                let html = `<div class="w3-row">`;
+                
+                if (data.class_gallery.images) {
+                    data.class_gallery.images.forEach(img => {
+                        html += `<div class="w3-third w3-container"><img src="picture/${img}" alt="Class" class="clickable-image" style="width:100%; margin-bottom:10px; cursor:pointer;"></div>`;
+                    });
+                }
+                html += `</div>`;
+                container.innerHTML = html;
+            }
+
+            // Load Research
+            if (data.research) {
+                const container = document.getElementById("research-content");
+                let html = `<p>${data.research.description}</p>`;
+                
+                if (data.research.areas) {
+                    html += `<h3>Research Areas</h3><ul>`;
+                    data.research.areas.forEach(area => {
+                        html += `<li>${area}</li>`;
+                    });
+                    html += `</ul>`;
+                }
+                container.innerHTML = html;
+            }
+
+            // Load Publications
+            if (data.publications) {
+                const container = document.getElementById("publications-content");
                 let html = ``;
-                if (data.grants_projects.items && data.grants_projects.items.length) {
-                    html += `<ul>`;
-                    data.grants_projects.items.forEach(g => { html += `<li>${g.title} (${g.role}, ${g.year})</li>`; });
+                
+                if (data.publications.journals && data.publications.journals.length > 0) {
+                    html += `<h3>Journal Publications</h3><ul>`;
+                    data.publications.journals.forEach(pub => {
+                        html += `<li>${pub}</li>`;
+                    });
                     html += `</ul>`;
                 }
-                grantsContainer.innerHTML = html || `<p>To be updated.</p>`;
+                
+                if (data.publications.conferences && data.publications.conferences.length > 0) {
+                    html += `<h3>Conference Publications</h3><ul>`;
+                    data.publications.conferences.forEach(pub => {
+                        html += `<li>${pub}</li>`;
+                    });
+                    html += `</ul>`;
+                }
+                container.innerHTML = html;
             }
 
-            // Supervision
-            const supervisionContainer = document.getElementById("supervision-content");
-            if (supervisionContainer && data.supervision) {
-                let html = ``;
-                if (data.supervision.students && data.supervision.students.length) {
-                    html += `<ul>`;
-                    data.supervision.students.forEach(s => { html += `<li>${s.name} - ${s.level}</li>`; });
-                    html += `</ul>`;
+            // Load Achievements
+            if (data.achievements) {
+                const container = document.getElementById("achievements-content");
+                let html = `<ul>`;
+                
+                if (data.achievements.awards) {
+                    data.achievements.awards.forEach(award => {
+                        html += `<li>${award}</li>`;
+                    });
                 }
-                supervisionContainer.innerHTML = html || `<p>To be updated.</p>`;
+                html += `</ul>`;
+                container.innerHTML = html;
             }
 
-            // Service & Leadership
-            const serviceContainer = document.getElementById("service-content");
-            if (serviceContainer && data.service_leadership) {
-                let html = ``;
-                if (data.service_leadership.roles && data.service_leadership.roles.length) {
-                    html += `<ul>`;
-                    data.service_leadership.roles.forEach(r => { html += `<li>${r}</li>`; });
-                    html += `</ul>`;
+            // Load Skills
+            if (data.skills) {
+                const container = document.getElementById("skills-content");
+                let html = `<div class="w3-row">`;
+                
+                if (data.skills.items) {
+                    data.skills.items.forEach(skill => {
+                        html += `<div class="w3-quarter w3-container"><div class="w3-card w3-padding" style="background-color: #f1f1f1; text-align: center; margin-bottom: 10px;"><p><strong>${skill}</strong></p></div></div>`;
+                    });
                 }
-                serviceContainer.innerHTML = html || `<p>To be updated.</p>`;
-            }
-
-            // Certifications
-            const certsContainer = document.getElementById("certifications-content");
-            if (certsContainer && data.certifications) {
-                let html = ``;
-                if (data.certifications.items && data.certifications.items.length) {
-                    html += `<ul>`;
-                    data.certifications.items.forEach(c => { html += `<li>${c}</li>`; });
-                    html += `</ul>`;
-                }
-                certsContainer.innerHTML = html || `<p>To be updated.</p>`;
-            }
-
-            // Skills
-            const skillsContainer = document.getElementById("skills-content");
-            if (skillsContainer && data.skills) {
-                let html = ``;
-                if (data.skills.items && data.skills.items.length) {
-                    html += `<ul>`;
-                    data.skills.items.forEach(s => { html += `<li>${s}</li>`; });
-                    html += `</ul>`;
-                }
-                skillsContainer.innerHTML = html || `<p>To be updated.</p>`;
-            }
-
-            // Outreach
-            const outreachContainer = document.getElementById("outreach-content");
-            if (outreachContainer && data.outreach) {
-                let html = ``;
-                if (data.outreach.activities && data.outreach.activities.length) {
-                    html += `<ul>`;
-                    data.outreach.activities.forEach(o => { html += `<li>${o}</li>`; });
-                    html += `</ul>`;
-                }
-                outreachContainer.innerHTML = html || `<p>To be updated.</p>`;
-            }
-
-            // Appendices (reuse case studies)
-            const appendicesContainer = document.getElementById("appendices-content");
-            if (appendicesContainer && data.innovation_teaching && data.innovation_teaching.case_study && data.innovation_teaching.case_study.case_studies) {
-                const list = data.innovation_teaching.case_study.case_studies;
-                let html = `<h3>Case Studies</h3>`;
-                if (list.length) {
-                    html += `<ul>`;
-                    list.forEach(pdf => { html += `<li><a href="${pdf.file}" target="_blank">${pdf.title}</a></li>`; });
-                    html += `</ul>`;
-                }
-                appendicesContainer.innerHTML = html;
+                html += `</div>`;
+                container.innerHTML = html;
             }
         })
-        .catch(error => console.error("Error loading JSON data:", error));
-});
+        .catch(error => console.error("Error loading portfolio content:", error));
+}
 
-// Smooth scroll and active sidebar link
-document.addEventListener("DOMContentLoaded", function () {
-  const links = document.querySelectorAll('.sidebar-link[href^="#"]');
-  links.forEach(link => {
-    link.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href').slice(1);
-      const targetEl = document.getElementById(targetId);
-      if (targetEl) {
-        e.preventDefault();
-        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-
-  const sections = Array.from(links).map(a => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      const id = entry.target.getAttribute('id');
-      const navLink = document.querySelector(`.sidebar-link[href="#${id}"]`);
-      if (navLink) {
-        if (entry.isIntersecting) {
-          document.querySelectorAll('.sidebar-link.active').forEach(el => el.classList.remove('active'));
-          navLink.classList.add('active');
-        }
-      }
-    });
-  }, { rootMargin: '0px 0px -70% 0px', threshold: 0.2 });
-
-  sections.forEach(sec => observer.observe(sec));
-});
+function loadProfileCard() {
+    fetch("infoSidebar.json")
+        .then(response => response.json())
+        .then(data => {
+            const profileCard = document.getElementById("profile-card");
+            if (!data.profile) return;
+            
+            const profile = data.profile;
+            
+            let html = `
+                <div style="text-align: center;">
+                    <!-- Profile Image -->
+                    <img src="${profile.image}" alt="${profile.name}" style="width: 100%; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                    
+                    <!-- Profile Name -->
+                    <h3 style="margin: 15px 0 5px 0; color: #2c3e50; font-size: 18px; font-weight: 700;">
+                        ${profile.name}
+                    </h3>
+                    
+                    <!-- Position -->
+                    <p style="margin: 5px 0; color: #009688; font-weight: 600; font-size: 14px;">
+                        ${profile.position}
+                    </p>
+                    
+                    <!-- Department -->
+                    <p style="margin: 5px 0; color: #555; font-size: 13px;">
+                        ${profile.department}
+                    </p>
+                    
+                    <!-- Quote -->
+                    <div style="margin: 20px 0; padding: 15px; background: #f5f5f5; border-left: 4px solid #009688; border-radius: 4px;">
+                        <p style="font-style: italic; color: #666; margin: 0; font-size: 13px;">
+                            "${profile.quote}"
+                        </p>
+                    </div>
+                    
+                    <!-- Employment Details -->
+                    <div style="text-align: left; background: #f9f9f9; padding: 15px; border-radius: 6px; margin: 15px 0;">
+                        <p style="margin: 8px 0; font-size: 13px;">
+                            <strong style="color: #2c3e50;">Date Joined:</strong><br>
+                            <span style="color: #666;">${profile.dateJoin}</span>
+                        </p>
+                        <hr style="margin: 10px 0; border: none; border-top: 1px solid #ddd;">
+                        <p style="margin: 8px 0; font-size: 13px;">
+                            <strong style="color: #2c3e50;">Confirmation Date:</strong><br>
+                            <span style="color: #666;">${profile.confirmationDate}</span>
+                        </p>
+                        <hr style="margin: 10px 0; border: none; border-top: 1px solid #ddd;">
+                        <p style="margin: 8px 0; font-size: 13px;">
+                            <strong style="color: #2c3e50;">Expertise:</strong><br>
+                            <span style="color: #666;">${profile.expertise}</span>
+                        </p>
+                    </div>
+                    
+                    <!-- Additional Images -->
+                    <div style="margin-top: 15px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            ${profile.image1 ? `<img src="${profile.image1}" alt="Additional" style="width: 100%; border-radius: 6px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);">` : ''}
+                            ${profile.image2 ? `<img src="${profile.image2}" alt="Additional" style="width: 100%; border-radius: 6px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);">` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            profileCard.innerHTML = html;
+        })
+        .catch(error => console.error("Error loading profile card:", error));
+}
 

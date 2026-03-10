@@ -4,26 +4,47 @@ var mySidebar = document.getElementById("mySidebar");
 // Get the DIV with overlay effect
 var overlayBg = document.getElementById("myOverlay");
 
-// Toggle between showing and hiding the sidebar, and add overlay effect
+// Toggle sidebar on mobile/tablet, always open on desktop
 function w3_open() {
-    mySidebar.classList.toggle("show");
-    const openBtn = document.getElementById("openBtn");
-    if (mySidebar.classList.contains("show")) {
-        overlayBg.style.display = "block";
-        if (openBtn) openBtn.style.opacity = "0";
-    } else {
+    const isMobile = window.innerWidth <= 992;
+    if (isMobile) {
+        mySidebar.classList.toggle("show");
+        const openBtn = document.getElementById("openBtn");
+        if (mySidebar.classList.contains("show")) {
+            overlayBg.classList.add("show");
+            overlayBg.style.display = "block";
+            if (openBtn) openBtn.style.opacity = "0";
+        } else {
+            overlayBg.classList.remove("show");
+            overlayBg.style.display = "none";
+            if (openBtn) openBtn.style.opacity = "1";
+        }
+    }
+}
+
+// Close the sidebar on mobile/tablet
+function w3_close() {
+    const isMobile = window.innerWidth <= 992;
+    if (isMobile) {
+        mySidebar.classList.remove("show");
+        overlayBg.classList.remove("show");
         overlayBg.style.display = "none";
+        const openBtn = document.getElementById("openBtn");
         if (openBtn) openBtn.style.opacity = "1";
     }
 }
 
-// Close the sidebar with the close button
-function w3_close() {
-    mySidebar.classList.remove("show");
-    overlayBg.style.display = "none";
-    const openBtn = document.getElementById("openBtn");
-    if (openBtn) openBtn.style.opacity = "1";
-}
+// Handle window resize: reset sidebar state when switching between mobile and desktop
+window.addEventListener("resize", function() {
+    const isMobile = window.innerWidth <= 992;
+    if (!isMobile) {
+        // If resizing to desktop, show sidebar
+        mySidebar.classList.remove("show");
+        overlayBg.style.display = "none";
+        const openBtn = document.getElementById("openBtn");
+        if (openBtn) openBtn.style.opacity = "1";
+    }
+});
 
 
 
@@ -40,34 +61,35 @@ document.addEventListener("DOMContentLoaded", function () {
                 const header = document.createElement("header");
                 header.innerHTML = `
                     <h1><a href="${data.header.link}">${data.header.title}</a></h1>
-                    <p><a href="${data.header.subLink}">${data.header.subtitle}</a><br>${data.header.session}</p>
+                    <p><a href="${data.header.subLink}">${data.header.subtitle}</a><br>${data.header.Email}</p>
                 `;
                 sidebar.appendChild(header);
             }
 
             // Add buttons
-            data.buttons.forEach(button => {
-                const btn = document.createElement("button");
-                btn.textContent = button.label;
-                btn.className = "btn btn-link d-block pl-0 pt-0";
-                btn.style.color = "white";
+            if (data.buttons) {
+                data.buttons.forEach(button => {
+                    const btn = document.createElement("button");
+                    btn.textContent = button.label;
+                    btn.className = "btn btn-link d-block pl-0 pt-0";
+                    btn.style.color = "white";
 
-                if (button.icon) {
-                    btn.innerHTML = `<i class="${button.icon}"></i> ${button.label}`;
-                }
-                if (button.type === "modal") {
-                    btn.setAttribute("data-toggle", "modal");
-                    btn.setAttribute("data-target", button.action);
-                }
-                if (button.type === "toggle") {
-                    btn.setAttribute("aria-controls", "nav");
-                    btn.setAttribute("aria-expanded", "false");
-                    btn.setAttribute("data-toggle", "collapse");
-                    btn.setAttribute("data-target", button.target);
-                }
-                sidebar.appendChild(btn);
-            });
-
+                    if (button.icon) {
+                        btn.innerHTML = `<i class="${button.icon}"></i> ${button.label}`;
+                    }
+                    if (button.type === "modal") {
+                        btn.setAttribute("data-toggle", "modal");
+                        btn.setAttribute("data-target", button.action);
+                    }
+                    if (button.type === "toggle") {
+                        btn.setAttribute("aria-controls", "nav");
+                        btn.setAttribute("aria-expanded", "false");
+                        btn.setAttribute("data-toggle", "collapse");
+                        btn.setAttribute("data-target", button.target);
+                    }
+                    sidebar.appendChild(btn);
+                });
+            }
 
             // Add other sections
             data.sections.forEach(section => {
@@ -93,24 +115,26 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
 
-            // Add footer with dynamic year
+            // Add footer with dynamic year to sidebar
             if (data.footer) {
                 const footer = document.createElement("footer");
                 const currentYear = new Date().getFullYear();
                 footer.innerHTML = data.footer.text.replace("{year}", currentYear);
                 sidebar.appendChild(footer);
             }
+
+            // Also populate main footer
+            const mainFooter = document.querySelector(".main-footer");
+            if (mainFooter && data.footer) {
+                const currentYear = new Date().getFullYear();
+                const footerText = data.footer.text.replace("{year}", currentYear);
+                mainFooter.innerHTML = `<p>${footerText}</p>`;
+            }
         })
         .catch(error => console.error("Error loading sidebar:", error));
 
     loadLatestUpdates();
     loadKnowledgeBase();
-
-    // Set current year in footer
-    const yearSpan = document.getElementById("current-year");
-    if (yearSpan) {
-        yearSpan.textContent = new Date().getFullYear();
-    }
 });
 
 function loadLatestUpdates() {

@@ -1,154 +1,474 @@
-body{
-  background-color: #F5F5F5 ;
-  font-size: 18px;
-  /*background-color: #EAEAEA */
+* {
+  box-sizing: border-box;
 }
 
-.w3-sidebar {
-  z-index: 4;
-  width: 290px;
-  top: 42px;
-  bottom: 0;
-  height: inherit;
+html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: #F5F5F5;
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
+  width: 100% !important;
+  min-height: 100vh;
+  /* Ensure body takes at least full viewport height */
 }
+
+#mySidebar.w3-sidebar {
+  display: none !important;
+  /* Hidden by default on mobile/tablet */
+  position: fixed;
+  z-index: 1000;
+  width: 220px;
+  /* Reduced by ~7% (from 237px) */
+  top: 0 !important;
+  left: 0;
+  bottom: 0;
+  transition: 0.3s;
+}
+
+#mySidebar.w3-sidebar.show {
+  display: flex !important;
+  flex-direction: column;
+  /* Show when toggled */
+}
+
+.menu-btn {
+  display: block;
+  /* Show menu button on mobile/tablet */
+  position: relative;
+  z-index: 1001;
+  background-color: #2c3e50;
+  color: white;
+  border-radius: 4px;
+  padding: 7px 11px;
+  /* Reduced by ~7% (from 8px 12px) */
+  font-size: 22px !important;
+  /* Reduced by ~7% (from 24px) */
+  border: none;
+  cursor: pointer;
+  margin-right: 15px;
+  /* Gap between button and title */
+}
+
+/* Desktop view: always show sidebar, hide hamburger */
+@media (min-width: 993px) {
+  #mySidebar.w3-sidebar {
+    display: flex !important;
+    flex-direction: column;
+    /* Always visible on desktop */
+  }
+
+  .menu-btn {
+    display: none;
+    /* Hide hamburger on desktop */
+  }
+}
+
+.leftnavi {
+  background-color: #2c3e50;
+  /* Softer, eye-friendly Charcoal Navy */
+  color: white;
+}
+
+/* Sidebar Header Styling */
+#mySidebar header {
+  padding: 24px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+#mySidebar header h1,
+#mySidebar header h1 a {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+  color: white !important;
+  text-decoration: none;
+}
+
+#mySidebar header p,
+#mySidebar header p a {
+  font-size: 13px;
+  margin: 0px 0 0 0;
+  color: white !important;
+  text-decoration: none;
+}
+
+/* Sidebar Link Styling */
+#mySidebar .w3-bar-item {
+  padding: 2px 16px;
+  margin: 1px 0;
+  /* Added margin for better separation */
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  border-left: 3px solid transparent;
+  transition: all 0.2s ease;
+  text-align: left !important;
+}
+
+#mySidebar hr {
+  margin: 5px 0;
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#mySidebar .w3-bar-item:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-left: 3px solid white;
+  padding-left: 20px;
+  color: #FFD700 !important;
+}
+
+/* Footer Styling */
+#mySidebar footer {
+  margin-top: auto;
+  padding: 20px 16px;
+  font-size: 12px;
+  opacity: 0.7;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Main Content Styling */
+.w3-main {
+  padding: 0px 0px 0 0px !important;
+  /* 5px top and side gap */
+  margin: 0 !important;
+  width: 100% !important;
+  /* Full width on mobile/tablet */
+  position: static !important;
+  left: 0 !important;
+  top: 0 !important;
+}
+
+/* Desktop view: adjust for sidebar */
+@media (min-width: 993px) {
+  .w3-main {
+    margin-left: 210px !important;
+    /* Add left margin to accommodate sidebar */
+    width: calc(100% - 220px) !important;
+    /* Adjust width for sidebar */
+    min-height: calc(100vh - 120px);
+    /* Ensure main content takes at least full viewport height minus footer */
+  }
+}
+
+.hero-section {
+  padding: 0 0 10px 0 !important;
+  /* No more left padding for floating button */
+  background: rgb(155, 192, 209);
+  border-radius: 0;
+  width: calc(100% + 10px) !important;
+  margin: 0 -5px 0 -5px !important;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.hero-section h1 {
+  display: inline-block;
+  font-size: 32px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 8px 0 0 0 !important;
+  padding: 0 !important;
+}
+
+.hero-section p {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.content-card {
+  background: white;
+  padding: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24px;
+  transition: transform 0.2s ease;
+}
+
+.content-card:hover {
+  transform: translateY(-4px);
+}
+
+.content-card .card-padding {
+  padding: 20px;
+}
+
+.content-card iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+}
+
+.content-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+.content-card p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}
+
 .responsive {
   width: 100%;
   height: auto;
-}
-.left{
-	left:00px;
-	width:auto;
-	right:0px;
-}
-.leftnavi {
-
-	background-color: #A41035;
-	color: black;
+  border-radius: 8px;
 }
 
-/* Sidebar links */
-.leftnavi a {
-	color: white;
-}
-.leftnavi a.active {
-	background-color: rgba(255,255,255,0.15);
-}
-
-/* Anchor offset for fixed navbar */
-.w3-container, #profile-section {
-	scroll-margin-top: 80px;
-}
-
-#profile-info {
-  font-size: 16px; /* Default font size */
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-top: 8px;
+  /* Greatly reduced from 48px */
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid #2c3e50;
+  display: inline-block;
 }
 
-
-
-/* popup image when clicked */
-/* Modal Background */
-.modal {
-  display: none; 
-  position: fixed; 
-  z-index: 1000; 
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  text-align: center;
-  padding-top: 40px; /* Adds space from the top */
-}
-
-/* Modal Image - Auto Resize */
-.modal-content {
-  display: block;
-  margin: auto;
-  max-width: 90%;
-  max-height: 90%;
-  width: auto;
-  height: 90%;
-}
-
-/* Close Button */
-.close {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  color: white;
-  font-size: 30px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.close:hover {
-  color: red;
-}
-
-/* Print styles for PDF export */
-@media print {
-	body {
-		background: #ffffff;
-    font-size: 16px;
-	}
-	.w3-top, #mySidebar, #myOverlay {
-		display: none !important;
-	}
-	.w3-main {
-		margin: 0 !important;
-	}
-	/* Remove link URLs in print */
-	a[href]:after {
-		content: "" !important;
-	}
-	/* Optional page breaks */
-	.print-break-before {
-		page-break-before: always;
-	}
-}
-
-/* ===== Responsive layout ===== */
-/* Large screens: align main content margin with sidebar width */
 @media (min-width: 993px) {
   .w3-main {
-    margin-left: 300px !important; /* accommodate ~290px sidebar + gutter */
-    margin-right: 50px;
+    padding: 0 15px 40px 15px !important;
+    /* Uniform 15px alignment */
   }
 }
 
-/* Tablets and down: collapse sidebar, remove left margin */
 @media (max-width: 992px) {
-  .w3-sidebar {
-    width: 85%;
-    top: 0;
-    height: 100%;
+  .w3-main {
+    padding: 0 15px 24px 15px !important;
+    /* Uniform 15px alignment */
   }
+
+  /* Hide overlay on mobile except when sidebar is open */
+  #myOverlay {
+    display: none !important;
+  }
+
+  #myOverlay.show {
+    display: block !important;
+  }
+}
+
+/* Dynamic Update Item Styling */
+.update-item-border {
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  padding: 16px;
+  margin-bottom: 12px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease;
+}
+
+.update-item-border:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Latest Updates Image Sizing */
+#latest-updates-container img {
+  width: 80%;
+  height: auto;
+  margin: 0 3px;
+  display: block;
+}
+
+/* Latest Updates Content Alignment */
+#latest-updates-container .w3-twothird {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  padding: 20px;
+}
+
+#latest-updates-container .w3-third {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Latest Updates - Add 1% gap on mobile only */
+@media (max-width: 992px) {
+  .latest-updates-section {
+    padding-left: 1% !important;
+    padding-right: 1% !important;
+  }
+}
+
+/* Knowledge Base Grid Layout */
+.knowledge-category-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-top: 16px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #009688;
+  display: inline-block;
+}
+
+.knowledge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* Responsive breakpoints for max 6 per row */
+@media (min-width: 1800px) {
+  .knowledge-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (min-width: 1400px) and (max-width: 1799px) {
+  .knowledge-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (min-width: 1100px) and (max-width: 1399px) {
+  .knowledge-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 800px) and (max-width: 1099px) {
+  .knowledge-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 500px) and (max-width: 799px) {
+  .knowledge-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 499px) {
+  .knowledge-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.knowledge-item {
+  width: 100%;
+}
+
+/* Knowledge Base Section - Add 3% gap from sidebar on desktop */
+@media (min-width: 993px) {
+  .knowledge-base-section {
+    margin-left: 1% !important;
+  }
+}
+
+/* Main Footer Styling */
+.main-footer {
+  padding: 40px 10px 32px 10px;
+  border-top: 1px solid #eee;
+  text-align: left;
+  color: #888;
+  font-size: 14px;
+  position: sticky;
+  top: 100vh;
+  /* Stick to bottom of viewport */
+}
+
+.main-footer p {
+  margin: 0;
+}
+
+/* Overlay Styling */
+#myOverlay {
+  display: none !important;
+  /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+
+#myOverlay.show {
+  display: block !important;
+}
+
+/* Profile Card Styling */
+#profile-card {
+  order: 1; /* Display profile first on flex containers */
+}
+
+#profile-card img {
+  max-width: 50%;
+  height: auto;
+}
+
+/* Profile image size - Change the percentage value to resize */
+#profile-card img:first-of-type {
+  width: 50%; /* Change this percentage (50%, 75%, 100%, etc.) to resize the main profile image */
+  max-width: 200px; /* Maximum width in pixels - adjust as needed */
+}
+
+/* Additional images styling */
+#profile-card img[alt="Additional"] {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Print Media Query - Profile appears first when printing */
+@media print {
+  /* Hide sidebar and menu for printing */
+  #mySidebar,
+  .menu-btn,
+  #myOverlay {
+    display: none !important;
+  }
+
+  /* Make main content full width */
   .w3-main {
     margin-left: 0 !important;
-    margin-right: 16px;
+    width: 100% !important;
   }
-  .w3-top {
-    position: sticky;
-    top: 0;
-  }
-  .w3-container, #profile-section {
-    scroll-margin-top: 64px;
-  }
-}
 
-/* Small phones: full-width sidebar overlay */
-@media (max-width: 480px) {
-  .w3-sidebar {
-    width: 100%;
+  /* Set profile card to appear first (top of page) */
+  #profile-card {
+    order: -1;
+    page-break-after: avoid;
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+    padding: 20px !important;
+    background: white !important;
   }
-  #profile-info {
-    font-size: 13px;
-  }
-}
 
-/* Gallery spacing */
-#class-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+  /* Teaching content follows profile */
+  .w3-row-padding {
+    page-break-inside: avoid;
+  }
+
+  /* Ensure content sections are readable */
+  h2.section-title {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Optimize spacing for print */
+  hr {
+    page-break-after: avoid;
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+  }
 }

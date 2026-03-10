@@ -10,12 +10,13 @@ body {
   font-family: 'Roboto', sans-serif;
   overflow-x: hidden;
   width: 100% !important;
-  height: 100% !important;
+  min-height: 100vh;
+  /* Ensure body takes at least full viewport height */
 }
 
 #mySidebar.w3-sidebar {
   display: none !important;
-  /* Force hide on all screens by default */
+  /* Hidden by default on mobile/tablet */
   position: fixed;
   z-index: 1000;
   width: 220px;
@@ -27,11 +28,14 @@ body {
 }
 
 #mySidebar.w3-sidebar.show {
-  display: block !important;
-  /* Only show when explicitly toggled */
+  display: flex !important;
+  flex-direction: column;
+  /* Show when toggled */
 }
 
 .menu-btn {
+  display: block;
+  /* Show menu button on mobile/tablet */
   position: relative;
   z-index: 1001;
   background-color: #2c3e50;
@@ -45,6 +49,20 @@ body {
   cursor: pointer;
   margin-right: 15px;
   /* Gap between button and title */
+}
+
+/* Desktop view: always show sidebar, hide hamburger */
+@media (min-width: 993px) {
+  #mySidebar.w3-sidebar {
+    display: flex !important;
+    flex-direction: column;
+    /* Always visible on desktop */
+  }
+
+  .menu-btn {
+    display: none;
+    /* Hide hamburger on desktop */
+  }
 }
 
 .leftnavi {
@@ -73,15 +91,15 @@ body {
 #mySidebar header p,
 #mySidebar header p a {
   font-size: 13px;
-  margin: 8px 0 0 0;
+  margin: 0px 0 0 0;
   color: white !important;
   text-decoration: none;
 }
 
 /* Sidebar Link Styling */
 #mySidebar .w3-bar-item {
-  padding: 12px 16px;
-  margin: 2px 0;
+  padding: 2px 16px;
+  margin: 1px 0;
   /* Added margin for better separation */
   font-size: 15px;
   font-weight: 400;
@@ -92,7 +110,7 @@ body {
 }
 
 #mySidebar hr {
-  margin: 16px 0;
+  margin: 5px 0;
   border: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -101,33 +119,49 @@ body {
   background-color: rgba(255, 255, 255, 0.1) !important;
   border-left: 3px solid white;
   padding-left: 20px;
+  color: #FFD700 !important;
 }
 
 /* Footer Styling */
 #mySidebar footer {
+  margin-top: auto;
   padding: 20px 16px;
   font-size: 12px;
   opacity: 0.7;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Main Content Styling */
 .w3-main {
-  padding: 5px 5px 0 5px !important;
+  padding: 0px 0px 0 0px !important;
   /* 5px top and side gap */
   margin: 0 !important;
   width: 100% !important;
+  /* Full width on mobile/tablet */
   position: static !important;
   left: 0 !important;
   top: 0 !important;
 }
 
+/* Desktop view: adjust for sidebar */
+@media (min-width: 993px) {
+  .w3-main {
+    margin-left: 210px !important;
+    /* Add left margin to accommodate sidebar */
+    width: calc(100% - 220px) !important;
+    /* Adjust width for sidebar */
+    min-height: calc(100vh - 120px);
+    /* Ensure main content takes at least full viewport height minus footer */
+  }
+}
+
 .hero-section {
   padding: 0 0 10px 0 !important;
   /* No more left padding for floating button */
-  background: white;
+  background: rgb(155, 192, 209);
   border-radius: 0;
-  width: 100% !important;
-  margin: 0 !important;
+  width: calc(100% + 10px) !important;
+  margin: 0 -5px 0 -5px !important;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -138,7 +172,7 @@ body {
   font-size: 32px;
   font-weight: 700;
   color: #2c3e50;
-  margin: 0 !important;
+  margin: 8px 0 0 0 !important;
   padding: 0 !important;
 }
 
@@ -215,14 +249,23 @@ body {
     padding: 0 15px 24px 15px !important;
     /* Uniform 15px alignment */
   }
+
+  /* Hide overlay on mobile except when sidebar is open */
+  #myOverlay {
+    display: none !important;
+  }
+
+  #myOverlay.show {
+    display: block !important;
+  }
 }
 
 /* Dynamic Update Item Styling */
 .update-item-border {
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 2px;
   padding: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
   background: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.2s ease;
@@ -234,9 +277,9 @@ body {
 
 /* Latest Updates Image Sizing */
 #latest-updates-container img {
-  width: 60%;
+  width: 80%;
   height: auto;
-  margin: 0 36px;
+  margin: 0 3px;
   display: block;
 }
 
@@ -252,6 +295,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Latest Updates - Add 1% gap on mobile only */
+@media (max-width: 992px) {
+  .latest-updates-section {
+    padding-left: 1% !important;
+    padding-right: 1% !important;
+  }
 }
 
 /* Knowledge Base Grid Layout */
@@ -314,16 +365,42 @@ body {
   width: 100%;
 }
 
+/* Knowledge Base Section - Add 3% gap from sidebar on desktop */
+@media (min-width: 993px) {
+  .knowledge-base-section {
+    margin-left: 1% !important;
+  }
+}
+
 /* Main Footer Styling */
 .main-footer {
   padding: 40px 10px 32px 10px;
-  margin-top: 80px;
   border-top: 1px solid #eee;
   text-align: left;
   color: #888;
   font-size: 14px;
+  position: sticky;
+  top: 100vh;
+  /* Stick to bottom of viewport */
 }
 
 .main-footer p {
   margin: 0;
+}
+
+/* Overlay Styling */
+#myOverlay {
+  display: none !important;
+  /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+
+#myOverlay.show {
+  display: block !important;
 }

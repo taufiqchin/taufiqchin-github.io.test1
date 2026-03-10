@@ -1,0 +1,59 @@
+{
+  "header": {
+    "title": "Portfolio",
+    "link": "index.html",
+    "subtitle": "Professional Experience & Work",
+    "Email": "mtaufiq@iium.edu.my",
+    "session": "Spring 2025"  
+  },
+  "sections": [
+    {
+      "hr": true
+    },
+    {
+      "links": [
+        {
+          "text": "Overview",
+          "url": "#"
+        },
+        {
+          "text": "Professional Experience",
+          "url": "#"
+        },
+        {
+          "text": "Skills & Expertise",
+          "url": "#"
+        },
+        {
+          "text": "Projects",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "hr": true
+    },
+    {
+      "links": [
+        {
+          "text": "Back to Hub",
+          "url": "../../index.html",
+          "class": "w3-hover-white"
+        },
+        {
+          "text": "Research",
+          "url": "../../MyResearch.html",
+          "class": "w3-hover-white"
+        },
+        {
+          "text": "Web Technologies",
+          "url": "../webTech/index.html",
+          "class": "w3-hover-white"
+        }
+      ]
+    }
+  ],
+  "footer": {
+    "text": "&copy; {year} Taufiq Chin. All Rights Reserved."
+  }
+}
