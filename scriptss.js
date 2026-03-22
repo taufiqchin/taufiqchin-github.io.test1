@@ -166,7 +166,10 @@ function loadLatestUpdates() {
                     </div>
                     <div class="update-content">
                         <h3>${update.title}</h3>
-                        <div class="update-description">${update.description.replace(/\n/g, '<br><br>')}</div>
+                        <div class="update-description">
+                            ${update.description.replace(/\n/g, '<br>')
+                    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" style="color: #009688;">$1</a>')}
+                        </div>
                         <button class="read-more-btn" onclick="toggleReadMore(this)">Read More</button>
                         ${update.link ? `<div class="update-link"><strong>Link:</strong> <a href="${update.link}" target="_blank" style="color: #009688;">Visit <i class="fa fa-external-link"></i></a></div>` : ''}
                     </div>

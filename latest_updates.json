@@ -1,39 +1,57 @@
 [
     {
-        "id": 5,
+        "id": 1,
         "order": 0,
+        "title": "Speech AAC (Bahasa)",
+        "image": "image/Speech AAC.png",
+        "description": "This project aims to develop an AAC (Augmentative and Alternative Communication) application is designed to assists individuals with speech or communication difficulties in expressing themselves effectively through categorized icons, text, and voice output.\n\nOfficial Website Link: [Click HERE](https://github.com/taufiqchin/Speech-AAC) \n\nIt supports both Bahasa Malaysia and English, allowing users to switch languages instantly. Each category displays words or phrases with clear visuals and optional text-to-speech playback, enabling effective daily communication.\nThe app is designed with open-source art and educational principles, to promote accessible, inclusive, user-friendly and responsive interface that ensures user comfort. The app also remembers language preferences on each launch, offering a smooth and personalized experience ideal for individuals, caregivers, therapists, and educators supporting communication needs. ",
+        "link": "https://play.google.com/store/apps/details?id=com.taufiq.speechaac&pcampaignid=web_share"
+    },
+    {
+        "id": 5,
+        "order": 1,
         "title": "ClearCut AI - Background Remover",
-        "image": "image/im1.jpg",
+        "image": "image/clearcut.png",
         "description": "ClearCut is a premium AI-powered tool designed for high-resolution background removal. It features a sleek, modern interface and sophisticated processing to deliver instant results with professional-grade transparency. Ideal for creating clean product shots or portrait cutouts.",
         "link": "others/remove background image/index.html"
     },
     {
-        "id": 1,
-        "order": 1,
-        "title": "Speech AAC (Bahasa)",
-        "image": "image/Speech AAC.png",
-        "description": "This project aims to develop an AAC (Augmentative and Alternative Communication) application is designed to assists individuals with speech or communication difficulties in expressing themselves effectively through categorized icons, text, and voice output.\nIt supports both Bahasa Malaysia and English, allowing users to switch languages instantly. Each category displays words or phrases with clear visuals and optional text-to-speech playback, enabling effective daily communication.\nThe app is designed with open-source art and educational principles, to promote accessible, inclusive, user-friendly and responsive interface that ensures user comfort. The app also remembers language preferences on each launch, offering a smooth and personalized experience ideal for individuals, caregivers, therapists, and educators supporting communication needs.",
-        "link": "https://play.google.com/store/apps/details?id=com.taufiq.speechaac&pcampaignid=web_share"
-    },
-    {
         "id": 2,
         "order": 2,
-        "title": "Digital Landscapes",
-        "image": "image/im1.jpg",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. In this hub, I document my journey through the Harvard Summer School curriculum, sharing insights on everything from fundamental computer science concepts to advanced security protocols."
+        "title": "Audiogram",
+        "image": "image/audiogram.png",
+        "description": "The Audiogram Visualization Tool is a web-based clinical application designed to assist hearing therapists and audiologists in plotting hearing sensitivity across a standard range of frequencies (125Hz to 8000Hz). It features a precise coordinate-mapping system and implements standard international audiometric symbols—including Red Circles/Triangles for the Right Ear and Blue X’s/Squares for the Left Ear. Users can input decibel levels into an intuitive interface, and the system instantly generates a professional audiogram with automatic line connections for air-conduction data. The project supports ultra-high-definition 4K PNG downloads, making it ideal for high-quality clinical documentation and printing.",
+        "link": "others/Audiogram/index.html"
     },
     {
         "id": 3,
         "order": 3,
-        "title": "Digital Landscapes",
-        "image": "image/im1.jpg",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. In this hub, I document my journey through the Harvard Summer School curriculum, sharing insights on everything from fundamental computer science concepts to advanced security protocols."
+        "title": "QR Code Generator",
+        "image": "image/QR.png",
+        "description": "The QR Code Generator is a streamlined utility designed for instant creation of custom QR codes for website URLs and plain text. Featuring an elegant Rolex Green aesthetic and a mobile-first responsive layout, the tool allows for full customization of foreground and background colors, as well as adjustable scaling. Built for professional use, it supports ultra-high-definition 8K PNG downloads, ensuring that generated codes remain perfectly sharp for large-scale printing, marketing materials, and digital branding.",
+        "link": "others/QR/index.html"
     },
     {
         "id": 4,
         "order": 4,
-        "title": "Digital Landscapes",
-        "image": "image/im1.jpg",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. In this hub, I document my journey through the Harvard Summer School curriculum, sharing insights on everything from fundamental computer science concepts to advanced security protocols."
+        "title": "iConsuLt - ",
+        "image": "image/iconsult.png",
+        "description": " ",
+        "link": "others/iConsult3.0/chapter2.html"
+    },
+    {
+        "id": 5,
+        "order": 5,
+        "title": "Reading App",
+        "image": "image/ReadingApp.jpeg",
+        "description": "Ongoing project for light reading and sharing resources"
+    },
+    {
+        "id": 6,
+        "order": 6,
+        "title": "Scratch - Sprite & Bat",
+        "image": "image/sprite&bat.png",
+        "description": "an example of STEM project for primary school students learn about coding and problem solving techniques using scratch platform by MIT",
+        "link": "https://scratch.mit.edu/projects/1273925678/"
     }
 ]

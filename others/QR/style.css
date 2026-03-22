@@ -1,15 +1,16 @@
 :root {
-    --primary: #007bff;
-    --primary-hover: #0056b3;
-    --bg-dark: #0f172a;
-    --card-bg: rgba(30, 41, 59, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --text-main: #f8fafc;
-    --text-secondary: #94a3b8;
-    --accent-blue: #38bdf8;
-    --accent-purple: #818cf8;
+    --primary: #28a745;
+    --primary-hover: #218838;
+    --bg-dark: #006039;
+    /* Rolex Green */
+    --card-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --text-main: #ffffff;
+    --text-secondary: #c2cfcc;
+    --accent-green: #2ecc71;
+    --accent-teal: #2dd4bf;
     --accent-pink: #ec4899;
-    --btn-grad: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+    --btn-grad: linear-gradient(135deg, #2ecc71 0%, #2dd4bf 100%);
 }
 
 * {
@@ -27,14 +28,9 @@ body {
     overflow-x: hidden;
 }
 
-/* Background Blobs */
+/* Hidden background blobs for flat design */
 .background-blobs {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
+    display: none;
 }
 
 .blob {
@@ -48,19 +44,19 @@ body {
 }
 
 .blob-1 {
-    background: var(--accent-blue);
+    background: var(--accent-green);
     top: -100px;
     left: -100px;
 }
 
 .blob-2 {
-    background: var(--accent-purple);
+    background: var(--accent-teal);
     bottom: -100px;
     right: -100px;
 }
 
 .blob-3 {
-    background: #ec4899;
+    background: var(--accent-green);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -120,7 +116,7 @@ body {
 .logo i {
     width: 32px;
     height: 32px;
-    color: var(--accent-blue);
+    color: var(--accent-green);
 }
 
 .logo h1 {
@@ -164,12 +160,12 @@ button {
 .primary-btn {
     background: var(--btn-grad);
     color: white;
-    box-shadow: 0 4px 20px rgba(56, 189, 248, 0.4);
+    box-shadow: 0 4px 20px rgba(74, 222, 128, 0.4);
 }
 
 .primary-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(56, 189, 248, 0.5);
+    box-shadow: 0 6px 25px rgba(74, 222, 128, 0.5);
 }
 
 .secondary-btn {
@@ -233,7 +229,7 @@ button {
 .input-group input,
 .input-group textarea,
 .input-group select {
-    background: rgba(15, 23, 42, 0.6);
+    background: rgba(0, 0, 0, 0.2);
     border: 1px solid var(--glass-border);
     border-radius: 10px;
     padding: 12px;
@@ -277,7 +273,7 @@ button {
 
 .option input[type="range"] {
     width: 100%;
-    accent-color: var(--accent-blue);
+    accent-color: #000000;
     cursor: pointer;
 }
 
@@ -329,5 +325,82 @@ button {
 @media (max-width: 900px) {
     .generator-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .preview-panel {
+        order: 1;
+        /* Move to bottom */
+    }
+}
+
+@media (max-width: 600px) {
+
+    html,
+    body {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    .app-container {
+        padding: 15px 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .logo h1 {
+        font-size: 1.6rem;
+    }
+
+    .card {
+        padding: 15px;
+        border-radius: 16px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .tabs-container {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: 8px;
+        margin: 0 -5px 15px -5px;
+        /* Slight bleed for better UX */
+        padding: 5px;
+    }
+
+    .tab-btn {
+        flex: 0 0 70px;
+        height: 65px;
+        min-width: 70px;
+        padding: 8px;
+    }
+
+    .qr-container {
+        max-width: 100%;
+    }
+
+    .option-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 380px) {
+    .logo h1 {
+        font-size: 1.4rem;
+    }
+
+    .tab-btn {
+        flex: 0 0 60px;
+        min-width: 60px;
+        height: 60px;
     }
 }

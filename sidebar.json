@@ -4,15 +4,41 @@
     "link": "index.html",
     "subtitle": "Online Repository of Taufiq Chin",
     "Email": "mtaufiq@iium.edu.my",
-    "session": "Spring 2025"  
+    "session": "Spring 2025"
   },
   "sections": [
-
     {
       "links": [
         {
           "text": "Research",
           "url": "MyResearch.html"
+        },
+        {
+          "text": "Knowledge Base",
+          "url": "#knowledge-base",
+          "class": "w3-hover-white"
+        },
+        {
+          "text": "Edit Knowledge Base",
+          "url": "https://github.com/taufiqchin/taufiqchin-github.io.test1/edit/main/knowledge.json",
+          "class": "sidebar-sublink",
+          "target": "_blank"
+        },
+        {
+          "text": "Edit Latest Updates",
+          "url": "https://github.com/taufiqchin/taufiqchin-github.io.test1/edit/main/latest_updates.json",
+          "class": "sidebar-sublink",
+          "target": "_blank"
+        },
+        {
+          "text": "Reading Apps",
+          "class": "w3-hover-white"
+        },
+        {
+          "text": "Edit Reading Apps",
+          "url": "https://github.com/taufiqchin/pdfbookAPI.json/blob/main/pdfbookAPI.json",
+          "class": "sidebar-sublink",
+          "target": "_blank"
         },
         {
           "text": "CyberSecurityHubNews",
@@ -47,7 +73,6 @@
           "text": "Office Hours",
           "url": "hours/"
         },
-        
         {
           "text": "Staff",
           "url": "staff/"

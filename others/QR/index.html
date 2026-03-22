@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Craft | Premium QR Code Generator</title>
+    <title>QR Code Generator</title>
     <meta name="description" content="Generate custom QR codes for URLs, WiFi, Contacts, and more with QR Craft.">
     <link rel="stylesheet" href="style.css">
     <!-- Google Fonts -->
@@ -28,7 +28,7 @@
             <header class="header">
                 <div class="logo">
                     <i data-lucide="qr-code"></i>
-                    <h1>QR Craft</h1>
+                    <h1>QR Code Generator</h1>
                 </div>
                 <p class="subtitle">Generate custom QR codes for anything</p>
             </header>
@@ -45,30 +45,6 @@
                             <i data-lucide="type"></i>
                             <span>Text</span>
                         </button>
-                        <button class="tab-btn" data-type="wifi" title="WiFi">
-                            <i data-lucide="wifi"></i>
-                            <span>WiFi</span>
-                        </button>
-                        <button class="tab-btn" data-type="email" title="Email">
-                            <i data-lucide="mail"></i>
-                            <span>Email</span>
-                        </button>
-                        <button class="tab-btn" data-type="phone" title="Phone">
-                            <i data-lucide="phone"></i>
-                            <span>Phone</span>
-                        </button>
-                        <button class="tab-btn" data-type="sms" title="SMS">
-                            <i data-lucide="message-square"></i>
-                            <span>SMS</span>
-                        </button>
-                        <button class="tab-btn" data-type="whatsapp" title="WhatsApp">
-                            <i data-lucide="message-circle"></i>
-                            <span>WhatsApp</span>
-                        </button>
-                        <button class="tab-btn" data-type="contact" title="VCard">
-                            <i data-lucide="user"></i>
-                            <span>Contact</span>
-                        </button>
                     </div>
 
                     <div class="input-area" id="inputSection">
@@ -80,58 +56,6 @@
                         <div class="input-group" data-content="text">
                             <label>Enter Text</label>
                             <textarea id="textContent" placeholder="Type something..."></textarea>
-                        </div>
-
-                        <div class="input-group" data-content="wifi">
-                            <label>Network Name (SSID)</label>
-                            <input type="text" id="wifiSsid" placeholder="My WiFi">
-                            <label>Password</label>
-                            <input type="password" id="wifiPass" placeholder="Password">
-                            <label>Encryption</label>
-                            <select id="wifiEnc">
-                                <option value="WPA">WPA/WPA2</option>
-                                <option value="WEP">WEP</option>
-                                <option value="nopass">None</option>
-                            </select>
-                        </div>
-
-                        <div class="input-group" data-content="email">
-                            <label>Email Address</label>
-                            <input type="email" id="emailAddr" placeholder="hello@example.com">
-                            <label>Subject</label>
-                            <input type="text" id="emailSub" placeholder="Subject">
-                            <label>Message</label>
-                            <textarea id="emailBody" placeholder="Hello..."></textarea>
-                        </div>
-
-                        <div class="input-group" data-content="phone">
-                            <label>Phone Number</label>
-                            <input type="tel" id="phoneNumber" placeholder="+1 234 567 890">
-                        </div>
-
-                        <div class="input-group" data-content="sms">
-                            <label>Phone Number</label>
-                            <input type="tel" id="smsNumber" placeholder="+1 234 567 890">
-                            <label>Message</label>
-                            <textarea id="smsMessage" placeholder="Type your message..."></textarea>
-                        </div>
-
-                        <div class="input-group" data-content="whatsapp">
-                            <label>WhatsApp Number</label>
-                            <input type="tel" id="waNumber" placeholder="1234567890 (inc. country code)">
-                            <label>Initial Message</label>
-                            <textarea id="waMessage" placeholder="Hello..."></textarea>
-                        </div>
-
-                        <div class="input-group" data-content="contact">
-                            <label>Full Name</label>
-                            <input type="text" id="vName" placeholder="John Doe">
-                            <label>Phone</label>
-                            <input type="tel" id="vPhone" placeholder="+1 234 567 890">
-                            <label>Email</label>
-                            <input type="email" id="vEmail" placeholder="john@example.com">
-                            <label>Organization</label>
-                            <input type="text" id="vOrg" placeholder="Company Inc.">
                         </div>
                     </div>
 

@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const allInputs = document.querySelectorAll('#qr-gen input, #qr-gen textarea, #qr-gen select');
+    const allInputs = document.querySelectorAll('#qr-gen input, #qr-gen textarea');
     allInputs.forEach(input => {
         input.addEventListener('input', generateQR);
     });
@@ -64,18 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 let url = urlContent.value;
                 if (url && !url.startsWith('http://') && !url.startsWith('https://')) url = 'https://' + url;
                 return url;
-            case 'text': return textContent.value;
-            case 'wifi': return `WIFI:S:${wifiSsid.value};T:${wifiEnc.value};P:${wifiPass.value};;`;
-            case 'email': return `mailto:${emailAddr.value}?subject=${encodeURIComponent(emailSub.value)}&body=${encodeURIComponent(emailBody.value)}`;
-            case 'phone': return phoneNumber.value ? `tel:${phoneNumber.value}` : '';
-            case 'sms': return smsNumber.value ? `SMSTO:${smsNumber.value}:${smsMessage.value}` : '';
-            case 'whatsapp':
-                const num = waNumber.value.replace(/\D/g, '');
-                return num ? `https://wa.me/${num}?text=${encodeURIComponent(waMessage.value)}` : '';
-            case 'contact':
-                if (!vName.value) return '';
-                return `BEGIN:VCARD\nVERSION:3.0\nFN:${vName.value}\nTEL:${vPhone.value}\nEMAIL:${vEmail.value}\nORG:${vOrg.value}\nEND:VCARD`;
-            default: return '';
+            case 'text':
+                return textContent.value;
+            default:
+                return '';
         }
     }
 
