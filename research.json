@@ -1,0 +1,22 @@
+[
+    {
+        "title": "iConsult3.0",
+        "description": "Advanced consultation platform",
+        "url": "others/iConsult3.0/chapter2.html"
+    },
+    {
+        "title": "Audiogram",
+        "description": "Audio visualization tool",
+        "url": "others/Audiogram/index.html"
+    },
+    {
+        "title": "ClearCut",
+        "description": "AI-powered background removal tool",
+        "url": "others/remove background image/index.html"
+    },
+    {
+        "title": "QR Craft",
+        "description": "Premium QR Code Generator",
+        "url": "others/QR/index.html"
+    }
+]

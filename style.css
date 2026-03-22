@@ -122,6 +122,18 @@ body {
   color: #FFD700 !important;
 }
 
+.sidebar-sublink {
+  padding-left: 32px !important;
+  font-size: 13px !important;
+  opacity: 0.9 !important;
+  color: #90EE90 !important;
+  /* Light Green */
+}
+
+.sidebar-sublink:hover {
+  padding-left: 36px !important;
+}
+
 /* Footer Styling */
 #mySidebar footer {
   margin-top: auto;
@@ -260,49 +272,116 @@ body {
   }
 }
 
-/* Dynamic Update Item Styling */
-.update-item-border {
-  border: 1px solid #ddd;
-  border-radius: 2px;
-  padding: 16px;
-  margin-bottom: 12px;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.2s ease;
+/* Latest Updates - Grid Layout */
+.latest-updates-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* 3 columns on desktop */
+  gap: 20px;
+  margin-bottom: 24px;
 }
 
-.update-item-border:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Latest Updates Image Sizing */
-#latest-updates-container img {
-  width: 80%;
-  height: auto;
-  margin: 0 3px;
-  display: block;
-}
-
-/* Latest Updates Content Alignment */
-#latest-updates-container .w3-twothird {
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  padding: 20px;
-}
-
-#latest-updates-container .w3-third {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Latest Updates - Add 1% gap on mobile only */
 @media (max-width: 992px) {
+  .latest-updates-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .latest-updates-section {
     padding-left: 1% !important;
     padding-right: 1% !important;
   }
+}
+
+@media (max-width: 600px) {
+  .latest-updates-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.update-item-card {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
+}
+
+.update-item-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.update-image-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: #f0f0f0;
+}
+
+.update-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.update-content {
+  padding: 16px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.update-content h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: #2c3e50;
+  line-height: 1.3;
+}
+
+.update-description {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 12px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.update-description.expanded {
+  display: block;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+}
+
+.update-link {
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.read-more-btn {
+  background: none;
+  border: none;
+  color: #009688;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-size: 14px;
+  text-align: left;
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.read-more-btn:hover {
+  text-decoration: underline;
 }
 
 /* Knowledge Base Grid Layout */

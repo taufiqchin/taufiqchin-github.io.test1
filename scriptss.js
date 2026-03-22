@@ -35,7 +35,7 @@ function w3_close() {
 }
 
 // Handle window resize: reset sidebar state when switching between mobile and desktop
-window.addEventListener("resize", function() {
+window.addEventListener("resize", function () {
     const isMobile = window.innerWidth <= 992;
     if (!isMobile) {
         // If resizing to desktop, show sidebar
@@ -50,9 +50,11 @@ window.addEventListener("resize", function() {
 
 // sidebar JSON
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("sidebar.json")
-        .then(response => response.json())
-        .then(data => {
+    const fetchSidebar = fetch("sidebar.json").then(response => response.json());
+    const fetchResearch = fetch("research.json").then(response => response.json()).catch(() => []);
+
+    Promise.all([fetchSidebar, fetchResearch])
+        .then(([data, researchItems]) => {
             const sidebar = document.getElementById("mySidebar");
             sidebar.innerHTML = ""; // Clear existing content
 
@@ -66,76 +68,85 @@ document.addEventListener("DOMContentLoaded", function () {
                 sidebar.appendChild(header);
             }
 
-            // Add buttons
+            // Add buttons/sections
             if (data.buttons) {
+                // handle buttons as before
                 data.buttons.forEach(button => {
                     const btn = document.createElement("button");
                     btn.textContent = button.label;
                     btn.className = "btn btn-link d-block pl-0 pt-0";
                     btn.style.color = "white";
-
-                    if (button.icon) {
-                        btn.innerHTML = `<i class="${button.icon}"></i> ${button.label}`;
-                    }
-                    if (button.type === "modal") {
-                        btn.setAttribute("data-toggle", "modal");
-                        btn.setAttribute("data-target", button.action);
-                    }
-                    if (button.type === "toggle") {
-                        btn.setAttribute("aria-controls", "nav");
-                        btn.setAttribute("aria-expanded", "false");
-                        btn.setAttribute("data-toggle", "collapse");
-                        btn.setAttribute("data-target", button.target);
-                    }
+                    if (button.icon) btn.innerHTML = `<i class="${button.icon}"></i> ${button.label}`;
+                    if (button.type === "modal") { btn.setAttribute("data-toggle", "modal"); btn.setAttribute("data-target", button.action); }
+                    if (button.type === "toggle") { btn.setAttribute("aria-controls", "nav"); btn.setAttribute("aria-expanded", "false"); btn.setAttribute("data-toggle", "collapse"); btn.setAttribute("data-target", button.target); }
                     sidebar.appendChild(btn);
                 });
             }
 
             // Add other sections
             data.sections.forEach(section => {
-                if (section.hr) {
-                    sidebar.appendChild(document.createElement("hr"));
-                }
+                if (section.hr) sidebar.appendChild(document.createElement("hr"));
                 if (section.links) {
                     section.links.forEach(link => {
                         const a = document.createElement("a");
                         a.href = link.url;
                         a.textContent = link.text;
                         a.className = "w3-bar-item w3-button";
-
-                        if (link.class) {
-                            a.className += ` ${link.class}`;
-                        }
-                        if (link.target) {
-                            a.target = link.target;
-                        }
-
+                        if (link.class) a.className += ` ${link.class}`;
+                        if (link.target) a.target = link.target;
                         sidebar.appendChild(a);
+
+                        // If this is the Research link, auto-populate sub-links
+                        if (link.text === "Research") {
+                            researchItems.forEach(item => {
+                                const subA = document.createElement("a");
+                                subA.href = item.url;
+                                subA.textContent = item.title;
+                                subA.target = "_blank"; // Open in new tab
+                                subA.className = "w3-bar-item w3-button sidebar-sublink";
+                                sidebar.appendChild(subA);
+                            });
+                        }
                     });
                 }
             });
 
-            // Add footer with dynamic year to sidebar
+            // Add footer to sidebar
             if (data.footer) {
                 const footer = document.createElement("footer");
-                const currentYear = new Date().getFullYear();
-                footer.innerHTML = data.footer.text.replace("{year}", currentYear);
+                footer.innerHTML = data.footer.text.replace("{year}", new Date().getFullYear());
                 sidebar.appendChild(footer);
             }
 
-            // Also populate main footer
+            // Populate main footer
             const mainFooter = document.querySelector(".main-footer");
             if (mainFooter && data.footer) {
-                const currentYear = new Date().getFullYear();
-                const footerText = data.footer.text.replace("{year}", currentYear);
-                mainFooter.innerHTML = `<p>${footerText}</p>`;
+                mainFooter.innerHTML = `<p>${data.footer.text.replace("{year}", new Date().getFullYear())}</p>`;
             }
+
+            // After sidebar, load page-specific content
+            loadLatestUpdates();
+            loadKnowledgeBase();
+            loadResearchProjects();
         })
         .catch(error => console.error("Error loading sidebar:", error));
-
-    loadLatestUpdates();
-    loadKnowledgeBase();
 });
+
+function loadResearchProjects() {
+    const listContainer = document.getElementById("research-projects-list");
+    if (!listContainer) return;
+
+    fetch("research.json")
+        .then(response => response.json())
+        .then(data => {
+            listContainer.innerHTML = data.map(item => `
+                <li><a href="${item.url}" target="_blank">${item.title}</a> - ${item.description}</li>
+                <hr>
+            `).join('');
+        })
+        .catch(error => console.error("Error loading research items:", error));
+}
+
 
 function loadLatestUpdates() {
     const container = document.getElementById("latest-updates-container");
@@ -147,24 +158,35 @@ function loadLatestUpdates() {
             // Sort by order ascending
             data.sort((a, b) => a.order - b.order);
 
+            container.className = "latest-updates-grid";
             container.innerHTML = data.map(update => `
-                <div class="update-item-border">
-                    <div class="w3-row">
-                        <div class="w3-third">
-                            <img src="${update.image}" alt="${update.title}" class="responsive">
-                        </div>
-                        <div class="w3-twothird w3-container">
-                            <p>
-                                <strong>${update.title}:</strong> ${update.description.replace(/\n/g, '<br><br>')}
-                            </p>
-                            ${update.link ? `<p><strong>Link:</strong> <a href="${update.link}" target="_blank" style="color: #009688;">${update.link} <i class="fa fa-external-link"></i></a></p>` : ''}
-                        </div>
+                <div class="update-item-card">
+                    <div class="update-image-container">
+                        <img src="${update.image}" alt="${update.title}">
+                    </div>
+                    <div class="update-content">
+                        <h3>${update.title}</h3>
+                        <div class="update-description">${update.description.replace(/\n/g, '<br><br>')}</div>
+                        <button class="read-more-btn" onclick="toggleReadMore(this)">Read More</button>
+                        ${update.link ? `<div class="update-link"><strong>Link:</strong> <a href="${update.link}" target="_blank" style="color: #009688;">Visit <i class="fa fa-external-link"></i></a></div>` : ''}
                     </div>
                 </div>
             `).join('');
         })
         .catch(error => console.error("Error loading latest updates:", error));
 }
+
+function toggleReadMore(button) {
+    const description = button.previousElementSibling;
+    if (description.classList.contains('expanded')) {
+        description.classList.remove('expanded');
+        button.textContent = 'Read More';
+    } else {
+        description.classList.add('expanded');
+        button.textContent = 'Read Less';
+    }
+}
+
 
 function loadKnowledgeBase() {
     const container = document.getElementById("knowledge-base-container");
