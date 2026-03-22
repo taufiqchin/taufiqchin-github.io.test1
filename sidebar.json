@@ -7,9 +7,7 @@
     "session": "Spring 2025"  
   },
   "sections": [
-    {
-      "hr": true
-    },
+
     {
       "links": [
         {
@@ -59,6 +57,9 @@
           "url": "syllabus/"
         }
       ]
+    },
+    {
+      "hr": true
     }
   ],
   "footer": {
