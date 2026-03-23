@@ -69,5 +69,13 @@
         "image": "image/EcoAlgorithm.png",
         "description": "Eco-Algorithm is a cutting-edge computational sustainability framework designed to optimize carbon footprint management through advanced data modeling and simulation. By leveraging sophisticated algorithms, the platform identifies patterns and inefficiencies in resource consumption, providing users with actionable insights to minimize environmental impact. This project demonstrates the practical application of data science in addressing real-world climate challenges, empowering individuals and organizations to make informed decisions that promote ecological balance and long-term sustainability.",
         "link": "ecoCarbon.html"
+    },
+    {
+        "id": 9,
+        "order": 9,
+        "title": "STEM: Digital Epidemiology Simulator",
+        "image": "image/EpidemiologySim.png",
+        "description": "An interactive digital epidemiology simulator built to teach the principles of infectious disease modeling. Using randomized algorithms (Monte Carlo methods) and a visual canvas, students can explore how variables like population density, transmission rate, and recovery time affect the 'curve'. It also models the impact of public health measures like mask mandates and social distancing, providing a hands-on laboratory for computational biology and predictive analytics.",
+        "link": "digitalEpidemiologySim.html"
     }
 ]

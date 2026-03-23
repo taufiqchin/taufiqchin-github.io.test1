@@ -33,5 +33,10 @@
         "title": "Eco-Algorithm: Carbon Optimizer",
         "description": "Computational Sustainability Framework for ICT in Data Modeling and Simulation Algorithm",
         "url": "ecoCarbon.html"
+    },
+    {
+        "title": "STEM: Digital Epidemiology Simulator",
+        "description": "Interactive outbreak simulator using Monte Carlo methods to model infection spread and containment strategies.",
+        "url": "digitalEpidemiologySim.html"
     }
 ]

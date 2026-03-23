@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEM: Digital Epidemiology Simulator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        canvas {
+            background-color: #f8fafc;
+            border-radius: 1rem;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .stat-card {
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-100 h-screen overflow-hidden flex flex-col font-sans text-slate-900">
+
+    <!-- Header -->
+    <nav class="bg-indigo-700 text-white p-3 shadow-lg shrink-0">
+        <div class="max-w-full mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="text-xl font-black tracking-tighter uppercase">☣️ Outbreak Simulator</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div id="simClock" class="font-mono text-sm bg-indigo-800 px-3 py-1 rounded">Day: 0</div>
+                <button id="resetBtn"
+                    class="bg-rose-500 hover:bg-rose-600 text-white px-4 py-1 rounded-full text-sm font-bold transition">Restart
+                    Sim</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Workspace -->
+    <main class="flex-1 p-4 grid grid-cols-1 lg:grid-cols-10 gap-4 min-h-0">
+
+        <!-- Column 1: Controls (30%) -->
+        <aside class="lg:col-span-3 flex flex-col space-y-4 overflow-y-auto pr-1">
+            <div class="glass-card p-5 rounded-3xl shadow-xl border-4 border-indigo-100">
+                <h2
+                    class="text-lg font-bold mb-4 flex items-center text-indigo-900 underline decoration-indigo-200 underline-offset-4">
+                    <span class="mr-2">🎛️</span> 1. Set Parameters
+                </h2>
+
+                <div class="space-y-5">
+                    <!-- Population -->
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label class="text-xs font-bold uppercase text-slate-500">Population Size</label>
+                            <span id="popVal" class="text-xs font-mono font-bold text-indigo-600">100</span>
+                        </div>
+                        <input type="range" id="popSize" min="20" max="200" value="100"
+                            class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600">
+                    </div>
+
+                    <!-- Infection Probability -->
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label class="text-xs font-bold uppercase text-slate-500">Transmission Rate</label>
+                            <span id="transVal" class="text-xs font-mono font-bold text-indigo-600">50%</span>
+                        </div>
+                        <input type="range" id="transRate" min="1" max="100" value="50"
+                            class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600">
+                    </div>
+
+                    <!-- Recovery Speed -->
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label class="text-xs font-bold uppercase text-slate-500">Recovery Time (Days)</label>
+                            <span id="recVal" class="text-xs font-mono font-bold text-indigo-600">5</span>
+                        </div>
+                        <input type="range" id="recRate" min="1" max="15" value="5"
+                            class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600">
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-100 space-y-4">
+                        <label class="flex items-center space-x-3 cursor-pointer group">
+                            <input type="checkbox" id="maskToggle"
+                                class="w-5 h-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm font-bold text-slate-700 group-hover:text-indigo-600">Enable Mask
+                                Mandate</span>
+                        </label>
+                        <label class="flex items-center space-x-3 cursor-pointer group">
+                            <input type="checkbox" id="distanceToggle"
+                                class="w-5 h-5 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                            <span class="text-sm font-bold text-slate-700 group-hover:text-indigo-600">Social
+                                Distancing</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEM Concept -->
+            <div class="bg-indigo-900 text-indigo-100 p-5 rounded-3xl shadow-lg shrink-0">
+                <h3 class="font-bold mb-2 flex items-center text-sm">
+                    <span class="mr-2">🔬</span> STEM: Monte Carlo Method
+                </h3>
+                <p class="text-[11px] leading-relaxed opacity-80">
+                    This simulation uses <b>randomized algorithms</b> to model uncertainty. Scientists use these models
+                    to test policies before they are implemented in real life.
+                </p>
+            </div>
+        </aside>
+
+        <!-- Column 2: The Laboratory (50%) -->
+        <section
+            class="lg:col-span-5 flex flex-col min-h-0 bg-white rounded-3xl shadow-2xl border-4 border-indigo-400 p-4 relative overflow-hidden">
+            <div
+                class="absolute top-4 left-6 bg-indigo-500 text-white px-4 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase z-10 shadow-lg">
+                2. Live Simulation Lab</div>
+
+            <!-- Simulation Canvas -->
+            <div class="flex-1 relative mt-8">
+                <canvas id="simCanvas"></canvas>
+            </div>
+
+            <div class="mt-4 flex justify-around text-center border-t pt-4 border-slate-100">
+                <div>
+                    <span class="block text-2xl font-black text-slate-400" id="susCount">0</span>
+                    <span class="text-[10px] uppercase font-bold text-slate-400 tracking-tighter">Healthy</span>
+                </div>
+                <div>
+                    <span class="block text-2xl font-black text-rose-500" id="infCount">0</span>
+                    <span class="text-[10px] uppercase font-bold text-rose-500 tracking-tighter">Infected</span>
+                </div>
+                <div>
+                    <span class="block text-2xl font-black text-emerald-500" id="recCount">0</span>
+                    <span class="text-[10px] uppercase font-bold text-emerald-500 tracking-tighter">Recovered</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Column 3: Stats & Impact (20%) -->
+        <aside class="lg:col-span-2 flex flex-col space-y-4 min-h-0">
+            <!-- Graph Section -->
+            <div class="glass-card p-5 rounded-3xl shadow-xl flex-1 flex flex-col min-h-0">
+                <h2 class="text-base font-bold mb-4 border-b pb-2 flex items-center text-slate-700">
+                    <span class="mr-2">📈</span> 3. The Curve
+                </h2>
+                <div class="flex-1 bg-slate-50 rounded-xl relative overflow-hidden flex items-end p-1 space-x-[1px]"
+                    id="graphArea">
+                    <!-- Bars injected here -->
+                </div>
+                <p class="text-[10px] text-slate-400 mt-2 text-center uppercase font-bold">Infection Curve vs Time</p>
+            </div>
+
+            <!-- Software Impact -->
+            <div
+                class="glass-card p-5 rounded-3xl shadow-xl flex flex-col justify-center items-center text-center border-2 border-indigo-100 bg-white shrink-0">
+                <div class="text-indigo-600 bg-indigo-50 p-3 rounded-full mb-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+                        </path>
+                    </svg>
+                </div>
+                <h4 class="font-bold text-slate-800 text-sm">Predictive Analytics</h4>
+                <p class="text-[11px] text-slate-500 mt-2 leading-relaxed italic">
+                    By simulating millions of interactions, software helps us "Flatten the Curve" and save lives.
+                </p>
+            </div>
+        </aside>
+
+    </main>
+
+    <footer class="p-2 text-center text-slate-400 text-[10px] font-mono shrink-0">
+        &lt;Computational Biology Framework // Node Simulation v3.0&gt;
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('simCanvas');
+        const ctx = canvas.getContext('2d');
+        const graphArea = document.getElementById('graphArea');
+        const resetBtn = document.getElementById('resetBtn');
+        const clockDisplay = document.getElementById('simClock');
+
+        // Inputs
+        const popSizeInp = document.getElementById('popSize');
+        const transRateInp = document.getElementById('transRate');
+        const recRateInp = document.getElementById('recRate');
+        const maskToggle = document.getElementById('maskToggle');
+        const distanceToggle = document.getElementById('distanceToggle');
+
+        // State
+        let people = [];
+        let day = 0;
+        let graphData = [];
+        let simRunning = true;
+        const RADIUS = 6;
+        const SPEED = 2;
+
+        class Person {
+            constructor(id) {
+                this.id = id;
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * SPEED;
+                this.vy = (Math.random() - 0.5) * SPEED;
+                this.status = id === 0 ? 'infected' : 'healthy';
+                this.timer = 0;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, RADIUS, 0, Math.PI * 2);
+                if (this.status === 'healthy') ctx.fillStyle = '#94a3b8';
+                else if (this.status === 'infected') ctx.fillStyle = '#f43f5e';
+                else if (this.status === 'recovered') ctx.fillStyle = '#10b981';
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            update() {
+                if (distanceToggle.checked) {
+                    this.vx *= 0.8;
+                    this.vy *= 0.8;
+                } else if (Math.abs(this.vx) < 0.5) {
+                    this.vx = (Math.random() - 0.5) * SPEED;
+                    this.vy = (Math.random() - 0.5) * SPEED;
+                }
+
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Bounce walls
+                if (this.x < RADIUS || this.x > canvas.width - RADIUS) this.vx *= -1;
+                if (this.y < RADIUS || this.y > canvas.height - RADIUS) this.vy *= -1;
+
+                if (this.status === 'infected') {
+                    this.timer++;
+                    if (this.timer > recRateInp.value * 60) {
+                        this.status = 'recovered';
+                    }
+                }
+            }
+        }
+
+        function initSim() {
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+
+            day = 0;
+            graphData = [];
+            graphArea.innerHTML = '';
+            people = [];
+            const count = parseInt(popSizeInp.value);
+            for (let i = 0; i < count; i++) {
+                people.push(new Person(i));
+            }
+
+            document.getElementById('popVal').innerText = count;
+            document.getElementById('transVal').innerText = transRateInp.value + '%';
+            document.getElementById('recVal').innerText = recRateInp.value;
+        }
+
+        function checkCollisions() {
+            const transmissionChance = (parseInt(transRateInp.value) / 100) * (maskToggle.checked ? 0.3 : 1);
+
+            for (let i = 0; i < people.length; i++) {
+                for (let j = i + 1; j < people.length; j++) {
+                    let p1 = people[i];
+                    let p2 = people[j];
+
+                    let dx = p1.x - p2.x;
+                    let dy = p1.y - p2.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < RADIUS * 2) {
+                        if (p1.status === 'infected' && p2.status === 'healthy') {
+                            if (Math.random() < transmissionChance) p2.status = 'infected';
+                        } else if (p2.status === 'infected' && p1.status === 'healthy') {
+                            if (Math.random() < transmissionChance) p1.status = 'infected';
+                        }
+                    }
+                }
+            }
+        }
+
+        function updateStats() {
+            const inf = people.filter(p => p.status === 'infected').length;
+            const rec = people.filter(p => p.status === 'recovered').length;
+            const sus = people.length - inf - rec;
+
+            document.getElementById('infCount').innerText = inf;
+            document.getElementById('recCount').innerText = rec;
+            document.getElementById('susCount').innerText = sus;
+
+            if (day % 30 === 0) {
+                const bar = document.createElement('div');
+                bar.className = 'bg-rose-400';
+                bar.style.width = '2px';
+                const hPerc = (inf / people.length) * 100;
+                bar.style.height = Math.max(2, hPerc) + '%';
+                graphArea.appendChild(bar);
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            people.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            checkCollisions();
+            updateStats();
+
+            day++;
+            clockDisplay.innerText = `Day: ${Math.floor(day / 60)}`;
+
+            requestAnimationFrame(animate);
+        }
+
+        // Listeners
+        resetBtn.addEventListener('click', initSim);
+        popSizeInp.addEventListener('input', () => {
+            document.getElementById('popVal').innerText = popSizeInp.value;
+            initSim();
+        });
+        transRateInp.addEventListener('input', () => {
+            document.getElementById('transVal').innerText = transRateInp.value + '%';
+        });
+        recRateInp.addEventListener('input', () => {
+            document.getElementById('recVal').innerText = recRateInp.value;
+        });
+
+        window.onload = () => {
+            initSim();
+            animate();
+        };
+
+        window.addEventListener('resize', () => {
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+        });
+    </script>
+</body>
+
+</html>
