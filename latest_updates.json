@@ -58,7 +58,7 @@
         "id": 7,
         "order": 7,
         "title": "The Magic Logic Machine (STEM Primary School)",
-        "image": "image/MagicLogicMachine.PNG",
+        "image": "image/MagicLogicMachine.png",
         "description": "The Daily Life Logic Machine is an interactive, web-based educational tool designed to introduce primary school students to the fundamental building blocks of computer science through the lens of their everyday experiences. By bridging the gap between daily routines and software engineering. \n\nStudents explore the core concepts of input, output, and conditional logic by interacting with relatable scenarios like changing weather, hunger, or school schedules, effectively transforming abstract rules into tangible, high-impact visual actions. \n\nThis approach demystifies technology and empowers young learners to realize that they are already practicing computational thinking every single day, turning computer science from an intimidating subject into an accessible and practical personal superpower.",
         "link": "theMagicMachine.html"
     },
@@ -66,7 +66,7 @@
         "id": 8,
         "order": 8,
         "title": "Eco-Algorithm: Carbon Optimizer (STEM for ICT in Data Modeling and Simulation Algorithm)",
-        "image": "image/EcoAlgorithm.PNG",
+        "image": "image/EcoAlgorithm.png",
         "description": "Eco-Algorithm is a cutting-edge computational sustainability framework designed to optimize carbon footprint management through advanced data modeling and simulation. By leveraging sophisticated algorithms, the platform identifies patterns and inefficiencies in resource consumption, providing users with actionable insights to minimize environmental impact. This project demonstrates the practical application of data science in addressing real-world climate challenges, empowering individuals and organizations to make informed decisions that promote ecological balance and long-term sustainability.",
         "link": "ecoCarbon.html"
     }
