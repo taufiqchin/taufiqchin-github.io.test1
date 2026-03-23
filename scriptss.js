@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         sidebar.appendChild(a);
 
                         // If this is the Research link, auto-populate sub-links
-                        if (link.text === "Research") {
+                        if (link.text === "🧐 Research") {
                             researchItems.forEach(item => {
                                 const subA = document.createElement("a");
                                 subA.href = item.url;

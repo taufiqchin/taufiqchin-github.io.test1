@@ -35,7 +35,7 @@ function w3_close() {
 }
 
 // Handle window resize: reset sidebar state when switching between mobile and desktop
-window.addEventListener("resize", function() {
+window.addEventListener("resize", function () {
     const isMobile = window.innerWidth <= 992;
     if (!isMobile) {
         // If resizing to desktop, show sidebar
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Load Portfolio Content from index.json
     loadPortfolioContent();
-    
+
     // Load Profile from infoSidebar.json
     loadProfileCard();
 });
@@ -148,7 +148,7 @@ function loadPortfolioContent() {
             if (data.education_teaching_philosophy) {
                 const container = document.getElementById("teaching-content");
                 let html = `<p>${data.education_teaching_philosophy.description}</p>`;
-                
+
                 if (data.education_teaching_philosophy.pillars) {
                     data.education_teaching_philosophy.pillars.forEach((pillar, index) => {
                         html += `<h3>${pillar.title}</h3>`;
@@ -157,11 +157,11 @@ function loadPortfolioContent() {
                             html += `<li>${point}</li>`;
                         });
                         html += `</ul>`;
-                        
+
                         if (pillar.images) {
                             html += `<div class="w3-row">`;
                             pillar.images.forEach(img => {
-                                html += `<div class="w3-half w3-container"><img src="picture/${img}" alt="Teaching" style="width:100%; margin-bottom:10px;"></div>`;
+                                html += `<div class="w3-half w3-container"><img src="picture/${img}" alt="Teaching" onclick="openImageModal(this.src)" style="width:100%; margin-bottom:10px; cursor:pointer;"></div>`;
                             });
                             html += `</div>`;
                         }
@@ -173,40 +173,81 @@ function loadPortfolioContent() {
             // Load Innovation in Teaching
             if (data.innovation_teaching) {
                 const container = document.getElementById("innovation-content");
-                let html = `<p>${data.innovation_teaching.description}</p>`;
-                
-                if (data.innovation_teaching.videos) {
-                    html += `<h3>Teaching Videos</h3>`;
-                    data.innovation_teaching.videos.forEach(video => {
-                        html += `<div class="w3-container w3-margin-bottom"><h4>${video.title}</h4><iframe width="100%" height="315" src="${video.url}" frameborder="0" allowfullscreen></iframe></div>`;
+                let html = `
+                    <p class="w3-large w3-text-grey">${data.innovation_teaching.description}</p>
+                    <div class="w3-row-padding" style="margin: 0 -16px;">
+                `;
+
+                if (data.innovation_teaching.subjects) {
+                    data.innovation_teaching.subjects.forEach(subject => {
+                        html += `
+                            <div class="w3-col l6 m12 s12 w3-margin-bottom">
+                                <div class="w3-card-4 w3-round-large w3-white">
+                                    <header class="w3-container w3-theme-black w3-round-top-large" style="padding: 15px;">
+                                        <h3><i class="fa ${subject.icon}"></i> ${subject.name}</h3>
+                                    </header>
+                                    <div class="w3-container" style="padding: 20px;">
+                                        <p>${subject.description}</p>
+                        `;
+
+                        // Render Tech Stack Badge for Web Tech
+                        if (subject.tech_stack) {
+                            html += `<div style="margin-bottom: 15px;">`;
+                            subject.tech_stack.forEach(tech => {
+                                html += `<span class="w3-tag w3-teal w3-round w3-small" style="margin-right: 5px; margin-bottom: 5px;">${tech}</span>`;
+                            });
+                            html += `</div>`;
+                        }
+
+                        // Render Subject-specific Videos
+                        if (subject.videos) {
+                            html += `<p><strong>Tutorial Videos:</strong></p>`;
+                            html += `<div class="w3-row">`;
+                            subject.videos.forEach(video => {
+                                html += `
+                                    <div class="w3-half w3-container w3-margin-bottom" style="padding: 2px;">
+                                        <h4 style="font-size: 11px; min-height: 25px; margin: 5px 0;">${video.title}</h4>
+                                        <iframe width="100%" height="225" src="${video.url}" frameborder="0" allowfullscreen style="border-radius: 4px;"></iframe>
+                                    </div>`;
+                            });
+                            html += `</div>`;
+                        }
+
+                        // Render Case Studies
+                        if (subject.case_study) {
+                            html += `<hr style="margin: 10px 0;">`;
+                            html += `<p><strong>Innovation Highlight:</strong> ${subject.case_study.overview}</p>`;
+
+                            if (subject.case_study.samples) {
+                                html += `<div class="w3-bar-block w3-light-grey w3-round" style="max-height: 150px; overflow-y: auto; padding: 10px;">`;
+                                html += `<p style="margin: 0 0 5px 5px;"><small>Sample Student Reports:</small></p>`;
+                                subject.case_study.samples.forEach(study => {
+                                    html += `<a href="${study.file}" target="_blank" class="w3-bar-item w3-button w3-small"><i class="fa fa-file-pdf-o w3-text-red"></i> ${study.title}</a>`;
+                                });
+                                html += `</div>`;
+                            }
+                        }
+
+                        // Render images inside card if they exist
+                        if (subject.images) {
+                            html += `<hr style="margin: 10px 0;">`;
+                            html += `<p><strong>Artifacts:</strong></p>`;
+                            html += `<div class="w3-row">`;
+                            subject.images.forEach(img => {
+                                html += `<div class="w3-quarter w3-container" style="padding: 2px;"><img src="picture/${img}" alt="Artifact" onclick="openImageModal(this.src)" style="width:100%; cursor:pointer;" class="w3-hover-opacity w3-round"></div>`;
+                            });
+                            html += `</div>`;
+                        }
+
+                        html += `
+                                    </div>
+                                </div>
+                            </div>
+                        `;
                     });
                 }
-                
-                if (data.innovation_teaching.case_study) {
-                    html += `<h3>Case Study Assignments</h3>`;
-                    html += `<p><strong>Overview:</strong> ${data.innovation_teaching.case_study.overview}</p>`;
-                    html += `<p><strong>Content:</strong></p><ul>`;
-                    data.innovation_teaching.case_study.content.forEach(item => {
-                        html += `<li>${item}</li>`;
-                    });
-                    html += `</ul>`;
-                    
-                    if (data.innovation_teaching.case_study.case_studies) {
-                        html += `<p><strong>Sample Case Studies:</strong></p><ul>`;
-                        data.innovation_teaching.case_study.case_studies.forEach(study => {
-                            html += `<li><a href="${study.file}" target="_blank">${study.title}</a></li>`;
-                        });
-                        html += `</ul>`;
-                    }
-                }
-                
-                if (data.innovation_teaching.images) {
-                    html += `<div class="w3-row">`;
-                    data.innovation_teaching.images.forEach(img => {
-                        html += `<div class="w3-half w3-container"><img src="picture/${img}" alt="Innovation" style="width:100%; margin-bottom:10px;"></div>`;
-                    });
-                    html += `</div>`;
-                }
+
+                html += `</div>`; // Close row-padding
                 container.innerHTML = html;
             }
 
@@ -214,7 +255,7 @@ function loadPortfolioContent() {
             if (data.student_engagement) {
                 const container = document.getElementById("engagement-content");
                 let html = ``;
-                
+
                 if (data.student_engagement.criteria) {
                     data.student_engagement.criteria.forEach((criterion, index) => {
                         html += `<h3>${criterion.title}</h3>`;
@@ -226,14 +267,39 @@ function loadPortfolioContent() {
                 container.innerHTML = html;
             }
 
+            // Load Teaching Responsibilities
+            if (data.teaching_responsibilities) {
+                const container = document.getElementById("responsibilities-content");
+                let html = `
+                    <div class="w3-responsive">
+                    <table class="w3-table w3-bordered w3-white w3-card-4">
+                        <tr class="w3-theme-black">
+                            <th>Course Name</th>
+                            <th>Academic Years</th>
+                        </tr>
+                `;
+
+                data.teaching_responsibilities.courses.forEach(course => {
+                    html += `
+                        <tr>
+                            <td><strong>${course.name}</strong></td>
+                            <td>${course.years.join(" &nbsp; ")}</td>
+                        </tr>
+                    `;
+                });
+
+                html += `</table></div>`;
+                container.innerHTML = html;
+            }
+
             // Load Class Gallery
             if (data.class_gallery) {
                 const container = document.getElementById("gallery-content");
                 let html = `<div class="w3-row">`;
-                
+
                 if (data.class_gallery.images) {
                     data.class_gallery.images.forEach(img => {
-                        html += `<div class="w3-third w3-container"><img src="picture/${img}" alt="Class" class="clickable-image" style="width:100%; margin-bottom:10px; cursor:pointer;"></div>`;
+                        html += `<div class="w3-third w3-container"><img src="picture/${img}" alt="Class" class="clickable-image" onclick="openImageModal(this.src)" style="width:100%; margin-bottom:10px; cursor:pointer;"></div>`;
                     });
                 }
                 html += `</div>`;
@@ -244,7 +310,7 @@ function loadPortfolioContent() {
             if (data.research) {
                 const container = document.getElementById("research-content");
                 let html = `<p>${data.research.description}</p>`;
-                
+
                 if (data.research.areas) {
                     html += `<h3>Research Areas</h3><ul>`;
                     data.research.areas.forEach(area => {
@@ -259,7 +325,7 @@ function loadPortfolioContent() {
             if (data.publications) {
                 const container = document.getElementById("publications-content");
                 let html = ``;
-                
+
                 if (data.publications.journals && data.publications.journals.length > 0) {
                     html += `<h3>Journal Publications</h3><ul>`;
                     data.publications.journals.forEach(pub => {
@@ -267,7 +333,7 @@ function loadPortfolioContent() {
                     });
                     html += `</ul>`;
                 }
-                
+
                 if (data.publications.conferences && data.publications.conferences.length > 0) {
                     html += `<h3>Conference Publications</h3><ul>`;
                     data.publications.conferences.forEach(pub => {
@@ -281,14 +347,29 @@ function loadPortfolioContent() {
             // Load Achievements
             if (data.achievements) {
                 const container = document.getElementById("achievements-content");
-                let html = `<ul>`;
-                
+                let html = `
+                    <div class="w3-responsive">
+                    <table class="w3-table w3-bordered w3-white w3-card-4">
+                        <tr class="w3-theme-black">
+                            <th>Date</th>
+                            <th>Award & Recognition</th>
+                            <th>Level</th>
+                        </tr>
+                `;
+
                 if (data.achievements.awards) {
-                    data.achievements.awards.forEach(award => {
-                        html += `<li>${award}</li>`;
+                    data.achievements.awards.forEach(item => {
+                        html += `
+                            <tr>
+                                <td>${item.date}</td>
+                                <td><strong>${item.title}</strong><br><small>${item.institution}</small></td>
+                                <td><span class="w3-tag w3-teal">${item.level}</span></td>
+                            </tr>
+                        `;
                     });
                 }
-                html += `</ul>`;
+
+                html += `</table></div>`;
                 container.innerHTML = html;
             }
 
@@ -296,7 +377,7 @@ function loadPortfolioContent() {
             if (data.skills) {
                 const container = document.getElementById("skills-content");
                 let html = `<div class="w3-row">`;
-                
+
                 if (data.skills.items) {
                     data.skills.items.forEach(skill => {
                         html += `<div class="w3-quarter w3-container"><div class="w3-card w3-padding" style="background-color: #f1f1f1; text-align: center; margin-bottom: 10px;"><p><strong>${skill}</strong></p></div></div>`;
@@ -315,13 +396,13 @@ function loadProfileCard() {
         .then(data => {
             const profileCard = document.getElementById("profile-card");
             if (!data.profile) return;
-            
+
             const profile = data.profile;
-            
+
             let html = `
                 <div style="text-align: center;">
                     <!-- Profile Image -->
-                    <img src="${profile.image}" alt="${profile.name}" style="width: 100%; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                    <img src="${profile.image}" alt="${profile.name}" onclick="openImageModal(this.src)" style="width: 50%; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); cursor:pointer;">
                     
                     <!-- Profile Name -->
                     <h3 style="margin: 15px 0 5px 0; color: #2c3e50; font-size: 18px; font-weight: 700;">
@@ -366,15 +447,23 @@ function loadProfileCard() {
                     <!-- Additional Images -->
                     <div style="margin-top: 15px;">
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                            ${profile.image1 ? `<img src="${profile.image1}" alt="Additional" style="width: 100%; border-radius: 6px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);">` : ''}
-                            ${profile.image2 ? `<img src="${profile.image2}" alt="Additional" style="width: 100%; border-radius: 6px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);">` : ''}
+                            ${profile.image1 ? `<img src="${profile.image1}" alt="Additional" onclick="openImageModal(this.src)" style="width: 100%; border-radius: 6px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); cursor:pointer;">` : ''}
+                            ${profile.image2 ? `<img src="${profile.image2}" alt="Additional" onclick="openImageModal(this.src)" style="width: 100%; border-radius: 6px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); cursor:pointer;">` : ''}
                         </div>
                     </div>
                 </div>
             `;
-            
+
             profileCard.innerHTML = html;
         })
         .catch(error => console.error("Error loading profile card:", error));
 }
 
+function openImageModal(src) {
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("imgFull");
+    if (modal && modalImg) {
+        modal.style.display = "block";
+        modalImg.src = src;
+    }
+}

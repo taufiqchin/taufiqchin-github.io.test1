@@ -10,11 +10,11 @@
     {
       "links": [
         {
-          "text": "Research",
+          "text": "🧐 Research",
           "url": "MyResearch.html"
         },
         {
-          "text": "Knowledge Base",
+          "text": "(╭ರ_•́) Knowledge Base",
           "url": "#knowledge-base",
           "class": "w3-hover-white"
         },
@@ -31,7 +31,7 @@
           "target": "_blank"
         },
         {
-          "text": "Reading Apps",
+          "text": "📱Reading Apps",
           "class": "w3-hover-white"
         },
         {

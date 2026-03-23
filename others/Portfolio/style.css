@@ -406,9 +406,7 @@ body {
 }
 
 /* Profile Card Styling */
-#profile-card {
-  order: 1; /* Display profile first on flex containers */
-}
+
 
 #profile-card img {
   max-width: 50%;
@@ -417,8 +415,10 @@ body {
 
 /* Profile image size - Change the percentage value to resize */
 #profile-card img:first-of-type {
-  width: 50%; /* Change this percentage (50%, 75%, 100%, etc.) to resize the main profile image */
-  max-width: 200px; /* Maximum width in pixels - adjust as needed */
+  width: 50%;
+  /* Change this percentage (50%, 75%, 100%, etc.) to resize the main profile image */
+  max-width: 200px;
+  /* Maximum width in pixels - adjust as needed */
 }
 
 /* Additional images styling */
@@ -430,6 +430,7 @@ body {
 
 /* Print Media Query - Profile appears first when printing */
 @media print {
+
   /* Hide sidebar and menu for printing */
   #mySidebar,
   .menu-btn,

@@ -1,139 +1,209 @@
 {
-    "education_teaching_philosophy": {
-        "title": "Education & Teaching Philosophy",
-        "description": "As an educator, my goal is to equip students with essential Ethical Digital Literacy skills, preparing them to navigate and contribute to the modern digital landscape responsibly. My teaching philosophy is built on three key pillars:",
-        "pillars": [
-            {
-                "title": "Understanding the Fundamentals",
-                "points": [
-                    "Students begin by learning about computer components and how they function.",
-                    "Exposure to current technology trends, including Industrial Revolution (IR) 4.0 & 5.0, and understanding how these revolutions differ.",
-                    "Introducing emerging technologies like Artificial Intelligence (AI) and Cloud Computing to help students grasp their impact on society."
-                ]
-            },
-            {
-                "title": "Digital Awareness & Cybersecurity",
-                "points": [
-                    "Teaching the internet ecosystem, including websites, Creative Commons Licensing (CCL), and digital rights.",
-                    "Enhancing students’ awareness of cybersecurity threats such as malware, cookies, viruses, and encryption (e.g., cipher text in HTTPS).",
-                    "Understanding ethical concerns, including plagiarism detection and digital responsibility."
-                ]
-            },
-            {
-                "title": "Practical Digital Skills for the Real World",
-                "points": [
-                    "Hands-on training in email communication, including writing effective emails, attachments, and email security.",
-                    "Using Canva for creative content creation and visual communication.",
-                    "Introducing data analysis using Python, empowering students with fundamental coding and analytical skills."
-                ],
-                "images": [
-                    "E1.PNG",
-                    "E2.PNG"
-                ]
-            }
+  "education_teaching_philosophy": {
+    "title": "Education & Teaching Philosophy",
+    "description": "As an educator, my goal is to equip students with essential Ethical Digital Literacy skills, preparing them to navigate and contribute to the modern digital landscape responsibly. My teaching philosophy is built on three key pillars:",
+    "pillars": [
+      {
+        "title": "Understanding the Fundamentals",
+        "points": [
+          "Students begin by learning about computer components and how they function.",
+          "Exposure to current technology trends, including Industrial Revolution (IR) 4.0 & 5.0, and understanding how these revolutions differ.",
+          "Introducing emerging technologies like Artificial Intelligence (AI) and Cloud Computing to help students grasp their impact on society."
         ]
-    },
-    "innovation_teaching": {
-        "title": "Innovation in Teaching",
-        "description": "Use of technology or creative methods in the classroom. Examples of unique lesson plans or instructional techniques.",
-        "videos": [
-            {
-                "title": "CS50 2018 - Phone Book",
-                "url": "https://www.youtube.com/embed/DSffdCT5Cx4"
-            },
-            {
-                "title": "CS50 2019 - Binary Bulbs",
-                "url": "https://www.youtube.com/embed/gs4Sb4ar4qw"
-            }
+      },
+      {
+        "title": "Digital Awareness & Cybersecurity",
+        "points": [
+          "Teaching the internet ecosystem, including websites, Creative Commons Licensing (CCL), and digital rights.",
+          "Enhancing students’ awareness of cybersecurity threats such as malware, cookies, viruses, and encryption (e.g., cipher text in HTTPS).",
+          "Understanding ethical concerns, including plagiarism detection and digital responsibility."
+        ]
+      },
+      {
+        "title": "Practical Digital Skills for the Real World",
+        "points": [
+          "Hands-on training in email communication, including writing effective emails, attachments, and email security.",
+          "Using Canva for creative content creation and visual communication.",
+          "Introducing data analysis using Python, empowering students with fundamental coding and analytical skills."
         ],
+        "images": [
+          "E1.PNG",
+          "E2.PNG"
+        ]
+      }
+    ]
+  },
+  "innovation_teaching": {
+    "title": "Innovation in Teaching",
+    "description": "Redefining the classroom experience through cutting-edge technology, creative instruction, and hands-on case studies.",
+    "subjects": [
+      {
+        "name": "Ethical Digital Literacy",
+        "icon": "fa-user-shield",
+        "description": "Ethical Digital Literacy is a comprehensive course designed to equip students with essential skills and knowledge required to navigate the 21st century confidently and ethically. In this course, participants will explore the fundamental concepts of exploring information, searching tools, and practice skills associated with digital literacy, enabling them to engage with technology effectively and responsibly in various aspects of their personal and professional lives without neglecting the ethics. By the end of this course, students will have developed a strong foundation in digital literacy, empowering them to navigate the digital landscape confidently, responsibly, and ethically, while leveraging digital tools for personal and professional growth.",
         "case_study": {
-            "overview": "Students apply ethical internet usage to research and submit a case study report using the APA format via their @iium.live email accounts.",
-            "content": [
-                "Case study Introduction & Objectives",
-                "Background/Literature Review",
-                "Analysis",
-                "Findings & Results",
-                "BOOLEAN search used",
-                "Conclusion",
-                "References"
-            ],
-            "poster_tool": "Students create a research poster using Canva in A4 size, demonstrating their Case Study findings using digital tools.",
-            "case_studies": [
-                {
-                    "title": "Case Study ICTF0513 (AI Predicting Mental Health)",
-                    "file": "pdf/1. Case Study ICTF0513 (AI Predicting Mental Health).pdf"
-                },
-                {
-                    "title": "SKIN CANCER - ICT",
-                    "file": "pdf/1. SKIN CANCER - ICT.pdf"
-                },
-                {
-                    "title": "Understanding Cesarean Birth: A Comprehensive Overview",
-                    "file": "pdf/3. 558_Case Study_Understanding Cesarean Birth_ A Comprehensive Overview.pdf"
-                },
-                {
-                    "title": "Traditional Medicine and Modern Medicine from Natural Products",
-                    "file": "pdf/4. 558 Case Study THE TRADIONAL MEDICINE AND MODERN MEDICINE FROM NATURAL PRODUCTS.pdf"
-                },
-                {
-                    "title": "How Graphics Cards Make Games Look Awesome",
-                    "file": "pdf/6. SEC130_Case Study_How Graphics Card Make Games Look Awesome.pdf"
-                }
-            ]
-        },
-        "images": [
-            "CS1.png",
-            "CS2.png",
-            "CS3.PNG",
-            "CS4.png",
-            "CS5.png",
-            "CS6.PNG"
-        ]
-    },
-    "student_engagement": {
-        "title": "Student Engagement, Instructional Competencies, and Research-Driven Teaching",
-        "criteria": [
+          "overview": "Students apply ethical internet usage to research and submit a case study report using the APA format.",
+          "highlights": [
+            "Research Methodology (BOOLEAN search)",
+            "Academic Integrity (APA Format)",
+            "Visual Communication (Canva Posters)"
+          ],
+          "samples": [
             {
-                "title": "Student Motivation",
-                "content": [
-                    "Students are provided with various learning resources, such as YouTube videos, slides, and lab sheets for in-class activities. These materials enhance their understanding of the subject by encouraging independent research and peer discussions.",
-                    "To further boost student motivation, lessons are designed to be engaging and relevant to real-world applications. Encouraging students to explore topics beyond the classroom fosters intrinsic motivation, while interactive activities like group discussions and problem-solving exercises keep them actively involved. Additionally, constructive feedback and recognition of their efforts help build confidence and a sense of achievement, driving them to take ownership of their learning."
-                ]
+              "title": "AI Predicting Mental Health",
+              "file": "pdf/1. Case Study ICTF0513 (AI Predicting Mental Health).pdf"
             },
             {
-                "title": "Instructional Competencies",
-                "content": [
-                    "Blended Learning approach with Moodle (iTaLeEM), Canva, and YouTube.",
-                    "Students are provided with various learning resources, such as YouTube videos, slides, and lab sheets for in-class activities. These materials enhance their understanding of the subject by encouraging independent research and peer discussions. For example, lab sheet questions may cover topics like commonly used shortcut keys and their functions, the roles of hardware and software in a computer, the importance of encryption for security, and the need for data analysis, including the benefits of learning Excel."
-                ]
+              "title": "Skin Cancer Detection",
+              "file": "pdf/1. SKIN CANCER - ICT.pdf"
             },
             {
-                "title": "Application of Research in Teaching",
-                "content": [
-                    "The Application of Research in Teaching involves integrating research-based practices, methodologies, and findings into the learning process to enhance students' critical thinking, problem-solving, and analytical skills. It encourages students to go beyond passive learning by actively engaging in inquiry, data analysis, and evidence-based reasoning.",
-                    "One effective way to apply research in teaching is through case study assignments, where students work in groups to conduct small-scale research on a specific topic. This method allows them to explore real-world issues, apply theoretical knowledge, and develop essential research skills."
-                ]
+              "title": "Cesarean Birth Overview",
+              "file": "pdf/3. 558_Case Study_Understanding Cesarean Birth_ A Comprehensive Overview.pdf"
             },
             {
-                "title": "Teaching Quality & Impact",
-                "content": [
-                    "Teaching quality is enhanced through continuous assessment, where student feedback and performance analysis guide instructional improvements. Outcome-Based Teaching ensures that learning objectives are met through structured instruction, assessments, and interactive discussions. By incorporating engaging materials such as YouTube videos, slides, and lab sheets, students develop a deeper understanding of the subject through research and peer collaboration. Additionally, case study assignments and small-group research activities strengthen critical thinking and academic integrity, preparing students for real-world applications.",
-                    "The integration of research in teaching fosters a culture of inquiry, encouraging both students and faculty to engage in scholarly work. Ethical research practices, including the use of APA formatting and Boolean search techniques, equip students with essential research skills, enhancing their ability to analyze and synthesize information. This approach not only benefits classroom learning but also supports faculty in publication and collaboration within research conferences, further contributing to academic excellence.",
-                    "Furthermore, curriculum development and faculty training programs play a crucial role in maintaining high teaching standards. Faculty involvement in curriculum enhancement ensures alignment with industry standards and emerging technological advancements. The adoption of research-based pedagogy, alongside innovative teaching strategies, strengthens instructional competencies and student engagement. By continuously refining teaching methodologies and fostering a research-driven learning environment, educators contribute to a holistic and impactful educational experience."
-                ]
+              "title": "Traditional vs Modern Medicine",
+              "file": "pdf/4. 558 Case Study THE TRADIONAL MEDICINE AND MODERN MEDICINE FROM NATURAL PRODUCTS.pdf"
+            },
+            {
+              "title": "Graphics Cards & Gaming",
+              "file": "pdf/6. SEC130_Case Study_How Graphics Card Make Games Look Awesome.pdf"
             }
-        ]
-    },
-    "class_gallery": {
-        "title": "Class Gallery",
+          ]
+        },
+        "videos": [
+          {
+            "title": "CS50 2018 - Phone Book",
+            "url": "https://www.youtube.com/embed/DSffdCT5Cx4"
+          },
+          {
+            "title": "CS50 2019 - Binary Bulbs",
+            "url": "https://www.youtube.com/embed/gs4Sb4ar4qw"
+          }
+        ],
         "images": [
-            "G1.jpeg",
-            "G2.jpeg",
-            "G302S12526.jpeg",
-            "cs50.png",
-            "im1.jpg",
-            "space.jpg"
+          "CS1.png",
+          "CS2.png",
+          "CS3.PNG",
+          "CS4.png",
+          "CS5.png",
+          "CS6.PNG"
         ]
+      },
+      {
+        "name": "Web Technologies",
+        "icon": "fa-code",
+        "description": "This course aims to expose basic web programming skills to students and focuses on client-side scripting. Students have the opportunity to learn the introduction of web page design by using HTML and CSS. It continues with web page validation and interaction with JavaScript. This course enables students to learn about the current standards of client-side frameworks such as API, AJAX and JSON through lecturers, discussion, and practical exercises.",
+        "tech_stack": [
+          "HTML5",
+          "CSS3",
+          "JavaScript",
+          "AJAX",
+          "JSON",
+          "APIs"
+        ],
+        "videos": [
+          {
+            "title": "Setup VS Code for Web Dev",
+            "url": "https://www.youtube.com/embed/mL1IcxIUd5Y"
+          },
+          {
+            "title": "Learn CSS Basics in 10 Min",
+            "url": "https://www.youtube.com/embed/Dfj0B6aL7Hs"
+          }
+        ]
+      }
+    ]
+  },
+  "student_engagement": {
+    "title": "Student Engagement, Instructional Competencies, and Research-Driven Teaching",
+    "criteria": [
+      {
+        "title": "Student Motivation",
+        "content": [
+          "Students are provided with various learning resources, such as YouTube videos, slides, and lab sheets for in-class activities. These materials enhance their understanding of the subject by encouraging independent research and peer discussions.",
+          "To further boost student motivation, lessons are designed to be engaging and relevant to real-world applications. Encouraging students to explore topics beyond the classroom fosters intrinsic motivation, while interactive activities like group discussions and problem-solving exercises keep them actively involved. Additionally, constructive feedback and recognition of their efforts help build confidence and a sense of achievement, driving them to take ownership of their learning."
+        ]
+      },
+      {
+        "title": "Instructional Competencies",
+        "content": [
+          "Blended Learning approach with Moodle (iTaLeEM), Canva, and YouTube.",
+          "Students are provided with various learning resources, such as YouTube videos, slides, and lab sheets for in-class activities. These materials enhance their understanding of the subject by encouraging independent research and peer discussions. For example, lab sheet questions may cover topics like commonly used shortcut keys and their functions, the roles of hardware and software in a computer, the importance of encryption for security, and the need for data analysis, including the benefits of learning Excel."
+        ]
+      },
+      {
+        "title": "Application of Research in Teaching",
+        "content": [
+          "The Application of Research in Teaching involves integrating research-based practices, methodologies, and findings into the learning process to enhance students' critical thinking, problem-solving, and analytical skills. It encourages students to go beyond passive learning by actively engaging in inquiry, data analysis, and evidence-based reasoning.",
+          "One effective way to apply research in teaching is through case study assignments, where students work in groups to conduct small-scale research on a specific topic. This method allows them to explore real-world issues, apply theoretical knowledge, and develop essential research skills."
+        ]
+      },
+      {
+        "title": "Teaching Quality & Impact",
+        "content": [
+          "Teaching quality is enhanced through continuous assessment, where student feedback and performance analysis guide instructional improvements. Outcome-Based Teaching ensures that learning objectives are met through structured instruction, assessments, and interactive discussions. By incorporating engaging materials such as YouTube videos, slides, and lab sheets, students develop a deeper understanding of the subject through research and peer collaboration. Additionally, case study assignments and small-group research activities strengthen critical thinking and academic integrity, preparing students for real-world applications.",
+          "The integration of research in teaching fosters a culture of inquiry, encouraging both students and faculty to engage in scholarly work. Ethical research practices, including the use of APA formatting and Boolean search techniques, equip students with essential research skills, enhancing their ability to analyze and synthesize information. This approach not only benefits classroom learning but also supports faculty in publication and collaboration within research conferences, further contributing to academic excellence.",
+          "Furthermore, curriculum development and faculty training programs play a crucial role in maintaining high teaching standards. Faculty involvement in curriculum enhancement ensures alignment with industry standards and emerging technological advancements. The adoption of research-based pedagogy, alongside innovative teaching strategies, strengthens instructional competencies and student engagement. By continuously refining teaching methodologies and fostering a research-driven learning environment, educators contribute to a holistic and impactful educational experience."
+        ]
+      }
+    ]
+  },
+  "teaching_responsibilities": {
+    "title": "Teaching Responsibilities",
+    "courses": [
+      {
+        "name": "BASIC APPLICATION OF ICT",
+        "years": [
+          "2022/2023",
+          "2021/2022",
+          "2020/2021",
+          "2019/2020",
+          "2018/2019"
+        ]
+      },
+      {
+        "name": "DIGITAL LITERACY",
+        "years": [
+          "2024/2025"
+        ]
+      },
+      {
+        "name": "ETHICAL DIGITAL LITERACY",
+        "years": [
+          "2025/2026",
+          "2024/2025",
+          "2023/2024"
+        ]
+      },
+      {
+        "name": "INTRODUCTION TO PROGRAMMING",
+        "years": [
+          "2023/2024",
+          "2022/2023",
+          "2021/2022",
+          "2020/2021"
+        ]
+      },
+      {
+        "name": "WEB TECHNOLOGIES",
+        "years": [
+          "2025/2026",
+          "2024/2025"
+        ]
+      }
+    ]
+  },
+  "class_gallery": {
+    "title": "Class Gallery",
+    "images": [
+      "G1.jpeg",
+      "G2.jpeg",
+      "G302S12526.jpeg",
+      "G560_S2_25.26.PNG",
+      "G556_S2_25.26.PNG",
+      "G302_S1_25.26.PNG"
+    ]
   },
   "research": {
     "description": "Research interests include software engineering with focus on requirements engineering, ethical AI, and computing education.",
@@ -143,7 +213,10 @@
       "Computing Education"
     ],
     "featured": [
-      { "title": "Requirements Patterns for Educational Systems", "link": "MyResearch.html" }
+      {
+        "title": "Requirements Patterns for Educational Systems",
+        "link": "MyResearch.html"
+      }
     ]
   },
   "publications": {
@@ -156,19 +229,67 @@
     "books": []
   },
   "achievements": {
+    "title": "Awards & Recognition",
     "awards": [
-      "[Sample] Teaching Excellence Award (Year)",
-      "[Sample] Best Paper Award (Year)"
+      {
+        "date": "02 Jul, 2024",
+        "title": "Best Academic Staff Award (IRID 2024)",
+        "institution": "International Islamic Universiti Malaysia, Kuantan",
+        "level": "University"
+      },
+      {
+        "date": "02 Jul, 2024",
+        "title": "Gold Medal IRID 2024",
+        "institution": "International Islamic Universiti Malaysia, Kuantan",
+        "level": "University"
+      },
+      {
+        "date": "09 May, 2024",
+        "title": "Gold Medal - 14th CITREX 2024",
+        "institution": "UNIVERSITI MALAYSIA PAHANG AL-SULTAN ABDULLAH (UMPSA)",
+        "level": "International"
+      },
+      {
+        "date": "14 Mar, 2023",
+        "title": "Silver Medal - CITREX 2023",
+        "institution": "UNIVERSITI MALAYSIA PAHANG (UMP)",
+        "level": "International"
+      },
+      {
+        "date": "29 Mar, 2021",
+        "title": "YOUNG MURABBI AWARD SCIENCE",
+        "institution": "CFS TAKRIM DAY 2021",
+        "level": "KCDIO"
+      },
+      {
+        "date": "19 Apr, 2015",
+        "title": "Silver Medal - I-ENVEX",
+        "institution": "UNIVERSITI MALAYSIA PERLIS (UniMAP)",
+        "level": "International"
+      },
+      {
+        "date": "10 Mar, 2015",
+        "title": "Gold Medal - CITREX 2015",
+        "institution": "UNIVERSITI MALAYSIA PAHANG (UMP)",
+        "level": "International"
+      }
     ]
   },
   "grants_projects": {
     "items": [
-      {"title": "[Sample] Digital Literacy Initiative", "role": "Co-Investigator", "year": "2024"}
+      {
+        "title": "[Sample] Digital Literacy Initiative",
+        "role": "Co-Investigator",
+        "year": "2024"
+      }
     ]
   },
   "supervision": {
     "students": [
-      {"name": "[Sample] Student A", "level": "Undergraduate Project"}
+      {
+        "name": "[Sample] Student A",
+        "level": "Undergraduate Project"
+      }
     ]
   },
   "service_leadership": {
@@ -181,15 +302,6 @@
     "items": [
       "[Sample] Google Certified Educator",
       "[Sample] AWS Cloud Practitioner"
-    ]
-  },
-  "skills": {
-    "items": [
-      "Python",
-      "Excel & Data Analysis",
-      "Canva",
-      "Moodle/iTaLeEM",
-      "Instructional Design"
     ]
   },
   "outreach": {

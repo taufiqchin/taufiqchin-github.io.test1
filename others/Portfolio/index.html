@@ -32,19 +32,20 @@
 			<h1>&nbsp;&nbsp;Portfolio</h1>
 		</div>
 
-		<!-- Teaching Philosophy Section -->
+		<!-- Biodata & Teaching Philosophy Section -->
 		<div class="w3-row-padding" style="margin: 0 0%;">
-			<!-- Teaching Content (Left Column) -->
-			<div class="w3-col l8 m12 s12">
-				<h2 class="section-title">Education & Teaching Philosophy</h2>
-				<div id="teaching-content"></div>
-			</div>
-			
-			<!-- Profile Card (Right Column) -->
-			<div class="w3-col l4 m12 s12">
-				<div id="profile-card" style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); position: sticky; top: 20px;">
+			<!-- Profile Card (Left Column) -->
+			<div class="w3-col l4 m4 s12" id="0">
+				<div id="profile-card"
+					style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); position: sticky; top: 20px;">
 					<!-- Profile content will be loaded here -->
 				</div>
+			</div>
+
+			<!-- Teaching Content (Right Column) -->
+			<div class="w3-col l8 m8 s12" id="1">
+				<h2 class="section-title">Education & Teaching Philosophy</h2>
+				<div id="teaching-content"></div>
 			</div>
 		</div>
 
@@ -65,6 +66,25 @@
 			<div class="w3-col l12 m12 s12">
 				<h2 class="section-title">Student Engagement & Instructional Competencies</h2>
 				<div id="engagement-content"></div>
+			</div>
+		</div>
+
+		<hr>
+
+		<!-- Teaching Responsibilities Section -->
+		<div class="w3-row" style="margin: 0 0%;">
+			<div class="w3-col l12 m12 s12">
+				<h2 class="section-title">Teaching Responsibilities</h2>
+				<div id="responsibilities-content"></div>
+			</div>
+		</div>
+		<hr>
+
+		<!-- Awards & Recognition Section -->
+		<div class="w3-row" style="margin: 0 0%;">
+			<div class="w3-col l12 m12 s12">
+				<h2 class="section-title">Awards & Recognition</h2>
+				<div id="achievements-content"></div>
 			</div>
 		</div>
 
@@ -100,25 +120,6 @@
 
 		<hr>
 
-		<!-- Achievements Section -->
-		<div class="w3-row" style="margin: 0 0%;">
-			<div class="w3-col l12 m12 s12">
-				<h2 class="section-title">Achievements & Awards</h2>
-				<div id="achievements-content"></div>
-			</div>
-		</div>
-
-		<hr>
-
-		<!-- Skills Section -->
-		<div class="w3-row" style="margin: 0 0%;">
-			<div class="w3-col l12 m12 s12">
-				<h2 class="section-title">Skills & Expertise</h2>
-				<div id="skills-content"></div>
-			</div>
-		</div>
-
-		<hr>
 
 		<footer class="main-footer"></footer>
 
@@ -126,6 +127,14 @@
 	</div>
 
 	<script src="scriptss.js"></script>
+
+	<!-- Image Modal for Full View -->
+	<div id="imageModal" class="w3-modal" onclick="this.style.display='none'">
+		<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+		<div class="w3-modal-content w3-animate-zoom" style="background-color: transparent; border: none;">
+			<img id="imgFull" style="width:100%; border: none;">
+		</div>
+	</div>
 
 </body>
 
