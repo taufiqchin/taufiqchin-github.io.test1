@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Daily Life Logic Machine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .logic-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Updated Active State: Light Gray Background with blue border */
+        .active-logic {
+            transform: scale(1.02);
+            border-color: #3b82f6 !important;
+            background-color: #e2e8f0 !important;
+            /* Light Gray (slate-200) */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .emoji-bounce {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Custom scrollbar for a cleaner look */
+        #inputGrid::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #inputGrid::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        #inputGrid::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body class="bg-amber-50 h-screen overflow-hidden flex flex-col p-2 md:p-4 font-sans text-slate-800">
+
+    <div class="max-w-6xl mx-auto flex-1 flex flex-col w-full">
+        <!-- Compact Header -->
+        <header class="text-center mb-4 shrink-0">
+            <div class="text-4xl mb-1 emoji-bounce">🤖</div>
+            <h1 class="text-2xl font-black text-amber-900 uppercase tracking-tight leading-none">The Magic Logic Machine
+            </h1>
+            <p class="text-amber-700 font-medium text-sm">Computers think just like YOU do!</p>
+        </header>
+
+        <!-- Main Responsive Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-1 min-h-0">
+
+            <!-- Left Column: Input -->
+            <section
+                class="bg-white p-4 md:p-6 rounded-2xl shadow-lg border-4 border-amber-200 flex flex-col overflow-hidden h-full">
+                <h2 class="text-xl font-bold mb-3 flex items-center shrink-0">
+                    <span class="bg-amber-100 p-2 rounded-lg mr-2 text-xl">👀</span>
+                    1. Input
+                </h2>
+                <p class="text-slate-600 mb-4 text-sm shrink-0 font-medium italic text-center">What is happening? Click
+                    one:</p>
+
+                <!-- 3 Column Input Grid with bigger elements -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto pr-2 flex-1" id="inputGrid">
+                    <button onclick="setLogic('rain')"
+                        class="logic-card border-2 border-slate-200 p-2 py-4 rounded-xl text-left hover:border-blue-400 transition bg-slate-50 flex flex-col items-center justify-center text-center"
+                        id="btn-rain">
+                        <span class="text-4xl mb-2">🌧️</span>
+                        <span class="font-bold text-sm">Raining</span>
+                    </button>
+                    <button onclick="setLogic('sun')"
+                        class="logic-card border-2 border-slate-200 p-2 py-4 rounded-xl text-left hover:border-yellow-400 transition bg-slate-50 flex flex-col items-center justify-center text-center"
+                        id="btn-sun">
+                        <span class="text-4xl mb-2">☀️</span>
+                        <span class="font-bold text-sm">Sunny</span>
+                    </button>
+                    <button onclick="setLogic('snow')"
+                        class="logic-card border-2 border-slate-200 p-2 py-4 rounded-xl text-left hover:border-blue-200 transition bg-slate-50 flex flex-col items-center justify-center text-center"
+                        id="btn-snow">
+                        <span class="text-4xl mb-2">❄️</span>
+                        <span class="font-bold text-sm">Snowing</span>
+                    </button>
+                    <button onclick="setLogic('hungry')"
+                        class="logic-card border-2 border-slate-200 p-2 py-4 rounded-xl text-left hover:border-red-400 transition bg-slate-50 flex flex-col items-center justify-center text-center"
+                        id="btn-hungry">
+                        <span class="text-4xl mb-2">😋</span>
+                        <span class="font-bold text-sm">Hungry</span>
+                    </button>
+                    <button onclick="setLogic('thirsty')"
+                        class="logic-card border-2 border-slate-200 p-2 py-4 rounded-xl text-left hover:border-cyan-400 transition bg-slate-50 flex flex-col items-center justify-center text-center"
+                        id="btn-thirsty">
+                        <span class="text-4xl mb-2">💧</span>
+                        <span class="font-bold text-sm">Thirsty</span>
+                    </button>
+                    <button onclick="setLogic('sleepy')"
+                        class="logic-card border-2 border-slate-200 p-2 py-4 rounded-xl text-left hover:border-purple-400 transition bg-slate-50 flex flex-col items-center justify-center text-center"
+                        id="btn-sleepy">
+                        <span class="text-4xl mb-2">🥱</span>
+                        <span class="font-bold text-sm">Sleepy</span>
+                    </button>
+                    <button onclick="setLogic('cold')"
+                        class="logic-card border-2 border-slate-200 p-2 py-4 rounded-xl text-left hover:border-blue-700 transition bg-slate-50 flex flex-col items-center justify-center text-center"
+                        id="btn-cold">
+                        <span class="text-4xl mb-2">🧥</span>
+                        <span class="font-bold text-sm">Cold</span>
+                    </button>
+                    <button onclick="setLogic('dirty')"
+                        class="logic-card border-2 border-slate-200 p-2 py-4 rounded-xl text-left hover:border-teal-400 transition bg-slate-50 flex flex-col items-center justify-center text-center"
+                        id="btn-dirty">
+                        <span class="text-4xl mb-2">🧼</span>
+                        <span class="font-bold text-sm">Dirty Hands</span>
+                    </button>
+                    <button onclick="setLogic('dark')"
+                        class="logic-card border-2 border-slate-200 p-2 py-4 rounded-xl text-left hover:border-yellow-200 transition bg-slate-50 flex flex-col items-center justify-center text-center"
+                        id="btn-dark">
+                        <span class="text-4xl mb-2">💡</span>
+                        <span class="font-bold text-sm">Dark</span>
+                    </button>
+                    <button onclick="setLogic('bell')"
+                        class="logic-card border-2 border-slate-200 p-2 py-4 rounded-xl text-left hover:border-indigo-400 transition bg-slate-50 flex flex-col items-center justify-center text-center"
+                        id="btn-bell">
+                        <span class="text-4xl mb-2">🏫</span>
+                        <span class="font-bold text-sm">Bell Rings</span>
+                    </button>
+                    <button onclick="setLogic('play')"
+                        class="logic-card border-2 border-slate-200 p-2 py-4 rounded-xl text-left hover:border-green-400 transition bg-slate-50 flex flex-col items-center justify-center text-center"
+                        id="btn-play">
+                        <span class="text-4xl mb-2">⚽</span>
+                        <span class="font-bold text-sm">Play time</span>
+                    </button>
+                    <button onclick="setLogic('show')"
+                        class="logic-card border-2 border-slate-200 p-2 py-4 rounded-xl text-left hover:border-pink-400 transition bg-slate-50 flex flex-col items-center justify-center text-center"
+                        id="btn-show">
+                        <span class="text-4xl mb-2">🧸</span>
+                        <span class="font-bold text-sm">Show & Tell</span>
+                    </button>
+                </div>
+
+                <div class="mt-4 p-3 bg-amber-100 rounded-xl border border-amber-200 shrink-0">
+                    <p class="text-amber-900 font-bold text-xs uppercase tracking-wider">Teacher Tip:</p>
+                    <p class="text-amber-800 text-[10px] italic">Input is information from the outside world
+                        (Eyes/Ears/Sensors).</p>
+                </div>
+            </section>
+
+            <!-- Right Column: Logic & Output -->
+            <div class="flex flex-col space-y-4 h-full">
+
+                <!-- Section 2: Logic -->
+                <section class="bg-blue-600 p-6 rounded-2xl shadow-lg text-white relative overflow-hidden shrink-0">
+                    <div class="absolute top-0 right-0 p-2 opacity-10 text-5xl font-black italic select-none">IF/THEN
+                    </div>
+                    <h2 class="text-xl font-bold mb-4 flex items-center">
+                        <span class="bg-blue-500 p-2 rounded-lg mr-2 text-white">🧠</span>
+                        2. Logic
+                    </h2>
+
+                    <div class="text-xl font-mono space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-blue-200 font-bold w-12">IF</span>
+                            <span id="ifCondition"
+                                class="bg-blue-800 px-4 py-1 rounded-lg border-2 border-blue-400 flex-1 text-center italic shadow-inner">______</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-blue-200 font-bold w-12">THEN</span>
+                            <span id="thenAction"
+                                class="bg-green-500 px-4 py-1 rounded-lg border-2 border-green-300 flex-1 text-center shadow-lg">?</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 3: Output -->
+                <section
+                    class="bg-white p-6 rounded-2xl shadow-lg border-4 border-green-200 text-center flex-1 flex flex-col overflow-hidden min-h-0">
+                    <h2 class="text-xl font-bold mb-3 flex items-center justify-center shrink-0">
+                        <span class="bg-green-100 p-2 rounded-lg mr-2">🏃</span>
+                        3. Output
+                    </h2>
+
+                    <div id="resultBox"
+                        class="flex-1 bg-slate-50 rounded-xl border-2 border-dashed border-slate-200 flex flex-col items-center justify-center p-4">
+                        <p class="text-slate-400 italic text-sm">Click an input on the left!</p>
+                    </div>
+
+                    <p class="mt-3 text-slate-500 font-medium text-xs shrink-0 italic">This is the final result of the
+                        thinking!</p>
+                </section>
+
+            </div>
+        </div>
+
+        <!-- Minimal Footer -->
+        <footer class="mt-4 text-center shrink-0 pb-2">
+            <p class="text-amber-800 font-bold text-sm uppercase tracking-wide">Conditional Statements: Rules +
+                Decisions</p>
+        </footer>
+    </div>
+
+    <script>
+        const logicData = {
+            rain: {
+                text: "RAINING",
+                action: "Take an Umbrella!",
+                emoji: "☂️",
+                color: "text-blue-600"
+            },
+            sun: {
+                text: "SUNNY",
+                action: "Wear Sunglasses!",
+                emoji: "🕶️",
+                color: "text-yellow-600"
+            },
+            snow: {
+                text: "SNOWING",
+                action: "Build a Snowman!",
+                emoji: "❄️",
+                color: "text-blue-400"
+            },
+            hungry: {
+                text: "HUNGRY",
+                action: "Eat a Snack!",
+                emoji: "🍎",
+                color: "text-red-600"
+            },
+            thirsty: {
+                text: "THIRSTY",
+                action: "Drink Water!",
+                emoji: "💧",
+                color: "text-cyan-600"
+            },
+            sleepy: {
+                text: "SLEEPY",
+                action: "Go to Bed!",
+                emoji: "💤",
+                color: "text-purple-600"
+            },
+            cold: {
+                text: "COLD",
+                action: "Wear a Jacket!",
+                emoji: "🧥",
+                color: "text-blue-700"
+            },
+            dirty: {
+                text: "DIRTY HANDS",
+                action: "Wash with Soap!",
+                emoji: "🧼",
+                color: "text-teal-600"
+            },
+            dark: {
+                text: "DARK",
+                action: "Turn on Light!",
+                emoji: "💡",
+                color: "text-yellow-500"
+            },
+            bell: {
+                text: "BELL RINGS",
+                action: "Go to Class!",
+                emoji: "🏫",
+                color: "text-indigo-600"
+            },
+            play: {
+                text: "WANT TO PLAY",
+                action: "Run and Jump!",
+                emoji: "⚽",
+                color: "text-green-600"
+            },
+            show: {
+                text: "SHOW & TELL",
+                action: "Share a Story!",
+                emoji: "🧸",
+                color: "text-pink-600"
+            }
+        };
+
+        function setLogic(type) {
+            // Reset all cards to default state
+            document.querySelectorAll('.logic-card').forEach(card => {
+                card.classList.remove('active-logic');
+                card.classList.add('bg-slate-50');
+            });
+
+            // Activate selected card
+            const activeBtn = document.getElementById(`btn-${type}`);
+            activeBtn.classList.add('active-logic');
+            activeBtn.classList.remove('bg-slate-50');
+
+            const data = logicData[type];
+            const ifEl = document.getElementById('ifCondition');
+            const thenEl = document.getElementById('thenAction');
+
+            ifEl.innerText = data.text;
+            ifEl.classList.add('animate-pulse');
+            setTimeout(() => ifEl.classList.remove('animate-pulse'), 500);
+
+            thenEl.innerText = "DO ACTION";
+
+            const resultBox = document.getElementById('resultBox');
+            // Increased emoji size to text-8xl and action text to text-5xl
+            resultBox.innerHTML = `
+                <div class="animate-bounce text-8xl mb-4">${data.emoji}</div>
+                <h3 class="text-5xl font-black ${data.color} mb-3">${data.action}</h3>
+                <p class="text-slate-600 text-lg">Computer says: "Because it is <b>${data.text.toLowerCase()}</b>, you must <b>${data.action.toLowerCase()}</b>"</p>
+            `;
+            resultBox.classList.remove('bg-slate-50', 'border-slate-200');
+            resultBox.classList.add('bg-green-50', 'border-green-300', 'shadow-inner');
+        }
+    </script>
+</body>
+
+</html>

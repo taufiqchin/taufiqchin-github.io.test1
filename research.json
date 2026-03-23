@@ -23,5 +23,10 @@
         "title": "STEM Project (Computer)",
         "description": "New STEM focused research project",
         "url": "STEM_Project.html"
+    },
+    {
+        "title": "The Magic Logic Machine",
+        "description": "Interactive logic game for children",
+        "url": "theMagicMachine.html"
     }
 ]
