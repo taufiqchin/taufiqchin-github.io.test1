@@ -27,7 +27,7 @@
         "id": 3,
         "order": 3,
         "title": "QR Code Generator",
-        "image": "image/QR.png",
+        "image": "image/QR.PNG",
         "description": "The QR Code Generator is a streamlined utility designed for instant creation of custom QR codes for website URLs and plain text. Featuring an elegant Rolex Green aesthetic and a mobile-first responsive layout, the tool allows for full customization of foreground and background colors, as well as adjustable scaling. Built for professional use, it supports ultra-high-definition 8K PNG downloads, ensuring that generated codes remain perfectly sharp for large-scale printing, marketing materials, and digital branding.",
         "link": "others/QR/index.html"
     },
