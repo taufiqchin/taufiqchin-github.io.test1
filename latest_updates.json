@@ -11,7 +11,7 @@
         "id": 5,
         "order": 1,
         "title": "ClearCut AI - Background Remover",
-        "image": "image/clearcut.png",
+        "image": "image/clearcut.PNG",
         "description": "ClearCut is a premium AI-powered tool designed for high-resolution background removal. It features a sleek, modern interface and sophisticated processing to deliver instant results with professional-grade transparency. Ideal for creating clean product shots or portrait cutouts.",
         "link": "others/remove background image/index.html"
     },
@@ -19,7 +19,7 @@
         "id": 2,
         "order": 2,
         "title": "Audiogram",
-        "image": "image/audiogram.png",
+        "image": "image/audiogram.PNG",
         "description": "The Audiogram Visualization Tool is a web-based clinical application designed to assist hearing therapists and audiologists in plotting hearing sensitivity across a standard range of frequencies (125Hz to 8000Hz). It features a precise coordinate-mapping system and implements standard international audiometric symbols—including Red Circles/Triangles for the Right Ear and Blue X’s/Squares for the Left Ear. Users can input decibel levels into an intuitive interface, and the system instantly generates a professional audiogram with automatic line connections for air-conduction data. The project supports ultra-high-definition 4K PNG downloads, making it ideal for high-quality clinical documentation and printing.",
         "link": "others/Audiogram/index.html"
     },
@@ -35,7 +35,7 @@
         "id": 4,
         "order": 4,
         "title": "iConsuLt - ",
-        "image": "image/iconsult.png",
+        "image": "image/iconsult.PNG",
         "description": " ",
         "link": "others/iConsult3.0/chapter2.html"
     },
@@ -50,7 +50,7 @@
         "id": 6,
         "order": 6,
         "title": "Scratch - Sprite & Bat",
-        "image": "image/sprite&bat.png",
+        "image": "image/sprite&bat.PNG",
         "description": "an example of STEM project for primary school students learn about coding and problem solving techniques using scratch platform by MIT",
         "link": "https://scratch.mit.edu/projects/1273925678/"
     }
