@@ -28,5 +28,10 @@
         "title": "The Magic Logic Machine",
         "description": "Interactive logic game for children",
         "url": "theMagicMachine.html"
+    },
+    {
+        "title": "Eco-Algorithm: Carbon Optimizer",
+        "description": "Computational Sustainability Framework for ICT in Data Modeling and Simulation Algorithm",
+        "url": "ecoCarbon.html"
     }
 ]

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco-Algorithm: Carbon Optimizer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .impact-bar {
+            transition: width 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes pulse-green {
+            0% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+            }
+        }
+
+        .optimize-glow {
+            animation: pulse-green 2s infinite;
+        }
+    </style>
+</head>
+
+<body class="bg-emerald-50 min-h-screen font-sans text-slate-900 pb-12">
+
+    <!-- Navigation/Header -->
+    <nav class="bg-emerald-700 text-white p-4 shadow-lg mb-8">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="text-2xl font-bold">🌿 Eco-Algorithm</span>
+            </div>
+            <div class="text-sm font-mono bg-emerald-800 px-3 py-1 rounded">
+                STEM for ICT in Data Modeling and Simulation Algorithm
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Grid: Using 10 columns to allow precise control over section widths -->
+    <main class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-10 gap-6">
+
+        <!-- Column 1: Data Input (3/10 width = 30%) -->
+        <div class="lg:col-span-3 space-y-6">
+            <div class="glass-card p-6 rounded-3xl shadow-xl border-4 border-emerald-100">
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 flex items-center">
+                    <span class="mr-2">📊</span> 1. Data Input
+                </h2>
+                <p class="text-sm text-slate-500 mb-6 italic">Model your weekly habits to begin the calculation.</p>
+
+                <div class="space-y-6">
+                    <!-- Transport -->
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Private Car (KM/Week)</label>
+                        <input type="range" id="transport" min="0" max="200" value="50"
+                            class="w-full h-2 bg-emerald-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                        <div class="flex justify-between text-xs mt-1 font-mono">
+                            <span>0km</span>
+                            <span id="val-transport" class="text-emerald-700 font-bold">50km</span>
+                            <span>200km</span>
+                        </div>
+                    </div>
+
+                    <!-- Diet -->
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Diet Type</label>
+                        <select id="diet"
+                            class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                            <option value="4">Heavy Meat Eater (Daily)</option>
+                            <option value="2.5">Average (Some Meat)</option>
+                            <option value="1.5">Vegetarian</option>
+                            <option value="1">Vegan</option>
+                        </select>
+                    </div>
+
+                    <!-- Electricity -->
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">AC/Device Usage (Hours/Day)</label>
+                        <input type="range" id="power" min="0" max="24" value="8"
+                            class="w-full h-2 bg-emerald-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                        <div class="flex justify-between text-xs mt-1 font-mono">
+                            <span>0h</span>
+                            <span id="val-power" class="text-emerald-700 font-bold">8h</span>
+                            <span>24h</span>
+                        </div>
+                    </div>
+
+                    <!-- Waste -->
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Plastic Recycling %</label>
+                        <input type="range" id="waste" min="0" max="100" value="20"
+                            class="w-full h-2 bg-emerald-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                        <div class="flex justify-between text-xs mt-1 font-mono">
+                            <span>0%</span>
+                            <span id="val-waste" class="text-emerald-700 font-bold">20%</span>
+                            <span>100%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEM Note Card -->
+            <div class="bg-emerald-900 text-emerald-100 p-6 rounded-3xl shadow-lg">
+                <h3 class="font-bold mb-2 flex items-center text-sm">
+                    <span class="mr-2">💡</span> STEM Connection
+                </h3>
+                <p class="text-xs leading-relaxed opacity-80">
+                    Software engineers use <b>Data Modeling</b> to represent complex physical systems. We translate
+                    actions into carbon units ($CO_2e$) using conversion constants.
+                </p>
+            </div>
+        </div>
+
+        <!-- Column 2: Dashboard & Optimization Engine (5/10 width = 50%) - EXTENDED -->
+        <div class="lg:col-span-5 space-y-6">
+            <!-- Dashboard Top -->
+            <div class="glass-card p-6 rounded-3xl shadow-xl flex flex-col items-center justify-center text-center">
+                <h2 class="text-slate-500 uppercase tracking-widest text-[10px] font-black mb-1">Total Impact Score</h2>
+                <div class="flex items-baseline space-x-2 mb-4">
+                    <span id="totalScore" class="text-5xl font-black text-emerald-600">0</span>
+                    <span class="text-slate-400 font-bold text-sm">kg CO2/wk</span>
+                </div>
+                <div class="w-full space-y-3">
+                    <div class="bg-slate-100 h-3 rounded-full overflow-hidden border border-slate-200">
+                        <div id="scoreBar" class="impact-bar h-full bg-emerald-500" style="width: 0%"></div>
+                    </div>
+                    <p id="ratingText" class="font-bold text-emerald-800 text-xs italic">Calculating...</p>
+                </div>
+            </div>
+
+            <!-- The Optimization Engine - UPSCALED 50% -->
+            <div class="bg-white p-8 rounded-3xl shadow-2xl border-4 border-emerald-400 relative overflow-hidden">
+                <div
+                    class="absolute -top-3 -right-3 bg-emerald-400 text-white px-8 py-5 rounded-bl-full font-black text-sm rotate-12">
+                    OPTIMIZE</div>
+
+                <h2 class="text-3xl font-black mb-6 flex items-center text-emerald-900">
+                    <span class="mr-3">🚀</span> 2. The Engine
+                </h2>
+
+                <div class="bg-emerald-50 p-6 rounded-2xl border-2 border-emerald-100 mb-6">
+                    <p class="text-sm text-emerald-700 font-medium leading-relaxed">
+                        This algorithm scans inputs to find the highest mathematical <b>reduction potential</b> for your
+                        carbon footprint.
+                    </p>
+                </div>
+
+                <div id="bestActionCard" class="optimize-glow bg-white border-4 border-emerald-500 p-6 rounded-2xl">
+                    <div class="flex items-center space-x-6 mb-4">
+                        <div id="actionEmoji" class="text-7xl">🚌</div>
+                        <p
+                            class="text-xs uppercase font-black text-emerald-500 tracking-widest bg-emerald-50 px-3 py-1 rounded-full">
+                            Top Recommendation</p>
+                    </div>
+                    <h4 id="actionTitle" class="text-2xl font-black text-slate-800 leading-tight mb-3">Analyzing data...
+                    </h4>
+                    <p id="actionDesc" class="text-sm text-slate-500 leading-relaxed font-medium">Adjust the sliders to
+                        begin optimization.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Column 3: Stats & Software Impact (2/10 width = 20%) - REDUCED WIDTH, MEDIUM TEXT -->
+        <div class="lg:col-span-2 space-y-6">
+            <!-- Detailed Breakdown -->
+            <div class="glass-card p-6 rounded-3xl shadow-xl">
+                <h2 class="text-xl font-bold mb-4 border-b pb-2 flex items-center">
+                    <span class="mr-2">📈</span> 3. Breakdown
+                </h2>
+                <h4 class="text-sm font-bold text-slate-400 uppercase mb-4 tracking-tighter">Impact by Category</h4>
+                <div id="breakdownContainer" class="space-y-5">
+                    <!-- Breakdown bars will be here -->
+                </div>
+            </div>
+
+            <!-- Software Impact Card -->
+            <div
+                class="glass-card p-6 rounded-3xl shadow-xl flex flex-col justify-center items-center text-center border-2 border-slate-100">
+                <div class="text-emerald-100 bg-emerald-600 p-3 rounded-full mb-3">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <h4 class="font-bold text-slate-800 text-base">Software Advantage</h4>
+                <p class="text-sm text-slate-500 mt-2 leading-relaxed">
+                    By using algorithms to identify patterns, we can solve environmental problems 10x faster than manual
+                    tracking.
+                </p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="mt-8 text-center text-slate-400 text-xs font-mono">
+        &lt;Computational Sustainability Framework /&gt;
+    </footer>
+
+    <script>
+        // Constants (STEM Data Points)
+        const EMISSION_FACTORS = {
+            transport: 0.18, // kg CO2 per km (avg car)
+            power: 0.5,      // kg CO2 per hour of usage
+            diet_base: 10,   // Baseline multiplier
+            waste_reduction: 0.15 // Reduction factor per 1% recycling
+        };
+
+        const inputs = ['transport', 'diet', 'power', 'waste'];
+
+        function calculate() {
+            const vals = {
+                transport: parseFloat(document.getElementById('transport').value),
+                diet: parseFloat(document.getElementById('diet').value),
+                power: parseFloat(document.getElementById('power').value),
+                waste: parseFloat(document.getElementById('waste').value)
+            };
+
+            // Update Label Displays
+            document.getElementById('val-transport').innerText = `${vals.transport}km`;
+            document.getElementById('val-power').innerText = `${vals.power}h`;
+            document.getElementById('val-waste').innerText = `${vals.waste}%`;
+
+            // Core Logic
+            const scores = {
+                transport: vals.transport * EMISSION_FACTORS.transport,
+                diet: vals.diet * 5,
+                power: vals.power * EMISSION_FACTORS.power * 7,
+                waste: Math.max(0, 10 - (vals.waste * 0.1))
+            };
+
+            const total = Object.values(scores).reduce((a, b) => a + b, 0);
+            const totalFixed = total.toFixed(1);
+
+            // Update Main UI
+            document.getElementById('totalScore').innerText = totalFixed;
+
+            // Visual Gauge (0-150 range for scale)
+            const percentage = Math.min((total / 150) * 100, 100);
+            document.getElementById('scoreBar').style.width = `${percentage}%`;
+
+            let rating = "Great! You are an Eco-Warrior.";
+            let color = "bg-emerald-500";
+            if (total > 40) { rating = "Average. Let's optimize!"; color = "bg-yellow-500"; }
+            if (total > 80) { rating = "High Impact. Action Required."; color = "bg-red-500"; }
+
+            document.getElementById('ratingText').innerText = rating;
+            document.getElementById('scoreBar').className = `impact-bar h-full ${color}`;
+
+            updateBreakdown(scores);
+            runOptimizationEngine(vals, scores);
+        }
+
+        function updateBreakdown(scores) {
+            const container = document.getElementById('breakdownContainer');
+            container.innerHTML = '';
+
+            const total = Object.values(scores).reduce((a, b) => a + b, 0);
+
+            for (const [key, val] of Object.entries(scores)) {
+                const perc = ((val / total) * 100).toFixed(0);
+                container.innerHTML += `
+                    <div class="space-y-1">
+                        <div class="flex justify-between text-sm font-bold uppercase text-slate-500">
+                            <span>${key}</span>
+                            <span>${perc}%</span>
+                        </div>
+                        <div class="bg-slate-100 h-2 rounded-full overflow-hidden">
+                            <div class="bg-emerald-400 h-full" style="width: ${perc}%"></div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function runOptimizationEngine(vals, scores) {
+            let maxCat = 'transport';
+            let maxVal = scores.transport;
+
+            for (const [key, val] of Object.entries(scores)) {
+                if (val > maxVal) {
+                    maxVal = val;
+                    maxCat = key;
+                }
+            }
+
+            const recommendations = {
+                transport: {
+                    title: "Public Transport / Carpool",
+                    desc: `Car travel is your biggest carbon source (${scores.transport.toFixed(1)}kg). Switching to public transport or carpooling could reduce this by over 70%!`,
+                    emoji: "🚌"
+                },
+                diet: {
+                    title: "Try a 'Green' Monday",
+                    desc: `Reducing meat is the fastest way to drop your score. Shifting to plant-based diets can cut this category by 60%.`,
+                    emoji: "🥗"
+                },
+                power: {
+                    title: "Digital Detox / Fan Only",
+                    desc: `High AC usage drives your impact. Cutting just 2 hours of daily AC usage significantly reduces grid strain.`,
+                    emoji: "🔌"
+                },
+                waste: {
+                    title: "Zero-Waste Challenge",
+                    desc: `Your recycling rate is low. Increasing this to 80% would neutralize your weekly waste impact entirely.`,
+                    emoji: "♻️"
+                }
+            };
+
+            const best = recommendations[maxCat];
+            document.getElementById('actionEmoji').innerText = best.emoji;
+            document.getElementById('actionTitle').innerText = best.title;
+            document.getElementById('actionDesc').innerText = best.desc;
+        }
+
+        // Event Listeners
+        inputs.forEach(id => {
+            document.getElementById(id).addEventListener('input', calculate);
+        });
+
+        document.getElementById('diet').addEventListener('change', calculate);
+
+        // Initial Run
+        window.onload = calculate;
+    </script>
+</body>
+
+</html>

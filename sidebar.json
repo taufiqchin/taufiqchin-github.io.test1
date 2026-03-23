@@ -31,6 +31,12 @@
           "target": "_blank"
         },
         {
+          "text": "Edit Research List",
+          "url": "https://github.com/taufiqchin/taufiqchin-github.io.test1/edit/main/research.json",
+          "class": "sidebar-sublink",
+          "target": "_blank"
+        },
+        {
           "text": "📱Reading Apps",
           "class": "w3-hover-white"
         },
