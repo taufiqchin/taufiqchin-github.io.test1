@@ -234,4 +234,3 @@ function loadKnowledgeBase() {
         })
         .catch(error => console.error("Error loading knowledge base:", error));
 }
-

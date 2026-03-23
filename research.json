@@ -18,5 +18,10 @@
         "title": "QR Craft",
         "description": "Premium QR Code Generator",
         "url": "others/QR/index.html"
+    },
+    {
+        "title": "STEM Project (Computer)",
+        "description": "New STEM focused research project",
+        "url": "STEM_Project.html"
     }
 ]

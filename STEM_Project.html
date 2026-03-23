@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>STEM Project (Computer)</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css"> <!-- navi and sidebar color -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+
+<body>
+
+
+
+	<!-- Sidebar -->
+	<nav class="w3-sidebar leftnavi w3-bar-block w3-large w3-animate-left" id="mySidebar">
+		<!-- Content will be loaded dynamically from sidebar.json -->
+	</nav>
+
+	<!-- Overlay effect when opening sidebar on small screens -->
+	<div class="w3-overlay" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+	<!-- ******* Main content ********* -->
+	<div class="w3-main">
+
+		<!-- Hero Section -->
+		<div class="hero-section">
+			<button class="w3-button w3-xlarge menu-btn" onclick="w3_open()" id="openBtn">
+				<i class="fa fa-bars"></i>
+			</button>
+			<h1>&nbsp;&nbsp;STEM Project (Computer)</h1>
+		</div>
+
+		<div class="w3-row-padding latest-updates-section" style="margin: 0 0%;">
+			<div class="w3-col l12 m12 s12">
+				<h2 class="section-title">STEM Computer Science Projects (No Hardware Required)</h2>
+				<div class="w3-container">
+					<p>This guide provides 30 project ideas categorized by educational level, focusing on computational thinking, software development, and social impact.</p>
+
+					<h3 class="w3-text-teal">1. Primary School (Ages 7–12)</h3>
+					<p><strong>Focus:</strong> Logic, Sequencing, and Creative Expression.</p>
+					<ul>
+						<li><strong>The "Human Robot" Sandwich Challenge:</strong> An unplugged activity where children write "code" (instructions) for a teacher to make a peanut butter sandwich. They learn the importance of precision and debugging when the teacher follows literal (and often messy) instructions.</li>
+						<li><strong>Binary Name Bracelets:</strong> Using two colors of beads (representing 0 and 1), kids translate their names into 8-bit ASCII binary code. This teaches data representation.</li>
+						<li><strong>Scratch "Save the Ocean" Game:</strong> A simple game where players catch falling plastic while avoiding fish. Teaches loops, variables (score), and environmental awareness.</li>
+						<li><strong>Conditionals Maze:</strong> A physical maze on the floor where "if-then" cards are placed at junctions (e.g., "If you are wearing blue, turn left; else, turn right"). Introduces branching logic.</li>
+						<li><strong>Pixel Art Logic:</strong> Using graph paper, kids "decode" a string of numbers (Run-Length Encoding) to reveal a hidden image. Teaches image compression and data storage.</li>
+						<li><strong>Scratch Musical Instrument:</strong> Create a virtual piano or drum kit that responds to key presses. Teaches event-driven programming.</li>
+						<li><strong>Sorting Network:</strong> A large-scale floor activity where kids follow lines to sort themselves by height or birth month. Demonstrates parallel processing and sorting algorithms.</li>
+						<li><strong>Interactive Storytelling:</strong> Using Scratch or Twine, kids build a "Choose Your Own Adventure" story. Teaches logical flow and storyboarding.</li>
+						<li><strong>Emoji Cryptography:</strong> Kids create a secret code using emojis to represent letters and exchange "encrypted" messages. Teaches basic cybersecurity and mapping.</li>
+						<li><strong>The Algorithm Dance:</strong> Kids create a sequence of moves (the algorithm) and a "loop" card to repeat it. Teaches modularity and repetition.</li>
+					</ul>
+
+					<h3 class="w3-text-teal">2. Secondary School (Ages 13–18)</h3>
+					<p><strong>Focus:</strong> Problem Solving, Web/App Concepts, and Social Change.</p>
+					<ul>
+						<li><strong>Community Issue Chatbot:</strong> Use a platform like Landbot or Scratch to build a chatbot that answers questions about local recycling rules or mental health resources for teens.</li>
+						<li><strong>Personal Finance Tracker:</strong> A web app (HTML/JS) or advanced spreadsheet that helps students track their savings and visualize spending with charts.</li>
+						<li><strong>Climate Change Simulator:</strong> Build a model in Python or Scratch that shows how rising temperatures affect sea levels or polar bear populations. Teaches variables and mathematical modeling.</li>
+						<li><strong>Fake News Detector:</strong> A project where students research and build a "checklist" app that helps peers verify the credibility of online articles.</li>
+						<li><strong>School Club Management Webpage:</strong> A functional website for a school club with a member directory and event calendar. Teaches UI/UX and web development.</li>
+						<li><strong>Binary Search Mystery Game:</strong> A text-based game where players must find a "guilty" suspect in a list of 100 people in the fewest guesses possible. Teaches algorithmic efficiency.</li>
+						<li><strong>Accessibility Auditor:</strong> Students create a report or a simple browser extension mockup that suggests ways to make the school website more accessible for the visually impaired.</li>
+						<li><strong>App Wireframing for Social Good:</strong> Using tools like Figma or Canva, students design (without coding) an app that solves a local problem (e.g., food waste from the canteen).</li>
+						<li><strong>Python Turtle Fractals:</strong> Using the Turtle library to draw complex geometric patterns (Sierpinski triangles, Koch snowflakes). Teaches recursion and geometry.</li>
+						<li><strong>Password Strength Meter:</strong> A program that analyzes a user's password and gives a "security score" based on length and character variety. Teaches string manipulation and security.</li>
+					</ul>
+
+					<h3 class="w3-text-teal">3. University Level (Outreach/Impact Focused)</h3>
+					<p><strong>Focus:</strong> Scalability, Data Science, and Systems Engineering.</p>
+					<ul>
+						<li><strong>Campus Traffic/Queue Data Analysis:</strong> Analyze open-source or simulated data of student movement to optimize canteen queues or bus schedules.</li>
+						<li><strong>AI-Powered Resume Screener for Peers:</strong> Use a simple NLP library (like NLTK or SpaCy) to help students identify if their resumes match specific internship descriptions.</li>
+						<li><strong>Decentralized Voting Prototype:</strong> A web-based "mock" voting system using simple hashing to show how transparent, tamper-proof records work.</li>
+						<li><strong>Mental Health Sentiment Tracker:</strong> A tool that analyzes public social media trends (using APIs) to visualize the "mood" of a city or campus over time.</li>
+						<li><strong>Open Source Education Portal:</strong> Create a GitHub-hosted repository of localized STEM tutorials in the national language to help rural schools.</li>
+						<li><strong>Automated Lab Assistant:</strong> A Python script that parses raw experimental data (CSV/Excel) from a chemistry or physics lab and automatically generates formatted reports and graphs.</li>
+						<li><strong>Algorithm Visualizer:</strong> A web app that animates how complex algorithms (Dijkstra’s, QuickSort) work step-by-step to be used as a teaching tool for schools.</li>
+						<li><strong>Privacy-First Contact List:</strong> An encrypted contact management system that demonstrates the principles of "Privacy by Design."</li>
+						<li><strong>Disaster Response Map:</strong> A prototype using Google Maps API that allows users to mark "hazard zones" and "safe zones" during local flooding events.</li>
+						<li><strong>Blockchain-lite Supply Chain:</strong> A software model that tracks the "journey" of a product (e.g., fair-trade coffee) using a linked-list-based ledger system.</li>
+					</ul>
+
+					<h3 class="w3-text-teal">Recommendations for Implementation</h3>
+					<ul>
+						<li><strong>Low-Cost Platforms:</strong> Use GitHub Pages or Netlify for hosting websites, Repl.it for coding in the browser, and Scratch for visual learners.</li>
+						<li><strong>The "Impact" Hook:</strong> When presenting to children, always start with the Problem (e.g., "Our school produces too much plastic waste") before the Code.</li>
+						<li><strong>Self-Development:</strong> As a software engineer, you can build a "Base Template" for these projects (e.g., a basic HTML/CSS structure) and let the students "mod" it to make it their own.</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<hr>
+
+		<footer class="main-footer" style="margin: 0 36px;"></footer>
+
+		<!-- END MAIN -->
+	</div>
+
+	<script src="scriptss.js"></script>
+
+</body>
+
+</html>
