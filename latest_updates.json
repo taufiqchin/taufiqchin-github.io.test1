@@ -66,7 +66,7 @@
         "id": 8,
         "order": 8,
         "title": "Eco-Algorithm: Carbon Optimizer (STEM for ICT in Data Modeling and Simulation Algorithm)",
-        "image": "image/EcoAlgorithm.png",
+        "image": "image/ecoAlgorithmSTEM.png",
         "description": "Eco-Algorithm is a cutting-edge computational sustainability framework designed to optimize carbon footprint management through advanced data modeling and simulation. By leveraging sophisticated algorithms, the platform identifies patterns and inefficiencies in resource consumption, providing users with actionable insights to minimize environmental impact. This project demonstrates the practical application of data science in addressing real-world climate challenges, empowering individuals and organizations to make informed decisions that promote ecological balance and long-term sustainability.",
         "link": "ecoCarbon.html"
     },
