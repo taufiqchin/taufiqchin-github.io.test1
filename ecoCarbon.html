@@ -97,21 +97,21 @@
         <aside class="lg:col-span-3 flex flex-col space-y-3 min-h-0">
             <section
                 class="glass-card p-5 rounded-3xl shadow-xl border-4 border-emerald-100 flex-1 flex flex-col overflow-hidden">
-                <h2 class="text-xl font-bold mb-2 border-b-2 border-emerald-50 pb-2 flex items-center shrink-0">
-                    <span class="mr-2 text-2xl">📊</span> 1. Daily Input
+                <h2 class="text-2xl font-bold mb-2 border-b-2 border-emerald-50 pb-2 flex items-center shrink-0">
+                    <span class="mr-2 text-3xl">📊</span> 1. Daily Input
                 </h2>
-                <p class="text-[11px] text-slate-500 mb-4 italic shrink-0">Enter your activities for the last 24 hours.
+                <p class="text-sm text-slate-500 mb-4 italic shrink-0">Enter your activities for the last 24 hours.
                 </p>
 
                 <div class="space-y-4 overflow-y-auto pr-2 flex-1 custom-scroll">
                     <!-- Transport -->
                     <div
                         class="input-group p-4 rounded-2xl border-2 border-transparent transition-colors bg-slate-50/50">
-                        <label class="block text-xs font-black text-slate-700 mb-2 uppercase">Petrol Car Travel
+                        <label class="block text-base font-black text-slate-700 mb-2 uppercase">Petrol Car Travel
                             (KM/Day)</label>
                         <input type="range" id="transport" min="0" max="200" value="50"
                             class="w-full h-2 bg-emerald-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
-                        <div class="flex justify-between text-xs mt-3 font-mono font-bold">
+                        <div class="flex justify-between text-sm mt-3 font-mono font-bold">
                             <span class="text-slate-400">0km</span>
                             <span id="val-transport" class="bg-emerald-600 text-white px-3 py-1 rounded-lg">50km</span>
                             <span class="text-slate-400">200km</span>
@@ -121,9 +121,9 @@
                     <!-- Diet -->
                     <div
                         class="input-group p-4 rounded-2xl border-2 border-transparent transition-colors bg-slate-50/50">
-                        <label class="block text-xs font-black text-slate-700 mb-2 uppercase">Today's Meals</label>
+                        <label class="block text-base font-black text-slate-700 mb-2 uppercase">Today's Meals</label>
                         <select id="diet"
-                            class="w-full bg-white border-2 border-slate-200 rounded-xl p-3 text-sm focus:ring-4 focus:ring-emerald-200 outline-none font-bold">
+                            class="w-full bg-white border-2 border-slate-200 rounded-xl p-3 text-lg focus:ring-4 focus:ring-emerald-200 outline-none font-bold">
                             <option value="2.8">Nasi Lemak + Meat (Heavy)</option>
                             <option value="1.9">Standard Mixed Rice (Medium)</option>
                             <option value="0.9">Vegetarian (No Meat)</option>
@@ -134,11 +134,11 @@
                     <!-- Electricity -->
                     <div
                         class="input-group p-4 rounded-2xl border-2 border-transparent transition-colors bg-slate-50/50">
-                        <label class="block text-xs font-black text-slate-700 mb-2 uppercase">AC Usage
+                        <label class="block text-base font-black text-slate-700 mb-2 uppercase">AC Usage
                             (Hours/Day)</label>
                         <input type="range" id="power" min="0" max="24" value="8"
                             class="w-full h-2 bg-emerald-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
-                        <div class="flex justify-between text-xs mt-3 font-mono font-bold">
+                        <div class="flex justify-between text-sm mt-3 font-mono font-bold">
                             <span class="text-slate-400">0h</span>
                             <span id="val-power" class="bg-emerald-600 text-white px-3 py-1 rounded-lg">8h</span>
                             <span class="text-slate-400">24h</span>
@@ -148,11 +148,11 @@
                     <!-- Waste -->
                     <div
                         class="input-group p-4 rounded-2xl border-2 border-transparent transition-colors bg-slate-50/50">
-                        <label class="block text-xs font-black text-slate-700 mb-2 uppercase">Recycling Effort
+                        <label class="block text-base font-black text-slate-700 mb-2 uppercase">Recycling Effort
                             (%)</label>
                         <input type="range" id="waste" min="0" max="100" value="20"
                             class="w-full h-2 bg-emerald-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
-                        <div class="flex justify-between text-xs mt-3 font-mono font-bold">
+                        <div class="flex justify-between text-sm mt-3 font-mono font-bold">
                             <span class="text-slate-400">0%</span>
                             <span id="val-waste" class="bg-emerald-600 text-white px-3 py-1 rounded-lg">20%</span>
                             <span class="text-slate-400">100%</span>
@@ -248,7 +248,8 @@
                 </div>
                 <h4 class="font-black text-slate-800 text-sm uppercase">Software Power</h4>
                 <p class="text-sm text-slate-500 mt-2 leading-relaxed font-bold italic">
-                    Algorithms solve climate problems 10x faster than humans.
+                    By using algorithm to identify patterns, we can solve environmental problem 10x faster than manual
+                    tracking.
                 </p>
             </div>
         </aside>
