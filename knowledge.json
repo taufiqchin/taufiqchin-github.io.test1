@@ -1,4 +1,4 @@
-[
+ch[
     {
         "id": 1,
         "category": "CS50",
@@ -57,7 +57,7 @@
     }
     {
         "id": 10,
-        "category": "Programming",
+        "category": "Research",
         "title": "Stop Vibe Coding (Do This Instead)",
         "videoUrl": "https://www.youtube.com/embed/qVajpj_1eDQ?si=czF4LWDarLIvC7zM"
     }
