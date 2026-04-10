@@ -1,5 +1,11 @@
 [
     {
+        "id": 9,
+        "category": "Programming",
+        "title": "How To Learn To Code In 2026",
+        "videoUrl": "https://youtu.be/oshQg1uSRvg?si=ujWX1z7IlsMLD7yU"
+    },
+    {
         "id": 1,
         "category": "CS50",
         "title": "CS50: Phone Book",
@@ -48,12 +54,6 @@
         "category": "Programming",
         "title": "I Finally Understand How to Learn Coding",
         "videoUrl": "https://www.youtube.com/embed/TOlL02slaag"
-    },
-    {
-        "id": 9,
-        "category": "Programming",
-        "title": "Learning to Code Feels Harder Than Ever — Here’s Why",
-        "videoUrl": "https://youtu.be/4ouxJtdZiIo?si=BrH-1ilH5OA7mZfw"
     },
     {
         "id": 10,
