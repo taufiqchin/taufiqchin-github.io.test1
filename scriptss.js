@@ -234,3 +234,16 @@ function loadKnowledgeBase() {
         })
         .catch(error => console.error("Error loading knowledge base:", error));
 }
+
+// Save scroll position on scroll
+window.addEventListener('scroll', function() {
+    sessionStorage.setItem('scrollPosition', window.scrollY);
+});
+
+// Restore scroll position on load
+window.addEventListener('load', function() {
+    const scrollPosition = sessionStorage.getItem('scrollPosition');
+    if (scrollPosition) {
+        window.scrollTo(0, parseInt(scrollPosition));
+    }
+});
