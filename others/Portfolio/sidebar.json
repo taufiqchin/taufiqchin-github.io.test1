@@ -4,31 +4,12 @@
     "link": "index.html",
     "subtitle": "Professional Experience & Work",
     "Email": "mtaufiq@iium.edu.my",
-    "session": "Spring 2025"  
+    "directory": "https://www.iium.edu.my/directory/show/TXVSNS9XdkhzSCtYVFZya0J2TC9RQT09",
+    "QRCode": "picture/portfolio_qr.PNG"
   },
   "sections": [
     {
       "hr": true
-    },
-    {
-      "links": [
-        {
-          "text": "Overview",
-          "url": "#"
-        },
-        {
-          "text": "Professional Experience",
-          "url": "#"
-        },
-        {
-          "text": "Skills & Expertise",
-          "url": "#"
-        },
-        {
-          "text": "Projects",
-          "url": "#"
-        }
-      ]
     },
     {
       "hr": true

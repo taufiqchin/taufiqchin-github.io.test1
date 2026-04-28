@@ -61,7 +61,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 const header = document.createElement("header");
                 header.innerHTML = `
                     <h1><a href="${data.header.link}">${data.header.title}</a></h1>
-                    <p><a href="${data.header.subLink}">${data.header.subtitle}</a><br>${data.header.Email}</p>
+                    <p><a href="${data.header.subLink}">${data.header.subtitle}</a><br>${data.header.Email}</p><br>
+                    <div style="text-align: center;"><img src="${data.header.QRCode}" alt="QR Code" style="pointer-events: none; width: 100%;"></div>
                 `;
                 sidebar.appendChild(header);
             }
@@ -191,7 +192,7 @@ function loadPortfolioContent() {
                             html += `<hr style="margin: 10px 0;">`;
                             html += `<p><strong>Innovation Highlight:</strong> ${subject.case_study.overview}</p>`;
 
-                            if (subject.case_study.samples) {
+                            if (subject.case_study.samples && subject.case_study.samples.length > 0) {
                                 html += `<fieldset style="border: 1px solid #ccc; border-radius: 4px; padding: 10px; margin: 10px 0;">`;
                                 html += `<legend style="font-weight: bold; padding: 0 5px;">Sample Student Reports</legend>`;
                                 html += `<details>`;
@@ -207,7 +208,7 @@ function loadPortfolioContent() {
                         }
 
                         // Render images inside card if they exist
-                        if (subject.images) {
+                        if (subject.images && subject.images.length > 0) {
                             html += `<hr style="margin: 10px 0;">`;
                             html += `<fieldset style="border: 1px solid #ccc; border-radius: 4px; padding: 10px; margin: 10px 0;">`;
                             html += `<legend style="font-weight: bold; padding: 0 5px;">Artifacts</legend>`;
@@ -278,11 +279,11 @@ function loadPortfolioContent() {
             // Load Class Gallery
             if (data.class_gallery) {
                 const container = document.getElementById("gallery-content");
-                let html = `<div class="w3-row">`;
+                let html = `<div class="w3-row" style="display: flex; flex-wrap: nowrap; overflow-x: auto; align-items: center;">`;
 
                 if (data.class_gallery.images) {
                     data.class_gallery.images.forEach(img => {
-                        html += `<div class="w3-third w3-container"><img src="picture/${img}" alt="Class" class="clickable-image" onclick="openImageModal(this.src)" style="width:100%; margin-bottom:10px; cursor:pointer;"></div>`;
+                        html += `<div style="flex: 1; min-width: 200px; padding: 2px;"><img src="picture/${img}" alt="Class" class="clickable-image" onclick="openImageModal(this.src)" style="width:100%; margin-bottom:10px; cursor:pointer;"></div>`;
                     });
                 }
                 html += `</div>`;

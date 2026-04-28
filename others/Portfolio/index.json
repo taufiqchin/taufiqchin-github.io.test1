@@ -32,6 +32,35 @@
     "description": "Redefining the classroom experience through cutting-edge technology, creative instruction, and hands-on case studies.",
     "subjects": [
       {
+        "name": "Web Technologies",
+        "icon": "fa-code",
+        "description": "This course aims to expose basic web programming skills to students and focuses on client-side scripting. Students have the opportunity to learn the introduction of web page design by using HTML and CSS. It continues with web page validation and interaction with JavaScript. This course enables students to learn about the current standards of client-side frameworks such as API, AJAX and JSON through lecturers, discussion, and practical exercises.",
+        "tech_stack": [
+          "HTML5",
+          "CSS3",
+          "JavaScript",
+          "AJAX",
+          "JSON",
+          "APIs"
+        ],
+        "videos": [
+          {
+            "title": "Setup VS Code for Web Dev",
+            "url": "https://www.youtube.com/embed/mL1IcxIUd5Y"
+          },
+          {
+            "title": "Learn CSS Basics in 10 Min",
+            "url": "https://www.youtube.com/embed/Dfj0B6aL7Hs"
+          }
+        ],
+        "case_study": {
+          "overview": "Sample student reports for Web Technologies will be added here.",
+          "highlights": [],
+          "samples": []
+        },
+        "images": []
+      },
+      {
         "name": "Ethical Digital Literacy",
         "icon": "fa-user-shield",
         "description": "Ethical Digital Literacy is a comprehensive course designed to equip students with essential skills and knowledge required to navigate the 21st century confidently and ethically. In this course, participants will explore the fundamental concepts of exploring information, searching tools, and practice skills associated with digital literacy, enabling them to engage with technology effectively and responsibly in various aspects of their personal and professional lives without neglecting the ethics. By the end of this course, students will have developed a strong foundation in digital literacy, empowering them to navigate the digital landscape confidently, responsibly, and ethically, while leveraging digital tools for personal and professional growth.",
@@ -83,30 +112,8 @@
           "CS5.png",
           "CS6.PNG"
         ]
-      },
-      {
-        "name": "Web Technologies",
-        "icon": "fa-code",
-        "description": "This course aims to expose basic web programming skills to students and focuses on client-side scripting. Students have the opportunity to learn the introduction of web page design by using HTML and CSS. It continues with web page validation and interaction with JavaScript. This course enables students to learn about the current standards of client-side frameworks such as API, AJAX and JSON through lecturers, discussion, and practical exercises.",
-        "tech_stack": [
-          "HTML5",
-          "CSS3",
-          "JavaScript",
-          "AJAX",
-          "JSON",
-          "APIs"
-        ],
-        "videos": [
-          {
-            "title": "Setup VS Code for Web Dev",
-            "url": "https://www.youtube.com/embed/mL1IcxIUd5Y"
-          },
-          {
-            "title": "Learn CSS Basics in 10 Min",
-            "url": "https://www.youtube.com/embed/Dfj0B6aL7Hs"
-          }
-        ]
       }
+      
     ]
   },
   "student_engagement": {
@@ -200,7 +207,7 @@
     ]
   },
   "research": {
-    "description": "Research interests include software engineering with focus on requirements engineering, ethical AI, and computing education.",
+    "description": "Research interests include software engineering with focus on requirements engineering, Web development, Mobile Application Development, Artificial Intelligence (AI), and computing education.",
     "areas": [
       "Requirements Engineering",
       "Ethical AI",
