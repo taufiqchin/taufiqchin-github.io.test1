@@ -1,30 +1,24 @@
 {
   "education_teaching_philosophy": {
     "title": "Education & Teaching Philosophy",
-    "description": "As an educator, my goal is to equip students with essential Ethical Digital Literacy skills, preparing them to navigate and contribute to the modern digital landscape responsibly. My teaching philosophy is built on three key pillars:",
+    "description": "<h5>As an educator, I follow a 'build-to-learn' approach, moving beyond traditional lectures into active development. In my classes, students apply technical concepts immediately through practical workshops. We focus on developing functional, real-world apps, ensuring that every student gains the confidence to solve complex industry problems.",
     "pillars": [
       {
-        "title": "Understanding the Fundamentals",
+        "title": "I don't just teach code—I teach how to solve puzzles.",
         "points": [
-          "Students begin by learning about computer components and how they function.",
-          "Exposure to current technology trends, including Industrial Revolution (IR) 4.0 & 5.0, and understanding how these revolutions differ.",
-          "Introducing emerging technologies like Artificial Intelligence (AI) and Cloud Computing to help students grasp their impact on society."
+          "Instead of just memorizing tags like HTML or CSS, my students learn the brain behind the web. We play with things like APIs and JSON so they can understand how apps actually talk to each other. Once you learn how to solve a problem here, you can solve a problem anywhere!"
         ]
       },
       {
-        "title": "Digital Awareness & Cybersecurity",
+        "title": "We learn by doing real stuff.",
         "points": [
-          "Teaching the internet ecosystem, including websites, Creative Commons Licensing (CCL), and digital rights.",
-          "Enhancing students’ awareness of cybersecurity threats such as malware, cookies, viruses, and encryption (e.g., cipher text in HTTPS).",
-          "Understanding ethical concerns, including plagiarism detection and digital responsibility."
+          "My classroom feels like a real job, not a quiet library. We use <b>HTML, CSS and JavaScript</b> to develop real-world applications, <b>Python and Excel</b> to look at data and learn how to send professional emails that actually get replies."
         ]
       },
       {
-        "title": "Practical Digital Skills for the Real World",
+        "title": "My goal is simple:",
         "points": [
-          "Hands-on training in email communication, including writing effective emails, attachments, and email security.",
-          "Using Canva for creative content creation and visual communication.",
-          "Introducing data analysis using Python, empowering students with fundamental coding and analytical skills."
+          "I want my students to walk out feeling like bosses. I give them the tools they need so they can jump into the tech world with a big smile and the confidence to build something amazing."
         ],
         "images": [
           "E1.PNG",

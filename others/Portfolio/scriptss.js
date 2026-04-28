@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             const sidebar = document.getElementById("mySidebar");
-            sidebar.innerHTML = ""; // Clear existing content
+
 
             // Add header
             if (data.header) {
@@ -66,36 +66,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 sidebar.appendChild(header);
             }
 
-            // Add buttons
-            if (data.buttons) {
-                data.buttons.forEach(button => {
-                    const btn = document.createElement("button");
-                    btn.textContent = button.label;
-                    btn.className = "btn btn-link d-block pl-0 pt-0";
-                    btn.style.color = "white";
-
-                    if (button.icon) {
-                        btn.innerHTML = `<i class="${button.icon}"></i> ${button.label}`;
-                    }
-                    if (button.type === "modal") {
-                        btn.setAttribute("data-toggle", "modal");
-                        btn.setAttribute("data-target", button.action);
-                    }
-                    if (button.type === "toggle") {
-                        btn.setAttribute("aria-controls", "nav");
-                        btn.setAttribute("aria-expanded", "false");
-                        btn.setAttribute("data-toggle", "collapse");
-                        btn.setAttribute("data-target", button.target);
-                    }
-                    sidebar.appendChild(btn);
-                });
-            }
-
             // Add other sections
             data.sections.forEach(section => {
-                if (section.hr) {
-                    sidebar.appendChild(document.createElement("hr"));
-                }
+
                 if (section.links) {
                     section.links.forEach(link => {
                         const a = document.createElement("a");
@@ -152,9 +125,9 @@ function loadPortfolioContent() {
                 if (data.education_teaching_philosophy.pillars) {
                     data.education_teaching_philosophy.pillars.forEach((pillar, index) => {
                         html += `<h3>${pillar.title}</h3>`;
-                        html += `<ul>`;
+                        html += `<ul class="teaching-bullets">`;
                         pillar.points.forEach(point => {
-                            html += `<li>${point}</li>`;
+                            html += `<li>👉 ${point}</li>`;
                         });
                         html += `</ul>`;
 
@@ -219,24 +192,34 @@ function loadPortfolioContent() {
                             html += `<p><strong>Innovation Highlight:</strong> ${subject.case_study.overview}</p>`;
 
                             if (subject.case_study.samples) {
-                                html += `<div class="w3-bar-block w3-light-grey w3-round" style="max-height: 150px; overflow-y: auto; padding: 10px;">`;
-                                html += `<p style="margin: 0 0 5px 5px;"><small>Sample Student Reports:</small></p>`;
+                                html += `<fieldset style="border: 1px solid #ccc; border-radius: 4px; padding: 10px; margin: 10px 0;">`;
+                                html += `<legend style="font-weight: bold; padding: 0 5px;">Sample Student Reports</legend>`;
+                                html += `<details>`;
+                                html += `<summary style="cursor: pointer; font-size: small;">Click to view sample reports</summary>`;
+                                html += `<div class="w3-bar-block w3-light-grey w3-round" style="max-height: 150px; overflow-y: auto; padding: 10px; margin-top: 10px;">`;
                                 subject.case_study.samples.forEach(study => {
                                     html += `<a href="${study.file}" target="_blank" class="w3-bar-item w3-button w3-small"><i class="fa fa-file-pdf-o w3-text-red"></i> ${study.title}</a>`;
                                 });
                                 html += `</div>`;
+                                html += `</details>`;
+                                html += `</fieldset>`;
                             }
                         }
 
                         // Render images inside card if they exist
                         if (subject.images) {
                             html += `<hr style="margin: 10px 0;">`;
-                            html += `<p><strong>Artifacts:</strong></p>`;
-                            html += `<div class="w3-row">`;
+                            html += `<fieldset style="border: 1px solid #ccc; border-radius: 4px; padding: 10px; margin: 10px 0;">`;
+                            html += `<legend style="font-weight: bold; padding: 0 5px;">Artifacts</legend>`;
+                            html += `<details>`;
+                            html += `<summary style="cursor: pointer; font-size: small;">Click to view artifacts</summary>`;
+                            html += `<div class="w3-row" style="margin-top: 10px;">`;
                             subject.images.forEach(img => {
                                 html += `<div class="w3-quarter w3-container" style="padding: 2px;"><img src="picture/${img}" alt="Artifact" onclick="openImageModal(this.src)" style="width:100%; cursor:pointer;" class="w3-hover-opacity w3-round"></div>`;
                             });
                             html += `</div>`;
+                            html += `</details>`;
+                            html += `</fieldset>`;
                         }
 
                         html += `

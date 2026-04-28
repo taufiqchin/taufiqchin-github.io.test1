@@ -1,13 +1,9 @@
-* {
-  box-sizing: border-box;
-}
-
 html,
 body {
   margin: 0 !important;
   padding: 0 !important;
-  background-color: #F5F5F5;
-  font-family: 'Roboto', sans-serif;
+  background-color: #f5f2dd;
+  font-family: arial;
   overflow-x: hidden;
   width: 100% !important;
   min-height: 100vh;
@@ -34,21 +30,20 @@ body {
 }
 
 .menu-btn {
-  display: block;
-  /* Show menu button on mobile/tablet */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Fit full navbar height */
   position: relative;
   z-index: 1001;
   background-color: #2c3e50;
   color: white;
   border-radius: 4px;
-  padding: 7px 11px;
-  /* Reduced by ~7% (from 8px 12px) */
+  padding: 0 11px; /* Remove vertical padding, keep horizontal */
   font-size: 22px !important;
-  /* Reduced by ~7% (from 24px) */
   border: none;
   cursor: pointer;
   margin-right: 15px;
-  /* Gap between button and title */
 }
 
 /* Desktop view: always show sidebar, hide hamburger */
@@ -66,16 +61,16 @@ body {
 }
 
 .leftnavi {
-  background-color: #2c3e50;
+  background-color: #c5a059;
   /* Softer, eye-friendly Charcoal Navy */
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 /* Sidebar Header Styling */
 #mySidebar header {
   padding: 24px 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 #mySidebar header h1,
@@ -84,7 +79,7 @@ body {
   font-weight: 700;
   margin: 0;
   line-height: 1.2;
-  color: white !important;
+  color: rgb(0, 0, 0) !important;
   text-decoration: none;
 }
 
@@ -92,7 +87,7 @@ body {
 #mySidebar header p a {
   font-size: 13px;
   margin: 0px 0 0 0;
-  color: white !important;
+  color: rgb(0, 0, 0) !important;
   text-decoration: none;
 }
 
@@ -156,8 +151,7 @@ body {
 }
 
 .hero-section {
-  padding: 0 0 10px 0 !important;
-  /* No more left padding for floating button */
+  padding: 0 0 0 0 !important; /* Remove bottom padding */
   background: rgb(155, 192, 209);
   border-radius: 0;
   width: calc(100% + 10px) !important;
@@ -165,6 +159,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  height: 60px; /* Set fixed height for navbar */
 }
 
 .hero-section h1 {
@@ -172,57 +167,8 @@ body {
   font-size: 32px;
   font-weight: 700;
   color: #2c3e50;
-  margin: 8px 0 0 0 !important;
+  margin: 0 !important; /* Remove top margin */
   padding: 0 !important;
-}
-
-.hero-section p {
-  font-size: 18px;
-  color: #555;
-  line-height: 1.6;
-}
-
-.content-card {
-  background: white;
-  padding: 0;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  margin-bottom: 24px;
-  transition: transform 0.2s ease;
-}
-
-.content-card:hover {
-  transform: translateY(-4px);
-}
-
-.content-card .card-padding {
-  padding: 20px;
-}
-
-.content-card iframe {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border: none;
-}
-
-.content-card h3 {
-  font-size: 20px;
-  font-weight: 600;
-  margin-top: 0;
-  color: #2c3e50;
-}
-
-.content-card p {
-  font-size: 14px;
-  color: #666;
-  line-height: 1.5;
-}
-
-.responsive {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
 }
 
 .section-title {
@@ -239,7 +185,7 @@ body {
 
 @media (min-width: 993px) {
   .w3-main {
-    padding: 0 15px 40px 15px !important;
+    padding: 0 15px 24px 15px !important;
     /* Uniform 15px alignment */
   }
 }
@@ -260,116 +206,10 @@ body {
   }
 }
 
-/* Dynamic Update Item Styling */
-.update-item-border {
-  border: 1px solid #ddd;
-  border-radius: 2px;
-  padding: 16px;
-  margin-bottom: 12px;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.2s ease;
-}
-
-.update-item-border:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Latest Updates Image Sizing */
-#latest-updates-container img {
-  width: 80%;
-  height: auto;
-  margin: 0 3px;
-  display: block;
-}
-
-/* Latest Updates Content Alignment */
-#latest-updates-container .w3-twothird {
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  padding: 20px;
-}
-
-#latest-updates-container .w3-third {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Latest Updates - Add 1% gap on mobile only */
-@media (max-width: 992px) {
-  .latest-updates-section {
-    padding-left: 1% !important;
-    padding-right: 1% !important;
-  }
-}
-
-/* Knowledge Base Grid Layout */
-.knowledge-category-title {
-  font-size: 22px;
-  font-weight: 600;
-  color: #2c3e50;
-  margin-top: 16px;
-  margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid #009688;
-  display: inline-block;
-}
-
-.knowledge-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
-  margin-bottom: 24px;
-}
-
-/* Responsive breakpoints for max 6 per row */
-@media (min-width: 1800px) {
-  .knowledge-grid {
-    grid-template-columns: repeat(6, 1fr);
-  }
-}
-
-@media (min-width: 1400px) and (max-width: 1799px) {
-  .knowledge-grid {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
-
-@media (min-width: 1100px) and (max-width: 1399px) {
-  .knowledge-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (min-width: 800px) and (max-width: 1099px) {
-  .knowledge-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 500px) and (max-width: 799px) {
-  .knowledge-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 499px) {
-  .knowledge-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.knowledge-item {
-  width: 100%;
-}
-
-/* Knowledge Base Section - Add 3% gap from sidebar on desktop */
-@media (min-width: 993px) {
-  .knowledge-base-section {
-    margin-left: 1% !important;
-  }
+/* Teaching Philosophy Bullets */
+.teaching-bullets {
+  list-style: none;
+  padding-left: 0;
 }
 
 /* Main Footer Styling */
