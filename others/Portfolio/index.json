@@ -19,6 +19,19 @@
         "title": "My goal is simple:",
         "points": [
           "I want my students to walk out feeling like bosses. I give them the tools they need so they can jump into the tech world with a big smile and the confidence to build something amazing."
+        ]
+      }
+    ]
+  },
+
+
+  "self_philosophy": {
+    "description": "<h5>As an educator, I follow a 'build-to-learn' approach, moving beyond traditional lectures into active development. In my classes, students apply technical concepts immediately through practical workshops. We focus on developing functional, real-world apps, ensuring that every student gains the confidence to solve complex industry problems.",
+    "pillars": [
+      {
+        "title": "My goal is simple:",
+        "points": [
+          "I want my students..."
         ],
         "images": [
           "E1.PNG",
@@ -27,6 +40,8 @@
       }
     ]
   },
+
+
   "innovation_teaching": {
     "title": "Innovation in Teaching",
     "description": "Redefining the classroom experience through cutting-edge technology, creative instruction, and hands-on case studies.",

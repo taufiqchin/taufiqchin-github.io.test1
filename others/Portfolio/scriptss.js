@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Load Portfolio Content from index.json
     loadPortfolioContent();
 
-    // Load Profile from infoSidebar.json
+    // Load Profile from personalProfile.json
     loadProfileCard();
 });
 
@@ -141,6 +141,67 @@ function loadPortfolioContent() {
                         }
                     });
                 }
+                container.innerHTML = html;
+            }
+
+            // Load Self Philosophy
+            if (data.self_philosophy) {
+                const container = document.getElementById("self-content");
+                let html = "";
+                const images = [];
+
+                if (data.self_philosophy.title) {
+                    html += `<h3>${data.self_philosophy.title}</h3>`;
+                }
+
+                if (data.self_philosophy.description) {
+                    html += `<p>${data.self_philosophy.description}</p>`;
+                }
+
+                if (data.self_philosophy.content) {
+                    data.self_philosophy.content.forEach(item => {
+                        html += `<p>${item}</p>`;
+                    });
+                }
+
+                if (data.self_philosophy.points) {
+                    html += `<ul class="teaching-bullets">`;
+                    data.self_philosophy.points.forEach(point => {
+                        html += `<li>${point}</li>`;
+                    });
+                    html += `</ul>`;
+                }
+
+                if (data.self_philosophy.images && data.self_philosophy.images.length > 0) {
+                    images.push(...data.self_philosophy.images);
+                }
+
+                if (data.self_philosophy.pillars) {
+                    data.self_philosophy.pillars.forEach(pillar => {
+                        if (pillar.title) {
+                            html += `<h3>${pillar.title}</h3>`;
+                        }
+                        if (pillar.points) {
+                            html += `<ul class="teaching-bullets">`;
+                            pillar.points.forEach(point => {
+                                html += `<li>${point}</li>`;
+                            });
+                            html += `</ul>`;
+                        }
+                        if (pillar.images && pillar.images.length > 0) {
+                            images.push(...pillar.images);
+                        }
+                    });
+                }
+
+                if (images.length > 0) {
+                    html = `<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">` +
+                        `<div style="flex: 1 1 60%; min-width: 260px;">${html}</div>` +
+                        `<div style="flex: 0 0 30%; min-width: 220px; display: flex; flex-direction: column; gap: 10px;">` +
+                        images.map(img => `<div><img src="picture/${img}" alt="Self Philosophy" onclick="openImageModal(this.src)" style="width:100%; cursor:pointer;"></div>`).join("") +
+                        `</div></div>`;
+                }
+
                 container.innerHTML = html;
             }
 
@@ -375,7 +436,7 @@ function loadPortfolioContent() {
 }
 
 function loadProfileCard() {
-    fetch("infoSidebar.json")
+    fetch("personalProfile.json")
         .then(response => response.json())
         .then(data => {
             const profileCard = document.getElementById("profile-card");
