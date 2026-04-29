@@ -6,15 +6,18 @@
         "videoUrl": "https://www.youtube.com/embed/oshQg1uSRvg"
     },
     {
+        "id": 12,
+        "category": "Programming",
+        "title": "Hgentic AI's Hidden Complexity: Why Governance is Breaking",
+        "videoUrl": "https://www.youtube.com/embed/sWKnqhT-teQ"
+    },
+    {
         "id": 11,
         "category": "Education Change",
         "title": "Positioning IIUM within the Malaysia Higher Education Blueprint",
         "videoUrl": "https://www.youtube.com/embed/m9e1AweTszk",
         "description": "Higher Edu Blueprint - Prof Asma Ismail"
     },
-   
-
-
     {
         "id": 3,
         "category": "Artificial Intelligence",
@@ -28,9 +31,6 @@
         "title": "How artificial intelligence is reshaping college for students and professors",
         "videoUrl": "https://www.youtube.com/embed/rbCQKODKv1o"
     },
-
-    
-    
     {
         "id": 4,
         "category": "Research",
@@ -67,10 +67,7 @@
         "title": "Stop Vibe Coding (Do This Instead)",
         "videoUrl": "https://www.youtube.com/embed/qVajpj_1eDQ?si=czF4LWDarLIvC7zM"
     },
-
-
-
-     {
+    {
         "id": 1,
         "category": "CS50",
         "title": "CS50: Phone Book",
