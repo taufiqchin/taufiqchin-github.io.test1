@@ -68,6 +68,13 @@
         "videoUrl": "https://www.youtube.com/embed/qVajpj_1eDQ?si=czF4LWDarLIvC7zM"
     },
     {
+        "id": 13,
+        "category": "CS50",
+        "title": "Harvard Professor: CS50, What Matters More Than Programming Now | David J Malan",
+        "videoUrl": "https://www.youtube.com/embed/bB2o81DnKHk",
+        "description": "David Malan is a Harvard professor known for turning CS50 into a popular online computer science course. We discussed the story behind CS50, how to lecture well, and how AI is changing CS education including in cheating/academic dishonesty."
+    },
+    {
         "id": 1,
         "category": "CS50",
         "title": "CS50: Phone Book",
