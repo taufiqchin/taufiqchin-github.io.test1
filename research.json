@@ -1,8 +1,8 @@
 [
     {
-        "title": "iConsult3.0",
-        "description": "Advanced consultation platform",
-        "url": "others/iConsult3.0/chapter2.html"
+        "title": "Capture Moments",
+        "description": "Capture images",
+        "url": "others/Capture moment/capture-moments.zip"
     },
     {
         "title": "Audiogram",
@@ -38,5 +38,10 @@
         "title": "STEM: Digital Epidemiology Simulator",
         "description": "Interactive outbreak simulator using Monte Carlo methods to model infection spread and containment strategies.",
         "url": "digitalEpidemiologySim.html"
+    },
+    {
+        "title": "iConsult3.0",
+        "description": "Advanced consultation platform",
+        "url": "others/iConsult3.0/chapter2.html"
     }
 ]
