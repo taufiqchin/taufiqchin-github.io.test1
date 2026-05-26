@@ -512,3 +512,379 @@ function openImageModal(src) {
         modalImg.src = src;
     }
 }
+
+function exportPortfolioPdf() {
+    window.print();
+}
+
+function stripHtml(html) {
+    if (!html) return "";
+    const div = document.createElement("div");
+    div.innerHTML = html;
+    return (div.textContent || div.innerText || "").replace(/\s+/g, " ").trim();
+}
+
+function truncateText(text, maxLen) {
+    if (!text) return "";
+    const clean = stripHtml(text);
+    if (clean.length <= maxLen) return clean;
+    return clean.slice(0, maxLen - 3) + "...";
+}
+
+function firstSentence(text) {
+    const clean = stripHtml(text);
+    const match = clean.match(/^[^.!?]+[.!?]?/);
+    return match ? match[0].trim() : truncateText(clean, 200);
+}
+
+function isSampleEntry(text) {
+    return !text || /\[sample\]/i.test(text);
+}
+
+function pptAddImageSafe(slide, path, opts) {
+    try {
+        slide.addImage({ path: path, ...opts });
+        return true;
+    } catch (e) {
+        console.warn("PPT image skipped:", path, e);
+        return false;
+    }
+}
+
+function pptAddTitleSlide(slide, title, subtitle) {
+    slide.addText(title, {
+        x: 0.5,
+        y: 1.8,
+        w: 9,
+        h: 1.2,
+        fontSize: 28,
+        bold: true,
+        color: "2c3e50",
+        align: "center"
+    });
+    if (subtitle) {
+        slide.addText(subtitle, {
+            x: 0.5,
+            y: 3.1,
+            w: 9,
+            h: 1.5,
+            fontSize: 16,
+            color: "555555",
+            align: "center"
+        });
+    }
+}
+
+function pptAddSectionHeader(slide, title) {
+    slide.addText(title, {
+        x: 0.5,
+        y: 0.35,
+        w: 9,
+        h: 0.6,
+        fontSize: 22,
+        bold: true,
+        color: "2c3e50"
+    });
+}
+
+async function exportPortfolioPpt() {
+    const btn = document.getElementById("exportPptBtn");
+    if (typeof PptxGenJS === "undefined") {
+        alert("PowerPoint library failed to load. Please refresh the page and try again.");
+        return;
+    }
+
+    const originalHtml = btn ? btn.innerHTML : "";
+    if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Generating...';
+    }
+
+    try {
+        const [indexRes, profileRes] = await Promise.all([
+            fetch("index.json"),
+            fetch("personalProfile.json")
+        ]);
+        if (!indexRes.ok || !profileRes.ok) {
+            throw new Error("Could not load portfolio data.");
+        }
+        const data = await indexRes.json();
+        const profileData = await profileRes.json();
+        const profile = profileData.profile || {};
+
+        const pptx = new PptxGenJS();
+        pptx.author = profile.name || "Portfolio";
+        pptx.title = "Teaching Portfolio Summary";
+        pptx.layout = "LAYOUT_16x9";
+
+        const titleOpts = { fontSize: 14, color: "333333" };
+        const bulletOpts = { fontSize: 12, color: "444444", bullet: true };
+
+        // Slide 1: Title
+        const s1 = pptx.addSlide();
+        pptAddTitleSlide(
+            s1,
+            profile.name || "Teaching Portfolio",
+            [profile.position, profile.department].filter(Boolean).join("\n")
+        );
+
+        // Slide 2: Profile
+        const s2 = pptx.addSlide();
+        pptAddSectionHeader(s2, "Profile");
+        if (profile.image) {
+            pptAddImageSafe(s2, profile.image, { x: 0.5, y: 1.1, w: 2.2, h: 2.8 });
+        }
+        s2.addText(
+            [
+                { text: profile.quote ? `"${profile.quote}"` : "", options: { italic: true, ...titleOpts } },
+                { text: "\n\nExpertise: " + (profile.expertise || "—"), options: bulletOpts },
+                { text: "\nJoined: " + (profile.dateJoin || "—"), options: bulletOpts },
+                { text: "\nConfirmed: " + (profile.confirmationDate || "—"), options: bulletOpts }
+            ],
+            { x: 3.0, y: 1.1, w: 6.3, h: 3.5, valign: "top" }
+        );
+
+        // Slide 3: Education & Teaching Philosophy
+        const edu = data.education_teaching_philosophy;
+        if (edu) {
+            const s3 = pptx.addSlide();
+            pptAddSectionHeader(s3, "Education & Teaching Philosophy");
+            const bullets = [];
+            if (edu.description) {
+                bullets.push({ text: truncateText(edu.description, 400), options: { fontSize: 12, color: "444444" } });
+            }
+            if (edu.pillars) {
+                edu.pillars.forEach((pillar) => {
+                    bullets.push({ text: "\n" + pillar.title, options: { fontSize: 12, bold: true, color: "2c3e50" } });
+                    (pillar.points || []).forEach((point) => {
+                        bullets.push({ text: stripHtml(point), options: bulletOpts });
+                    });
+                });
+            }
+            s3.addText(bullets, { x: 0.5, y: 1.0, w: 9, h: 4.2, valign: "top" });
+        }
+
+        // Slide 4: Self-Philosophy
+        const self = data.self_philosophy;
+        if (self) {
+            const s4 = pptx.addSlide();
+            pptAddSectionHeader(s4, "Self-Philosophy");
+            const selfBullets = [];
+            if (self.title) {
+                selfBullets.push({ text: self.title, options: { fontSize: 14, bold: true, color: "2c3e50" } });
+            }
+            if (self.description) {
+                selfBullets.push({ text: truncateText(self.description, 350), options: titleOpts });
+            }
+            (self.points || []).forEach((point) => {
+                selfBullets.push({ text: stripHtml(point), options: bulletOpts });
+            });
+            if (self.pillars) {
+                self.pillars.forEach((pillar) => {
+                    if (pillar.title) {
+                        selfBullets.push({ text: "\n" + pillar.title, options: { fontSize: 12, bold: true, color: "2c3e50" } });
+                    }
+                    (pillar.points || []).forEach((point) => {
+                        selfBullets.push({ text: stripHtml(point), options: bulletOpts });
+                    });
+                });
+            }
+            s4.addText(selfBullets, { x: 0.5, y: 1.0, w: 9, h: 4.2, valign: "top" });
+        }
+
+        // Slides 5–6: Innovation (one per subject)
+        const innov = data.innovation_teaching;
+        if (innov && innov.subjects) {
+            innov.subjects.forEach((subject) => {
+                const slide = pptx.addSlide();
+                pptAddSectionHeader(slide, "Innovation: " + subject.name);
+                const innovBullets = [
+                    { text: truncateText(subject.description, 500), options: titleOpts }
+                ];
+                if (subject.tech_stack && subject.tech_stack.length) {
+                    innovBullets.push({
+                        text: "\nTech: " + subject.tech_stack.join(", "),
+                        options: { fontSize: 11, color: "009688", bold: true }
+                    });
+                }
+                if (subject.videos && subject.videos.length) {
+                    innovBullets.push({ text: "\nTutorial videos:", options: { fontSize: 11, bold: true, color: "2c3e50" } });
+                    subject.videos.forEach((video) => {
+                        innovBullets.push({ text: video.title + " — " + video.url, options: { fontSize: 10, color: "666666" } });
+                    });
+                }
+                if (subject.case_study && subject.case_study.overview) {
+                    innovBullets.push({
+                        text: "\nHighlight: " + truncateText(subject.case_study.overview, 200),
+                        options: { fontSize: 11, color: "444444" }
+                    });
+                }
+                slide.addText(innovBullets, { x: 0.5, y: 1.0, w: 9, h: 4.2, valign: "top" });
+            });
+        }
+
+        // Slide 7: Student Engagement
+        const engage = data.student_engagement;
+        if (engage && engage.criteria) {
+            const s7 = pptx.addSlide();
+            pptAddSectionHeader(s7, "Student Engagement & Instructional Competencies");
+            const engageBullets = [];
+            engage.criteria.forEach((criterion) => {
+                engageBullets.push({
+                    text: criterion.title,
+                    options: { fontSize: 13, bold: true, color: "2c3e50", breakLine: true }
+                });
+                const first = criterion.content && criterion.content[0];
+                if (first) {
+                    engageBullets.push({ text: firstSentence(first), options: { fontSize: 11, color: "555555", bullet: true } });
+                }
+            });
+            s7.addText(engageBullets, { x: 0.5, y: 1.0, w: 9, h: 4.2, valign: "top" });
+        }
+
+        // Slide 8: Teaching Responsibilities
+        const resp = data.teaching_responsibilities;
+        if (resp && resp.courses) {
+            const s8 = pptx.addSlide();
+            pptAddSectionHeader(s8, "Teaching Responsibilities");
+            const tableRows = [
+                [
+                    { text: "Course Name", options: { bold: true, color: "FFFFFF", fill: "2c3e50" } },
+                    { text: "Academic Years", options: { bold: true, color: "FFFFFF", fill: "2c3e50" } }
+                ]
+            ];
+            resp.courses.forEach((course) => {
+                tableRows.push([
+                    { text: course.name, options: { fontSize: 11 } },
+                    { text: (course.years || []).join(", "), options: { fontSize: 10 } }
+                ]);
+            });
+            s8.addTable(tableRows, {
+                x: 0.5,
+                y: 1.1,
+                w: 9,
+                colW: [4.5, 4.5],
+                fontSize: 11,
+                border: { pt: 0.5, color: "CCCCCC" },
+                autoPage: true
+            });
+        }
+
+        // Slide 9: Awards
+        const achievements = data.achievements;
+        if (achievements && achievements.awards) {
+            const s9 = pptx.addSlide();
+            pptAddSectionHeader(s9, "Awards & Recognition");
+            const awardRows = [
+                [
+                    { text: "Date", options: { bold: true, color: "FFFFFF", fill: "2c3e50" } },
+                    { text: "Award", options: { bold: true, color: "FFFFFF", fill: "2c3e50" } },
+                    { text: "Level", options: { bold: true, color: "FFFFFF", fill: "2c3e50" } }
+                ]
+            ];
+            achievements.awards.forEach((item) => {
+                awardRows.push([
+                    { text: item.date, options: { fontSize: 10 } },
+                    { text: item.title + "\n" + (item.institution || ""), options: { fontSize: 10 } },
+                    { text: item.level, options: { fontSize: 10 } }
+                ]);
+            });
+            s9.addTable(awardRows, {
+                x: 0.4,
+                y: 1.0,
+                w: 9.2,
+                colW: [1.5, 5.5, 2.2],
+                fontSize: 10,
+                border: { pt: 0.5, color: "CCCCCC" },
+                autoPage: true
+            });
+        }
+
+        // Slide 10: Research
+        const research = data.research;
+        if (research) {
+            const s10 = pptx.addSlide();
+            pptAddSectionHeader(s10, "Research");
+            const researchBullets = [];
+            if (research.description) {
+                researchBullets.push({ text: truncateText(research.description, 400), options: titleOpts });
+            }
+            if (research.areas && research.areas.length) {
+                researchBullets.push({ text: "\nResearch areas:", options: { fontSize: 13, bold: true, color: "2c3e50" } });
+                research.areas.forEach((area) => {
+                    researchBullets.push({ text: area, options: bulletOpts });
+                });
+            }
+            s10.addText(researchBullets, { x: 0.5, y: 1.0, w: 9, h: 4.2, valign: "top" });
+        }
+
+        // Slide 11: Publications
+        const pubs = data.publications;
+        if (pubs) {
+            const s11 = pptx.addSlide();
+            pptAddSectionHeader(s11, "Publications");
+            const pubBullets = [];
+            const addPubList = (heading, items) => {
+                const filtered = (items || []).filter((p) => !isSampleEntry(p));
+                if (filtered.length === 0) return;
+                pubBullets.push({ text: heading, options: { fontSize: 13, bold: true, color: "2c3e50" } });
+                filtered.forEach((pub) => {
+                    pubBullets.push({ text: pub, options: { fontSize: 11, color: "444444", bullet: true } });
+                });
+            };
+            addPubList("Journal Publications", pubs.journals);
+            addPubList("Conference Publications", pubs.conferences);
+            if (pubBullets.length === 0) {
+                pubBullets.push({ text: "Publications — to be updated", options: titleOpts });
+            }
+            s11.addText(pubBullets, { x: 0.5, y: 1.0, w: 9, h: 4.2, valign: "top" });
+        }
+
+        // Slide 12: Class Gallery (first 6 images)
+        const gallery = data.class_gallery;
+        if (gallery && gallery.images && gallery.images.length) {
+            const s12 = pptx.addSlide();
+            pptAddSectionHeader(s12, "Class Gallery");
+            const images = gallery.images.slice(0, 6);
+            const positions = [
+                { x: 0.5, y: 1.1 },
+                { x: 3.4, y: 1.1 },
+                { x: 6.3, y: 1.1 },
+                { x: 0.5, y: 3.5 },
+                { x: 3.4, y: 3.5 },
+                { x: 6.3, y: 3.5 }
+            ];
+            images.forEach((img, i) => {
+                const pos = positions[i];
+                pptAddImageSafe(s12, "picture/" + img, { x: pos.x, y: pos.y, w: 2.6, h: 2.2 });
+            });
+        }
+
+        // Slide 13: Contact
+        const s13 = pptx.addSlide();
+        pptAddSectionHeader(s13, "Contact");
+        const contactLines = [];
+        if (profile.email) contactLines.push("Email: " + profile.email);
+        if (profile.directory) contactLines.push("Directory: " + profile.directory);
+        if (profile.name) contactLines.push("\n" + profile.name);
+        s13.addText(contactLines.join("\n") || "Contact information available on portfolio page.", {
+            x: 0.5,
+            y: 1.5,
+            w: 9,
+            h: 3,
+            fontSize: 14,
+            color: "333333",
+            valign: "top"
+        });
+
+        await pptx.writeFile({ fileName: "Portfolio-Taufiq-Chin.pptx" });
+    } catch (err) {
+        console.error("PPT export failed:", err);
+        alert("Could not generate PowerPoint. Open this page via a web server (not file://) and try again.\n\n" + (err.message || err));
+    } finally {
+        if (btn) {
+            btn.disabled = false;
+            btn.innerHTML = originalHtml;
+        }
+    }
+}
