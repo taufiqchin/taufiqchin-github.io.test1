@@ -1,0 +1,40 @@
+{
+  "id": "css-1",
+  "title": "CSS Fundamentals",
+  "track": "css",
+  "summary": "Selectors, colors, fonts, box model, and the cascade.",
+  "examples": [
+    {
+      "id": "selectors",
+      "title": "Type and class selectors",
+      "description": "Style elements by tag and class name.",
+      "outputType": "preview",
+      "files": {
+        "html": "<h1 class=\"title\">CSS Basics</h1>\n<p class=\"lead\">Selectors target HTML elements.</p>\n<p>A normal paragraph.</p>",
+        "css": ".title { color: #7c3aed; }\n.lead { font-size: 1.15rem; font-weight: 600; }\np { color: #475569; font-family: sans-serif; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "box-model",
+      "title": "Box model",
+      "description": "margin, border, padding, and content area.",
+      "outputType": "preview",
+      "files": {
+        "html": "<div class=\"box\">Content inside the box</div>",
+        "css": ".box {\n  width: 200px;\n  padding: 20px;\n  border: 4px solid #3b82f6;\n  margin: 16px;\n  background: #eff6ff;\n  font-family: sans-serif;\n}",
+        "js": ""
+      }
+    }
+  ],
+  "practice": {
+    "description": "Style three cards with class .card: background, padding, border-radius, and a hover effect.",
+    "outputType": "preview",
+    "starter": {
+      "html": "<div class=\"card\">One</div>\n<div class=\"card\">Two</div>\n<div class=\"card\">Three</div>",
+      "css": "/* Add .card and .card:hover styles */",
+      "js": ""
+    },
+    "hints": [":hover changes style on mouse over", "Use display or flex to lay out cards"]
+  }
+}

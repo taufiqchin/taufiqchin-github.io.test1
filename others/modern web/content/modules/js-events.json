@@ -1,0 +1,40 @@
+{
+  "id": "js-events",
+  "title": "DOM & Events",
+  "track": "js",
+  "summary": "Selecting elements, changing content, and handling user events.",
+  "examples": [
+    {
+      "id": "click-counter",
+      "title": "Click event",
+      "description": "Increment a counter when the button is clicked.",
+      "outputType": "preview",
+      "files": {
+        "html": "<button id=\"btn\">Click me</button>\n<p>Count: <span id=\"count\">0</span></p>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; }\nbutton { padding: 0.5rem 1rem; cursor: pointer; }",
+        "js": "let n = 0;\nconst countEl = document.getElementById(\"count\");\ndocument.getElementById(\"btn\").addEventListener(\"click\", () => {\n  n++;\n  countEl.textContent = n;\n});"
+      }
+    },
+    {
+      "id": "input-live",
+      "title": "Input event",
+      "description": "Mirror text from an input field as the user types.",
+      "outputType": "preview",
+      "files": {
+        "html": "<label>Type here: <input type=\"text\" id=\"name\"></label>\n<p>You typed: <strong id=\"mirror\"></strong></p>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; }",
+        "js": "const input = document.getElementById(\"name\");\nconst mirror = document.getElementById(\"mirror\");\ninput.addEventListener(\"input\", () => {\n  mirror.textContent = input.value;\n});"
+      }
+    }
+  ],
+  "practice": {
+    "description": "Add a button that toggles the background color of the page between white and light yellow.",
+    "outputType": "preview",
+    "starter": {
+      "html": "<button id=\"toggle\">Toggle theme</button>",
+      "css": "body { font-family: sans-serif; padding: 2rem; transition: background 0.2s; }",
+      "js": "// Add click listener on #toggle\n"
+    },
+    "hints": ["document.body.style.background", "Track on/off with a boolean variable"]
+  }
+}

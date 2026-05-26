@@ -40,6 +40,14 @@
         "link": "others/Capture moment/capture-moments.rar"
     },
     {
+        "id": 4,
+        "order": 4,
+        "title": "Learning Modern Web Development",
+        "image": "image/WebLesson.PNG",
+        "description": "Modern Web Development covers the fundamental concepts and technologies necessary to build modern, responsive, and user-friendly websites. Starting with the core trio of HTML (structure), CSS (styling), and JavaScript (interactivity), the course guides learners through the transition from traditional web pages to dynamic, single-page applications (SPAs). Emphasis is placed on contemporary best practices, including mobile-first design, modern CSS layouts, accessibility standards, and performance optimization.",
+        "link": "others/modern web/index.html"
+    },
+    {
         "id": 5,
         "order": 5,
         "title": "Reading App",

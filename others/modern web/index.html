@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Web Development — Resource Center</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/a11y.css">
+  <script src="js/a11y.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#tracks-container">Skip to lessons</a>
+  <main class="container">
+    <div class="page-top-bar">
+      <div class="a11y-toolbar" role="group" aria-label="Accessibility options">
+        <button type="button" class="btn btn--small a11y-btn" id="a11y-text-bigger" title="Increase text size" aria-label="Increase text size">A+</button>
+        <button type="button" class="btn btn--small a11y-btn" id="a11y-text-smaller" title="Decrease text size" aria-label="Decrease text size">A−</button>
+        <button type="button" class="btn btn--small a11y-btn" id="a11y-grayscale" title="Grayscale" aria-label="Toggle grayscale" aria-pressed="false">Gray</button>
+        <button type="button" class="btn btn--small a11y-btn" id="a11y-reset" title="Reset to normal" aria-label="Reset accessibility settings to normal">Reset</button>
+      </div>
+    </div>
+
+    <div id="tracks-container">
+      <p class="loading">Loading lessons…</p>
+    </div>
+
+    <section class="hero">
+      <h2>Learn by reading, seeing, and doing</h2>
+      <p>Each lesson includes described code examples (with copy &amp; run), alternative snippets you can try, and a practice editor with live preview.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Serve this site with <code>npx serve .</code> from the project folder (required for AJAX examples).</p>
+  </footer>
+
+  <script src="js/content.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

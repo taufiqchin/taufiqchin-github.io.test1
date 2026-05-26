@@ -1,0 +1,40 @@
+{
+  "id": "html-media",
+  "title": "Text, Multimedia & Embedding",
+  "track": "html",
+  "summary": "Text formatting, images, audio, video, and embedded content.",
+  "examples": [
+    {
+      "id": "image-alt",
+      "title": "Image with alt text",
+      "description": "Always include alt for accessibility.",
+      "outputType": "preview",
+      "files": {
+        "html": "<h2>Photo</h2>\n<img src=\"https://picsum.photos/320/180\" alt=\"Random placeholder landscape\" width=\"320\" height=\"180\">",
+        "css": "img { border-radius: 8px; display: block; margin-top: 0.5rem; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "emphasis",
+      "title": "Text emphasis",
+      "description": "strong, em, and mark for meaning and highlight.",
+      "outputType": "preview",
+      "files": {
+        "html": "<p><strong>Important:</strong> read the <em>instructions</em> before you <mark>submit</mark>.</p>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; }\nmark { background: #fef08a; }",
+        "js": ""
+      }
+    }
+  ],
+  "practice": {
+    "description": "Add an image with alt text and a figure caption using <figure> and <figcaption>.",
+    "outputType": "preview",
+    "starter": {
+      "html": "<figure>\n  <!-- img + figcaption -->\n</figure>",
+      "css": "figure { max-width: 320px; font-family: sans-serif; }",
+      "js": ""
+    },
+    "hints": ["Use picsum.photos or any https image URL", "figcaption describes the image"]
+  }
+}

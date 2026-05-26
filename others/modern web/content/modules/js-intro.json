@@ -1,0 +1,40 @@
+{
+  "id": "js-intro",
+  "title": "Intro to JavaScript",
+  "track": "js",
+  "summary": "Variables, data types, operators, and control flow in JavaScript.",
+  "examples": [
+    {
+      "id": "variables",
+      "title": "Variables and output",
+      "description": "let, const, and template literals shown in the page.",
+      "outputType": "preview",
+      "files": {
+        "html": "<p id=\"out\"></p>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; }",
+        "js": "const name = \"Learner\";\nlet score = 42;\ndocument.getElementById(\"out\").textContent = `${name} scored ${score} points.`;"
+      }
+    },
+    {
+      "id": "for-loop",
+      "title": "For loop (console)",
+      "description": "Count from 1 to 5 — output appears in the panel below (like DevTools console).",
+      "outputType": "console",
+      "files": {
+        "html": "<p>Open the output panel after clicking Run example.</p>",
+        "css": "body { font-family: sans-serif; padding: 1rem; color: #64748b; }",
+        "js": "for (let i = 1; i <= 5; i++) {\n  console.log(\"Iteration number: \" + i);\n}"
+      }
+    }
+  ],
+  "practice": {
+    "description": "Use a loop to log the multiples of 3 from 3 to 15 in the console output.",
+    "outputType": "console",
+    "starter": {
+      "html": "<p>Click Run to see console output below.</p>",
+      "css": "",
+      "js": "// Write a for loop: 3, 6, 9 ... 15\n"
+    },
+    "hints": ["Use console.log inside the loop", "i += 3 or check i % 3 === 0"]
+  }
+}

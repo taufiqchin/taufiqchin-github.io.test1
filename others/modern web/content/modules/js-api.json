@@ -1,0 +1,52 @@
+{
+  "id": "js-api",
+  "title": "Web APIs",
+  "track": "js",
+  "summary": "Browser APIs: localStorage, geolocation, and the Fetch API.",
+  "examples": [
+    {
+      "id": "local-storage",
+      "title": "localStorage",
+      "description": "Save, load, and clear a username in the browser. Run inside the preview.",
+      "outputType": "preview",
+      "previewSrc": "content/examples/local-storage/index.html",
+      "fullDemoUrl": "content/examples/local-storage/index.html",
+      "fileRefs": {
+        "html": "content/examples/local-storage/index.html",
+        "js": "content/examples/local-storage/local-storage.js"
+      }
+    },
+    {
+      "id": "geolocation",
+      "title": "Geolocation API",
+      "description": "Get latitude and longitude when the user clicks the button (browser will ask permission).",
+      "outputType": "preview",
+      "files": {
+        "html": "<h2>Geolocation</h2>\n<button type=\"button\" onclick=\"getLocation()\">Try it</button>\n<p id=\"demo\"></p>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; }",
+        "js": "const demo = document.getElementById(\"demo\");\nfunction getLocation() {\n  if (!navigator.geolocation) {\n    demo.textContent = \"Geolocation not supported.\";\n    return;\n  }\n  navigator.geolocation.getCurrentPosition(\n    (pos) => {\n      demo.innerHTML = \"Latitude: \" + pos.coords.latitude +\n        \"<br>Longitude: \" + pos.coords.longitude;\n    },\n    (err) => { demo.textContent = \"Error: \" + err.message; }\n  );\n}"
+      }
+    },
+    {
+      "id": "fetch-mock",
+      "title": "Fetch-style data (inline)",
+      "description": "Simulate loading JSON and rendering a list (no network required).",
+      "outputType": "preview",
+      "files": {
+        "html": "<ul id=\"items\"></ul>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; }",
+        "js": "const products = [{\"name\":\"Pen\"},{\"name\":\"Notebook\"}];\nconst ul = document.getElementById(\"items\");\nproducts.forEach((p) => {\n  const li = document.createElement(\"li\");\n  li.textContent = p.name;\n  ul.appendChild(li);\n});"
+      }
+    }
+  ],
+  "practice": {
+    "description": "Store a theme preference (\"light\" or \"dark\") in localStorage and apply a background when the page loads.",
+    "outputType": "preview",
+    "starter": {
+      "html": "<button id=\"save\">Save dark theme</button>\n<button id=\"load\">Apply saved theme</button>",
+      "css": "body { font-family: sans-serif; padding: 1.5rem; min-height: 120px; }",
+      "js": "// localStorage.setItem / getItem for key \"theme\"\n"
+    },
+    "hints": ["document.body.style.background", "JSON.stringify not needed for a simple string"]
+  }
+}

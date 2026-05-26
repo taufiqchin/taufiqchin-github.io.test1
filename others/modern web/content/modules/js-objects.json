@@ -1,0 +1,40 @@
+{
+  "id": "js-objects",
+  "title": "JavaScript Objects",
+  "track": "js",
+  "summary": "Object literals, properties, methods, and accessing nested data.",
+  "examples": [
+    {
+      "id": "object-literal",
+      "title": "Object literal",
+      "description": "Store related data in one object and read properties.",
+      "outputType": "preview",
+      "files": {
+        "html": "<pre id=\"out\"></pre>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; }\npre { background: #f1f5f9; padding: 1rem; border-radius: 8px; }",
+        "js": "const user = {\n  name: \"Alex\",\n  role: \"Student\",\n  year: 2\n};\ndocument.getElementById(\"out\").textContent =\n  user.name + \" — \" + user.role + \" (year \" + user.year + \")\";"
+      }
+    },
+    {
+      "id": "method",
+      "title": "Object method",
+      "description": "Functions stored as object properties.",
+      "outputType": "preview",
+      "files": {
+        "html": "<p id=\"out\"></p>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; }",
+        "js": "const calc = {\n  sum(a, b) { return a + b; }\n};\ndocument.getElementById(\"out\").textContent = \"5 + 3 = \" + calc.sum(5, 3);"
+      }
+    }
+  ],
+  "practice": {
+    "description": "Create a product object with name, price, and a method display() that returns a formatted string.",
+    "outputType": "preview",
+    "starter": {
+      "html": "<p id=\"out\"></p>",
+      "css": "body { font-family: sans-serif; padding: 1.5rem; }",
+      "js": "const product = {\n  name: \"Notebook\",\n  price: 4.5,\n  // add display() method\n};\n"
+    },
+    "hints": ["display can return `name: $price`", "Call product.display() for #out"]
+  }
+}

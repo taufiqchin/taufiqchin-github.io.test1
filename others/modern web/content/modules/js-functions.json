@@ -1,0 +1,40 @@
+{
+  "id": "js-functions",
+  "title": "JavaScript Functions",
+  "track": "js",
+  "summary": "Declaring functions, parameters, return values, and arrow functions.",
+  "examples": [
+    {
+      "id": "function-decl",
+      "title": "Function declaration",
+      "description": "A named function that returns a greeting.",
+      "outputType": "preview",
+      "files": {
+        "html": "<p id=\"msg\"></p>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; }",
+        "js": "function greet(name) {\n  return \"Hello, \" + name + \"!\";\n}\ndocument.getElementById(\"msg\").textContent = greet(\"World\");"
+      }
+    },
+    {
+      "id": "arrow-fn",
+      "title": "Arrow function",
+      "description": "Short syntax for simple functions.",
+      "outputType": "preview",
+      "files": {
+        "html": "<p>Double of 7 is <span id=\"n\"></span></p>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; }",
+        "js": "const double = (x) => x * 2;\ndocument.getElementById(\"n\").textContent = double(7);"
+      }
+    }
+  ],
+  "practice": {
+    "description": "Write a function area(width, height) that returns width * height and display the result for 4 and 5.",
+    "outputType": "preview",
+    "starter": {
+      "html": "<p>Area: <span id=\"result\">?</span></p>",
+      "css": "body { font-family: sans-serif; padding: 1.5rem; }",
+      "js": "// function area(width, height) { ... }\n"
+    },
+    "hints": ["return the product", "Call area(4, 5) and put result in #result"]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "id": "css-2",
+  "title": "CSS Layout & Styling",
+  "track": "css",
+  "summary": "Flexbox, positioning, responsive units, and common layout patterns.",
+  "examples": [
+    {
+      "id": "flex-row",
+      "title": "Flexbox row",
+      "description": "display flex aligns items in a row with gap.",
+      "outputType": "preview",
+      "files": {
+        "html": "<nav class=\"bar\">\n  <a href=\"#\">Home</a>\n  <a href=\"#\">About</a>\n  <a href=\"#\">Contact</a>\n</nav>",
+        "css": ".bar {\n  display: flex;\n  gap: 1rem;\n  padding: 0.75rem 1rem;\n  background: #1e293b;\n  font-family: sans-serif;\n}\n.bar a { color: #93c5fd; text-decoration: none; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "grid-cards",
+      "title": "CSS Grid",
+      "description": "grid-template-columns creates a responsive card layout.",
+      "outputType": "preview",
+      "files": {
+        "html": "<div class=\"grid\">\n  <div class=\"item\">A</div>\n  <div class=\"item\">B</div>\n  <div class=\"item\">C</div>\n</div>",
+        "css": ".grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 12px;\n  padding: 1rem;\n  font-family: sans-serif;\n}\n.item {\n  background: #dbeafe;\n  padding: 2rem;\n  text-align: center;\n  border-radius: 8px;\n}",
+        "js": ""
+      }
+    }
+  ],
+  "practice": {
+    "description": "Use flexbox to center a box vertically and horizontally in the viewport.",
+    "outputType": "preview",
+    "starter": {
+      "html": "<div class=\"center-wrap\">\n  <div class=\"centered\">Centered!</div>\n</div>",
+      "css": ".center-wrap {\n  min-height: 200px;\n  /* add flex centering */\n}\n.centered {\n  padding: 1.5rem 2rem;\n  background: #22c55e;\n  color: #fff;\n  border-radius: 8px;\n  font-family: sans-serif;\n}",
+      "js": ""
+    },
+    "hints": ["justify-content and align-items on the parent", "min-height gives room to center"]
+  }
+}

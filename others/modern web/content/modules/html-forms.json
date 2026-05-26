@@ -1,0 +1,40 @@
+{
+  "id": "html-forms",
+  "title": "Tables & Forms",
+  "track": "html",
+  "summary": "HTML tables for tabular data and forms for user input.",
+  "examples": [
+    {
+      "id": "simple-table",
+      "title": "Data table",
+      "description": "table with thead and tbody for structured data.",
+      "outputType": "preview",
+      "files": {
+        "html": "<table>\n  <thead><tr><th>Name</th><th>Score</th></tr></thead>\n  <tbody>\n    <tr><td>Ada</td><td>98</td></tr>\n    <tr><td>Grace</td><td>95</td></tr>\n  </tbody>\n</table>",
+        "css": "table { border-collapse: collapse; font-family: sans-serif; }\nth, td { border: 1px solid #ccc; padding: 0.5rem 1rem; }\nth { background: #f1f5f9; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "contact-form",
+      "title": "Contact form",
+      "description": "form with labels, text input, and submit button.",
+      "outputType": "preview",
+      "files": {
+        "html": "<form onsubmit=\"event.preventDefault(); alert('Submitted!');\">\n  <label>Name <input type=\"text\" name=\"name\" required></label><br><br>\n  <label>Email <input type=\"email\" name=\"email\" required></label><br><br>\n  <button type=\"submit\">Send</button>\n</form>",
+        "css": "form { font-family: sans-serif; padding: 1rem; max-width: 280px; }\nlabel { display: block; margin-bottom: 0.25rem; }\ninput { width: 100%; padding: 0.4rem; }",
+        "js": ""
+      }
+    }
+  ],
+  "practice": {
+    "description": "Build a form with text, email, and a select dropdown for a favorite language.",
+    "outputType": "preview",
+    "starter": {
+      "html": "<form>\n  <!-- your fields -->\n</form>",
+      "css": "form { padding: 1rem; font-family: sans-serif; }",
+      "js": ""
+    },
+    "hints": ["Use <label> tied to inputs", "select needs option elements"]
+  }
+}

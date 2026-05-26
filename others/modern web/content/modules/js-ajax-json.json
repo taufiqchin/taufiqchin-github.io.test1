@@ -1,0 +1,43 @@
+{
+  "id": "js-ajax-json",
+  "title": "AJAX & JSON",
+  "track": "js",
+  "summary": "Asynchronous requests with XMLHttpRequest, working with JSON data.",
+  "examples": [
+    {
+      "id": "json-parse",
+      "title": "JSON.parse",
+      "description": "Parse a JSON string into an object and display properties.",
+      "outputType": "preview",
+      "files": {
+        "html": "<p id=\"demo\"></p>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; }",
+        "js": "const text = '{\"name\":\"John Johnson\",\"street\":\"Oslo West 16\",\"phone\":\"555 1234567\"}';\nconst obj = JSON.parse(text);\ndocument.getElementById(\"demo\").innerHTML =\n  obj.name + \"<br>\" + obj.street + \"<br>\" + obj.phone;"
+      }
+    },
+    {
+      "id": "xhr-get",
+      "title": "XMLHttpRequest GET",
+      "description": "Load text from a file when you click the button. Requires a local server (npx serve .).",
+      "outputType": "preview",
+      "previewSrc": "content/examples/ajax-xhr/index.html",
+      "fullDemoUrl": "content/examples/ajax-xhr/index.html",
+      "fileRefs": {
+        "html": "content/examples/ajax-xhr/index.html",
+        "css": "",
+        "js": ""
+      },
+      "note": "Use Run example with a local server. Click Load Content inside the preview."
+    }
+  ],
+  "practice": {
+    "description": "Parse this JSON array and list each name in the page.",
+    "outputType": "preview",
+    "starter": {
+      "html": "<ul id=\"list\"></ul>",
+      "css": "body { font-family: sans-serif; padding: 1.5rem; }",
+      "js": "const data = '[{\"name\":\"Ada\"},{\"name\":\"Grace\"},{\"name\":\"Alan\"}]';\n// JSON.parse and append li elements\n"
+    },
+    "hints": ["JSON.parse returns an array", "Use forEach and createElement('li')"]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "id": "html-intro",
+  "title": "Introduction to HTML",
+  "track": "html",
+  "summary": "Document structure, elements, attributes, and semantic markup.",
+  "examples": [
+    {
+      "id": "basic-skeleton",
+      "title": "Basic page skeleton",
+      "description": "Minimum valid HTML5 document with head and body.",
+      "outputType": "preview",
+      "files": {
+        "html": "<h1>Hello, HTML!</h1>\n<p>This is a paragraph inside the body.</p>",
+        "css": "body { font-family: system-ui, sans-serif; padding: 1.5rem; max-width: 40rem; margin: 0 auto; }\nh1 { color: #2563eb; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "headings-list",
+      "title": "Headings and lists",
+      "description": "Heading levels h1–h3 and an unordered list.",
+      "outputType": "preview",
+      "files": {
+        "html": "<h1>Main title</h1>\n<h2>Section</h2>\n<ul>\n  <li>First item</li>\n  <li>Second item</li>\n</ul>",
+        "css": "body { font-family: Georgia, serif; padding: 1rem; }",
+        "js": ""
+      }
+    }
+  ],
+  "practice": {
+    "description": "Create a valid page with one h1, a short paragraph, and a link to https://developer.mozilla.org/",
+    "outputType": "preview",
+    "starter": {
+      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>My Page</title>\n</head>\n<body>\n  <!-- Add h1, p, and a link here -->\n</body>\n</html>",
+      "css": "body { font-family: sans-serif; padding: 2rem; }",
+      "js": ""
+    },
+    "hints": ["Use <!DOCTYPE html> and lang on <html>", "Only one <h1> per page", "<a href=\"...\"> needs a closing tag"]
+  }
+}
