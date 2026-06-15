@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Play Store Poster Maker</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <main class="app-layout">
+    <aside id="controls" class="panel controls-panel">
+      <div class="sidebar-brand">
+        <h1>Play Store Poster Maker</h1>
+        <p>Create Google Play marketing graphics</p>
+      </div>
+
+      <section class="section">
+        <h2>Asset Type</h2>
+        <select id="asset-type">
+          <optgroup label="Graphics">
+            <option value="icon">App Icon — 512×512 · max 1 MB</option>
+            <option value="feature-graphic">Feature Graphic — 1,024×500 · max 15 MB</option>
+          </optgroup>
+          <optgroup label="Phone">
+            <option value="phone-portrait">Screenshot Portrait 9:16 — 1080×1920 · max 8 MB</option>
+            <option value="phone-landscape">Screenshot Landscape 16:9 — 1920×1080 · max 8 MB</option>
+          </optgroup>
+          <optgroup label="Tablet">
+            <option value="tablet-7-portrait">7-inch Portrait 9:16 — 1080×1920 · max 8 MB</option>
+            <option value="tablet-7-landscape">7-inch Landscape 16:9 — 1920×1080 · max 8 MB</option>
+            <option value="tablet-10-portrait">10-inch Portrait 9:16 — 1600×2844 · max 8 MB</option>
+            <option value="tablet-10-landscape">10-inch Landscape 16:9 — 2560×1440 · max 8 MB</option>
+          </optgroup>
+        </select>
+        <p id="asset-badge" class="badge"></p>
+        <p id="asset-promo" class="asset-promo"></p>
+      </section>
+
+      <section class="section">
+        <h2>Background</h2>
+        <div class="radio-group">
+          <label><input type="radio" name="bg-mode" id="bg-mode-color" value="color" checked /> Solid color</label>
+          <label><input type="radio" name="bg-mode" id="bg-mode-image" value="image" /> Image</label>
+        </div>
+        <div id="bg-color-wrap">
+          <label>Color</label>
+          <div class="color-hex-row">
+            <input type="color" id="bg-color" value="#eed744" />
+            <input type="text" id="bg-color-hex" class="hex-input" value="#eed744" spellcheck="false" maxlength="7" />
+          </div>
+        </div>
+        <div id="bg-image-wrap" style="display:none">
+          <label class="file-btn">
+            Upload background
+            <input type="file" id="bg-image-input" accept="image/*" hidden />
+          </label>
+          <label>Blur <span id="bg-blur-val">0%</span>
+            <input type="range" id="bg-blur" min="0" max="100" value="0" />
+          </label>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Overlay Images</h2>
+        <div id="image-slots"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>Text</h2>
+          <button type="button" id="add-text" class="btn-small">+ Add text</button>
+        </div>
+        <div id="text-list"></div>
+      </section>
+
+      <section class="section">
+        <div id="safe-zone-wrap">
+          <label class="toggle">
+            <input type="checkbox" id="show-safe-zone" checked />
+            Show Feature Graphic safe zone
+          </label>
+        </div>
+        <label>Download format
+          <select id="export-format">
+            <option value="png" selected>PNG</option>
+            <option value="jpeg">JPEG</option>
+          </select>
+        </label>
+        <button type="button" id="export-btn" class="btn-primary">Download Poster</button>
+      </section>
+    </aside>
+
+    <section class="panel preview-panel">
+      <div class="preview-header">
+        <h2>Live Preview</h2>
+        <p id="status-line" class="status-line"></p>
+      </div>
+      <div class="canvas-wrap">
+        <canvas id="preview-canvas"></canvas>
+      </div>
+      <p class="hint">Drag to move. Select an image and drag corner handles to resize.</p>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="js/state.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/export.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
