@@ -11,7 +11,7 @@
         "id": 11,
         "order": 1,
         "title": "Play Store Poster Maker",
-        "image": "image/PlayStorePosterMaker.png",
+        "image": "image/playstorepostermaker.png",
         "description": "Play Store Poster Maker is a web-based tool designed to help developers create professional-looking posters for their Google Play Store listings. It features a user-friendly interface with a live preview, allowing developers to customize the poster with their app's logo, title, description, and screenshots.",
         "link": "others/PlayStore Poster Maker/index.html"
     },
