@@ -8,7 +8,7 @@
         "link": "https://play.google.com/store/apps/details?id=com.taufiq.speechaac&pcampaignid=web_share"
     },
     {
-        "id": 11,
+        "id": 12,
         "order": 1,
         "title": "Play Store Poster Maker",
         "image": "image/playstorepostermaker.PNG",
@@ -30,6 +30,14 @@
         "image": "image/audiogram.PNG",
         "description": "The Audiogram Visualization Tool is a web-based clinical application designed to assist hearing therapists and audiologists in plotting hearing sensitivity across a standard range of frequencies (125Hz to 8000Hz). It features a precise coordinate-mapping system and implements standard international audiometric symbols—including Red Circles/Triangles for the Right Ear and Blue X’s/Squares for the Left Ear. Users can input decibel levels into an intuitive interface, and the system instantly generates a professional audiogram with automatic line connections for air-conduction data. The project supports ultra-high-definition 4K PNG downloads, making it ideal for high-quality clinical documentation and printing.",
         "link": "others/Audiogram/index.html"
+    },
+    {
+        "id": 11,
+        "order": 2,
+        "title": "Image Quality Enhancer",
+        "image": "image/imageenhancer.PNG",
+        "description": "The Image Quality Enhancer is a powerful web-based tool designed to improve the visual quality of images by reducing noise, enhancing details, and correcting color balance. It features an intuitive interface with real-time preview capabilities, allowing users to apply various enhancement filters and adjustments. The tool supports a wide range of image formats and provides high-quality output suitable for both web and print applications.",
+        "link": ""
     },
     {
         "id": 3,
