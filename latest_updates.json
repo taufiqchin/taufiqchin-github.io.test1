@@ -35,8 +35,8 @@
         "id": 11,
         "order": 2,
         "title": "Image Quality Enhancer",
-        "image": "image/imageenhancer.PNG",
-        "description": "The Image Quality Enhancer is a powerful web-based tool designed to improve the visual quality of images by reducing noise, enhancing details, and correcting color balance. It features an intuitive interface with real-time preview capabilities, allowing users to apply various enhancement filters and adjustments. The tool supports a wide range of image formats and provides high-quality output suitable for both web and print applications.",
+        "image": "image/imageenhancer.png",
+        "description": "The Image Quality Enhancer is a powerful standalone tool designed to improve the visual quality of images by reducing noise, enhancing details, and correcting color balance. It features an intuitive interface with real-time preview capabilities, allowing users to apply various enhancement filters and adjustments. The tool supports a wide range of image formats and provides high-quality output suitable for both web and print applications.",
         "link": ""
     },
     {
