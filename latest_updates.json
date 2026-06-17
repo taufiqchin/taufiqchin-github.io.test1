@@ -32,6 +32,14 @@
         "link": "others/Audiogram/index.html"
     },
     {
+        "id": 13,
+        "order": 1,
+        "title": "Poster & Business Card Maker",
+        "image": "image/posterBusinessCardMaker.PNG",
+        "description": "Poster & Business Card Maker is a web-based tool designed to help developers create professional-looking posters and business cards. It features a user-friendly interface with a live preview, allowing developers to customize the poster and business card with their logo, title, description, and screenshots.",
+        "link": "others/Poster & Business Card Maker/index.html"
+    },
+    {
         "id": 11,
         "order": 2,
         "title": "Image Quality Enhancer",
