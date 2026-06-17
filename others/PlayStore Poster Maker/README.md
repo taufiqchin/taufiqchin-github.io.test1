@@ -31,8 +31,8 @@ A single-page web app to create Google Play marketing graphics with a **live pre
 
 - **Live WYSIWYG preview**
 - **Background** — solid color or image with blur
-- **Overlay images** (2 slots) — position, size, align, rounded corners
-- **Text** — word wrap, alignment, font controls
+- **Overlay images** — add/remove slots with + button; drag to move and resize on canvas
+- **Text** — add/remove layers; drag to position; typography controls in sidebar
 - **Feature Graphic safe zone** — optional guide overlay
 - **Export** — PNG (default) or JPEG, compressed to Play Console limits
 

@@ -190,6 +190,29 @@ function removeTextLayer(id) {
   return state;
 }
 
+function addImageSlot() {
+  const index = state.images.length;
+  const slot = createImageSlot();
+  slot.x = 50 + index * 30;
+  slot.y = 50 + index * 30;
+  state.images.push(slot);
+  state.selected = { type: 'image', index };
+  return state;
+}
+
+function removeImageSlot(index) {
+  if (state.images.length <= 1) return state;
+  state.images.splice(index, 1);
+  if (state.selected?.type === 'image') {
+    if (state.selected.index === index) {
+      state.selected = null;
+    } else if (state.selected.index > index) {
+      state.selected = { type: 'image', index: state.selected.index - 1 };
+    }
+  }
+  return state;
+}
+
 function getAsset() {
   return ASSET_TYPES[state.assetType];
 }

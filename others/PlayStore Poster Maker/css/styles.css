@@ -387,6 +387,16 @@ select {
   margin-bottom: 0.4rem;
 }
 
+.card-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card-header-actions .toggle {
+  margin-bottom: 0;
+}
+
 .card-header h3 {
   margin: 0;
   font-size: 0.9rem;

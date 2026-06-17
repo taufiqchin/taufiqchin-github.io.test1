@@ -147,6 +147,12 @@ function bindStaticControls() {
     triggerChange();
   });
 
+  document.getElementById('add-image').addEventListener('click', () => {
+    addImageSlot();
+    renderImageControls();
+    triggerChange();
+  });
+
   document.getElementById('export-format').addEventListener('change', (e) => {
     setState({ exportFormat: e.target.value });
     scheduleEstimate();
@@ -210,40 +216,25 @@ function renderBackgroundControls() {
 
 function renderImageControls() {
   imageSlotsEl.innerHTML = '';
-  getState().images.forEach((slot, index) => {
+  const state = getState();
+
+  state.images.forEach((slot, index) => {
     const card = document.createElement('div');
-    card.className = 'card';
+    card.className = `card${state.selected?.type === 'image' && state.selected.index === index ? ' selected' : ''}`;
     card.innerHTML = `
       <div class="card-header">
         <h3>Image ${index + 1}</h3>
-        <label class="toggle">
-          <input type="checkbox" data-img-visible="${index}" ${slot.visible ? 'checked' : ''} />
-          Show
-        </label>
+        <div class="card-header-actions">
+          <label class="toggle">
+            <input type="checkbox" data-img-visible="${index}" ${slot.visible ? 'checked' : ''} />
+            Show
+          </label>
+          ${state.images.length > 1 ? `<button type="button" class="btn-small danger" data-img-remove="${index}">Remove</button>` : ''}
+        </div>
       </div>
       <label class="file-btn">
         Upload image
         <input type="file" accept="image/*" data-img-upload="${index}" hidden />
-      </label>
-      <div class="grid-2">
-        <label>X <input type="number" data-img-x="${index}" value="${slot.x}" min="0" /></label>
-        <label>Y <input type="number" data-img-y="${index}" value="${slot.y}" min="0" /></label>
-        <label>Width <input type="number" data-img-w="${index}" value="${slot.width}" min="10" /></label>
-        <label>Height <input type="number" data-img-h="${index}" value="${slot.height}" min="10" /></label>
-      </div>
-      <label>Align H
-        <select data-img-align-h="${index}">
-          <option value="left" ${slot.alignH === 'left' ? 'selected' : ''}>Left</option>
-          <option value="center" ${slot.alignH === 'center' ? 'selected' : ''}>Center</option>
-          <option value="right" ${slot.alignH === 'right' ? 'selected' : ''}>Right</option>
-        </select>
-      </label>
-      <label>Align V
-        <select data-img-align-v="${index}">
-          <option value="top" ${slot.alignV === 'top' ? 'selected' : ''}>Top</option>
-          <option value="center" ${slot.alignV === 'center' ? 'selected' : ''}>Center</option>
-          <option value="bottom" ${slot.alignV === 'bottom' ? 'selected' : ''}>Bottom</option>
-        </select>
       </label>
       <label>Rounded corners <span data-img-radius-val="${index}">${slot.borderRadius}px</span>
         <input type="range" data-img-radius="${index}" min="0" max="100" value="${slot.borderRadius}" />
@@ -277,6 +268,14 @@ function renderImageControls() {
     });
   });
 
+  imageSlotsEl.querySelectorAll('[data-img-remove]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      removeImageSlot(Number(btn.dataset.imgRemove));
+      renderImageControls();
+      triggerChange();
+    });
+  });
+
   bindImageInputs();
 }
 
@@ -291,56 +290,6 @@ function bindImageInputs() {
   bind('[data-img-visible]', (e) => {
     const index = Number(e.target.dataset.imgVisible);
     updateImageSlot(index, { visible: e.target.checked });
-    triggerChange();
-  });
-
-  bind('[data-img-x]', (e) => {
-    const index = Number(e.target.dataset.imgX);
-    updateImageSlot(index, { x: Number(e.target.value) });
-    triggerChange();
-  });
-
-  bind('[data-img-y]', (e) => {
-    const index = Number(e.target.dataset.imgY);
-    updateImageSlot(index, { y: Number(e.target.value) });
-    triggerChange();
-  });
-
-  bind('[data-img-w]', (e) => {
-    const index = Number(e.target.dataset.imgW);
-    const slot = getState().images[index];
-    const width = Number(e.target.value);
-    const updates = { width };
-    if (slot.lockAspect && slot.naturalWidth) {
-      updates.height = Math.round(width * (slot.naturalHeight / slot.naturalWidth));
-      const hInput = document.querySelector(`[data-img-h="${index}"]`);
-      if (hInput) hInput.value = updates.height;
-    }
-    updateImageSlot(index, updates);
-    triggerChange();
-  });
-
-  bind('[data-img-h]', (e) => {
-    const index = Number(e.target.dataset.imgH);
-    const slot = getState().images[index];
-    const height = Number(e.target.value);
-    const updates = { height };
-    if (slot.lockAspect && slot.naturalHeight) {
-      updates.width = Math.round(height * (slot.naturalWidth / slot.naturalHeight));
-      const wInput = document.querySelector(`[data-img-w="${index}"]`);
-      if (wInput) wInput.value = updates.width;
-    }
-    updateImageSlot(index, updates);
-    triggerChange();
-  });
-
-  bind('[data-img-align-h]', (e) => {
-    updateImageSlot(Number(e.target.dataset.imgAlignH), { alignH: e.target.value });
-    triggerChange();
-  });
-
-  bind('[data-img-align-v]', (e) => {
-    updateImageSlot(Number(e.target.dataset.imgAlignV), { alignV: e.target.value });
     triggerChange();
   });
 
@@ -374,8 +323,6 @@ function renderTextControls() {
         <textarea rows="2" data-text-content="${text.id}">${text.content}</textarea>
       </label>
       <div class="grid-2">
-        <label>X <input type="number" data-text-x="${text.id}" value="${text.x}" min="0" /></label>
-        <label>Y <input type="number" data-text-y="${text.id}" value="${text.y}" min="0" /></label>
         <label>Max width <input type="number" data-text-maxw="${text.id}" value="${text.maxWidth}" min="50" /></label>
         <label>Font size <input type="number" data-text-size="${text.id}" value="${text.fontSize}" min="8" max="300" /></label>
       </div>
@@ -419,20 +366,6 @@ function bindTextInputs() {
   document.querySelectorAll('[data-text-content]').forEach((el) => {
     el.addEventListener('input', () => {
       updateTextLayer(Number(el.dataset.textContent), { content: el.value });
-      triggerChange();
-    });
-  });
-
-  document.querySelectorAll('[data-text-x]').forEach((el) => {
-    el.addEventListener('input', () => {
-      updateTextLayer(Number(el.dataset.textX), { x: Number(el.value) });
-      triggerChange();
-    });
-  });
-
-  document.querySelectorAll('[data-text-y]').forEach((el) => {
-    el.addEventListener('input', () => {
-      updateTextLayer(Number(el.dataset.textY), { y: Number(el.value) });
       triggerChange();
     });
   });
@@ -502,30 +435,6 @@ function bindTextInputs() {
   });
 }
 
-function syncControlsFromDrag() {
-  const state = getState();
-  const sel = state.selected;
-  if (!sel) return;
-
-  if (sel.type === 'image') {
-    const slot = state.images[sel.index];
-    const xInput = document.querySelector(`[data-img-x="${sel.index}"]`);
-    const yInput = document.querySelector(`[data-img-y="${sel.index}"]`);
-    const wInput = document.querySelector(`[data-img-w="${sel.index}"]`);
-    const hInput = document.querySelector(`[data-img-h="${sel.index}"]`);
-    if (xInput) xInput.value = Math.round(slot.x);
-    if (yInput) yInput.value = Math.round(slot.y);
-    if (wInput) wInput.value = Math.round(slot.width);
-    if (hInput) hInput.value = Math.round(slot.height);
-  } else if (sel.type === 'text') {
-    const text = state.texts.find((t) => t.id === sel.id);
-    const xInput = document.querySelector(`[data-text-x="${sel.id}"]`);
-    const yInput = document.querySelector(`[data-text-y="${sel.id}"]`);
-    if (xInput) xInput.value = Math.round(text.x);
-    if (yInput) yInput.value = Math.round(text.y);
-  }
-}
-
 function applyImageResize(handle, start, mouseX, mouseY, lockAspect, naturalW, naturalH) {
   const min = 20;
   const right = start.x + start.width;
@@ -581,6 +490,8 @@ function bindCanvasDrag() {
     const hit = hitTest(getState(), pos.x, pos.y);
     if (!hit) {
       setState({ selected: null });
+      renderImageControls();
+      renderTextControls();
       triggerChange();
       return;
     }
@@ -623,6 +534,7 @@ function bindCanvasDrag() {
       };
     }
 
+    renderImageControls();
     renderTextControls();
     triggerChange();
   });
@@ -672,7 +584,6 @@ function bindCanvasDrag() {
       });
     }
 
-    syncControlsFromDrag();
     triggerChange();
   });
 
