@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Poster & Business Card Maker</title>
+  <link rel="icon" type="image/png" href="../favicon/MT.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <main class="app-layout">
+    <aside id="controls" class="panel controls-panel">
+      <div class="sidebar-brand">
+        <h1>Poster & Business Card Maker</h1>
+        <p>Create posters and business cards for print</p>
+      </div>
+
+      <section class="section">
+        <h2>Size</h2>
+        <select id="asset-type">
+          <optgroup label="Poster">
+            <option value="a4">A4 — 210×297 mm</option>
+            <option value="a5">A5 — 148×210 mm</option>
+            <option value="a0">A0 — 841×1189 mm</option>
+            <option value="a1">A1 — 594×841 mm</option>
+          </optgroup>
+          <optgroup label="Business Card">
+            <option value="business-card">Business Card — 85×55 mm (Front + Back)</option>
+          </optgroup>
+        </select>
+        <p id="asset-badge" class="badge"></p>
+        <div id="page-tabs" class="page-tabs" hidden>
+          <button type="button" id="page-tab-front" class="page-tab active" data-page="front">Front</button>
+          <button type="button" id="page-tab-back" class="page-tab" data-page="back">Back</button>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Background</h2>
+        <div class="radio-group">
+          <label><input type="radio" name="bg-mode" id="bg-mode-color" value="color" checked /> Solid color</label>
+          <label><input type="radio" name="bg-mode" id="bg-mode-image" value="image" /> Image</label>
+        </div>
+        <div id="bg-color-wrap">
+          <label>Color</label>
+          <div class="color-hex-row">
+            <input type="color" id="bg-color" value="#eed744" />
+            <input type="text" id="bg-color-hex" class="hex-input" value="#eed744" spellcheck="false" maxlength="7" />
+          </div>
+        </div>
+        <div id="bg-image-wrap" style="display:none">
+          <label class="file-btn">
+            Upload background
+            <input type="file" id="bg-image-input" accept="image/*" hidden />
+          </label>
+          <label>Blur <span id="bg-blur-val">0%</span>
+            <input type="range" id="bg-blur" min="0" max="100" value="0" />
+          </label>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>Overlay Images</h2>
+          <button type="button" id="add-image" class="btn-small">+ Add image</button>
+        </div>
+        <div id="image-slots"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>Text</h2>
+          <button type="button" id="add-text" class="btn-small">+ Add text</button>
+        </div>
+        <div id="text-list"></div>
+      </section>
+
+      <section class="section">
+        <label>Download format
+          <select id="export-format">
+            <option value="png" selected>PNG</option>
+            <option value="jpeg">JPEG</option>
+            <option value="pdf">PDF</option>
+            <option value="docx">DOCX</option>
+          </select>
+        </label>
+        <button type="button" id="export-btn" class="btn-primary">Download</button>
+      </section>
+    </aside>
+
+    <section class="panel preview-panel">
+      <div class="preview-header">
+        <h2>Live Preview</h2>
+        <div class="preview-header-actions">
+          <div id="preview-zoom" class="preview-zoom" hidden>
+            <button type="button" id="zoom-out" class="btn-small" title="Zoom out" aria-label="Zoom out">−</button>
+            <input type="range" id="zoom-slider" class="zoom-slider" min="25" max="500" step="5" value="100" aria-label="Zoom level" />
+            <span id="zoom-level" class="zoom-level">100%</span>
+            <button type="button" id="zoom-in" class="btn-small" title="Zoom in" aria-label="Zoom in">+</button>
+            <button type="button" id="zoom-fit" class="btn-small" title="Fit to screen (100%)" aria-label="Fit to screen">Fit</button>
+          </div>
+          <p id="status-line" class="status-line"></p>
+        </div>
+      </div>
+      <div class="canvas-wrap" id="canvas-wrap">
+        <div class="canvas-stage">
+          <div id="card-preview-labels" class="card-preview-labels" hidden>
+            <button type="button" id="card-label-front" class="card-side-label" data-page="front">Front</button>
+            <span id="card-label-gap" class="card-label-gap" aria-hidden="true"></span>
+            <button type="button" id="card-label-back" class="card-side-label" data-page="back">Back</button>
+          </div>
+          <canvas id="preview-canvas"></canvas>
+        </div>
+      </div>
+      <p id="preview-hint" class="hint">Drag to move. Select an image and drag corner handles to resize.</p>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script type="module" src="js/export-docx.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/export.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
