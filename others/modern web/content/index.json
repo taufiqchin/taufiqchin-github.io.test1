@@ -81,6 +81,13 @@
       "title": "Web APIs",
       "order": 11,
       "jsonPath": "content/modules/11.js-api.json"
+    },
+    {
+      "id": "full-page-capstone",
+      "track": "html",
+      "title": "Build a Full Website Page",
+      "order": 12,
+      "jsonPath": "content/modules/12.full-page-capstone.json"
     }
   ]
 }

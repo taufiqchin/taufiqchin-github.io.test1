@@ -10,9 +10,9 @@
       "description": "Store related data in one object and read properties.",
       "outputType": "preview",
       "files": {
-        "html": "<pre id=\"out\"></pre>",
+        "html": "<pre id=\"out\"></pre>\n\n<!-- Js code below -->\n<script>\nconst user = {\n  name: \"Alex\",\n  role: \"Student\",\n  year: 2\n};\ndocument.getElementById(\"out\").textContent =\n  user.name + \" — \" + user.role + \" (year \" + user.year + \")\";\n</script>",
         "css": "body { font-family: sans-serif; padding: 1.5rem; }\npre { background: #f1f5f9; padding: 1rem; border-radius: 8px; }",
-        "js": "const user = {\n  name: \"Alex\",\n  role: \"Student\",\n  year: 2\n};\ndocument.getElementById(\"out\").textContent =\n  user.name + \" — \" + user.role + \" (year \" + user.year + \")\";"
+        "js": ""
       }
     },
     {
@@ -21,9 +21,20 @@
       "description": "Functions stored as object properties.",
       "outputType": "preview",
       "files": {
-        "html": "<p id=\"out\"></p>",
+        "html": "<p id=\"out\"></p>\n\n<!-- Js code below -->\n<script>\nconst calc = {\n  sum(a, b) { return a + b; }\n};\ndocument.getElementById(\"out\").textContent = \"5 + 3 = \" + calc.sum(5, 3);\n</script>",
         "css": "body { font-family: sans-serif; padding: 1.5rem; }",
-        "js": "const calc = {\n  sum(a, b) { return a + b; }\n};\ndocument.getElementById(\"out\").textContent = \"5 + 3 = \" + calc.sum(5, 3);"
+        "js": ""
+      }
+    },
+    {
+      "id": "page-sections-data",
+      "title": "Object array for site sections",
+      "description": "Purpose: Blog posts, features, or team members are often stored as an array of objects—JavaScript loops through them to build the page. Output: Three sections (title + text) rendered from data in an array. Try: Add a fourth object to the sections array.",
+      "outputType": "preview",
+      "files": {
+        "html": "<main id=\"content\"></main>\n\n<!-- Js code below -->\n<script>\nconst sections = [\n  { title: \"HTML\", text: \"Structure your content with semantic tags.\" },\n  { title: \"CSS\", text: \"Style layouts, colors, and responsive design.\" },\n  { title: \"JavaScript\", text: \"Add interactivity and load data dynamically.\" }\n];\nconst main = document.getElementById(\"content\");\nsections.forEach((s) => {\n  main.innerHTML += `<section><h2>${s.title}</h2><p>${s.text}</p></section>`;\n});\n</script>",
+        "css": "body { font-family: system-ui, sans-serif; padding: 1rem; margin: 0; }\nsection { margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid #dbeafe; }\nsection h2 { margin: 0 0 0.35rem; color: #2563eb; font-size: 1.1rem; }\nsection p { margin: 0; color: #475569; }",
+        "js": ""
       }
     }
   ],
@@ -31,10 +42,13 @@
     "description": "Create a product object with name, price, and a method display() that returns a formatted string.",
     "outputType": "preview",
     "starter": {
-      "html": "<p id=\"out\"></p>",
+      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Practice</title>\n</head>\n<body>\n<p id=\"out\"></p>\n\n<!-- Js code below -->\n<script>\nconst product = {\n  name: \"Notebook\",\n  price: 4.5,\n  // add display() method\n};\n</script>\n</body>\n</html>",
       "css": "body { font-family: sans-serif; padding: 1.5rem; }",
-      "js": "const product = {\n  name: \"Notebook\",\n  price: 4.5,\n  // add display() method\n};\n"
+      "js": ""
     },
-    "hints": ["display can return `name: $price`", "Call product.display() for #out"]
+    "hints": [
+      "display can return `name: $price`",
+      "Call product.display() for #out"
+    ]
   }
 }

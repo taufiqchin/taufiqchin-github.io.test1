@@ -10,9 +10,9 @@
       "description": "Parse a JSON string into an object and display properties.",
       "outputType": "preview",
       "files": {
-        "html": "<p id=\"demo\"></p>",
+        "html": "<p id=\"demo\"></p>\n\n<!-- Js code below -->\n<script>\nconst text = '{\"name\":\"John Johnson\",\"street\":\"Oslo West 16\",\"phone\":\"555 1234567\"}';\nconst obj = JSON.parse(text);\ndocument.getElementById(\"demo\").innerHTML =\n  obj.name + \"<br>\" + obj.street + \"<br>\" + obj.phone;\n</script>",
         "css": "body { font-family: sans-serif; padding: 1.5rem; }",
-        "js": "const text = '{\"name\":\"John Johnson\",\"street\":\"Oslo West 16\",\"phone\":\"555 1234567\"}';\nconst obj = JSON.parse(text);\ndocument.getElementById(\"demo\").innerHTML =\n  obj.name + \"<br>\" + obj.street + \"<br>\" + obj.phone;"
+        "js": ""
       }
     },
     {
@@ -22,22 +22,36 @@
       "outputType": "preview",
       "previewSrc": "content/examples/ajax-xhr/index.html",
       "fullDemoUrl": "content/examples/ajax-xhr/index.html",
-      "fileRefs": {
-        "html": "content/examples/ajax-xhr/index.html",
-        "css": "",
+      "files": {
+        "html": "<h2>AJAX XMLHttpRequest</h2>\n<button type=\"button\" onclick=\"loadAJAX()\">Load Content</button>\n<div id=\"demo\">Content will appear here…</div>\n\n<!-- Js code below -->\n<script>\nfunction loadAJAX() {\n  const xhttp = new XMLHttpRequest();\n  xhttp.onreadystatechange = function () {\n    if (this.readyState === 4 && this.status === 200) {\n      document.getElementById(\"demo\").innerHTML = this.responseText;\n    }\n  };\n  xhttp.open(\"GET\", \"txt/ajax_info.txt\", true);\n  xhttp.send();\n}\n</script>",
+        "css": "#demo {\n  margin-top: 16px;\n  padding: 12px;\n  border: 1px solid #ccc;\n  border-radius: 6px;\n  font-family: sans-serif;\n}\nbutton { padding: 0.5rem 1rem; cursor: pointer; }",
         "js": ""
       },
       "note": "Use Run example with a local server. Click Load Content inside the preview."
+    },
+    {
+      "id": "fetch-json",
+      "title": "Fetch JSON into the page",
+      "description": "Purpose: Modern sites load data from JSON files or APIs using fetch()—faster and simpler than older XHR code. Output: Click Load posts to fetch three blog titles from a JSON file and list them. Try: Run with npx serve . from the project folder, then click the button.",
+      "outputType": "preview",
+      "files": {
+        "html": "<button type=\"button\" id=\"load\">Load posts</button>\n<ul id=\"list\"></ul>\n<p id=\"status\" class=\"hint\"></p>\n\n<!-- Js code below -->\n<script>\nconst list = document.getElementById(\"list\");\nconst status = document.getElementById(\"status\");\ndocument.getElementById(\"load\").addEventListener(\"click\", () => {\n  status.textContent = \"Loading…\";\n  fetch(\"content/examples/sample-posts/posts.json\")\n    .then((r) => r.json())\n    .then((posts) => {\n      list.innerHTML = \"\";\n      posts.forEach((p) => {\n        const li = document.createElement(\"li\");\n        li.textContent = p.title + \" — \" + p.body;\n        list.appendChild(li);\n      });\n      status.textContent = \"Loaded \" + posts.length + \" posts.\";\n    })\n    .catch(() => {\n      status.textContent = \"Could not load JSON. Run: npx serve . from the modern web folder.\";\n    });\n});\n</script>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; }\nbutton { padding: 0.45rem 0.85rem; background: #2563eb; color: #fff; border: none; border-radius: 6px; cursor: pointer; }\n.hint { color: #64748b; font-size: 0.9rem; }",
+        "js": ""
+      }
     }
   ],
   "practice": {
     "description": "Parse this JSON array and list each name in the page.",
     "outputType": "preview",
     "starter": {
-      "html": "<ul id=\"list\"></ul>",
+      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Practice</title>\n</head>\n<body>\n<ul id=\"list\"></ul>\n\n<!-- Js code below -->\n<script>\nconst data = '[{\"name\":\"Ada\"},{\"name\":\"Grace\"},{\"name\":\"Alan\"}]';\n// JSON.parse and append li elements\n</script>\n</body>\n</html>",
       "css": "body { font-family: sans-serif; padding: 1.5rem; }",
-      "js": "const data = '[{\"name\":\"Ada\"},{\"name\":\"Grace\"},{\"name\":\"Alan\"}]';\n// JSON.parse and append li elements\n"
+      "js": ""
     },
-    "hints": ["JSON.parse returns an array", "Use forEach and createElement('li')"]
+    "hints": [
+      "JSON.parse returns an array",
+      "Use forEach and createElement('li')"
+    ]
   }
 }

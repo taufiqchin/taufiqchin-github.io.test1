@@ -54,6 +54,7 @@ You do **not** edit `index.html` to add lesson body content — edit the JSON fi
 | JavaScript Objects | `content/modules/9.js-objects.json` |
 | AJAX & JSON | `content/modules/10.js-ajax-json.json` |
 | Web APIs | `content/modules/11.js-api.json` |
+| Build a Full Website Page | `content/modules/12.full-page-capstone.json` |
 
 ### Three content areas in each module JSON
 

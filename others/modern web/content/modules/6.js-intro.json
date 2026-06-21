@@ -10,9 +10,9 @@
       "description": "let, const, and template literals shown in the page.",
       "outputType": "preview",
       "files": {
-        "html": "<p id=\"out\"></p>",
+        "html": "<p id=\"out\"></p>\n\n<!-- Js code below -->\n<script>\nconst name = \"Learner\";\nlet score = 42;\ndocument.getElementById(\"out\").textContent = `${name} scored ${score} points.`;\n</script>",
         "css": "body { font-family: sans-serif; padding: 1.5rem; }",
-        "js": "const name = \"Learner\";\nlet score = 42;\ndocument.getElementById(\"out\").textContent = `${name} scored ${score} points.`;"
+        "js": ""
       }
     },
     {
@@ -21,9 +21,20 @@
       "description": "Count from 1 to 5 — output appears in the panel below (like DevTools console).",
       "outputType": "console",
       "files": {
-        "html": "<p>Open the output panel after clicking Run example.</p>",
+        "html": "<p>Open the output panel after clicking Run example.</p>\n\n<!-- Js code below -->\n<script>\nfor (let i = 1; i <= 5; i++) {\n  console.log(\"Iteration number: \" + i);\n}\n</script>",
         "css": "body { font-family: sans-serif; padding: 1rem; color: #64748b; }",
-        "js": "for (let i = 1; i <= 5; i++) {\n  console.log(\"Iteration number: \" + i);\n}"
+        "js": ""
+      }
+    },
+    {
+      "id": "if-else-greeting",
+      "title": "If / else in the page",
+      "description": "Purpose: Websites use if/else to show different messages—for example welcome back vs first visit. Output: A greeting that changes when you click Morning or Evening. Try: Add an Afternoon button with another message.",
+      "outputType": "preview",
+      "files": {
+        "html": "<p id=\"msg\">Click a button below.</p>\n<button id=\"morning\">Morning</button>\n<button id=\"evening\">Evening</button>\n\n<!-- Js code below -->\n<script>\nconst msg = document.getElementById(\"msg\");\ndocument.getElementById(\"morning\").addEventListener(\"click\", () => {\n  msg.textContent = \"Good morning! Ready to learn?\";\n});\ndocument.getElementById(\"evening\").addEventListener(\"click\", () => {\n  msg.textContent = \"Good evening! Time to review your code.\";\n});\n</script>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; }\nbutton { margin-right: 0.5rem; padding: 0.4rem 0.75rem; cursor: pointer; }",
+        "js": ""
       }
     }
   ],
@@ -31,10 +42,13 @@
     "description": "Use a loop to log the multiples of 3 from 3 to 15 in the console output.",
     "outputType": "console",
     "starter": {
-      "html": "<p>Click Run to see console output below.</p>",
+      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Practice</title>\n</head>\n<body>\n<p>Click Run to see console output below.</p>\n\n<!-- Js code below -->\n<script>\n// Write a for loop: 3, 6, 9 ... 15\n</script>\n</body>\n</html>",
       "css": "",
-      "js": "// Write a for loop: 3, 6, 9 ... 15\n"
+      "js": ""
     },
-    "hints": ["Use console.log inside the loop", "i += 3 or check i % 3 === 0"]
+    "hints": [
+      "Use console.log inside the loop",
+      "i += 3 or check i % 3 === 0"
+    ]
   }
 }

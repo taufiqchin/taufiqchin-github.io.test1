@@ -1,19 +1,26 @@
-/** Multi-tab code block (read-only examples or editable practice). */
 class CodeBlock {
-  constructor(root, { readOnly = false, onRun = null } = {}) {
+  constructor(root, { readOnly = false, onRun = null, contentPaddingLines = 1 } = {}) {
     if (!root) throw new Error("CodeBlock requires a root element");
     this.root = root;
     this.readOnly = readOnly;
+    this.contentPaddingLines = contentPaddingLines;
     this.onRun = onRun;
-    this.langs = ["html", "css", "js"];
+    this.langs = ["html", "css"];
     this.activeLang = "html";
     this.editors = {};
     this.files = { html: "", css: "", js: "" };
+    this.defaultFiles = { html: "", css: "", js: "" };
     this._built = false;
+    this._suppressChange = false;
   }
 
   async init(files) {
-    this.files = { ...files };
+    this.files = EditorRunner.normalizeFiles(files);
+    this.defaultFiles = {
+      html: this.files.html,
+      css: this.files.css,
+      js: "",
+    };
     if (!this._built) this._buildShell();
     await EditorRunner.ensureCodeMirror();
     for (const lang of this.langs) {
@@ -28,11 +35,18 @@ class CodeBlock {
       );
       this.editors[lang] = ed;
       wrap.hidden = lang !== this.activeLang;
+      ed.on("change", () => this._onEditorChange(lang));
     }
     this._syncTabVisibility();
     requestAnimationFrame(() => {
       Object.values(this.editors).forEach((ed) => ed.refresh());
+      this._fitEditorHeight(this.activeLang);
     });
+  }
+
+  _onEditorChange(lang) {
+    if (this._suppressChange || lang !== this.activeLang) return;
+    this._fitEditorHeight(lang);
   }
 
   _buildShell() {
@@ -75,6 +89,33 @@ class CodeBlock {
     });
   }
 
+  _getContentHeight(ed) {
+    ed.refresh();
+    return ed.heightAtLine(ed.lineCount(), "local");
+  }
+
+  _getEditorFitHeight(ed) {
+    const lineHeight = ed.defaultTextHeight();
+    return this._getContentHeight(ed) + lineHeight * this.contentPaddingLines;
+  }
+
+  _setEditorHeightPx(ed, height) {
+    ed.setSize(null, height);
+    const scroller = ed.getScrollerElement();
+    scroller.style.overflow = "hidden";
+    scroller.style.maxHeight = "none";
+  }
+
+  _fitEditorHeight(lang) {
+    const ed = this.editors[lang];
+    const wrap = this.root.querySelector(`[data-editor="${lang}"]`);
+    if (!ed || !wrap) return;
+
+    wrap.classList.add("code-editor-wrap--collapsible");
+    this._setEditorHeightPx(ed, this._getEditorFitHeight(ed));
+    requestAnimationFrame(() => ed.refresh());
+  }
+
   switchTab(lang) {
     this.activeLang = lang;
     this.root.querySelectorAll(".tab-btn").forEach((b) => {
@@ -83,6 +124,7 @@ class CodeBlock {
     this._syncTabVisibility();
     requestAnimationFrame(() => {
       this.editors[lang]?.refresh();
+      this._fitEditorHeight(lang);
     });
   }
 
@@ -97,41 +139,59 @@ class CodeBlock {
     return {
       html: this.editors.html?.getValue() ?? this.files.html,
       css: this.editors.css?.getValue() ?? this.files.css,
-      js: this.editors.js?.getValue() ?? this.files.js,
+      js: "",
     };
   }
 
+  _applyEditorValues(files) {
+    this.files = { html: files.html || "", css: files.css || "", js: "" };
+    this._suppressChange = true;
+    if (this.editors.html) this.editors.html.setValue(this.files.html);
+    if (this.editors.css) this.editors.css.setValue(this.files.css);
+    this._suppressChange = false;
+    requestAnimationFrame(() => {
+      this.langs.forEach((lang) => this._fitEditorHeight(lang));
+    });
+  }
+
   setFiles(files) {
-    this.files = { ...files };
-    for (const lang of this.langs) {
-      if (this.editors[lang]) this.editors[lang].setValue(this.files[lang] || "");
-    }
+    const normalized = EditorRunner.normalizeFiles(files);
+    this._applyEditorValues(normalized);
+  }
+
+  reset() {
+    this._applyEditorValues(this.defaultFiles);
   }
 }
 
 function createOutputPanel(parent, id) {
   const panel = document.createElement("div");
-  panel.className = "output-panel";
+  panel.className = "output-panel output-panel--side";
   panel.id = id;
   panel.innerHTML = `
     <h4>Output</h4>
-    <iframe title="Preview" sandbox="allow-scripts allow-same-origin"></iframe>
+    <p class="output-placeholder">Click Run example to see the result.</p>
+    <iframe title="Preview" sandbox="allow-scripts allow-same-origin" hidden></iframe>
     <pre class="console-output" hidden></pre>
   `;
   parent.appendChild(panel);
   return panel;
 }
 
+const PREVIEW_RUN_OPTS = { autoHeight: true, minHeight: 60, maxHeight: null };
+
 function resetOutputPanel(panel) {
   panel.innerHTML = `
     <h4>Output</h4>
-    <iframe title="Preview" sandbox="allow-scripts allow-same-origin"></iframe>
+    <p class="output-placeholder">Click Run example to see the result.</p>
+    <iframe title="Preview" sandbox="allow-scripts allow-same-origin" hidden></iframe>
     <pre class="console-output" hidden></pre>
   `;
 }
 
 function runExampleOutput(panel, example, files) {
   resetOutputPanel(panel);
+  const placeholder = panel.querySelector(".output-placeholder");
   const iframe = panel.querySelector("iframe");
   const consoleEl = panel.querySelector(".console-output");
   panel.classList.add("visible");
@@ -139,8 +199,9 @@ function runExampleOutput(panel, example, files) {
   const outputType = example.outputType || "preview";
 
   if (outputType === "note") {
-    iframe.remove();
-    consoleEl.remove();
+    placeholder?.remove();
+    iframe?.remove();
+    consoleEl?.remove();
     EditorRunner.showNote(
       panel,
       example.note ||
@@ -149,26 +210,32 @@ function runExampleOutput(panel, example, files) {
     return;
   }
 
-  if (example.previewSrc) {
-    EditorRunner.runExternal(iframe, example.previewSrc);
-    return;
-  }
+  placeholder?.remove();
 
   if (outputType === "console") {
     iframe.hidden = true;
     consoleEl.hidden = false;
     consoleEl.textContent = "";
-    consoleEl.classList.add("visible");
     EditorRunner.runSrcdoc(iframe, files.html, files.css, files.js, "console", (text) => {
       consoleEl.textContent = text || "(no output)";
+      EditorRunner.fitConsoleElement(consoleEl);
     });
     return;
   }
 
-  EditorRunner.runSrcdoc(iframe, files.html, files.css, files.js, "preview");
+  iframe.hidden = false;
+  EditorRunner.runSrcdoc(
+    iframe,
+    files.html,
+    files.css,
+    files.js,
+    "preview",
+    null,
+    PREVIEW_RUN_OPTS
+  );
 }
 
-async function renderExampleCard(example, practiceBlock) {
+async function renderExampleCard(example) {
   const card = document.createElement("article");
   card.className = "example-card";
   card.dataset.exampleId = example.id;
@@ -176,35 +243,35 @@ async function renderExampleCard(example, practiceBlock) {
   card.innerHTML = `
     <h3>${example.title}</h3>
     <p class="desc">${example.description}</p>
-    <div class="example-editor"></div>
-    <div class="card-actions">
-      <button type="button" class="btn btn--primary btn--small btn-run-example">Run example</button>
-      <button type="button" class="btn btn--small btn-try-lab">Try in practice lab</button>
-      ${example.fullDemoUrl ? `<a class="btn btn--small" href="${example.fullDemoUrl}" target="_blank" rel="noopener">Open full demo</a>` : ""}
+    <div class="lab-workspace">
+      <div class="lab-code-col">
+        <div class="example-editor"></div>
+        <div class="card-actions">
+          <button type="button" class="btn btn--primary btn--small btn-run-example">Run example</button>
+          <button type="button" class="btn btn--small btn-reset-example">Reset</button>
+          ${example.fullDemoUrl ? `<a class="btn btn--small" href="${example.fullDemoUrl}" target="_blank" rel="noopener">Open full demo</a>` : ""}
+        </div>
+      </div>
+      <div class="lab-output-col"></div>
     </div>
   `;
 
   const editorRoot = card.querySelector(".example-editor");
-  const outputPanel = createOutputPanel(card, `out-${example.id}`);
-  const codeBlock = new CodeBlock(editorRoot, { readOnly: true });
+  const outputCol = card.querySelector(".lab-output-col");
+  const outputPanel = createOutputPanel(outputCol, `out-${example.id}`);
+  const codeBlock = new CodeBlock(editorRoot, { readOnly: false });
 
-  let resolved = example.files
+  const defaultFiles = example.files
     ? { ...example.files }
     : await ContentAPI.resolveExampleFiles(example);
-  await codeBlock.init(resolved);
+  await codeBlock.init(defaultFiles);
 
-  card.querySelector(".btn-run-example").addEventListener("click", async () => {
-    if (!example.files && example.fileRefs) {
-      resolved = await ContentAPI.resolveExampleFiles(example);
-    } else {
-      resolved = codeBlock.getFiles();
-    }
-    runExampleOutput(outputPanel, example, resolved);
+  card.querySelector(".btn-run-example").addEventListener("click", () => {
+    runExampleOutput(outputPanel, example, codeBlock.getFiles());
   });
 
-  card.querySelector(".btn-try-lab").addEventListener("click", () => {
-    practiceBlock.setFiles(codeBlock.getFiles());
-    document.querySelector(".practice-panel")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  card.querySelector(".btn-reset-example").addEventListener("click", () => {
+    codeBlock.reset();
   });
 
   return card;
@@ -257,6 +324,34 @@ function setupSidebarMenu() {
   });
 }
 
+function renderGuide(module) {
+  const guide = module.guide;
+  const section = document.getElementById("lesson-guide-section");
+  if (!guide || !section) return;
+
+  const titleEl = document.getElementById("lesson-guide-title");
+  const introEl = document.getElementById("lesson-guide-intro");
+  const stepsEl = document.getElementById("lesson-guide-steps");
+  const footerEl = document.getElementById("lesson-guide-footer");
+
+  titleEl.textContent = guide.title || "Before you start";
+  introEl.textContent = guide.intro || "";
+  introEl.hidden = !guide.intro;
+
+  stepsEl.innerHTML = (guide.steps || [])
+    .map((step) => {
+      if (typeof step === "string") return `<li>${step}</li>`;
+      const heading = step.title ? `<strong>${step.title}</strong> ` : "";
+      return `<li>${heading}${step.text || ""}</li>`;
+    })
+    .join("");
+
+  footerEl.textContent = guide.footer || "";
+  footerEl.hidden = !guide.footer;
+
+  section.hidden = !guide.steps?.length;
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   const main = document.getElementById("lesson-main");
   const moduleId = Router.getModuleId();
@@ -275,6 +370,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("lesson-summary").textContent = module.summary || "";
     document.title = `${module.title} — Modern Web Resource Center`;
 
+    renderGuide(module);
+
     const examplesEl = document.getElementById("examples-list");
     const practiceRoot = document.getElementById("practice-editor-root");
     const practiceOutput = createOutputPanel(
@@ -282,46 +379,19 @@ document.addEventListener("DOMContentLoaded", async () => {
       "practice-out"
     );
 
-    const practiceBlock = new CodeBlock(practiceRoot, {
-      readOnly: false,
-      onRun: (files) => {
-        const panel = practiceOutput;
-        panel.classList.add("visible");
-        const iframe = panel.querySelector("iframe");
-        const consoleEl = panel.querySelector(".console-output");
-        const mode = module.practice?.outputType || "preview";
-        if (mode === "console") {
-          iframe.hidden = true;
-          consoleEl.hidden = false;
-          consoleEl.textContent = "";
-          EditorRunner.runSrcdoc(
-            iframe,
-            files.html,
-            files.css,
-            files.js,
-            "console",
-            (text) => {
-              consoleEl.textContent = text || "(no output)";
-              EditorRunner.fitConsoleElement(consoleEl);
-            }
-          );
-        } else {
-          consoleEl.hidden = true;
-          iframe.hidden = false;
-          EditorRunner.runSrcdoc(
-            iframe,
-            files.html,
-            files.css,
-            files.js,
-            "preview",
-            null,
-            { autoHeight: true, minHeight: 60, maxHeight: 560 }
-          );
-        }
-      },
-    });
-    const starter = module.practice?.starter || { html: "", css: "", js: "" };
+    const practiceBlock = new CodeBlock(practiceRoot, { readOnly: false });
+    const starter = EditorRunner.preparePracticeStarter(
+      module.practice?.starter || { html: "", css: "", js: "" }
+    );
     await practiceBlock.init(starter);
+
+    function runPracticeOutput() {
+      runExampleOutput(
+        practiceOutput,
+        { outputType: module.practice?.outputType || "preview" },
+        practiceBlock.getFiles()
+      );
+    }
 
     document.getElementById("practice-desc").textContent =
       module.practice?.description || "Edit and run your code.";
@@ -335,15 +405,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     document.getElementById("btn-reset-practice").addEventListener("click", () => {
-      practiceBlock.setFiles(module.practice?.starter || { html: "", css: "", js: "" });
+      practiceBlock.reset();
     });
 
     document.getElementById("btn-run-practice").addEventListener("click", () => {
-      practiceBlock.root.querySelector(".btn-run")?.click();
+      runPracticeOutput();
     });
 
     for (const ex of module.examples || []) {
-      examplesEl.appendChild(await renderExampleCard(ex, practiceBlock));
+      examplesEl.appendChild(await renderExampleCard(ex));
     }
 
     setupSidebarMenu();

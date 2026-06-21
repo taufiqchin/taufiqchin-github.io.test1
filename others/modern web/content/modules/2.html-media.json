@@ -25,16 +25,30 @@
         "css": "body { font-family: sans-serif; padding: 1.5rem; }\nmark { background: #fef08a; }",
         "js": ""
       }
+    },
+    {
+      "id": "video-audio",
+      "title": "Video and audio",
+      "description": "Purpose: Many sites include tutorials, music, or podcasts using native HTML media tags—no extra plugins needed. Output: A short sample video with controls and an audio player below it. Try: Change the video width or add your own media URL (must be https).",
+      "outputType": "preview",
+      "files": {
+        "html": "<h2>Sample video</h2>\n<video controls width=\"320\" src=\"https://www.w3schools.com/html/mov_bbb.mp4\">\n  Your browser does not support video.\n</video>\n<h2>Sample audio</h2>\n<audio controls src=\"https://www.w3schools.com/html/horse.mp3\">\n  Your browser does not support audio.\n</audio>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; }\nh2 { color: #2563eb; font-size: 1rem; margin-top: 1.25rem; }\nvideo, audio { display: block; margin-top: 0.5rem; }",
+        "js": ""
+      }
     }
   ],
   "practice": {
     "description": "Add an image with alt text and a figure caption using <figure> and <figcaption>.",
     "outputType": "preview",
     "starter": {
-      "html": "<figure>\n  <!-- img + figcaption -->\n</figure>",
+      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Practice</title>\n</head>\n<body>\n<figure>\n  <!-- img + figcaption -->\n</figure>\n</body>\n</html>",
       "css": "figure { max-width: 320px; font-family: sans-serif; }",
       "js": ""
     },
-    "hints": ["Use picsum.photos or any https image URL", "figcaption describes the image"]
+    "hints": [
+      "Use picsum.photos or any https image URL",
+      "figcaption describes the image"
+    ]
   }
 }

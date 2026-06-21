@@ -4,16 +4,12 @@ html {
   font-size: calc(100% * var(--a11y-font-scale, 1));
 }
 
-.code-editor-wrap .CodeMirror {
-  font-size: calc(13px * var(--a11y-font-scale, 1));
-}
-
 html.a11y-grayscale {
-  filter: grayscale(100%);
+  filter: grayscale(100%); /* Grayscale mode (A11y toolbar) */
 }
 
 html.a11y-grayscale .output-panel iframe {
-  filter: grayscale(100%);
+  filter: grayscale(100%); /* Grayscale live preview */
 }
 
 .lesson-header-actions {
@@ -33,10 +29,10 @@ html.a11y-grayscale .output-panel iframe {
 }
 
 .a11y-toolbar[role="group"] {
-  border: 1px solid var(--surface2);
+  border: 1px solid var(--surface2); /* A11y toolbar border */
   border-radius: 6px;
   padding: 0.2rem;
-  background: var(--surface);
+  background: var(--surface); /* A11y toolbar background */
 }
 
 .a11y-btn {
@@ -47,7 +43,7 @@ html.a11y-grayscale .output-panel iframe {
 }
 
 .a11y-btn.is-active {
-  background: var(--accent);
+  background: var(--accent); /* Active a11y button (e.g. Gray toggle on) */
   border-color: var(--accent);
   color: var(--on-accent);
 }

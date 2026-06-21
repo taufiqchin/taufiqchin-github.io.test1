@@ -3,6 +3,33 @@
   "title": "Introduction to HTML",
   "track": "html",
   "summary": "Document structure, elements, attributes, and semantic markup.",
+  "guide": {
+    "title": "Before you start — set up on your computer",
+    "intro": "Do these steps once before Example 1: Basic page skeleton. You will save your own HTML file on the Desktop and open it in a browser.",
+    "steps": [
+      {
+        "title": "Create a folder on your Desktop.",
+        "text": "Right-click on an empty area of your Desktop → New → Folder. Name it something easy to find, for example My Website."
+      },
+      {
+        "title": "Create an HTML file inside the folder.",
+        "text": "Open the folder. Right-click inside → New → Text Document. Rename the file to index.html (type the full name including .html). If Windows asks “Are you sure you want to change the extension?” click Yes."
+      },
+      {
+        "title": "Open the file in your browser.",
+        "text": "Double-click index.html. It may open as a blank page — that is normal for now."
+      },
+      {
+        "title": "Open the same file in a text editor.",
+        "text": "Right-click index.html → Open with → Notepad (or use VS Code if you have it). Keep the editor open so you can paste code from the examples below."
+      },
+      {
+        "title": "Get ready for Example 1.",
+        "text": "Scroll down to Basic page skeleton. Read the example, then build a complete page in your index.html — start with <!DOCTYPE html>, add <html>, <head>, and <body>, and put the example content inside <body>. Save the file (Ctrl+S), then refresh the browser tab to see your page."
+      }
+    ],
+    "footer": "When your folder, index.html, and text editor are ready, continue to Example 1: Basic page skeleton below."
+  },
   "examples": [
     {
       "id": "basic-skeleton",
@@ -25,16 +52,31 @@
         "css": "body { font-family: Georgia, serif; padding: 1rem; }",
         "js": ""
       }
+    },
+    {
+      "id": "semantic-layout",
+      "title": "Page sections with div and landmarks",
+      "description": "Purpose: Real websites split content into header, navigation, main, and footer so visitors and search engines understand the page. Output: A simple page with a site title, nav links, welcome text, and a copyright footer. Try: Add a new link in the nav or a second paragraph inside main.",
+      "outputType": "preview",
+      "files": {
+        "html": "<header>\n  <h1>My Site</h1>\n  <nav>\n    <a href=\"#\">Home</a> |\n    <a href=\"#\">About</a> |\n    <a href=\"#\">Contact</a>\n  </nav>\n</header>\n<main>\n  <h2>Welcome</h2>\n  <p>This is the main content area where your page body lives.</p>\n</main>\n<footer>\n  <p>&copy; 2026 My Site</p>\n</footer>",
+        "css": "body { font-family: system-ui, sans-serif; margin: 0; line-height: 1.5; }\nheader { background: #e8f1fb; padding: 1rem; border-bottom: 1px solid #dbeafe; }\nheader h1 { margin: 0 0 0.5rem; color: #2563eb; }\nnav a { color: #1e40af; margin-right: 0.5rem; }\nmain { padding: 1rem; max-width: 40rem; }\nfooter { background: #f1f5f9; padding: 0.75rem 1rem; color: #64748b; font-size: 0.9rem; }",
+        "js": ""
+      }
     }
   ],
   "practice": {
     "description": "Create a valid page with one h1, a short paragraph, and a link to https://developer.mozilla.org/",
     "outputType": "preview",
     "starter": {
-      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>My Page</title>\n</head>\n<body>\n  <!-- Add h1, p, and a link here -->\n</body>\n</html>",
+      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <meta charset=\"UTF-8\">\n  <title>My Page</title>\n</head>\n<body>\n  <!-- Add h1, p, and a link here -->\n</body>\n</html>",
       "css": "body { font-family: sans-serif; padding: 2rem; }",
       "js": ""
     },
-    "hints": ["Use <!DOCTYPE html> and lang on <html>", "Only one <h1> per page", "<a href=\"...\"> needs a closing tag"]
+    "hints": [
+      "Use <!DOCTYPE html> and lang on <html>",
+      "Only one <h1> per page",
+      "<a href=\"...\"> needs a closing tag"
+    ]
   }
 }

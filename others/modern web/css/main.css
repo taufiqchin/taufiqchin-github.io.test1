@@ -1,23 +1,64 @@
+/* =============================================================================
+   COLOR PALETTE — change values here to restyle the whole site
+   ============================================================================= */
 :root {
-  --bg: #d8b0a3;
-  --surface: #fffcfa;
-  --surface2: #efe8e1;
-  --surface-hover: #e8dfd6;
-  --text: #3d342c;
-  --muted: #7a6f66;
-  --accent: #c4694a;
-  --accent-hover: #a85538;
-  --on-accent: #fffcfa;
-  --html: #b85c38;
-  --css: #5c6b8a;
-  --js: #c9a227;
-  --js-text: #3d342c;
-  --preview-bg: #ffffff;
-  --console-bg: #3d342c;
-  --console-text: #d4e8c4;
-  --console-muted: #a89f94;
-  --success: #5a8f5a;
-  --error: #b54a4a;
+  /* Page & layout — light, calm blues (easy on the eyes for long study sessions) */
+  --bg: #619ce0; /* Home page background, outer page area */
+  --surface: #ffffff; /* Cards, lesson panels, a11y toolbar */
+  --sidebar-bg: #f5ebe6; /* Lesson page sidebar — light nude */
+  --surface2: #dbeafe; /* Borders, secondary panels, tab backgrounds, output headers */
+  --surface-hover: #bfdbfe; /* Button hover, hamburger hover, nav hover */
+
+  /* Text — high contrast on light backgrounds */
+  --text: #1e293b; /* Main body text, headings, nav active state */
+  --muted: #030303; /* Subtitles, descriptions, footer, hints, inactive nav links */
+
+  /* Links & primary actions — clear tech/education blue */
+  --accent: #2563eb; /* Links, primary buttons, focus rings, active nav border, guide step titles */
+  --accent-hover: #1d4ed8; /* Link hover, primary button hover */
+  --on-accent: #ffffff; /* Text on accent buttons and track badges (HTML/CSS) */
+
+  /* Track badges — familiar HTML / CSS / JS language colors */
+  --html: #e34c26; /* HTML track badge + active HTML code tab */
+  --css: #2563eb; /* CSS track badge + active CSS code tab */
+  --js: #f7df1e; /* JS track badge + active JS code tab */
+  --js-text: #1e293b; /* Text on JS track badge (yellow background) */
+
+  /* Code editor (examples & practice lab) */
+  --preview-bg: #ffffff; /* Code editor area + live preview iframe background */
+  --code-text: #1e293b; /* Code editor default text + cursor */
+  --code-bg: #faf8f8; /* Code editor main background */
+  --code-gutter-bg: #e2e8f0; /* Line number gutter background */
+  --code-line-number: #64748b; /* Line numbers in gutter */
+
+  /* Code syntax highlighting (CodeMirror) */
+  --code-comment: #64748b; /* Comments in code */
+  --code-keyword: #2563eb; /* Keywords, atoms, numbers */
+  --code-string: #059669; /* Strings */
+  --code-tag: #c2410c; /* HTML tags in code */
+  --code-attribute: #7c3aed; /* HTML attributes in code */
+  --code-property: #b45309; /* CSS properties, definitions */
+  --code-error: #dc2626; /* Syntax errors in code editor */
+
+  /* Console output — light panel (no dark mode) */
+  --console-bg: #f1f5f9; /* Console panel background */
+  --console-text: #1e293b; /* Console output text */
+  --console-muted: #94a3b8; /* Console placeholder "(no output)" */
+
+  /* Status & feedback */
+  --success: #16a34a; /* Copy button success state */
+  --error: #dc2626; /* Error messages */
+
+  /* Overlays (mobile sidebar) */
+  --overlay-backdrop: rgba(30, 41, 59, 0.35); /* Dimmed backdrop behind mobile menu */
+  --overlay-shadow: rgba(30, 41, 59, 0.12); /* Sidebar drop shadow on mobile */
+
+  /* Practice lab — distinct from example cards */
+  --practice-bg: #fffbeb; /* Practice lab panel background (warm amber tint) */
+  --practice-border: #fcd34d; /* Practice lab border */
+  --practice-accent: #d97706; /* Practice lab heading + left accent bar */
+
+  /* Non-color tokens */
   --radius: 10px;
   --font: "Segoe UI", system-ui, sans-serif;
   --mono: "Cascadia Code", "Consolas", monospace;
@@ -36,19 +77,19 @@ html {
 body {
   margin: 0;
   font-family: var(--font);
-  background: var(--bg);
-  color: var(--text);
+  background: var(--bg); /* Page background */
+  color: var(--text); /* Main text */
   line-height: 1.5;
   min-height: 100vh;
 }
 
 a {
-  color: var(--accent);
+  color: var(--accent); /* Link text */
   text-decoration: none;
 }
 
 a:hover {
-  color: var(--accent-hover);
+  color: var(--accent-hover); /* Link hover */
   text-decoration: underline;
 }
 
@@ -58,8 +99,8 @@ a:hover {
   top: 0;
   z-index: 100;
   padding: 0.5rem 1rem;
-  background: var(--accent);
-  color: var(--on-accent);
+  background: var(--accent); /* Skip link background */
+  color: var(--on-accent); /* Skip link text */
 }
 
 .skip-link:focus {
@@ -83,7 +124,7 @@ a:hover {
 }
 
 .hero p {
-  color: var(--muted);
+  color: var(--muted); /* Hero subtitle */
   max-width: 36rem;
   margin: 0 auto;
 }
@@ -111,17 +152,17 @@ a:hover {
 }
 
 .track-badge--html {
-  background: var(--html);
+  background: var(--html); /* HTML track badge background */
   color: var(--on-accent);
 }
 
 .track-badge--css {
-  background: var(--css);
+  background: var(--css); /* CSS track badge background */
   color: var(--on-accent);
 }
 
 .track-badge--js {
-  background: var(--js);
+  background: var(--js); /* JS track badge background */
   color: var(--js-text);
 }
 
@@ -134,15 +175,15 @@ a:hover {
 .module-card {
   display: block;
   padding: 1.1rem 1.2rem;
-  background: var(--surface);
-  border: 1px solid var(--surface2);
+  background: var(--surface); /* Lesson card background */
+  border: 1px solid var(--surface2); /* Lesson card border */
   border-radius: var(--radius);
   color: var(--text);
   transition: border-color 0.15s, transform 0.15s;
 }
 
 .module-card:hover {
-  border-color: var(--accent);
+  border-color: var(--accent); /* Lesson card hover border */
   transform: translateY(-2px);
   text-decoration: none;
 }
@@ -155,7 +196,7 @@ a:hover {
 .module-card p {
   margin: 0;
   font-size: 0.85rem;
-  color: var(--muted);
+  color: var(--muted); /* Lesson card subtitle (e.g. "Lesson 1") */
 }
 
 .btn {
@@ -165,32 +206,32 @@ a:hover {
   padding: 0.45rem 0.85rem;
   font-size: 0.85rem;
   font-family: inherit;
-  border: 1px solid var(--surface2);
+  border: 1px solid var(--surface2); /* Default button border */
   border-radius: 6px;
-  background: var(--surface2);
+  background: var(--surface2); /* Default button background */
   color: var(--text);
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s;
 }
 
 .btn:hover {
-  background: var(--surface-hover);
+  background: var(--surface-hover); /* Default button hover */
   border-color: var(--muted);
 }
 
 .btn:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent); /* Focus ring */
   outline-offset: 2px;
 }
 
 .btn--primary {
-  background: var(--accent);
+  background: var(--accent); /* Primary button (Run, Download) */
   border-color: var(--accent);
   color: var(--on-accent);
 }
 
 .btn--primary:hover {
-  background: var(--accent-hover);
+  background: var(--accent-hover); /* Primary button hover */
   border-color: var(--accent-hover);
 }
 
@@ -200,14 +241,14 @@ a:hover {
 }
 
 .btn.copied {
-  border-color: var(--success);
+  border-color: var(--success); /* Copy button after successful copy */
   color: var(--success);
 }
 
 .site-footer {
   text-align: center;
   padding: 2rem;
-  color: var(--muted);
+  color: var(--muted); /* Footer text */
   font-size: 0.85rem;
-  border-top: 1px solid var(--surface2);
+  border-top: 1px solid var(--surface2); /* Footer top border */
 }

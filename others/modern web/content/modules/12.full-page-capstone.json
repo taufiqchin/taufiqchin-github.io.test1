@@ -1,0 +1,67 @@
+{
+  "id": "full-page-capstone",
+  "title": "Build a Full Website Page",
+  "track": "html",
+  "summary": "Combine HTML structure, responsive CSS layout, media, forms, and JavaScript into one complete page.",
+  "guide": {
+    "title": "Capstone checklist",
+    "intro": "You have learned the building blocks for a modern website. This lesson brings them together in one page you can copy to your own index.html folder.",
+    "steps": [
+      {
+        "title": "Layout shell",
+        "text": "Run Example 1 to see navbar, sidebar, main content, and footer with responsive CSS."
+      },
+      {
+        "title": "Mobile menu",
+        "text": "Run Example 2 and click Menu on a narrow screen to open the sidebar."
+      },
+      {
+        "title": "Make it yours",
+        "text": "Use the practice lab to change the site name, links, and add a video or contact form section."
+      },
+      {
+        "title": "Publish",
+        "text": "Save as index.html in your project folder. Open in a browser locally, or upload to GitHub Pages to share online."
+      }
+    ],
+    "footer": "Congratulations—you now have the skills to build and customize a full static website."
+  },
+  "examples": [
+    {
+      "id": "full-page-static",
+      "title": "Full page layout (HTML + CSS)",
+      "description": "Purpose: This is the finished layout shell every modern site starts from—navigation, sidebar, content, and footer in one responsive page. Output: A complete light-themed page with top nav, side links, welcome text, and footer; sidebar stacks on small screens. Try: Change the site name in the header or add a fourth sidebar link.",
+      "outputType": "preview",
+      "files": {
+        "html": "<header class=\"site-header\">\n  <div class=\"brand\">DevLearn</div>\n  <nav class=\"topnav\">\n    <a href=\"#\">Home</a>\n    <a href=\"#\">Courses</a>\n    <a href=\"#\">Contact</a>\n  </nav>\n</header>\n<div class=\"layout\">\n  <aside class=\"sidebar\">\n    <a href=\"#\">Dashboard</a>\n    <a href=\"#\">Projects</a>\n    <a href=\"#\">Resources</a>\n  </aside>\n  <main>\n    <h1>Welcome</h1>\n    <p>This is your main content area. Add articles, images, forms, or video here.</p>\n    <section class=\"card\">\n      <h2>Getting started</h2>\n      <p>Edit this page in your text editor and refresh the browser to see changes.</p>\n    </section>\n  </main>\n</div>\n<footer class=\"site-footer\">&copy; 2026 DevLearn — built with HTML &amp; CSS</footer>",
+        "css": "body { margin: 0; font-family: system-ui, sans-serif; color: #1e293b; line-height: 1.5; }\n.site-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.75rem 1rem; background: #2563eb; color: #fff; }\n.brand { font-weight: 700; font-size: 1.1rem; }\n.topnav { display: flex; gap: 1rem; }\n.topnav a { color: #dbeafe; text-decoration: none; }\n.layout { display: grid; grid-template-columns: 170px 1fr; min-height: 220px; }\n.sidebar { background: #dbeafe; padding: 1rem; }\n.sidebar a { display: block; color: #1e40af; text-decoration: none; margin-bottom: 0.5rem; }\nmain { padding: 1.25rem; }\nmain h1 { margin-top: 0; color: #2563eb; font-size: 1.35rem; }\n.card { background: #f8fafc; border: 1px solid #dbeafe; border-radius: 8px; padding: 1rem; margin-top: 1rem; }\n.card h2 { margin: 0 0 0.35rem; font-size: 1rem; }\n.site-footer { background: #f1f5f9; color: #64748b; padding: 0.75rem 1rem; font-size: 0.85rem; border-top: 1px solid #dbeafe; }\n@media (max-width: 560px) {\n  .layout { grid-template-columns: 1fr; }\n  .sidebar { display: flex; flex-wrap: wrap; gap: 0.75rem; }\n  .sidebar a { margin-bottom: 0; }\n}",
+        "js": ""
+      }
+    },
+    {
+      "id": "full-page-interactive",
+      "title": "Full page with mobile menu (HTML + CSS + JS)",
+      "description": "Purpose: Real websites hide the sidebar on phones until the user taps a menu button—this example adds that behavior on top of the full layout. Output: Same page as Example 1, plus a Menu button that opens and closes the sidebar on narrow screens. Try: Resize the preview or use mobile view in DevTools, then click Menu.",
+      "outputType": "preview",
+      "files": {
+        "html": "<header class=\"site-header\">\n  <button type=\"button\" class=\"menu-btn\" id=\"menuBtn\">Menu</button>\n  <div class=\"brand\">DevLearn</div>\n  <nav class=\"topnav\">\n    <a href=\"#\">Home</a>\n    <a href=\"#\">Contact</a>\n  </nav>\n</header>\n<div class=\"layout\">\n  <aside class=\"sidebar\" id=\"sidebar\">\n    <a href=\"#\">Dashboard</a>\n    <a href=\"#\">Projects</a>\n    <a href=\"#\">Settings</a>\n  </aside>\n  <main>\n    <h1>Interactive layout</h1>\n    <p>On small screens, use the Menu button to show or hide the sidebar.</p>\n  </main>\n</div>\n<footer class=\"site-footer\">Capstone page with JavaScript</footer>\n\n<!-- Js code below -->\n<script>\ndocument.getElementById(\"menuBtn\").addEventListener(\"click\", () => {\n  document.getElementById(\"sidebar\").classList.toggle(\"open\");\n});\n</script>",
+        "css": "body { margin: 0; font-family: system-ui, sans-serif; color: #1e293b; }\n.site-header { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; background: #1e293b; color: #fff; }\n.menu-btn { padding: 0.35rem 0.65rem; cursor: pointer; display: none; }\n.brand { font-weight: 700; }\n.topnav { display: flex; gap: 1rem; margin-left: auto; }\n.topnav a { color: #93c5fd; text-decoration: none; }\n.layout { display: grid; grid-template-columns: 170px 1fr; min-height: 180px; position: relative; }\n.sidebar { background: #dbeafe; padding: 1rem; transition: transform 0.2s; }\n.sidebar a { display: block; color: #1e40af; text-decoration: none; margin-bottom: 0.5rem; }\nmain { padding: 1.25rem; }\n.site-footer { background: #f1f5f9; color: #64748b; padding: 0.75rem 1rem; font-size: 0.85rem; }\n@media (max-width: 560px) {\n  .menu-btn { display: inline-block; }\n  .layout { grid-template-columns: 1fr; }\n  .sidebar { position: absolute; left: 0; top: 0; width: 180px; height: 100%; z-index: 5; transform: translateX(-100%); box-shadow: 2px 0 12px rgba(30,41,59,0.15); }\n  .sidebar.open { transform: translateX(0); }\n}",
+        "js": ""
+      }
+    }
+  ],
+  "practice": {
+    "description": "Customize the capstone page: change the site name, update sidebar links, and add one new section—a short contact form, a video tag, or an extra content card in main.",
+    "outputType": "preview",
+    "starter": {
+      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Practice</title>\n</head>\n<body>\n<header class=\"site-header\">\n  <div class=\"brand\">My Website</div>\n  <nav class=\"topnav\">\n    <a href=\"#\">Home</a>\n    <a href=\"#\">About</a>\n  </nav>\n</header>\n<div class=\"layout\">\n  <aside class=\"sidebar\">\n    <a href=\"#\">Link 1</a>\n    <a href=\"#\">Link 2</a>\n  </aside>\n  <main>\n    <h1>Your page title</h1>\n    <p>Replace this text and add your own sections below.</p>\n    <!-- Add a form, video, or card here -->\n  </main>\n</div>\n<footer class=\"site-footer\">Your footer text</footer>\n</body>\n</html>",
+      "css": "body { margin: 0; font-family: system-ui, sans-serif; }\n.site-header { display: flex; justify-content: space-between; padding: 0.75rem 1rem; background: #2563eb; color: #fff; }\n.topnav a { color: #dbeafe; margin-left: 1rem; text-decoration: none; }\n.layout { display: grid; grid-template-columns: 160px 1fr; min-height: 200px; }\n.sidebar { background: #dbeafe; padding: 1rem; }\n.sidebar a { display: block; color: #1e40af; text-decoration: none; margin-bottom: 0.5rem; }\nmain { padding: 1rem; }\n.site-footer { background: #f1f5f9; padding: 0.75rem 1rem; color: #64748b; font-size: 0.85rem; }\n@media (max-width: 560px) { .layout { grid-template-columns: 1fr; } .sidebar { display: flex; gap: 0.75rem; flex-wrap: wrap; } }",
+      "js": ""
+    },
+    "hints": [
+      "Copy structure from Example 1 or 2 above",
+      "Use <video controls src=\"...\"> for media",
+      "Use a <form> inside <main> for contact"
+    ]
+  }
+}

@@ -10,9 +10,9 @@
       "description": "A named function that returns a greeting.",
       "outputType": "preview",
       "files": {
-        "html": "<p id=\"msg\"></p>",
+        "html": "<p id=\"msg\"></p>\n\n<!-- Js code below -->\n<script>\nfunction greet(name) {\n  return \"Hello, \" + name + \"!\";\n}\ndocument.getElementById(\"msg\").textContent = greet(\"World\");\n</script>",
         "css": "body { font-family: sans-serif; padding: 1.5rem; }",
-        "js": "function greet(name) {\n  return \"Hello, \" + name + \"!\";\n}\ndocument.getElementById(\"msg\").textContent = greet(\"World\");"
+        "js": ""
       }
     },
     {
@@ -21,9 +21,20 @@
       "description": "Short syntax for simple functions.",
       "outputType": "preview",
       "files": {
-        "html": "<p>Double of 7 is <span id=\"n\"></span></p>",
+        "html": "<p>Double of 7 is <span id=\"n\"></span></p>\n\n<!-- Js code below -->\n<script>\nconst double = (x) => x * 2;\ndocument.getElementById(\"n\").textContent = double(7);\n</script>",
         "css": "body { font-family: sans-serif; padding: 1.5rem; }",
-        "js": "const double = (x) => x * 2;\ndocument.getElementById(\"n\").textContent = double(7);"
+        "js": ""
+      }
+    },
+    {
+      "id": "render-nav-links",
+      "title": "Function builds menu HTML",
+      "description": "Purpose: Nav bars repeat the same link pattern—functions let you build menu HTML once and reuse it on every page. Output: A function creates three nav links and inserts them into the page. Try: Add a fourth link name to the array.",
+      "outputType": "preview",
+      "files": {
+        "html": "<nav id=\"menu\"></nav>\n\n<!-- Js code below -->\n<script>\nfunction buildNavLinks(names) {\n  return names.map((name) => `<a href=\"#\">${name}</a>`).join(\"\");\n}\ndocument.getElementById(\"menu\").innerHTML = buildNavLinks([\"Home\", \"About\", \"Contact\"]);\n</script>",
+        "css": "nav { display: flex; gap: 1rem; padding: 0.75rem 1rem; background: #1e293b; font-family: sans-serif; }\nnav a { color: #93c5fd; text-decoration: none; }",
+        "js": ""
       }
     }
   ],
@@ -31,10 +42,13 @@
     "description": "Write a function area(width, height) that returns width * height and display the result for 4 and 5.",
     "outputType": "preview",
     "starter": {
-      "html": "<p>Area: <span id=\"result\">?</span></p>",
+      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Practice</title>\n</head>\n<body>\n<p>Area: <span id=\"result\">?</span></p>\n\n<!-- Js code below -->\n<script>\n// function area(width, height) { ... }\n</script>\n</body>\n</html>",
       "css": "body { font-family: sans-serif; padding: 1.5rem; }",
-      "js": "// function area(width, height) { ... }\n"
+      "js": ""
     },
-    "hints": ["return the product", "Call area(4, 5) and put result in #result"]
+    "hints": [
+      "return the product",
+      "Call area(4, 5) and put result in #result"
+    ]
   }
 }

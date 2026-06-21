@@ -25,16 +25,30 @@
         "css": ".grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 12px;\n  padding: 1rem;\n  font-family: sans-serif;\n}\n.item {\n  background: #dbeafe;\n  padding: 2rem;\n  text-align: center;\n  border-radius: 8px;\n}",
         "js": ""
       }
+    },
+    {
+      "id": "responsive-sidebar",
+      "title": "Responsive page with navbar and sidebar",
+      "description": "Purpose: Most websites use a top navbar plus a side menu and main content; on phones the layout should stack so nothing is too narrow. Output: A dark top nav, blue sidebar links, and a main area—on small screens the sidebar moves above the content. Try: Resize your browser window to see the layout change.",
+      "outputType": "preview",
+      "files": {
+        "html": "<nav class=\"topnav\">\n  <a href=\"#\">Home</a>\n  <a href=\"#\">Docs</a>\n  <a href=\"#\">Contact</a>\n</nav>\n<div class=\"layout\">\n  <aside class=\"sidebar\">\n    <a href=\"#\">Dashboard</a>\n    <a href=\"#\">Projects</a>\n    <a href=\"#\">Settings</a>\n  </aside>\n  <main>\n    <h2>Main content</h2>\n    <p>Your page content goes here. This area grows to fill the space.</p>\n  </main>\n</div>",
+        "css": "body { margin: 0; font-family: system-ui, sans-serif; }\n.topnav { display: flex; gap: 1rem; padding: 0.75rem 1rem; background: #1e293b; }\n.topnav a { color: #93c5fd; text-decoration: none; }\n.layout { display: grid; grid-template-columns: 160px 1fr; min-height: 180px; }\n.sidebar { background: #dbeafe; padding: 1rem; }\n.sidebar a { display: block; color: #1e40af; text-decoration: none; margin-bottom: 0.5rem; }\nmain { padding: 1rem; }\nmain h2 { margin-top: 0; color: #1e293b; }\n@media (max-width: 520px) {\n  .layout { grid-template-columns: 1fr; }\n  .sidebar { display: flex; flex-wrap: wrap; gap: 0.75rem; }\n  .sidebar a { margin-bottom: 0; }\n}",
+        "js": ""
+      }
     }
   ],
   "practice": {
     "description": "Use flexbox to center a box vertically and horizontally in the viewport.",
     "outputType": "preview",
     "starter": {
-      "html": "<div class=\"center-wrap\">\n  <div class=\"centered\">Centered!</div>\n</div>",
+      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Practice</title>\n</head>\n<body>\n<div class=\"center-wrap\">\n  <div class=\"centered\">Centered!</div>\n</div>\n</body>\n</html>",
       "css": ".center-wrap {\n  min-height: 200px;\n  /* add flex centering */\n}\n.centered {\n  padding: 1.5rem 2rem;\n  background: #22c55e;\n  color: #fff;\n  border-radius: 8px;\n  font-family: sans-serif;\n}",
       "js": ""
     },
-    "hints": ["justify-content and align-items on the parent", "min-height gives room to center"]
+    "hints": [
+      "justify-content and align-items on the parent",
+      "min-height gives room to center"
+    ]
   }
 }

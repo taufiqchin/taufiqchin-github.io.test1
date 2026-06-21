@@ -25,16 +25,30 @@
         "css": "form { font-family: sans-serif; padding: 1rem; max-width: 280px; }\nlabel { display: block; margin-bottom: 0.25rem; }\ninput { width: 100%; padding: 0.4rem; }",
         "js": ""
       }
+    },
+    {
+      "id": "form-in-layout",
+      "title": "Contact form inside a page",
+      "description": "Purpose: Forms rarely sit alone—they belong inside a page with a title and surrounding content, like a real contact page. Output: A page header, intro text, and a contact form in the main area. Try: Add a textarea for a message field.",
+      "outputType": "preview",
+      "files": {
+        "html": "<header><h1>Contact Us</h1></header>\n<main>\n  <p>Send us a message and we will reply within 2 days.</p>\n  <form onsubmit=\"event.preventDefault(); alert('Thanks!');\">\n    <label>Name <input type=\"text\" required></label><br><br>\n    <label>Email <input type=\"email\" required></label><br><br>\n    <button type=\"submit\">Send message</button>\n  </form>\n</main>",
+        "css": "body { font-family: sans-serif; margin: 0; }\nheader { background: #2563eb; color: #fff; padding: 1rem; }\nheader h1 { margin: 0; font-size: 1.25rem; }\nmain { padding: 1rem; max-width: 320px; }\nform label { display: block; margin-bottom: 0.25rem; }\ninput { width: 100%; padding: 0.4rem; box-sizing: border-box; }\nbutton { margin-top: 0.5rem; padding: 0.45rem 0.85rem; background: #2563eb; color: #fff; border: none; border-radius: 6px; cursor: pointer; }",
+        "js": ""
+      }
     }
   ],
   "practice": {
     "description": "Build a form with text, email, and a select dropdown for a favorite language.",
     "outputType": "preview",
     "starter": {
-      "html": "<form>\n  <!-- your fields -->\n</form>",
+      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Practice</title>\n</head>\n<body>\n<form>\n  <!-- your fields -->\n</form>\n</body>\n</html>",
       "css": "form { padding: 1rem; font-family: sans-serif; }",
       "js": ""
     },
-    "hints": ["Use <label> tied to inputs", "select needs option elements"]
+    "hints": [
+      "Use <label> tied to inputs",
+      "select needs option elements"
+    ]
   }
 }

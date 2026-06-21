@@ -15,7 +15,7 @@
   <div class="lesson-layout">
     <div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
     <aside class="lesson-sidebar" id="lesson-sidebar">
-      <h2>Lessons</h2>
+      <h2><a class="sidebar-home-link" href="index.html">Lessons</a></h2>
       <nav id="lesson-nav" aria-label="Course navigation"></nav>
     </aside>
 
@@ -46,21 +46,31 @@
         <p id="lesson-summary"></p>
       </header>
 
-      <section class="lesson-section lab-grid" aria-label="Examples and practice">
-        <div>
-          <h2>Examples</h2>
-          <div id="examples-list"></div>
-        </div>
-        <div class="practice-panel">
-          <h2>Practice lab</h2>
-          <p class="desc" id="practice-desc"></p>
-          <ul class="hints-list" id="practice-hints" hidden></ul>
-          <div id="practice-editor-root"></div>
-          <div class="card-actions">
-            <button type="button" class="btn btn--primary btn--small" id="btn-run-practice">Run</button>
-            <button type="button" class="btn btn--small" id="btn-reset-practice">Reset</button>
+      <section id="lesson-guide-section" class="lesson-section lesson-guide" hidden aria-label="Getting started guide">
+        <h2 id="lesson-guide-title"></h2>
+        <p id="lesson-guide-intro" class="lesson-guide-intro"></p>
+        <ol id="lesson-guide-steps" class="lesson-guide-steps"></ol>
+        <p id="lesson-guide-footer" class="lesson-guide-footer"></p>
+      </section>
+
+      <section class="lesson-section" aria-label="Examples">
+        <h2>Examples</h2>
+        <div id="examples-list"></div>
+      </section>
+
+      <section class="lesson-section practice-panel" aria-label="Practice lab">
+        <h2>Practice lab</h2>
+        <p class="desc" id="practice-desc"></p>
+        <ul class="hints-list" id="practice-hints" hidden></ul>
+        <div class="lab-workspace">
+          <div class="lab-code-col">
+            <div id="practice-editor-root"></div>
+            <div class="card-actions">
+              <button type="button" class="btn btn--primary btn--small" id="btn-run-practice">Run example</button>
+              <button type="button" class="btn btn--small" id="btn-reset-practice">Reset</button>
+            </div>
           </div>
-          <div id="practice-output"></div>
+          <div class="lab-output-col" id="practice-output"></div>
         </div>
       </section>
     </div>

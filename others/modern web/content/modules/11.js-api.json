@@ -9,11 +9,11 @@
       "title": "localStorage",
       "description": "Save, load, and clear a username in the browser. Run inside the preview.",
       "outputType": "preview",
-      "previewSrc": "content/examples/local-storage/index.html",
       "fullDemoUrl": "content/examples/local-storage/index.html",
-      "fileRefs": {
-        "html": "content/examples/local-storage/index.html",
-        "js": "content/examples/local-storage/local-storage.js"
+      "files": {
+        "html": "<h1>Local Storage</h1>\n<button type=\"button\" id=\"saveBtn\">Save Username</button>\n<button type=\"button\" id=\"loadBtn\">Load Username</button>\n<button type=\"button\" id=\"clearBtn\">Clear Storage</button>\n\n<!-- Js code below -->\n<script>\nconst LocalStorageAPI = {\n  setItem(key, value) {\n    localStorage.setItem(key, JSON.stringify(value));\n  },\n  getItem(key) {\n    const item = localStorage.getItem(key);\n    return item ? JSON.parse(item) : null;\n  },\n  clear() {\n    localStorage.clear();\n  },\n};\n\ndocument.getElementById(\"saveBtn\").addEventListener(\"click\", () => {\n  const username = prompt(\"Enter your username:\");\n  if (username) {\n    LocalStorageAPI.setItem(\"username\", username);\n    alert(\"Username saved!\");\n  }\n});\n\ndocument.getElementById(\"loadBtn\").addEventListener(\"click\", () => {\n  const saved = LocalStorageAPI.getItem(\"username\");\n  alert(saved ? \"Saved username: \" + saved : \"No username saved.\");\n});\n\ndocument.getElementById(\"clearBtn\").addEventListener(\"click\", () => {\n  LocalStorageAPI.clear();\n  alert(\"Local storage cleared.\");\n});\n</script>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; }\nbutton { margin-right: 0.5rem; padding: 0.4rem 0.75rem; cursor: pointer; }",
+        "js": ""
       }
     },
     {
@@ -22,9 +22,9 @@
       "description": "Get latitude and longitude when the user clicks the button (browser will ask permission).",
       "outputType": "preview",
       "files": {
-        "html": "<h2>Geolocation</h2>\n<button type=\"button\" onclick=\"getLocation()\">Try it</button>\n<p id=\"demo\"></p>",
+        "html": "<h2>Geolocation</h2>\n<button type=\"button\" onclick=\"getLocation()\">Try it</button>\n<p id=\"demo\"></p>\n\n<!-- Js code below -->\n<script>\nconst demo = document.getElementById(\"demo\");\nfunction getLocation() {\n  if (!navigator.geolocation) {\n    demo.textContent = \"Geolocation not supported.\";\n    return;\n  }\n  navigator.geolocation.getCurrentPosition(\n    (pos) => {\n      demo.innerHTML = \"Latitude: \" + pos.coords.latitude +\n        \"<br>Longitude: \" + pos.coords.longitude;\n    },\n    (err) => { demo.textContent = \"Error: \" + err.message; }\n  );\n}\n</script>",
         "css": "body { font-family: sans-serif; padding: 1.5rem; }",
-        "js": "const demo = document.getElementById(\"demo\");\nfunction getLocation() {\n  if (!navigator.geolocation) {\n    demo.textContent = \"Geolocation not supported.\";\n    return;\n  }\n  navigator.geolocation.getCurrentPosition(\n    (pos) => {\n      demo.innerHTML = \"Latitude: \" + pos.coords.latitude +\n        \"<br>Longitude: \" + pos.coords.longitude;\n    },\n    (err) => { demo.textContent = \"Error: \" + err.message; }\n  );\n}"
+        "js": ""
       }
     },
     {
@@ -33,9 +33,20 @@
       "description": "Simulate loading JSON and rendering a list (no network required).",
       "outputType": "preview",
       "files": {
-        "html": "<ul id=\"items\"></ul>",
+        "html": "<ul id=\"items\"></ul>\n\n<!-- Js code below -->\n<script>\nconst products = [{\"name\":\"Pen\"},{\"name\":\"Notebook\"}];\nconst ul = document.getElementById(\"items\");\nproducts.forEach((p) => {\n  const li = document.createElement(\"li\");\n  li.textContent = p.name;\n  ul.appendChild(li);\n});\n</script>",
         "css": "body { font-family: sans-serif; padding: 1.5rem; }",
-        "js": "const products = [{\"name\":\"Pen\"},{\"name\":\"Notebook\"}];\nconst ul = document.getElementById(\"items\");\nproducts.forEach((p) => {\n  const li = document.createElement(\"li\");\n  li.textContent = p.name;\n  ul.appendChild(li);\n});"
+        "js": ""
+      }
+    },
+    {
+      "id": "theme-on-load",
+      "title": "Remember theme on refresh",
+      "description": "Purpose: Sites save user preferences (like accent color) in localStorage so choices persist after refresh—without a server. Output: Pick a theme color, click Save, then refresh the preview (Run again)—your color returns automatically. Try: Save a different color and run again.",
+      "outputType": "preview",
+      "files": {
+        "html": "<p>Pick a theme accent:</p>\n<button type=\"button\" data-color=\"#dbeafe\">Blue</button>\n<button type=\"button\" data-color=\"#fef08a\">Yellow</button>\n<button type=\"button\" id=\"save\">Save theme</button>\n<p id=\"note\"></p>\n\n<!-- Js code below -->\n<script>\nlet picked = localStorage.getItem(\"siteTheme\") || \"#ffffff\";\ndocument.body.style.background = picked;\ndocument.getElementById(\"note\").textContent = \"Saved theme: \" + picked;\ndocument.querySelectorAll(\"[data-color]\").forEach((btn) => {\n  btn.addEventListener(\"click\", () => { picked = btn.dataset.color; });\n});\ndocument.getElementById(\"save\").addEventListener(\"click\", () => {\n  localStorage.setItem(\"siteTheme\", picked);\n  document.body.style.background = picked;\n  document.getElementById(\"note\").textContent = \"Saved! Refresh or Run again to test persistence.\";\n});\n</script>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; transition: background 0.2s; }\nbutton { margin-right: 0.35rem; padding: 0.35rem 0.65rem; cursor: pointer; }",
+        "js": ""
       }
     }
   ],
@@ -43,10 +54,13 @@
     "description": "Store a theme preference (\"light\" or \"dark\") in localStorage and apply a background when the page loads.",
     "outputType": "preview",
     "starter": {
-      "html": "<button id=\"save\">Save dark theme</button>\n<button id=\"load\">Apply saved theme</button>",
+      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Practice</title>\n</head>\n<body>\n<button id=\"save\">Save dark theme</button>\n<button id=\"load\">Apply saved theme</button>\n\n<!-- Js code below -->\n<script>\n// localStorage.setItem / getItem for key \"theme\"\n</script>\n</body>\n</html>",
       "css": "body { font-family: sans-serif; padding: 1.5rem; min-height: 120px; }",
-      "js": "// localStorage.setItem / getItem for key \"theme\"\n"
+      "js": ""
     },
-    "hints": ["document.body.style.background", "JSON.stringify not needed for a simple string"]
+    "hints": [
+      "document.body.style.background",
+      "JSON.stringify not needed for a simple string"
+    ]
   }
 }

@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Build your first page",
+    "body": "Start with HTML structure, then add CSS for layout."
+  },
+  {
+    "title": "Make it responsive",
+    "body": "Use media queries so your site works on phones and desktops."
+  },
+  {
+    "title": "Add interactivity",
+    "body": "Use JavaScript for menus, forms, and loading data."
+  }
+]

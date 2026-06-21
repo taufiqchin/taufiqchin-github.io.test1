@@ -10,7 +10,7 @@
       "description": "What this example demonstrates.",
       "outputType": "preview",
       "files": {
-        "html": "<h1>Hello</h1>",
+        "html": "<h1>Hello</h1>\n\n<!-- Js code below -->\n<script>\n// JavaScript goes in a &lt;script&gt; tag inside the HTML panel\ndocument.querySelector('h1').textContent = 'Hello from script!';\n</script>",
         "css": "body { font-family: sans-serif; padding: 1rem; }",
         "js": ""
       }
@@ -20,10 +20,13 @@
     "description": "What the student should build in the practice lab.",
     "outputType": "preview",
     "starter": {
-      "html": "<!-- starter HTML -->",
+      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Practice</title>\n</head>\n<body>\n<!-- starter HTML -->\n\n<!-- Js code below -->\n<script>\n// Your JavaScript here\n</script>\n</body>\n</html>",
       "css": "",
       "js": ""
     },
-    "hints": ["Hint one", "Hint two"]
+    "hints": [
+      "Hint one",
+      "Hint two"
+    ]
   }
 }

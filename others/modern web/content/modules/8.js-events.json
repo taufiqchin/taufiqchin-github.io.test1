@@ -10,9 +10,9 @@
       "description": "Increment a counter when the button is clicked.",
       "outputType": "preview",
       "files": {
-        "html": "<button id=\"btn\">Click me</button>\n<p>Count: <span id=\"count\">0</span></p>",
+        "html": "<button id=\"btn\">Click me</button>\n<p>Count: <span id=\"count\">0</span></p>\n\n<!-- Js code below -->\n<script>\nlet n = 0;\nconst countEl = document.getElementById(\"count\");\ndocument.getElementById(\"btn\").addEventListener(\"click\", () => {\n  n++;\n  countEl.textContent = n;\n});\n</script>",
         "css": "body { font-family: sans-serif; padding: 1.5rem; }\nbutton { padding: 0.5rem 1rem; cursor: pointer; }",
-        "js": "let n = 0;\nconst countEl = document.getElementById(\"count\");\ndocument.getElementById(\"btn\").addEventListener(\"click\", () => {\n  n++;\n  countEl.textContent = n;\n});"
+        "js": ""
       }
     },
     {
@@ -21,9 +21,20 @@
       "description": "Mirror text from an input field as the user types.",
       "outputType": "preview",
       "files": {
-        "html": "<label>Type here: <input type=\"text\" id=\"name\"></label>\n<p>You typed: <strong id=\"mirror\"></strong></p>",
+        "html": "<label>Type here: <input type=\"text\" id=\"name\"></label>\n<p>You typed: <strong id=\"mirror\"></strong></p>\n\n<!-- Js code below -->\n<script>\nconst input = document.getElementById(\"name\");\nconst mirror = document.getElementById(\"mirror\");\ninput.addEventListener(\"input\", () => {\n  mirror.textContent = input.value;\n});\n</script>",
         "css": "body { font-family: sans-serif; padding: 1.5rem; }",
-        "js": "const input = document.getElementById(\"name\");\nconst mirror = document.getElementById(\"mirror\");\ninput.addEventListener(\"input\", () => {\n  mirror.textContent = input.value;\n});"
+        "js": ""
+      }
+    },
+    {
+      "id": "mobile-menu-toggle",
+      "title": "Open and close a sidebar",
+      "description": "Purpose: On mobile, sidebars are often hidden until the user taps a menu button—JavaScript toggles a CSS class to show or hide it. Output: Click Menu to slide the sidebar open; click again to close it. Try: Change the button label or sidebar link text.",
+      "outputType": "preview",
+      "files": {
+        "html": "<nav class=\"topnav\">\n  <button type=\"button\" class=\"menu-btn\" id=\"menuBtn\">Menu</button>\n  <a href=\"#\">My Site</a>\n</nav>\n<div class=\"layout\">\n  <aside class=\"sidebar\" id=\"sidebar\">\n    <a href=\"#\">Dashboard</a>\n    <a href=\"#\">Projects</a>\n  </aside>\n  <main><p>Main content area.</p></main>\n</div>\n\n<!-- Js code below -->\n<script>\nconst sidebar = document.getElementById(\"sidebar\");\ndocument.getElementById(\"menuBtn\").addEventListener(\"click\", () => {\n  sidebar.classList.toggle(\"open\");\n});\n</script>",
+        "css": "body { margin: 0; font-family: system-ui, sans-serif; }\n.topnav { display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem; background: #1e293b; color: #fff; }\n.topnav a { color: #93c5fd; text-decoration: none; }\n.menu-btn { padding: 0.35rem 0.65rem; cursor: pointer; }\n.layout { display: grid; grid-template-columns: 160px 1fr; min-height: 140px; }\n.sidebar { background: #dbeafe; padding: 1rem; transition: transform 0.2s; }\n.sidebar a { display: block; color: #1e40af; text-decoration: none; margin-bottom: 0.5rem; }\nmain { padding: 1rem; }\n@media (max-width: 520px) {\n  .layout { grid-template-columns: 1fr; }\n  .sidebar { position: absolute; left: 0; top: 48px; width: 180px; z-index: 10; transform: translateX(-100%); }\n  .sidebar.open { transform: translateX(0); }\n  main { margin-top: 0; }\n}",
+        "js": ""
       }
     }
   ],
@@ -31,10 +42,13 @@
     "description": "Add a button that toggles the background color of the page between white and light yellow.",
     "outputType": "preview",
     "starter": {
-      "html": "<button id=\"toggle\">Toggle theme</button>",
+      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Practice</title>\n</head>\n<body>\n<button id=\"toggle\">Toggle theme</button>\n\n<!-- Js code below -->\n<script>\n// Add click listener on #toggle\n</script>\n</body>\n</html>",
       "css": "body { font-family: sans-serif; padding: 2rem; transition: background 0.2s; }",
-      "js": "// Add click listener on #toggle\n"
+      "js": ""
     },
-    "hints": ["document.body.style.background", "Track on/off with a boolean variable"]
+    "hints": [
+      "document.body.style.background",
+      "Track on/off with a boolean variable"
+    ]
   }
 }

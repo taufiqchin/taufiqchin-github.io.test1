@@ -38,11 +38,7 @@ const ContentAPI = (function () {
   /** Resolve example to { html, css, js } from inline files or fileRefs. */
   async function resolveExampleFiles(example) {
     if (example.files) {
-      return {
-        html: example.files.html || "",
-        css: example.files.css || "",
-        js: example.files.js || "",
-      };
+      return EditorRunner.normalizeFiles(example.files);
     }
     if (!example.fileRefs) {
       return { html: "", css: "", js: "" };
@@ -60,23 +56,22 @@ const ContentAPI = (function () {
       const raw = await fetchText(htmlPath);
       const bodyMatch = raw.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
       if (bodyMatch) {
-        html = bodyMatch[1]
-          .replace(/<script[\s\S]*?<\/script>/gi, "")
-          .trim();
+        html = bodyMatch[1].trim();
       } else {
         html = raw;
       }
       const styleMatch = raw.match(/<style[^>]*>([\s\S]*?)<\/style>/i);
       if (styleMatch && !cssPath) css = styleMatch[1].trim();
       const scriptMatches = [...raw.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/gi)];
-      if (scriptMatches.length && !jsPath) {
-        js = scriptMatches.map((m) => m[1].trim()).join("\n\n");
+      const inlineScripts = scriptMatches.map((m) => m[1].trim()).filter(Boolean);
+      if (inlineScripts.length && !jsPath) {
+        js = inlineScripts.join("\n\n");
       }
     }
     if (cssPath) css = await fetchText(cssPath);
     if (jsPath) js = await fetchText(jsPath);
 
-    return { html, css, js };
+    return EditorRunner.normalizeFiles({ html, css, js });
   }
 
   function modulesByTrack(index) {
