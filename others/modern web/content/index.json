@@ -10,77 +10,77 @@
       "track": "html",
       "title": "Introduction to HTML",
       "order": 1,
-      "jsonPath": "content/modules/html-intro.json"
+      "jsonPath": "content/modules/1.html-intro.json"
     },
     {
       "id": "html-media",
       "track": "html",
       "title": "Text, Multimedia & Embedding",
       "order": 2,
-      "jsonPath": "content/modules/html-media.json"
+      "jsonPath": "content/modules/2.html-media.json"
     },
     {
       "id": "html-forms",
       "track": "html",
       "title": "Tables & Forms",
       "order": 3,
-      "jsonPath": "content/modules/html-forms.json"
+      "jsonPath": "content/modules/3.html-forms.json"
     },
     {
       "id": "css-1",
       "track": "css",
       "title": "CSS Fundamentals",
       "order": 4,
-      "jsonPath": "content/modules/css-1.json"
+      "jsonPath": "content/modules/4.css-1.json"
     },
     {
       "id": "css-2",
       "track": "css",
       "title": "CSS Layout & Styling",
       "order": 5,
-      "jsonPath": "content/modules/css-2.json"
+      "jsonPath": "content/modules/5.css-2.json"
     },
     {
       "id": "js-intro",
       "track": "js",
       "title": "Intro to JavaScript",
       "order": 6,
-      "jsonPath": "content/modules/js-intro.json"
+      "jsonPath": "content/modules/6.js-intro.json"
     },
     {
       "id": "js-functions",
       "track": "js",
       "title": "JavaScript Functions",
       "order": 7,
-      "jsonPath": "content/modules/js-functions.json"
+      "jsonPath": "content/modules/7.js-functions.json"
     },
     {
       "id": "js-events",
       "track": "js",
       "title": "DOM & Events",
       "order": 8,
-      "jsonPath": "content/modules/js-events.json"
+      "jsonPath": "content/modules/8.js-events.json"
     },
     {
       "id": "js-objects",
       "track": "js",
       "title": "JavaScript Objects",
       "order": 9,
-      "jsonPath": "content/modules/js-objects.json"
+      "jsonPath": "content/modules/9.js-objects.json"
     },
     {
       "id": "js-ajax-json",
       "track": "js",
       "title": "AJAX & JSON",
       "order": 10,
-      "jsonPath": "content/modules/js-ajax-json.json"
+      "jsonPath": "content/modules/10.js-ajax-json.json"
     },
     {
       "id": "js-api",
       "track": "js",
       "title": "Web APIs",
       "order": 11,
-      "jsonPath": "content/modules/js-api.json"
+      "jsonPath": "content/modules/11.js-api.json"
     }
   ]
 }

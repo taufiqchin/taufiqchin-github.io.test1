@@ -1,6 +1,6 @@
 /* Font scaling (set on html via --a11y-font-scale in a11y.js) */
 html {
-  --a11y-font-scale: 1;
+  --a11y-font-scale: 1.25;
   font-size: calc(100% * var(--a11y-font-scale, 1));
 }
 

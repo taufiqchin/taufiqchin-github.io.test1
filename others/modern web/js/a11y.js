@@ -2,12 +2,15 @@
  * Accessibility: text size, grayscale, reset. Persists in localStorage.
  */
 const A11y = (function () {
-  const STORAGE_KEY = "mwrc-a11y";
+  const STORAGE_KEY = "mwrc-a11y-v3";
   const MIN_LEVEL = -3;
   const MAX_LEVEL = 4;
   const STEP = 0.125;
+  /** Level 0 = two steps larger than the original site default (old A+ twice). */
+  const BASE_SCALE = 1.25;
+  const DEFAULT_FONT_LEVEL = 0;
 
-  let state = { fontLevel: 0, grayscale: false };
+  let state = { fontLevel: DEFAULT_FONT_LEVEL, grayscale: false };
 
   function loadState() {
     try {
@@ -16,6 +19,16 @@ const A11y = (function () {
         const saved = JSON.parse(raw);
         if (typeof saved.fontLevel === "number") state.fontLevel = saved.fontLevel;
         if (typeof saved.grayscale === "boolean") state.grayscale = saved.grayscale;
+        return;
+      }
+      // Migrate grayscale from prior keys; reset text level to new larger baseline.
+      for (const key of ["mwrc-a11y-v2", "mwrc-a11y"]) {
+        const legacy = localStorage.getItem(key);
+        if (!legacy) continue;
+        const saved = JSON.parse(legacy);
+        if (typeof saved.grayscale === "boolean") state.grayscale = saved.grayscale;
+        saveState();
+        break;
       }
     } catch {
       /* ignore */
@@ -38,7 +51,7 @@ const A11y = (function () {
   }
 
   function apply() {
-    const scale = 1 + state.fontLevel * STEP;
+    const scale = BASE_SCALE + state.fontLevel * STEP;
     document.documentElement.style.setProperty("--a11y-font-scale", String(scale));
     document.documentElement.classList.toggle("a11y-grayscale", state.grayscale);
 
@@ -70,7 +83,7 @@ const A11y = (function () {
   }
 
   function reset() {
-    state = { fontLevel: 0, grayscale: false };
+    state = { fontLevel: DEFAULT_FONT_LEVEL, grayscale: false };
     saveState();
     apply();
   }

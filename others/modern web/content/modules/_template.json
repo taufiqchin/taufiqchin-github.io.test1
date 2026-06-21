@@ -1,0 +1,29 @@
+{
+  "id": "my-lesson-id",
+  "title": "My Lesson Title",
+  "track": "html",
+  "summary": "One-line intro shown under the lesson title on lesson.html.",
+  "examples": [
+    {
+      "id": "example-one",
+      "title": "Example title",
+      "description": "What this example demonstrates.",
+      "outputType": "preview",
+      "files": {
+        "html": "<h1>Hello</h1>",
+        "css": "body { font-family: sans-serif; padding: 1rem; }",
+        "js": ""
+      }
+    }
+  ],
+  "practice": {
+    "description": "What the student should build in the practice lab.",
+    "outputType": "preview",
+    "starter": {
+      "html": "<!-- starter HTML -->",
+      "css": "",
+      "js": ""
+    },
+    "hints": ["Hint one", "Hint two"]
+  }
+}
