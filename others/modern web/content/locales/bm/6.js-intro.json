@@ -1,18 +1,42 @@
 {
   "title": "Pengenalan JavaScript",
-  "summary": "Pembolehubah, gelung, dan logik asas dalam skrip pelayar.",
+  "summary": "JavaScript client-side dalam pelayar: menambah skrip pada HTML, pernyataan, output DOM, komen, var/let/const, ungkapan dan operator, if/else, gelung, dan rentetan.",
   "examples": {
-    "variables": {
-      "title": "Pembolehubah dan output",
-      "description": "Apa: let dan const menyimpan data; template literal (backtick dengan ${}) memasukkan nilai pembolehubah ke dalam teks. Bila: Gunakan const untuk nilai tetap dan let apabila nilai boleh berubah. Cuba: Tukar nilai name atau score dan lihat output berubah."
+    "what-is-javascript": {
+      "title": "Apakah JavaScript, dan cara memasukkan JS dalam HTML",
+      "description": "JavaScript berjalan dalam pelayar (client-side) dan menjadikan halaman interaktif. Letakkan kod dalam elemen <script>—biasanya sebelum </body> supaya HTML dimuat dahulu (lihat <!-- Js code below --> dalam panel HTML). Setiap halaman yang memerlukan klik, kemas kini langsung, atau borang. Tukar mesej dalam skrip atau klik butang."
     },
-    "for-loop": {
-      "title": "Gelung for (konsol)",
-      "description": "Apa: Gelung for mengulang kod sebilangan kali — di sini ia mengira dari 1 hingga 5. Bila: Gunakan apabila anda perlu ulang tindakan dengan nombor atau senarai. Cuba: Tukar syarat supaya gelung berhenti pada 10."
+    "js-statements": {
+      "title": "Pernyataan JavaScript",
+      "description": "Pernyataan ialah satu arahan yang dijalankan JavaScript—selalunya satu baris yang berakhir dengan koma bertitik (;). Beberapa pernyataan dijalankan mengikut turutan dari atas ke bawah. Setiap skrip ialah senarai pernyataan. Tambah pernyataan ketiga yang mengemas kini teks pengaki."
     },
-    "if-else-greeting": {
-      "title": "If / else dalam halaman",
-      "description": "Apa: Laman web menggunakan if/else untuk papar mesej berbeza — contohnya selamat kembali vs lawatan pertama. Bila: Gunakan apabila tindakan bergantung pada syarat. Cuba: Tambah butang Tengah hari dengan mesej lain."
+    "display-output": {
+      "title": "Paparan output: innerText, textContent, dan innerHTML",
+      "description": "innerText dan textContent menetapkan teks biasa (Hello world!). innerHTML menghasilkan HTML (world tebal, atau imej). textContent/innerText untuk teks selamat; innerHTML untuk markup. Tukar plain atau html."
+    },
+    "js-comments": {
+      "title": "Komen JavaScript",
+      "description": "Komen menerangkan kod untuk manusia; pelayar mengabaikannya. Gunakan // untuk satu baris dan /* */ untuk beberapa baris. Dokumentasikan logik yang rumit atau lumpuhkan kod sementara semasa debug. Nyahkomen baris terakhir dalam skrip untuk lihat mesej berbeza."
+    },
+    "var-let-const": {
+      "title": "var, let, dan const",
+      "description": "const menyimpan nilai yang tidak akan ditugaskan semula; let berskop blok dan boleh berubah; var lebih lama dan berskop fungsi (elakkan dalam kod baharu). let membetulkan masalah gelung di mana var berkongsi satu i. Utamakan const, kemudian let apabila perlu tugaskan semula. Tukar let kepada var dalam gelung dan baca perbezaan output pada halaman."
+    },
+    "expressions-operators": {
+      "title": "Ungkapan dan operator",
+      "description": "Ungkapan menghasilkan nilai (cth. 2 + 3). Operator melakukan matematik (+, -, *, /, %), perbandingan (===, !==), gabungan syarat (&&, ||), dan mengemas kini pembolehubah (+=). Pengiraan, skor, dan menentukan sama ada pengguna log masuk. Tukar nombor dan lihat hasil dikemas kini."
+    },
+    "if-else": {
+      "title": "If / else",
+      "description": "if / else menjalankan kod berbeza bergantung pada syarat—contohnya ucapan berbeza mengikut waktu. Papar mesej selamat kembali vs lawatan pertama, atau dayakan butang hanya apabila borang sah. Tambah butang Petang dengan mesej lain."
+    },
+    "loops": {
+      "title": "Gelung",
+      "description": "Gelung mengulang kod—gelung for mengira dengan indeks; gelung while berjalan sehingga syarat palsu. Senarai, jadual, atau output konsol berulang. Tukar gelung untuk kira hingga 10, atau tulis semula sebagai while (i <= 5)."
+    },
+    "js-strings": {
+      "title": "Rentetan",
+      "description": "Rentetan menyimpan teks. Gunakan petik, .length, + untuk gabung, template literal (`Hello ${name}`) untuk nilai terbenam, dan kaedah seperti .toUpperCase(). Nama, mesej, label, dan membina HTML daripada data. Tambah .toLowerCase() pada bahagian e-mel atau tukar template literal."
     }
   },
   "practice": {

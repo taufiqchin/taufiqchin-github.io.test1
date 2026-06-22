@@ -41,7 +41,7 @@
     {
       "id": "theme-on-load",
       "title": "Remember theme on refresh",
-      "description": "Purpose: Sites save user preferences (like accent color) in localStorage so choices persist after refresh—without a server. Output: Pick a theme color, click Save, then refresh the preview (Run again)—your color returns automatically. Try: Save a different color and run again.",
+      "description": "Sites save user preferences (like accent color) in localStorage so choices persist after refresh—without a server. Pick a theme color, click Save, then refresh the preview (Run again)—your color returns automatically. Save a different color and run again.",
       "outputType": "preview",
       "files": {
         "html": "<p>Pick a theme accent:</p>\n<button type=\"button\" data-color=\"#dbeafe\">Blue</button>\n<button type=\"button\" data-color=\"#fef08a\">Yellow</button>\n<button type=\"button\" id=\"save\">Save theme</button>\n<p id=\"note\"></p>\n\n<!-- Js code below -->\n<script>\nlet picked = localStorage.getItem(\"siteTheme\") || \"#ffffff\";\ndocument.body.style.background = picked;\ndocument.getElementById(\"note\").textContent = \"Saved theme: \" + picked;\ndocument.querySelectorAll(\"[data-color]\").forEach((btn) => {\n  btn.addEventListener(\"click\", () => { picked = btn.dataset.color; });\n});\ndocument.getElementById(\"save\").addEventListener(\"click\", () => {\n  localStorage.setItem(\"siteTheme\", picked);\n  document.body.style.background = picked;\n  document.getElementById(\"note\").textContent = \"Saved! Refresh or Run again to test persistence.\";\n});\n</script>",

@@ -248,13 +248,14 @@ function runExampleOutput(panel, example, files) {
   );
 }
 
-async function renderExampleCard(example) {
+async function renderExampleCard(example, number) {
   const card = document.createElement("article");
   card.className = "example-card";
   card.dataset.exampleId = example.id;
+  const title = number ? `${number}. ${example.title}` : example.title;
 
   card.innerHTML = `
-    <h3>${escapeHtml(example.title)}</h3>
+    <h3>${escapeHtml(title)}</h3>
     <p class="desc">${escapeHtml(example.description)}</p>
     <div class="lab-workspace">
       <div class="lab-code-col">
@@ -272,6 +273,9 @@ async function renderExampleCard(example) {
   const editorRoot = card.querySelector(".example-editor");
   const outputCol = card.querySelector(".lab-output-col");
   const outputPanel = createOutputPanel(outputCol, `out-${example.id}`);
+  if (example.id === "display-output") {
+    outputPanel.classList.add("output-panel--display-output");
+  }
   const codeBlock = new CodeBlock(editorRoot, { readOnly: false });
 
   const defaultFiles = example.files
@@ -449,8 +453,8 @@ async function loadLessonPage() {
       runPracticeOutput();
     });
 
-    for (const ex of module.examples || []) {
-      examplesEl.appendChild(await renderExampleCard(ex));
+    for (const [i, ex] of (module.examples || []).entries()) {
+      examplesEl.appendChild(await renderExampleCard(ex, i + 1));
     }
 
     setupSidebarMenu();

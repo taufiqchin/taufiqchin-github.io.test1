@@ -4,27 +4,27 @@
   "examples": {
     "img-tag": {
       "title": "Elemen img",
-      "description": "Apa: Elemen <img> memaparkan gambar menggunakan atribut src. Bila: Sentiasa tambah teks alt supaya pembaca skrin dan enjin carian memahami imej. Cuba: Tukar width atau ganti URL imej dengan pautan https lain."
+      "description": "Elemen <img> memaparkan gambar menggunakan atribut src. Sentiasa tambah teks alt supaya pembaca skrin dan enjin carian memahami imej. Tukar width atau ganti URL imej dengan pautan https lain."
     },
     "hyperlinks": {
       "title": "Pautan hiper",
-      "description": "Apa: Elemen <a> mencipta pautan hiper menggunakan href. Bila: Pautkan ke halaman lain, seksyen pada halaman sama (#id), atau laman luar. Cuba: Tukar pautan luar untuk membuka dokumentasi HTML MDN."
+      "description": "Elemen <a> mencipta pautan hiper menggunakan href. Pautkan ke halaman lain, seksyen pada halaman sama (#id), atau laman luar. Tukar pautan luar untuk membuka dokumentasi HTML MDN."
     },
     "b-and-em": {
       "title": "Tebal vs penekanan: b dan em",
-      "description": "Apa: <b> menjadikan teks kelihatan tebal; <em> menambah penekanan dan biasanya kelihatan italik — pembaca skrin memperlakukan keduanya berbeza. Bila: Utamakan <strong> dan <em> untuk makna; gunakan <b> untuk rupa tebal tanpa kepentingan tambahan. Cuba: Tukar satu <b> kepada <strong> dan bandingkan."
+      "description": "<b> menjadikan teks kelihatan tebal; <em> menambah penekanan dan biasanya kelihatan italik — pembaca skrin memperlakukan keduanya berbeza. Utamakan <strong> dan <em> untuk makna; gunakan <b> untuk rupa tebal tanpa kepentingan tambahan. Tukar satu <b> kepada <strong> dan bandingkan."
     },
     "mark-tag": {
       "title": "Elemen mark",
-      "description": "Apa: Elemen <mark> menyerlahkan teks seolah-olah ditanda dengan pen penyerlah. Bila: Hasil carian, nota belajar, atau kosa kata penting. Cuba: Tandakan perkataan lain dalam ayat."
+      "description": "Elemen <mark> menyerlahkan teks seolah-olah ditanda dengan pen penyerlah. Hasil carian, nota belajar, atau kosa kata penting. Tandakan perkataan lain dalam ayat."
     },
     "video-tag": {
       "title": "Elemen video",
-      "description": "Apa: Elemen <video> memainkan fail video dengan kawalan pelayar terbina dalam. Bila: Tutorial, demo, atau rakaman pelajaran — tiada plugin Flash diperlukan. Cuba: Tukar width atau tambah atribut poster."
+      "description": "Elemen <video> memainkan fail video dengan kawalan pelayar terbina dalam. Tutorial, demo, atau rakaman pelajaran — tiada plugin Flash diperlukan. Tukar width atau tambah atribut poster."
     },
     "audio-tag": {
       "title": "Elemen audio",
-      "description": "Apa: Elemen <audio> memainkan fail bunyi dengan kawalan seperti main dan kelantangan. Bila: Podcast, panduan sebutan, atau narasi latar. Cuba: Tambah baris audio kedua dengan URL src berbeza."
+      "description": "Elemen <audio> memainkan fail bunyi dengan kawalan seperti main dan kelantangan. Podcast, panduan sebutan, atau narasi latar. Tambah baris audio kedua dengan URL src berbeza."
     }
   },
   "practice": {

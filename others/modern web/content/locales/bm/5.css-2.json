@@ -4,23 +4,23 @@
   "examples": {
     "list-style": {
       "title": "CSS list-style-type",
-      "description": "Apa: list-style-type menukar gaya bullet atau nombor pada senarai <ul> dan <ol>. Bila: Sesuaikan menu, langkah, atau senarai ciri. Cuba: Tukar disc kepada square atau decimal kepada lower-roman."
+      "description": "list-style-type menukar gaya bullet atau nombor pada senarai <ul> dan <ol>. Sesuaikan menu, langkah, atau senarai ciri. Tukar disc kepada square atau decimal kepada lower-roman."
     },
     "flexbox": {
       "title": "Susun atur Flexbox",
-      "description": "Apa: display: flex menyusun item anak dalam baris atau lajur; gap, justify-content, dan align-items mengawal jarak dan penjajaran. Bila: Bar navigasi, baris butang, dan kandungan berpusat. Cuba: Tambah pautan keempat atau tukar justify-content kepada center."
+      "description": "display: flex menyusun item anak dalam baris atau lajur; gap, justify-content, dan align-items mengawal jarak dan penjajaran. Bar navigasi, baris butang, dan kandungan berpusat. Tambah pautan keempat atau tukar justify-content kepada center."
     },
     "grid-layout": {
       "title": "Susun atur CSS Grid",
-      "description": "Apa: display: grid mencipta baris dan lajur; grid-template-columns menetapkan saiz lajur; gap menambah ruang antara sel. Bila: Galeri kad, papan pemuka, dan lajur sama lebar. Cuba: Tukar kepada repeat(2, 1fr) untuk dua lajur."
+      "description": "display: grid mencipta baris dan lajur; grid-template-columns menetapkan saiz lajur; gap menambah ruang antara sel. Galeri kad, papan pemuka, dan lajur sama lebar. Tukar kepada repeat(2, 1fr) untuk dua lajur."
     },
     "positioning": {
       "title": "Kedudukan",
-      "description": "Apa: static ialah lalai; relative bergerak dari kedudukan biasa; absolute diletakkan dalam induk relative; fixed kekal pada skrin semasa tatal. Bila: Lencana, tooltip, butang melekat, dan lapisan. Cuba: Tukar .badge dari absolute kepada fixed."
+      "description": "static ialah lalai; relative bergerak dari kedudukan biasa; absolute diletakkan dalam induk relative; fixed kekal pada skrin semasa tatal. Lencana, tooltip, butang melekat, dan lapisan. Tukar .badge dari absolute kepada fixed."
     },
     "css-float": {
       "title": "CSS float",
-      "description": "Apa: float: left atau right membolehkan elemen duduk di satu sisi sementara teks membalutnya. clear: both menghentikan balutan di bawah elemen float. Bila: Imej di sebelah perenggan (layout lama; flex/grid sering lebih baik hari ini). Cuba: Tukar float dari left kepada right."
+      "description": "float: left atau right membolehkan elemen duduk di satu sisi sementara teks membalutnya. clear: both menghentikan balutan di bawah elemen float. Imej di sebelah perenggan (layout lama; flex/grid sering lebih baik hari ini). Tukar float dari left kepada right."
     }
   },
   "practice": {

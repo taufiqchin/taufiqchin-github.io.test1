@@ -2,16 +2,38 @@
   "id": "js-events",
   "title": "DOM & Events",
   "track": "js",
-  "summary": "Selecting elements, changing content, and handling user events.",
+  "summary": "The DOM tree (Document, Object, Model), handling events with onclick and addEventListener, mouseover, input changes, and toggling page UI.",
   "examples": [
     {
-      "id": "click-counter",
-      "title": "Click event",
-      "description": "Increment a counter when the button is clicked.",
+      "id": "what-is-dom",
+      "title": "What is the DOM?",
+      "description": "The DOM is the Document Object Model—a tree of objects the browser builds from your HTML. Document is the whole page (document). Object means each element is a node you can access in JS. Model is the parent/child tree (html → body → p). You read or change the page with JavaScript. Change the demo paragraph id or log document.body.children.length in the script.",
       "outputType": "preview",
       "files": {
-        "html": "<button id=\"btn\">Click me</button>\n<p>Count: <span id=\"count\">0</span></p>\n\n<!-- Js code below -->\n<script>\nlet n = 0;\nconst countEl = document.getElementById(\"count\");\ndocument.getElementById(\"btn\").addEventListener(\"click\", () => {\n  n++;\n  countEl.textContent = n;\n});\n</script>",
-        "css": "body { font-family: sans-serif; padding: 1.5rem; }\nbutton { padding: 0.5rem 1rem; cursor: pointer; }",
+        "html": "<h1>Document Object Model</h1>\n<ul>\n  <li><strong>Document</strong> — the entire page (<code>document</code>)</li>\n  <li><strong>Object</strong> — each tag is a node, e.g. <code>document.getElementById(\"demo\")</code></li>\n  <li><strong>Model</strong> — tree structure: parent and child elements</li>\n</ul>\n<p id=\"demo\">Run the example — JavaScript will read this element from the document.</p>\n\n<!-- Js code below -->\n<script>\nconst demo = document.getElementById(\"demo\");\ndemo.textContent =\n  \"Document title: \" + document.title +\n  \" | This element is an object: <\" + demo.tagName.toLowerCase() + \">\" +\n  \" | Parent is: \" + demo.parentElement.tagName.toLowerCase();\n</script>",
+        "css": "body { font-family: system-ui, sans-serif; padding: 1.5rem; max-width: 38rem; line-height: 1.6; }\ncode { background: #f1f5f9; padding: 0.1rem 0.35rem; border-radius: 4px; font-size: 0.9em; }\nli { margin: 0.35rem 0; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "events-two-buttons",
+      "title": "JavaScript events",
+      "description": "An event is something that happens in the browser—a click, key press, or mouse move—and your code runs in response. Buttons, forms, and interactive pages. Add a third button that resets the count to 0.",
+      "outputType": "preview",
+      "files": {
+        "html": "<p>Count: <span id=\"count\">0</span></p>\n<button type=\"button\" id=\"addBtn\">Add +1</button>\n<button type=\"button\" id=\"colorBtn\">Change color</button>\n\n<!-- Js code below -->\n<script>\nlet n = 0;\nconst countEl = document.getElementById(\"count\");\n\ndocument.getElementById(\"addBtn\").onclick = () => {\n  n++;\n  countEl.textContent = n;\n};\n\ndocument.getElementById(\"colorBtn\").addEventListener(\"click\", () => {\n  const r = Math.floor(Math.random() * 256);\n  const g = Math.floor(Math.random() * 256);\n  const b = Math.floor(Math.random() * 256);\n  countEl.style.color = `rgb(${r}, ${g}, ${b})`;\n});\n</script>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; }\nbutton { margin-right: 0.5rem; padding: 0.45rem 0.85rem; cursor: pointer; }\n#count { font-weight: bold; font-size: 100px; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "mouseover",
+      "title": "Mouseover event",
+      "description": "mouseover fires when the pointer enters an element; mouseout fires when it leaves. Tooltips, hover highlights, or preview effects. Change the hover message or box border color in the script.",
+      "outputType": "preview",
+      "files": {
+        "html": "<p id=\"status\">Move your mouse over the box.</p>\n<div id=\"box\">Hover me</div>\n\n<!-- Js code below -->\n<script>\nconst box = document.getElementById(\"box\");\nconst status = document.getElementById(\"status\");\n\nbox.addEventListener(\"mouseover\", () => {\n  box.style.background = \"#dbeafe\";\n  box.style.borderColor = \"#2563eb\";\n  status.textContent = \"mouseover — pointer is inside the box.\";\n});\n\nbox.addEventListener(\"mouseout\", () => {\n  box.style.background = \"#f8fafc\";\n  box.style.borderColor = \"#cbd5e1\";\n  status.textContent = \"mouseout — pointer left the box.\";\n});\n</script>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; }\n#box { width: 10rem; padding: 2rem; text-align: center; border: 2px solid #cbd5e1; border-radius: 8px; background: #f8fafc; cursor: pointer; transition: background 0.15s, border-color 0.15s; }\n#status { color: #64748b; margin-bottom: 0.75rem; }",
         "js": ""
       }
     },
@@ -29,7 +51,7 @@
     {
       "id": "mobile-menu-toggle",
       "title": "Open and close a sidebar",
-      "description": "Purpose: On mobile, sidebars are often hidden until the user taps a menu button—JavaScript toggles a CSS class to show or hide it. Output: Click Menu to slide the sidebar open; click again to close it. Try: Change the button label or sidebar link text.",
+      "description": "On mobile, sidebars are often hidden until the user taps a menu button—JavaScript toggles a CSS class to show or hide it. Click Menu to slide the sidebar open; click again to close it. Change the button label or sidebar link text.",
       "outputType": "preview",
       "files": {
         "html": "<nav class=\"topnav\">\n  <button type=\"button\" class=\"menu-btn\" id=\"menuBtn\">Menu</button>\n  <a href=\"#\">My Site</a>\n</nav>\n<div class=\"layout\">\n  <aside class=\"sidebar\" id=\"sidebar\">\n    <a href=\"#\">Dashboard</a>\n    <a href=\"#\">Projects</a>\n  </aside>\n  <main><p>Main content area.</p></main>\n</div>\n\n<!-- Js code below -->\n<script>\nconst sidebar = document.getElementById(\"sidebar\");\ndocument.getElementById(\"menuBtn\").addEventListener(\"click\", () => {\n  sidebar.classList.toggle(\"open\");\n});\n</script>",

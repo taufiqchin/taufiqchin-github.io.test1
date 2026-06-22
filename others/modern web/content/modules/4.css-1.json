@@ -7,7 +7,7 @@
     {
       "id": "what-is-css",
       "title": "What is CSS?",
-      "description": "What: CSS (Cascading Style Sheets) controls how HTML looks — colors, fonts, spacing, and layout. When: Use CSS after you have HTML structure so the page is readable and attractive. Try: Change the heading color in the CSS panel and run again.",
+      "description": "CSS (Cascading Style Sheets) controls how HTML looks — colors, fonts, spacing, and layout. Use CSS after you have HTML structure so the page is readable and attractive. Change the heading color in the CSS panel and run again.",
       "outputType": "preview",
       "files": {
         "html": "<h1>My School Page</h1>\n<p>HTML gives structure. CSS gives style.</p>\n<p>Without CSS, the page uses plain browser defaults.</p>",
@@ -18,7 +18,7 @@
     {
       "id": "css-in-html",
       "title": "Writing CSS in HTML",
-      "description": "What: You can write CSS inside the HTML file using a <style> block in the <head>. When: Good for small pages or quick tests. In this lab, the CSS panel works like an internal stylesheet. Try: Add a new rule for h1 in the CSS panel.",
+      "description": "You can write CSS inside the HTML file using a <style> block in the <head>. Good for small pages or quick tests. In this lab, the CSS panel works like an internal stylesheet. Add a new rule for h1 in the CSS panel.",
       "outputType": "preview",
       "files": {
         "html": "<h1>Internal CSS</h1>\n<p>This page is styled with CSS written in the same file (internal stylesheet).</p>",
@@ -29,7 +29,7 @@
     {
       "id": "css-split-file",
       "title": "CSS in a separate file",
-      "description": "What: For larger sites, CSS lives in its own .css file and is linked with <link rel=\"stylesheet\" href=\"style.css\">. When: Keeps HTML clean and lets one CSS file style many pages. In this lab, the CSS panel acts as your external style.css file. Try: Add a border to p in the CSS panel.",
+      "description": "For larger sites, CSS lives in its own .css file and is linked with <link rel=\"stylesheet\" href=\"style.css\">. Keeps HTML clean and lets one CSS file style many pages. In this lab, the CSS panel acts as your external style.css file. Add a border to p in the CSS panel.",
       "outputType": "preview",
       "files": {
         "html": "<!-- In a real file: <link rel=\"stylesheet\" href=\"style.css\"> in <head> -->\n<h1>External CSS</h1>\n<p>The HTML file links to a separate CSS file. Here, the CSS panel is that file.</p>",
@@ -40,7 +40,7 @@
     {
       "id": "css-syntax",
       "title": "CSS syntax example",
-      "description": "What: A CSS rule looks like selector { property: value; }. Many rules together form a stylesheet. When: Every style you write follows this pattern. Try: Add a third rule that changes the background color of .note.",
+      "description": "A CSS rule looks like selector { property: value; }. Many rules together form a stylesheet. Every style you write follows this pattern. Add a third rule that changes the background color of .note.",
       "outputType": "preview",
       "files": {
         "html": "<h1>Syntax demo</h1>\n<p class=\"note\">Each line in CSS is a declaration.</p>",
@@ -51,7 +51,7 @@
     {
       "id": "declaration-parts",
       "title": "Declaration, selector, property and value",
-      "description": "What: The selector targets elements; each declaration has a property (what to change) and a value (the setting). When: Understanding these parts helps you read and debug CSS. Try: Change the value of color from #2563eb to #dc2626.",
+      "description": "The selector targets elements; each declaration has a property (what to change) and a value (the setting). Understanding these parts helps you read and debug CSS. Change the value of color from #2563eb to #dc2626.",
       "outputType": "preview",
       "files": {
         "html": "<p class=\"highlight\">Study the CSS comments to see selector, property, and value.</p>",
@@ -62,7 +62,7 @@
     {
       "id": "selector-types",
       "title": "Selectors: element, ID, class, universal, group",
-      "description": "What: Element (p), ID (#main), class (.card), universal (*), and group (h1, h2) selectors target different parts of the page. When: Use the right selector to style exactly what you need. Try: Add a new class .tag and style it.",
+      "description": "Element (p), ID (#main), class (.card), universal (*), and group (h1, h2) selectors target different parts of the page. Use the right selector to style exactly what you need. Add a new class .tag and style it.",
       "outputType": "preview",
       "files": {
         "html": "<h1>Group selector</h1>\n<h2>Also styled by group</h2>\n<p id=\"main\">ID selector — one unique element.</p>\n<p class=\"card\">Class selector — reusable style.</p>\n<p>Element selector — all paragraphs.</p>",
@@ -73,7 +73,7 @@
     {
       "id": "box-model",
       "title": "Box model",
-      "description": "What: Every element is a box with content, padding (space inside), border (edge), and margin (space outside). When: Use the box model to control size and spacing. Try: Increase padding or margin and see the box grow.",
+      "description": "Every element is a box with content, padding (space inside), border (edge), and margin (space outside). Use the box model to control size and spacing. Increase padding or margin and see the box grow.",
       "outputType": "preview",
       "files": {
         "html": "<div class=\"box\">Content area</div>\n<p class=\"label\">margin → border → padding → content</p>",
@@ -84,7 +84,7 @@
     {
       "id": "text-and-font",
       "title": "Text and font",
-      "description": "What: Control fonts with font-family and font-size (px or em), colors with color, alignment with text-align, and lines with text-decoration. When: Make text readable and match your school or project theme. Try: Change font-size from 16px to 1.2em on .lead.",
+      "description": "Control fonts with font-family and font-size (px or em), colors with color, alignment with text-align, and lines with text-decoration. Make text readable and match your school or project theme. Change font-size from 16px to 1.2em on .lead.",
       "outputType": "preview",
       "files": {
         "html": "<h2 class=\"title\">Typography</h2>\n<p class=\"lead\">This paragraph uses px and em for sizing.</p>\n<p class=\"center\">Centered text with underline decoration.</p>",
@@ -95,7 +95,7 @@
     {
       "id": "css-skinning",
       "title": "CSS skinning",
-      "description": "What: Skinning means applying a visual theme — colors, fonts, borders, and backgrounds — to the same HTML structure. When: Rebrand a page or switch between light/dark themes. Try: Change the header background and card border color to your school colors.",
+      "description": "Skinning means applying a visual theme — colors, fonts, borders, and backgrounds — to the same HTML structure. Rebrand a page or switch between light/dark themes. Change the header background and card border color to your school colors.",
       "outputType": "preview",
       "files": {
         "html": "<header class=\"skin-header\"><h1>SMK Web Club</h1></header>\n<main class=\"skin-main\">\n  <div class=\"skin-card\">\n    <h2>Welcome</h2>\n    <p>Same HTML — different CSS can completely change the look.</p>\n  </div>\n</main>",

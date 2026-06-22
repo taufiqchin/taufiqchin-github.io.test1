@@ -2,38 +2,104 @@
   "id": "js-intro",
   "title": "Intro to JavaScript",
   "track": "js",
-  "summary": "Variables, data types, operators, and control flow in JavaScript.",
+  "summary": "Client-side JavaScript in the browser: adding scripts to HTML, statements, DOM output, comments, var/let/const, expressions and operators, if/else, loops, and strings.",
   "examples": [
     {
-      "id": "variables",
-      "title": "Variables and output",
-      "description": "let, const, and template literals shown in the page.",
+      "id": "what-is-javascript",
+      "title": "What is JavaScript, and how to Include JS in HTML",
+      "description": "JavaScript runs in the browser (client-side) and makes pages interactive. Put your code in a <script> element—usually just before </body> so HTML loads first (see <!-- Js code below --> in the HTML panel). Every page that needs clicks, live updates, or forms. Change the message in the script or click the button.",
       "outputType": "preview",
       "files": {
-        "html": "<p id=\"out\"></p>\n\n<!-- Js code below -->\n<script>\nconst name = \"Learner\";\nlet score = 42;\ndocument.getElementById(\"out\").textContent = `${name} scored ${score} points.`;\n</script>",
+        "html": "<h1>JavaScript in the browser</h1>\n<p>JavaScript runs <strong>client-side</strong> in your browser—alongside HTML and CSS on every modern website.</p>\n<p id=\"out\">This line is updated when the &lt;script&gt; below runs.</p>\n<button type=\"button\" id=\"demoBtn\">Click me</button>\n\n<!-- Js code below -->\n<script>\ndocument.getElementById(\"out\").textContent =\n  \"The <script> tag ran after the HTML above loaded.\";\ndocument.getElementById(\"demoBtn\").addEventListener(\"click\", () => {\n  document.getElementById(\"out\").textContent =\n    \"You clicked! The page changed without a full reload.\";\n});\n</script>",
+        "css": "body { font-family: system-ui, sans-serif; padding: 1.5rem; max-width: 36rem; line-height: 1.6; }\nbutton { margin-top: 0.75rem; padding: 0.45rem 0.9rem; cursor: pointer; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "js-statements",
+      "title": "JavaScript statements",
+      "description": "A statement is one instruction JavaScript runs—often one line ending with a semicolon (;). Several statements run in order from top to bottom. Every script is a list of statements. Add a third statement that updates the footer text.",
+      "outputType": "preview",
+      "files": {
+        "html": "<h1 id=\"title\">Statements demo</h1>\n<p id=\"line1\">Line 1: waiting…</p>\n<p id=\"line2\">Line 2: waiting…</p>\n\n<!-- Js code below -->\n<script>\ndocument.getElementById(\"line1\").textContent = \"Line 1: first statement ran.\";\ndocument.getElementById(\"line2\").textContent = \"Line 2: second statement ran.\";\ndocument.getElementById(\"title\").textContent = \"Statements ran in order\";\n</script>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; }\np { margin: 0.35rem 0; color: #475569; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "display-output",
+      "title": "Display output: innerText, textContent, and innerHTML",
+      "description": "innerText and textContent set plain text (Hello world!). innerHTML renders HTML (world in bold, or an image). textContent/innerText for safe text; innerHTML for markup. Change plain or html.",
+      "outputType": "preview",
+      "files": {
+        "html": "<div class=\"output-demo\">\n<h2>Text content</h2>\n<p> <strong>innerText:</strong> <span id=\"t1\"></span></p>\n<p> <strong>textContent:</strong> <span id=\"t2\"></span></p>\n<p> <strong>innerHTML:</strong> <span id=\"t3\"></span></p>\n<h2>Image</h2>\n<p> <strong>innerText / textContent:</strong> <span id=\"i1\"></span></p>\n<p> <strong>innerHTML:</strong> <span id=\"i2\"></span></p>\n</div>\n\n<!-- Js code below -->\n<script>\nconst plain = \"Hello world!\";\nconst html = \"Hello <strong>world</strong>!\";\nconst img = '<img src=\"https://www.w3schools.com/html/img_chania.jpg\" alt=\"Flower\" width=\"80\">';\n\ndocument.getElementById(\"t1\").innerText = plain;\ndocument.getElementById(\"t2\").textContent = plain;\ndocument.getElementById(\"t3\").innerHTML = html;\n\ndocument.getElementById(\"i1\").innerText = img;\ndocument.getElementById(\"i2\").innerHTML = img;\n</script>",
+        "css": "html, body { margin: 0; background-color: #d4edda; }\nbody { font-family: sans-serif; line-height: 1.8; }\n.output-demo { background-color: #d4edda; padding: 1.5rem; }\nh2 { margin: 1rem 0 0.5rem; font-size: 1.05rem; }\nh2:first-child { margin-top: 0; }\nspan { color: #1e40af; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "js-comments",
+      "title": "JavaScript comments",
+      "description": "Comments explain code for humans; the browser ignores them. Use // for one line and /* */ for several lines. Document tricky logic or temporarily disable code while debugging. Uncomment the last line in the script to see a different message.",
+      "outputType": "preview",
+      "files": {
+        "html": "<p id=\"out\">Run the example to see the result.</p>\n\n<!-- Js code below -->\n<script>\n// This comment is ignored\nconst message = \"Comments do not affect output.\";\n/* This block comment\n   is also ignored */\ndocument.getElementById(\"out\").textContent = message;\n// document.getElementById(\"out\").textContent = \"This line is disabled.\";\n</script>",
         "css": "body { font-family: sans-serif; padding: 1.5rem; }",
         "js": ""
       }
     },
     {
-      "id": "for-loop",
-      "title": "For loop (console)",
-      "description": "Count from 1 to 5 — output appears in the panel below (like DevTools console).",
+      "id": "var-let-const",
+      "title": "var, let, and const",
+      "description": "const holds a value you will not reassign; let is block-scoped and can change; var is older and function-scoped (avoid in new code). let fixes the loop bug where var shares one i. Prefer const by default, then let when you need to reassign. Change let to var in the loop and read the output difference in the page.",
+      "outputType": "preview",
+      "files": {
+        "html": "<h2>const, let, and var</h2>\n<p id=\"summary\"></p>\n<ul id=\"letList\"></ul>\n<p class=\"note\">Open the output panel — console.log also shows the loop values.</p>\n\n<!-- Js code below -->\n<script>\nconst site = \"Modern Web\";\nlet visitors = 1;\nvisitors = 2;\n\nconst letItems = [];\nfor (let i = 1; i <= 3; i++) {\n  letItems.push(\"let i=\" + i);\n  console.log(\"let loop:\", i);\n}\n\nconst varItems = [];\nfor (var j = 1; j <= 3; j++) {\n  varItems.push(\"var j=\" + j);\n}\nconsole.log(\"var after loop (j is still visible):\", j);\n\ndocument.getElementById(\"summary\").textContent =\n  site + \" had \" + visitors + \" visitors. const site cannot be reassigned; let visitors can.\";\ndocument.getElementById(\"letList\").innerHTML =\n  \"<li>\" + letItems.join(\"</li><li>\") + \"</li>\";\n</script>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; line-height: 1.6; }\n.note { color: #64748b; font-size: 0.9rem; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "expressions-operators",
+      "title": "Expressions and operators",
+      "description": "An expression produces a value (e.g. 2 + 3). Operators do math (+, -, *, /, %), compare (===, !==), combine conditions (&&, ||), and update variables (+=). Calculations, scores, and deciding if a user is logged in. Change the numbers and see how the results update.",
+      "outputType": "preview",
+      "files": {
+        "html": "<h2>Operators</h2>\n<ul id=\"results\"></ul>\n\n<!-- Js code below -->\n<script>\nconst a = 10;\nconst b = 3;\nlet score = 5;\nscore += 2;\n\nconst lines = [\n  \"Arithmetic: \" + a + \" + \" + b + \" = \" + (a + b),\n  \"Modulo: \" + a + \" % \" + b + \" = \" + (a % b),\n  \"Compare: \" + a + \" === \" + b + \" is \" + (a === b),\n  \"Logical: score > 0 && score < 10 is \" + (score > 0 && score < 10),\n  \"After +=: score is \" + score\n];\n\ndocument.getElementById(\"results\").innerHTML =\n  lines.map((line) => \"<li>\" + line + \"</li>\").join(\"\");\n</script>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; }\nli { margin: 0.35rem 0; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "if-else",
+      "title": "If / else",
+      "description": "if / else runs different code depending on a condition—for example a different greeting by time of day. Show welcome-back vs first-visit messages, or enable buttons only when a form is valid. Add an Afternoon button with another message.",
+      "outputType": "preview",
+      "files": {
+        "html": "<p id=\"msg\">Click a button below.</p>\n<button type=\"button\" id=\"morning\">Morning</button>\n<button type=\"button\" id=\"evening\">Evening</button>\n\n<!-- Js code below -->\n<script>\nconst msg = document.getElementById(\"msg\");\ndocument.getElementById(\"morning\").addEventListener(\"click\", () => {\n  msg.textContent = \"Good morning! Ready to learn?\";\n});\ndocument.getElementById(\"evening\").addEventListener(\"click\", () => {\n  msg.textContent = \"Good evening! Time to review your code.\";\n});\n</script>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; }\nbutton { margin-right: 0.5rem; padding: 0.4rem 0.75rem; cursor: pointer; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "loops",
+      "title": "Loops",
+      "description": "Loops repeat code—for loops count with an index; while loops run until a condition is false. Lists, tables, or repeating console output. Change the loop to count to 10, or rewrite it as while (i <= 5).",
       "outputType": "console",
       "files": {
-        "html": "<p>Open the output panel after clicking Run example.</p>\n\n<!-- Js code below -->\n<script>\nfor (let i = 1; i <= 5; i++) {\n  console.log(\"Iteration number: \" + i);\n}\n</script>",
+        "html": "<p>Click <strong>Run example</strong> — output appears in the panel on the right (like DevTools console).</p>\n\n<!-- Js code below -->\n<script>\nfor (let i = 1; i <= 5; i++) {\n  console.log(\"Iteration number: \" + i);\n}\n</script>",
         "css": "body { font-family: sans-serif; padding: 1rem; color: #64748b; }",
         "js": ""
       }
     },
     {
-      "id": "if-else-greeting",
-      "title": "If / else in the page",
-      "description": "Purpose: Websites use if/else to show different messages—for example welcome back vs first visit. Output: A greeting that changes when you click Morning or Evening. Try: Add an Afternoon button with another message.",
+      "id": "js-strings",
+      "title": "Strings",
+      "description": "Strings hold text. Use quotes, .length, + to join, template literals (`Hello ${name}`) for embedded values, and methods like .toUpperCase(). Names, messages, labels, and building HTML from data. Add .toLowerCase() on the email part or change the template literal.",
       "outputType": "preview",
       "files": {
-        "html": "<p id=\"msg\">Click a button below.</p>\n<button id=\"morning\">Morning</button>\n<button id=\"evening\">Evening</button>\n\n<!-- Js code below -->\n<script>\nconst msg = document.getElementById(\"msg\");\ndocument.getElementById(\"morning\").addEventListener(\"click\", () => {\n  msg.textContent = \"Good morning! Ready to learn?\";\n});\ndocument.getElementById(\"evening\").addEventListener(\"click\", () => {\n  msg.textContent = \"Good evening! Time to review your code.\";\n});\n</script>",
-        "css": "body { font-family: sans-serif; padding: 1.5rem; }\nbutton { margin-right: 0.5rem; padding: 0.4rem 0.75rem; cursor: pointer; }",
+        "html": "<h2>String tools</h2>\n<p id=\"out\"></p>\n\n<!-- Js code below -->\n<script>\nconst first = \"Ada\";\nconst last = \"Lovelace\";\nconst full = first + \" \" + last;\nconst greeting = `Hello, ${first}!`;\nconst shout = full.toUpperCase();\n\ndocument.getElementById(\"out\").innerHTML =\n  \"<strong>Concatenation:</strong> \" + full + \"<br>\" +\n  \"<strong>Length:</strong> \" + full.length + \" characters<br>\" +\n  \"<strong>Template literal:</strong> \" + greeting + \"<br>\" +\n  \"<strong>toUpperCase():</strong> \" + shout;\n</script>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; line-height: 1.8; }",
         "js": ""
       }
     }

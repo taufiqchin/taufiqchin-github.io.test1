@@ -32,7 +32,7 @@
     {
       "id": "fetch-json",
       "title": "Fetch JSON into the page",
-      "description": "Purpose: Modern sites load data from JSON files or APIs using fetch()—faster and simpler than older XHR code. Output: Click Load posts to fetch three blog titles from a JSON file and list them. Try: Run with npx serve . from the project folder, then click the button.",
+      "description": "Modern sites load data from JSON files or APIs using fetch()—faster and simpler than older XHR code. Click Load posts to fetch three blog titles from a JSON file and list them. Run with npx serve . from the project folder, then click the button.",
       "outputType": "preview",
       "files": {
         "html": "<button type=\"button\" id=\"load\">Load posts</button>\n<ul id=\"list\"></ul>\n<p id=\"status\" class=\"hint\"></p>\n\n<!-- Js code below -->\n<script>\nconst list = document.getElementById(\"list\");\nconst status = document.getElementById(\"status\");\ndocument.getElementById(\"load\").addEventListener(\"click\", () => {\n  status.textContent = \"Loading…\";\n  fetch(\"content/examples/sample-posts/posts.json\")\n    .then((r) => r.json())\n    .then((posts) => {\n      list.innerHTML = \"\";\n      posts.forEach((p) => {\n        const li = document.createElement(\"li\");\n        li.textContent = p.title + \" — \" + p.body;\n        list.appendChild(li);\n      });\n      status.textContent = \"Loaded \" + posts.length + \" posts.\";\n    })\n    .catch(() => {\n      status.textContent = \"Could not load JSON. Run: npx serve . from the modern web folder.\";\n    });\n});\n</script>",

@@ -1,18 +1,26 @@
 {
   "title": "DOM & Peristiwa",
-  "summary": "Tangkap klik, input, dan interaksi pengguna pada halaman.",
+  "summary": "Pokok DOM (Document, Object, Model), mengendalikan peristiwa dengan onclick dan addEventListener, mouseover, perubahan input, dan menukar UI halaman.",
   "examples": {
-    "click-counter": {
-      "title": "Peristiwa klik",
-      "description": "Apa: addEventListener(\"click\", ...) menjalankan kod apabila butang diklik — di sini ia menambah kaunter. Bila: Gunakan untuk butang, pautan, atau sebarang elemen yang perlu bertindak balas kepada klik. Cuba: Tambah butang Reset yang menetapkan semula kaunter ke 0."
+    "what-is-dom": {
+      "title": "Apakah DOM?",
+      "description": "DOM ialah Document Object Model — pokok objek yang dibina pelayar daripada HTML anda. Document ialah seluruh halaman (document). Object bermaksud setiap elemen ialah nod yang boleh diakses dalam JS. Model ialah pokok induk/anak (html → body → p). Anda membaca atau mengubah halaman dengan JavaScript. Tukar id perenggan demo atau log document.body.children.length dalam skrip."
+    },
+    "events-two-buttons": {
+      "title": "Peristiwa JavaScript",
+      "description": "Peristiwa ialah sesuatu yang berlaku dalam pelayar — klik, tekan kekunci, atau gerakan tetikus — dan kod anda dijalankan sebagai respons. Butang, borang, dan halaman interaktif. Tambah butang ketiga yang menetapkan semula kaunter ke 0."
+    },
+    "mouseover": {
+      "title": "Peristiwa mouseover",
+      "description": "mouseover berlaku apabila penuding memasuki elemen; mouseout berlaku apabila ia keluar. Tooltip, sorotan hover, atau kesan pratonton. Tukar mesej hover atau warna sempadan kotak dalam skrip."
     },
     "input-live": {
       "title": "Peristiwa input",
-      "description": "Apa: Peristiwa input berlaku setiap kali pengguna menaip dalam medan teks — kod mengganti teks paparan secara langsung. Bila: Gunakan untuk carian langsung, pratonton teks, atau borang interaktif. Cuba: Tambah mesej lalai apabila medan kosong."
+      "description": "Peristiwa input berlaku setiap kali pengguna menaip dalam medan teks — kod mengganti teks paparan secara langsung. Gunakan untuk carian langsung, pratonton teks, atau borang interaktif. Tambah mesej lalai apabila medan kosong."
     },
     "mobile-menu-toggle": {
       "title": "Buka dan tutup sidebar",
-      "description": "Apa: Pada telefon bimbit, sidebar sering disembunyikan sehingga pengguna ketik butang menu — JavaScript menukar kelas CSS untuk tunjuk atau sembunyi. Bila: Bina menu responsif untuk skrin kecil. Cuba: Tukar label butang atau teks pautan sidebar."
+      "description": "Pada telefon bimbit, sidebar sering disembunyikan sehingga pengguna ketik butang menu — JavaScript menukar kelas CSS untuk tunjuk atau sembunyi. Bina menu responsif untuk skrin kecil. Tukar label butang atau teks pautan sidebar."
     }
   },
   "practice": {

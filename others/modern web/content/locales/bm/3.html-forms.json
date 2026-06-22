@@ -4,43 +4,43 @@
   "examples": {
     "table-tr-th-td": {
       "title": "Baris dan sel jadual: tr, th, td",
-      "description": "Apa: <tr> ialah baris jadual, <th> ialah sel tajuk, dan <td> ialah sel data. Bila: Paparkan gred, jadual waktu, atau sebarang data dalam baris dan lajur. Cuba: Tambah baris pelajar ketiga ke jadual."
+      "description": "<tr> ialah baris jadual, <th> ialah sel tajuk, dan <td> ialah sel data. Paparkan gred, jadual waktu, atau sebarang data dalam baris dan lajur. Tambah baris pelajar ketiga ke jadual."
     },
     "table-border-padding-spacing": {
       "title": "Sempadan, padding, dan jarak jadual",
-      "description": "Apa: CSS mengawal rupa jadual — border-collapse membuang jurang antara sel, padding menambah ruang dalam sel, border-spacing menetapkan jurang apabila sempadan berasingan. Bila: Jadikan jadual mudah dibaca dan kelihatan profesional. Cuba: Tukar padding kepada 1rem atau tambah warna latar belakang pada th."
+      "description": "CSS mengawal rupa jadual — border-collapse membuang jurang antara sel, padding menambah ruang dalam sel, border-spacing menetapkan jurang apabila sempadan berasingan. Jadikan jadual mudah dibaca dan kelihatan profesional. Tukar padding kepada 1rem atau tambah warna latar belakang pada th."
     },
     "input-text": {
       "title": "Input teks",
-      "description": "Apa: <input type=\"text\"> mengumpul satu baris teks. Bila: Nama, nama pengguna, atau jawapan pendek. Pasangkan dengan <label> supaya pengguna tahu apa yang perlu ditaip. Cuba: Tambah atribut placeholder seperti placeholder=\"Masukkan nama anda\"."
+      "description": "<input type=\"text\"> mengumpul satu baris teks. Nama, nama pengguna, atau jawapan pendek. Pasangkan dengan <label> supaya pengguna tahu apa yang perlu ditaip. Tambah atribut placeholder seperti placeholder=\"Masukkan nama anda\"."
     },
     "input-radio": {
       "title": "Butang radio",
-      "description": "Apa: <input type=\"radio\"> membolehkan pengguna pilih tepat satu pilihan dari satu kumpulan. Bila: Jantina, sesi kelas, atau pilihan ya/tidak. Semua radio dalam satu kumpulan memerlukan atribut name yang sama. Cuba: Tambah pilihan radio ketiga."
+      "description": "<input type=\"radio\"> membolehkan pengguna pilih tepat satu pilihan dari satu kumpulan. Jantina, sesi kelas, atau pilihan ya/tidak. Semua radio dalam satu kumpulan memerlukan atribut name yang sama. Tambah pilihan radio ketiga."
     },
     "input-checkbox": {
       "title": "Kotak semak",
-      "description": "Apa: <input type=\"checkbox\"> membolehkan pengguna pilih sifar, satu, atau banyak pilihan. Bila: Minat, kemahiran, atau bersetuju dengan terma. Cuba: Tambah kotak semak hobi lain."
+      "description": "<input type=\"checkbox\"> membolehkan pengguna pilih sifar, satu, atau banyak pilihan. Minat, kemahiran, atau bersetuju dengan terma. Tambah kotak semak hobi lain."
     },
     "textarea": {
       "title": "Elemen textarea",
-      "description": "Apa: <textarea> mengumpul berbilang baris teks. Bila: Komen, esei, atau borang maklum balas. Gunakan rows dan cols atau CSS untuk kawal saiz. Cuba: Tingkatkan rows kepada 6 dan taip mesej lebih panjang."
+      "description": "<textarea> mengumpul berbilang baris teks. Komen, esei, atau borang maklum balas. Gunakan rows dan cols atau CSS untuk kawal saiz. Tingkatkan rows kepada 6 dan taip mesej lebih panjang."
     },
     "select": {
       "title": "Elemen select",
-      "description": "Apa: <select> mencipta menu lungsur; setiap <option> ialah satu pilihan. Bila: Negara, kursus, atau senarai dengan banyak pilihan. Cuba: Tambah pilihan keempat ke menu lungsur."
+      "description": "<select> mencipta menu lungsur; setiap <option> ialah satu pilihan. Negara, kursus, atau senarai dengan banyak pilihan. Tambah pilihan keempat ke menu lungsur."
     },
     "button": {
       "title": "Elemen button",
-      "description": "Apa: <button type=\"button\"> menjalankan tindakan tanpa menghantar borang (contohnya papar mesej). Bila: Kawalan interaktif di dalam atau luar borang. Cuba: Tukar teks mesej alert."
+      "description": "<button type=\"button\"> menjalankan tindakan tanpa menghantar borang (contohnya papar mesej). Kawalan interaktif di dalam atau luar borang. Tukar teks mesej alert."
     },
     "submit-button": {
       "title": "Butang hantar",
-      "description": "Apa: <button type=\"submit\"> atau <input type=\"submit\"> menghantar data borang ke pelayan. Bila: Penghujung borang pendaftaran atau hubungan. Di sini kita halang penghantaran sebenar dan papar alert. Cuba: Tukar label butang kepada \"Daftar sekarang\"."
+      "description": "<button type=\"submit\"> atau <input type=\"submit\"> menghantar data borang ke pelayan. Penghujung borang pendaftaran atau hubungan. Di sini kita halang penghantaran sebenar dan papar alert. Tukar label butang kepada \"Daftar sekarang\"."
     },
     "complete-registration-form": {
       "title": "Borang pendaftaran lengkap",
-      "description": "Apa: Borang sebenar menggabungkan input teks, butang radio, kotak semak, textarea, select, dan hantar dalam satu <form>. Bila: Halaman daftar, tinjauan, atau pendaftaran kursus. Cuba: Tambah kotak semak wajib untuk \"Saya bersetuju dengan terma\"."
+      "description": "Borang sebenar menggabungkan input teks, butang radio, kotak semak, textarea, select, dan hantar dalam satu <form>. Halaman daftar, tinjauan, atau pendaftaran kursus. Tambah kotak semak wajib untuk \"Saya bersetuju dengan terma\"."
     }
   },
   "practice": {

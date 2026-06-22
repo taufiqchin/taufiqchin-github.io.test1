@@ -31,67 +31,67 @@
   "examples": {
     "head-tag": {
       "title": "Elemen head",
-      "description": "Apa: Elemen <head> menyimpan maklumat tentang halaman yang tidak dipaparkan di skrin — charset, title, dan pautan ke CSS. Bila: Setiap halaman HTML memerlukan tepat satu <head> di dalam <html>. Cuba: Tambah <meta name=\"description\" content=\"Halaman pertama saya\"> di dalam head dalam fail anda sendiri."
+      "description": "Elemen <head> menyimpan maklumat tentang halaman yang tidak dipaparkan di skrin — charset, title, dan pautan ke CSS. Setiap halaman HTML memerlukan tepat satu <head> di dalam <html>. Tambah <meta name=\"description\" content=\"Halaman pertama saya\"> di dalam head dalam fail anda sendiri."
     },
     "title-tag": {
       "title": "Elemen title",
-      "description": "Apa: Elemen <title> menetapkan nama yang dipaparkan pada tab pelayar dan dalam penanda halaman. Bila: Letakkan satu <title> di dalam <head> pada setiap halaman. Cuba: Tukar teks title dan semak tab pelayar selepas muat semula."
+      "description": "Elemen <title> menetapkan nama yang dipaparkan pada tab pelayar dan dalam penanda halaman. Letakkan satu <title> di dalam <head> pada setiap halaman. Tukar teks title dan semak tab pelayar selepas muat semula."
     },
     "body-tag": {
       "title": "Elemen body",
-      "description": "Apa: Elemen <body> mengandungi semua yang pelawat lihat — teks, imej, pautan, dan seksyen. Bila: Gunakan satu <body> setiap halaman, selepas <head>. Cuba: Tambah perenggan kedua di bawah perenggan pertama."
+      "description": "Elemen <body> mengandungi semua yang pelawat lihat — teks, imej, pautan, dan seksyen. Gunakan satu <body> setiap halaman, selepas <head>. Tambah perenggan kedua di bawah perenggan pertama."
     },
     "header-tag": {
       "title": "Elemen header",
-      "description": "Apa: Elemen <header> mengumpulkan kandungan pengenalan di bahagian atas — logo, nama laman, atau banner pembuka. Bila: Gunakan di bahagian atas halaman atau di dalam <article>. Cuba: Tukar nama laman kepada nama anda sendiri."
+      "description": "Elemen <header> mengumpulkan kandungan pengenalan di bahagian atas — logo, nama laman, atau banner pembuka. Gunakan di bahagian atas halaman atau di dalam <article>. Tukar nama laman kepada nama anda sendiri."
     },
     "footer-tag": {
       "title": "Elemen footer",
-      "description": "Apa: Elemen <footer> menyimpan maklumat penutup — hak cipta, hubungan, atau pautan. Bila: Letakkan di bahagian bawah halaman atau artikel. Cuba: Tambah e-mel atau nama sekolah anda dalam footer."
+      "description": "Elemen <footer> menyimpan maklumat penutup — hak cipta, hubungan, atau pautan. Letakkan di bahagian bawah halaman atau artikel. Tambah e-mel atau nama sekolah anda dalam footer."
     },
     "section-tag": {
       "title": "Elemen section",
-      "description": "Apa: Elemen <section> mengumpulkan kandungan berkaitan di bawah satu tema, biasanya dengan tajuk sendiri. Bila: Gunakan apabila blok kandungan mempunyai topik yang jelas (contohnya \"Tentang\", \"Galeri\"). Cuba: Tambah <section> kedua dengan tajuk berbeza."
+      "description": "Elemen <section> mengumpulkan kandungan berkaitan di bawah satu tema, biasanya dengan tajuk sendiri. Gunakan apabila blok kandungan mempunyai topik yang jelas (contohnya \"Tentang\", \"Galeri\"). Tambah <section> kedua dengan tajuk berbeza."
     },
     "p-tag": {
       "title": "Elemen p",
-      "description": "Apa: Elemen <p> mentakrifkan perenggan teks. Bila: Balut setiap blok teks biasa dalam <p> sendiri. Pelayar menambah ruang antara perenggan secara automatik. Cuba: Tambah perenggan ketiga dengan ayat anda sendiri."
+      "description": "Elemen <p> mentakrifkan perenggan teks. Balut setiap blok teks biasa dalam <p> sendiri. Pelayar menambah ruang antara perenggan secara automatik. Tambah perenggan ketiga dengan ayat anda sendiri."
     },
     "div-tag": {
       "title": "Elemen div",
-      "description": "Apa: <div> ialah bekas blok generik tanpa makna khas — digunakan untuk mengumpulkan elemen bagi susun atur atau penggayaan. Bila: Gunakan apabila tiada tag semantik (<section>, <article>, dll.) yang lebih sesuai. Cuba: Tukar warna latar belakang satu kotak dalam panel CSS."
+      "description": "<div> ialah bekas blok generik tanpa makna khas — digunakan untuk mengumpulkan elemen bagi susun atur atau penggayaan. Gunakan apabila tiada tag semantik (<section>, <article>, dll.) yang lebih sesuai. Tukar warna latar belakang satu kotak dalam panel CSS."
     },
     "span-tag": {
       "title": "Elemen span",
-      "description": "Apa: <span> ialah bekas sebaris — menggayakan sebahagian ayat tanpa memulakan baris baharu. Bila: Serlahkan satu perkataan atau frasa di dalam perenggan. Cuba: Balut perkataan lain dalam <span class=\"highlight\">."
+      "description": "<span> ialah bekas sebaris — menggayakan sebahagian ayat tanpa memulakan baris baharu. Serlahkan satu perkataan atau frasa di dalam perenggan. Balut perkataan lain dalam <span class=\"highlight\">."
     },
     "nav-tag": {
       "title": "Elemen nav",
-      "description": "Apa: Elemen <nav> mengumpulkan pautan navigasi utama — menu yang membantu pengguna bergerak di laman. Bila: Gunakan untuk menu utama, bukan untuk setiap pautan rawak. Cuba: Tambah pautan ketiga bernama \"Pelajaran\"."
+      "description": "Elemen <nav> mengumpulkan pautan navigasi utama — menu yang membantu pengguna bergerak di laman. Gunakan untuk menu utama, bukan untuk setiap pautan rawak. Tambah pautan ketiga bernama \"Pelajaran\"."
     },
     "lists-ul-ol-li": {
       "title": "Senarai: ul, ol, dan li",
-      "description": "Apa: <ul> membuat senarai bertitik, <ol> membuat senarai bernombor, dan <li> ialah setiap item senarai. Bila: Gunakan ul untuk langkah atau ciri tanpa susunan; gunakan ol apabila susunan penting (1, 2, 3). Cuba: Tambah satu item lagi pada setiap senarai."
+      "description": "<ul> membuat senarai bertitik, <ol> membuat senarai bernombor, dan <li> ialah setiap item senarai. Gunakan ul untuk langkah atau ciri tanpa susunan; gunakan ol apabila susunan penting (1, 2, 3). Tambah satu item lagi pada setiap senarai."
     },
     "html-comments": {
       "title": "Komen HTML",
-      "description": "Apa: Komen menggunakan <!-- teks --> dan diabaikan oleh pelayar — ia nota untuk anda dan pembangun lain. Bila: Terangkan kod rumit atau sembunyikan markup sementara semasa ujian. Cuba: Tambah komen anda sendiri di atas tajuk."
+      "description": "Komen menggunakan <!-- teks --> dan diabaikan oleh pelayar — ia nota untuk anda dan pembangun lain. Terangkan kod rumit atau sembunyikan markup sementara semasa ujian. Tambah komen anda sendiri di atas tajuk."
     },
     "article-tag": {
       "title": "Elemen article",
-      "description": "Apa: Elemen <article> membungkus kandungan berdiri sendiri yang boleh berfungsi sendiri — catatan blog, berita, atau kad. Bila: Setiap artikel harus masuk akal jika disalin ke halaman lain. Cuba: Tukar tajuk artikel dan nama pengarang."
+      "description": "Elemen <article> membungkus kandungan berdiri sendiri yang boleh berfungsi sendiri — catatan blog, berita, atau kad. Setiap artikel harus masuk akal jika disalin ke halaman lain. Tukar tajuk artikel dan nama pengarang."
     },
     "aside-tag": {
       "title": "Elemen aside",
-      "description": "Apa: Elemen <aside> menyimpan kandungan berkaitan topik utama tetapi bukan fokus utama — petua, pautan, atau iklan. Bila: Bar sisi, petikan tarik, atau kotak \"Tahukah anda?\". Cuba: Tambah petua kedua di dalam aside."
+      "description": "Elemen <aside> menyimpan kandungan berkaitan topik utama tetapi bukan fokus utama — petua, pautan, atau iklan. Bar sisi, petikan tarik, atau kotak \"Tahukah anda?\". Tambah petua kedua di dalam aside."
     },
     "embed-tag": {
       "title": "Elemen embed",
-      "description": "Apa: Elemen <embed> membawa kandungan luar ke halaman anda — seperti PDF atau kandungan plugin. Bila: Gunakan untuk dokumen terbenam; untuk video, <video> selalunya lebih baik. Cuba: Tukar nilai width dan lihat bagaimana kotak berubah saiz."
+      "description": "Elemen <embed> membawa kandungan luar ke halaman anda — seperti PDF atau kandungan plugin. Gunakan untuk dokumen terbenam; untuk video, <video> selalunya lebih baik. Tukar nilai width dan lihat bagaimana kotak berubah saiz."
     },
     "putting-together": {
       "title": "Gabungkan semuanya",
-      "description": "Apa: Halaman sebenar menggabungkan header, nav, section, article, aside, dan footer dalam satu susun atur. Bila: Gunakan corak ini untuk portfolio, halaman pelajaran, dan blog. Cuba: Tambah pautan baharu dalam nav atau kad artikel kedua."
+      "description": "Halaman sebenar menggabungkan header, nav, section, article, aside, dan footer dalam satu susun atur. Gunakan corak ini untuk portfolio, halaman pelajaran, dan blog. Tambah pautan baharu dalam nav atau kad artikel kedua."
     }
   },
   "practice": {

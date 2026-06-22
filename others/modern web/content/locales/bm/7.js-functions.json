@@ -1,18 +1,26 @@
 {
   "title": "Fungsi JavaScript",
-  "summary": "Isytihar fungsi, anak panah, dan kod boleh guna semula.",
+  "summary": "Apakah fungsi dan mengapa menggunakannya, pengisytiharan dan sintaks anak panah, carian/isih/tapis array dengan callback, dan kod boleh guna semula untuk membina kandungan halaman.",
   "examples": {
+    "what-is-function": {
+      "title": "Apakah fungsi?",
+      "description": "Fungsi ialah blok kod bernama yang anda tulis sekali dan panggil berkali-kali—ia membantu anda elak mengulang logik yang sama, susun skrip anda, dan buat perubahan di satu tempat. Gunakannya apabila tugas yang sama dijalankan lebih daripada sekali—ucapan, pemformatan, atau mengemas kini halaman. Panggil showMessage dengan baris teks ketiga."
+    },
     "function-decl": {
       "title": "Pengisytiharan fungsi",
-      "description": "Apa: Fungsi bernama mengambil parameter dan boleh return nilai — di sini greet(name) memulangkan ucapan. Bila: Gunakan apabila kod yang sama perlu dijalankan berkali-kali. Cuba: Tukar parameter \"World\" kepada nama anda."
+      "description": "Fungsi bernama mengambil parameter dan boleh return nilai — di sini greet(name) memulangkan ucapan. Gunakan apabila kod yang sama perlu dijalankan berkali-kali. Tukar parameter \"World\" kepada nama anda."
     },
     "arrow-fn": {
       "title": "Fungsi anak panah",
-      "description": "Apa: Sintaks anak panah (=>) ialah cara ringkas menulis fungsi mudah, contohnya (x) => x * 2. Bila: Gunakan untuk fungsi pendek satu baris. Cuba: Tulis fungsi triple yang darab nombor dengan 3."
+      "description": "Sintaks anak panah (=>) ialah cara ringkas menulis fungsi mudah, contohnya (x) => x * 2. Gunakan untuk fungsi pendek satu baris. Tulis fungsi triple yang darab nombor dengan 3."
+    },
+    "search-sort-filter": {
+      "title": "Cari, isih, dan tapis",
+      "description": "filter() mengecilkan senarai (carian), sort() menyusun item A–Z atau Z–A, dan kedua-duanya mengambil fungsi sebagai argumen. Senarai produk, kotak carian, atau menyusun nama dalam kedua-dua arah. Tukar carian kepada \"ap\" atau balikkan susunan dengan .reverse()."
     },
     "render-nav-links": {
       "title": "Fungsi membina HTML menu",
-      "description": "Apa: Bar navigasi mengulang corak pautan yang sama — fungsi membina HTML menu sekali dan boleh digunakan semula pada setiap halaman. Bila: Gunakan apabila senarai item perlu dijana dari data. Cuba: Tambah nama pautan keempat ke dalam array."
+      "description": "Bar navigasi mengulang corak pautan yang sama — fungsi membina HTML menu sekali dan boleh digunakan semula pada setiap halaman. Gunakan apabila senarai item perlu dijana dari data. Tambah nama pautan keempat ke dalam array."
     }
   },
   "practice": {

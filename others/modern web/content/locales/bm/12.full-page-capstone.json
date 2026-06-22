@@ -27,11 +27,11 @@
   "examples": {
     "full-page-static": {
       "title": "Susun atur halaman penuh (HTML + CSS)",
-      "description": "Apa: Ini cangkang susun atur siap yang setiap laman moden bermula — navigasi, sidebar, kandungan, dan footer dalam satu halaman responsif. Bila: Gunakan sebagai asas portfolio, laman pelajaran, atau projek sekolah. Cuba: Tukar nama laman dalam header atau tambah pautan sidebar keempat."
+      "description": "Ini cangkang susun atur siap yang setiap laman moden bermula — navigasi, sidebar, kandungan, dan footer dalam satu halaman responsif. Gunakan sebagai asas portfolio, laman pelajaran, atau projek sekolah. Tukar nama laman dalam header atau tambah pautan sidebar keempat."
     },
     "full-page-interactive": {
       "title": "Halaman penuh dengan menu mudah alih (HTML + CSS + JS)",
-      "description": "Apa: Laman sebenar sembunyikan sidebar pada telefon sehingga pengguna ketik butang menu — contoh ini menambah tingkah laku itu atas susun atur penuh. Bila: Bina laman yang berfungsi baik pada desktop dan telefon. Cuba: Ubah saiz pratonton atau gunakan paparan mudah alih dalam DevTools, kemudian klik Menu."
+      "description": "Laman sebenar sembunyikan sidebar pada telefon sehingga pengguna ketik butang menu — contoh ini menambah tingkah laku itu atas susun atur penuh. Bina laman yang berfungsi baik pada desktop dan telefon. Ubah saiz pratonton atau gunakan paparan mudah alih dalam DevTools, kemudian klik Menu."
     }
   },
   "practice": {

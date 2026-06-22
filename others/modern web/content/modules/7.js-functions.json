@@ -2,8 +2,19 @@
   "id": "js-functions",
   "title": "JavaScript Functions",
   "track": "js",
-  "summary": "Declaring functions, parameters, return values, and arrow functions.",
+  "summary": "What functions are and why to use them, declarations and arrow syntax, array search/sort/filter with callbacks, and reusable code that builds page content.",
   "examples": [
+    {
+      "id": "what-is-function",
+      "title": "What is a function?",
+      "description": "A function is a named block of code you write once and call many times—they help you avoid repeating the same logic, organize your script, and make changes in one place. Use them whenever the same task runs more than once—greetings, formatting, or updating the page. Call showMessage with a third line of text.",
+      "outputType": "preview",
+      "files": {
+        "html": "<h1>Why functions?</h1>\n<p>Instead of copying the same code, define a function and call it whenever you need that behavior.</p>\n<p id=\"line1\">Waiting…</p>\n<p id=\"line2\">Waiting…</p>\n\n<!-- Js code below -->\n<script>\nfunction showMessage(elementId, text) {\n  document.getElementById(elementId).textContent = text;\n}\n\nshowMessage(\"line1\", \"First message — same function, different call.\");\nshowMessage(\"line2\", \"Second message — no duplicated code.\");\n</script>",
+        "css": "body { font-family: system-ui, sans-serif; padding: 1.5rem; max-width: 36rem; line-height: 1.6; }\np { margin: 0.4rem 0; color: #475569; }",
+        "js": ""
+      }
+    },
     {
       "id": "function-decl",
       "title": "Function declaration",
@@ -27,9 +38,20 @@
       }
     },
     {
+      "id": "search-sort-filter",
+      "title": "Search, sort, and filter",
+      "description": "filter() narrows a list (search), sort() orders items A–Z or Z–A, and both take a function as an argument. Product lists, search boxes, or sorting names in either direction. Change search to \"ap\" or reverse the sort order with .reverse().",
+      "outputType": "preview",
+      "files": {
+        "html": "<h2>Fruit list</h2>\n<p><strong>Original:</strong> <span id=\"original\"></span></p>\n<p><strong>Filtered (contains \"a\"):</strong> <span id=\"filtered\"></span></p>\n<p><strong>Sorted A–Z:</strong> <span id=\"sorted-az\"></span></p>\n<p><strong>Sorted Z–A:</strong> <span id=\"sorted-za\"></span></p>\n\n<!-- Js code below -->\n<script>\nconst products = [\"Apple\", \"Banana\", \"Apricot\", \"Cherry\", \"Avocado\"];\nconst search = \"a\";\n\nconst filtered = products.filter((name) =>\n  name.toLowerCase().includes(search.toLowerCase())\n);\nconst sortedAz = [...filtered].sort();\nconst sortedZa = [...filtered].sort().reverse();\n\ndocument.getElementById(\"original\").textContent = products.join(\", \");\ndocument.getElementById(\"filtered\").textContent = filtered.join(\", \");\ndocument.getElementById(\"sorted-az\").textContent = sortedAz.join(\", \");\ndocument.getElementById(\"sorted-za\").textContent = sortedZa.join(\", \");\n</script>",
+        "css": "body { font-family: sans-serif; padding: 1.5rem; line-height: 1.8; }\nspan { color: #1e40af; }",
+        "js": ""
+      }
+    },
+    {
       "id": "render-nav-links",
       "title": "Function builds menu HTML",
-      "description": "Purpose: Nav bars repeat the same link pattern—functions let you build menu HTML once and reuse it on every page. Output: A function creates three nav links and inserts them into the page. Try: Add a fourth link name to the array.",
+      "description": "Nav bars repeat the same link pattern—functions let you build menu HTML once and reuse it on every page. A function creates three nav links and inserts them into the page. Add a fourth link name to the array.",
       "outputType": "preview",
       "files": {
         "html": "<nav id=\"menu\"></nav>\n\n<!-- Js code below -->\n<script>\nfunction buildNavLinks(names) {\n  return names.map((name) => `<a href=\"#\">${name}</a>`).join(\"\");\n}\ndocument.getElementById(\"menu\").innerHTML = buildNavLinks([\"Home\", \"About\", \"Contact\"]);\n</script>",

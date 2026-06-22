@@ -4,19 +4,19 @@
   "examples": {
     "local-storage": {
       "title": "localStorage",
-      "description": "Apa: localStorage menyimpan data dalam pelayar walaupun selepas tutup tab — setItem simpan, getItem baca, clear padam semua. Bila: Gunakan untuk simpan pilihan pengguna, nama, atau tetapan. Cuba: Simpan, muat, dan padam nama pengguna dalam pratonton."
+      "description": "localStorage menyimpan data dalam pelayar walaupun selepas tutup tab — setItem simpan, getItem baca, clear padam semua. Gunakan untuk simpan pilihan pengguna, nama, atau tetapan. Simpan, muat, dan padam nama pengguna dalam pratonton."
     },
     "geolocation": {
       "title": "API Geolocation",
-      "description": "Apa: navigator.geolocation.getCurrentPosition() mendapat latitud dan longitud peranti pengguna. Bila: Gunakan apabila laman perlu lokasi semasa (peta, cuaca). Cuba: Klik butang dan benarkan pelayar minta kebenaran lokasi."
+      "description": "navigator.geolocation.getCurrentPosition() mendapat latitud dan longitud peranti pengguna. Gunakan apabila laman perlu lokasi semasa (peta, cuaca). Klik butang dan benarkan pelayar minta kebenaran lokasi."
     },
     "fetch-mock": {
       "title": "Data gaya Fetch (sebaris)",
-      "description": "Apa: Contoh ini simulasi muat JSON dan papar senarai tanpa rangkaian — array objek digelung untuk buat elemen li. Bila: Belajar corak fetch sebelum sambung ke pelayan sebenar. Cuba: Tambah produk ketiga ke array products."
+      "description": "Contoh ini simulasi muat JSON dan papar senarai tanpa rangkaian — array objek digelung untuk buat elemen li. Belajar corak fetch sebelum sambung ke pelayan sebenar. Tambah produk ketiga ke array products."
     },
     "theme-on-load": {
       "title": "Ingat tema selepas muat semula",
-      "description": "Apa: Laman simpan pilihan pengguna (seperti warna aksen) dalam localStorage supaya pilihan kekal selepas muat semula — tanpa pelayan. Bila: Gunakan untuk tema, bahasa, atau tetapan paparan. Cuba: Simpan warna berbeza dan jalankan semula untuk uji."
+      "description": "Laman simpan pilihan pengguna (seperti warna aksen) dalam localStorage supaya pilihan kekal selepas muat semula — tanpa pelayan. Gunakan untuk tema, bahasa, atau tetapan paparan. Simpan warna berbeza dan jalankan semula untuk uji."
     }
   },
   "practice": {

@@ -301,6 +301,17 @@ ${userScript}
   const VOID_HTML_TAGS =
     /^(?:area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)$/i;
 
+  const SINGLE_LINE_BLOCK_TAGS = /^(?:h[1-6]|p)$/i;
+
+  function tokenizeHtmlFragment(html) {
+    return (html.match(/(<[^>]+>|[^<]+)/g) || [])
+      .map((part) => {
+        if (part.startsWith("<")) return part.trim();
+        return part.replace(/\s+/g, " ");
+      })
+      .filter((part) => part.length > 0);
+  }
+
   function braceDelta(line) {
     let delta = 0;
     let inStr = null;
@@ -431,9 +442,7 @@ ${userScript}
   }
 
   function formatHtmlStructure(html) {
-    const tokens = (html.match(/(<[^>]+>|[^<]+)/g) || [])
-      .map((t) => t.trim())
-      .filter(Boolean);
+    const tokens = tokenizeHtmlFragment(html);
 
     function formatRange(start, end, depth) {
       const lines = [];
@@ -443,6 +452,10 @@ ${userScript}
         const token = tokens[i];
 
         if (!token.startsWith("<")) {
+          if (!token.trim()) {
+            i++;
+            continue;
+          }
           lines.push(`${"  ".repeat(depth)}${token}`);
           i++;
           continue;
@@ -481,6 +494,18 @@ ${userScript}
         }
 
         const innerTokens = tokens.slice(i + 1, closeIndex);
+
+        if (SINGLE_LINE_BLOCK_TAGS.test(tagName)) {
+          const innerHtml = innerTokens.join("");
+          const open = token.trim();
+          const line = innerHtml
+            ? `${open}${innerHtml}</${tagName}>`
+            : `${open}</${tagName}>`;
+          lines.push(`${"  ".repeat(depth)}${line}`);
+          i = closeIndex + 1;
+          continue;
+        }
+
         const hasElementChild = innerTokens.some(
           (t) =>
             (t.startsWith("<") && !t.startsWith("<!")) || /^\x00J\d+\x00$/.test(t)

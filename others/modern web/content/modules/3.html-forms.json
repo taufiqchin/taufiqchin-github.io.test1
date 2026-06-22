@@ -7,7 +7,7 @@
     {
       "id": "table-tr-th-td",
       "title": "Table rows and cells: tr, th, td",
-      "description": "What: <tr> is a table row, <th> is a header cell, and <td> is a data cell. When: Display grades, schedules, or any data in rows and columns. Try: Add a third student row to the table.",
+      "description": "<tr> is a table row, <th> is a header cell, and <td> is a data cell. Display grades, schedules, or any data in rows and columns. Add a third student row to the table.",
       "outputType": "preview",
       "files": {
         "html": "<h2>Class scores</h2>\n<table>\n  <tr>\n    <th>Name</th>\n    <th>Subject</th>\n    <th>Score</th>\n  </tr>\n  <tr>\n    <td>Aina</td>\n    <td>HTML</td>\n    <td>92</td>\n  </tr>\n  <tr>\n    <td>Hakim</td>\n    <td>HTML</td>\n    <td>88</td>\n  </tr>\n</table>",
@@ -18,7 +18,7 @@
     {
       "id": "table-border-padding-spacing",
       "title": "Table border, padding, and spacing",
-      "description": "What: CSS controls how tables look — border-collapse removes gaps between cells, padding adds space inside cells, border-spacing sets gap when borders are separate. When: Make tables readable and professional. Try: Change padding to 1rem or add a background color to th.",
+      "description": "CSS controls how tables look — border-collapse removes gaps between cells, padding adds space inside cells, border-spacing sets gap when borders are separate. Make tables readable and professional. Change padding to 1rem or add a background color to th.",
       "outputType": "preview",
       "files": {
         "html": "<h2>Styled timetable</h2>\n<table class=\"styled\">\n  <tr>\n    <th>Time</th>\n    <th>Monday</th>\n    <th>Tuesday</th>\n  </tr>\n  <tr>\n    <td>9:00</td>\n    <td>HTML</td>\n    <td>CSS</td>\n  </tr>\n  <tr>\n    <td>11:00</td>\n    <td>Lab</td>\n    <td>Project</td>\n  </tr>\n</table>",
@@ -29,7 +29,7 @@
     {
       "id": "input-text",
       "title": "Text input",
-      "description": "What: <input type=\"text\"> collects a single line of text. When: Names, usernames, or short answers. Pair with <label> so users know what to type. Try: Add a placeholder attribute like placeholder=\"Enter your name\".",
+      "description": "<input type=\"text\"> collects a single line of text. Names, usernames, or short answers. Pair with <label> so users know what to type. Add a placeholder attribute like placeholder=\"Enter your name\".",
       "outputType": "preview",
       "files": {
         "html": "<form onsubmit=\"event.preventDefault();\">\n  <label>Full name\n    <input type=\"text\" name=\"fullname\" required>\n  </label>\n  <label>Student ID\n    <input type=\"text\" name=\"studentid\" maxlength=\"10\">\n  </label>\n</form>",
@@ -40,7 +40,7 @@
     {
       "id": "input-radio",
       "title": "Radio buttons",
-      "description": "What: <input type=\"radio\"> lets users pick exactly one option from a group. When: Gender, class session, or yes/no choices. All radios in a group need the same name attribute. Try: Add a third radio option.",
+      "description": "<input type=\"radio\"> lets users pick exactly one option from a group. Gender, class session, or yes/no choices. All radios in a group need the same name attribute. Add a third radio option.",
       "outputType": "preview",
       "files": {
         "html": "<fieldset>\n  <legend>Choose your session</legend>\n  <label><input type=\"radio\" name=\"session\" value=\"morning\" checked> Morning (8am)</label>\n  <label><input type=\"radio\" name=\"session\" value=\"afternoon\"> Afternoon (2pm)</label>\n</fieldset>",
@@ -51,7 +51,7 @@
     {
       "id": "input-checkbox",
       "title": "Checkboxes",
-      "description": "What: <input type=\"checkbox\"> lets users select zero, one, or many options. When: Interests, skills, or agreeing to terms. Try: Add another hobby checkbox.",
+      "description": "<input type=\"checkbox\"> lets users select zero, one, or many options. Interests, skills, or agreeing to terms. Add another hobby checkbox.",
       "outputType": "preview",
       "files": {
         "html": "<fieldset>\n  <legend>Your interests (pick any)</legend>\n  <label><input type=\"checkbox\" name=\"interest\" value=\"html\" checked> HTML</label>\n  <label><input type=\"checkbox\" name=\"interest\" value=\"css\"> CSS</label>\n  <label><input type=\"checkbox\" name=\"interest\" value=\"js\"> JavaScript</label>\n</fieldset>",
@@ -62,7 +62,7 @@
     {
       "id": "textarea",
       "title": "The textarea element",
-      "description": "What: <textarea> collects multiple lines of text. When: Comments, essays, or feedback forms. Use rows and cols or CSS to control size. Try: Increase rows to 6 and type a longer message.",
+      "description": "<textarea> collects multiple lines of text. Comments, essays, or feedback forms. Use rows and cols or CSS to control size. Increase rows to 6 and type a longer message.",
       "outputType": "preview",
       "files": {
         "html": "<form onsubmit=\"event.preventDefault();\">\n  <label>Your feedback\n    <textarea name=\"feedback\" rows=\"4\" cols=\"40\" placeholder=\"Write your thoughts here...\"></textarea>\n  </label>\n</form>",
@@ -73,7 +73,7 @@
     {
       "id": "select",
       "title": "The select element",
-      "description": "What: <select> creates a dropdown menu; each <option> is one choice. When: Country, course, or any list with many choices. Try: Add a fourth option to the dropdown.",
+      "description": "<select> creates a dropdown menu; each <option> is one choice. Country, course, or any list with many choices. Add a fourth option to the dropdown.",
       "outputType": "preview",
       "files": {
         "html": "<form onsubmit=\"event.preventDefault();\">\n  <label>Favorite language\n    <select name=\"language\">\n      <option value=\"\">-- Choose one --</option>\n      <option value=\"html\">HTML</option>\n      <option value=\"css\">CSS</option>\n      <option value=\"js\">JavaScript</option>\n    </select>\n  </label>\n</form>",
@@ -84,7 +84,7 @@
     {
       "id": "button",
       "title": "The button element",
-      "description": "What: <button type=\"button\"> runs an action without submitting a form (e.g. show a message). When: Interactive controls inside or outside forms. Try: Change the alert message text.",
+      "description": "<button type=\"button\"> runs an action without submitting a form (e.g. show a message). Interactive controls inside or outside forms. Change the alert message text.",
       "outputType": "preview",
       "files": {
         "html": "<p>Click the button to see a message:</p>\n<button type=\"button\" onclick=\"alert('Hello! You clicked the button.')\">Click me</button>\n<p><small>type=\"button\" does not submit a form.</small></p>",
@@ -95,7 +95,7 @@
     {
       "id": "submit-button",
       "title": "Submit button",
-      "description": "What: <button type=\"submit\"> or <input type=\"submit\"> sends form data to a server. When: End of a registration or contact form. Here we prevent real submission and show an alert instead. Try: Change the button label to “Register now”.",
+      "description": "<button type=\"submit\"> or <input type=\"submit\"> sends form data to a server. End of a registration or contact form. Here we prevent real submission and show an alert instead. Change the button label to “Register now”.",
       "outputType": "preview",
       "files": {
         "html": "<form onsubmit=\"event.preventDefault(); alert('Form submitted! (demo only)');\">\n  <label>Email\n    <input type=\"email\" name=\"email\" required>\n  </label>\n  <button type=\"submit\">Submit form</button>\n</form>\n<p><small>Or use: &lt;input type=\"submit\" value=\"Send\"&gt;</small></p>",
@@ -106,7 +106,7 @@
     {
       "id": "complete-registration-form",
       "title": "Complete registration form",
-      "description": "What: Real forms combine text inputs, radio buttons, checkboxes, textarea, select, and submit in one <form>. When: Sign-up pages, surveys, or course registration. Try: Add a required checkbox for “I agree to terms”.",
+      "description": "Real forms combine text inputs, radio buttons, checkboxes, textarea, select, and submit in one <form>. Sign-up pages, surveys, or course registration. Add a required checkbox for “I agree to terms”.",
       "outputType": "preview",
       "files": {
         "html": "<h2>Course registration</h2>\n<form onsubmit=\"event.preventDefault(); alert('Thanks for registering!');\">\n  <label>Name <input type=\"text\" name=\"name\" required></label>\n  <fieldset>\n    <legend>Level</legend>\n    <label><input type=\"radio\" name=\"level\" value=\"beginner\" checked> Beginner</label>\n    <label><input type=\"radio\" name=\"level\" value=\"advanced\"> Advanced</label>\n  </fieldset>\n  <fieldset>\n    <legend>Topics</legend>\n    <label><input type=\"checkbox\" name=\"topic\" value=\"html\" checked> HTML</label>\n    <label><input type=\"checkbox\" name=\"topic\" value=\"css\"> CSS</label>\n  </fieldset>\n  <label>Why joining?\n    <textarea name=\"reason\" rows=\"3\"></textarea>\n  </label>\n  <label>Preferred time\n    <select name=\"time\">\n      <option value=\"am\">Morning</option>\n      <option value=\"pm\">Evening</option>\n    </select>\n  </label>\n  <button type=\"submit\">Register</button>\n</form>",

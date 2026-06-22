@@ -7,7 +7,7 @@
     {
       "id": "list-style",
       "title": "CSS list-style-type",
-      "description": "What: list-style-type changes bullet or number style on <ul> and <ol> lists. When: Customize menus, steps, or feature lists. Try: Change disc to square or decimal to lower-roman.",
+      "description": "list-style-type changes bullet or number style on <ul> and <ol> lists. Customize menus, steps, or feature lists. Change disc to square or decimal to lower-roman.",
       "outputType": "preview",
       "files": {
         "html": "<h2>Subjects</h2>\n<ul class=\"disc-list\">\n  <li>HTML</li>\n  <li>CSS</li>\n  <li>JavaScript</li>\n</ul>\n<h2>Steps</h2>\n<ol class=\"num-list\">\n  <li>Open editor</li>\n  <li>Write code</li>\n  <li>Run in browser</li>\n</ol>",
@@ -18,7 +18,7 @@
     {
       "id": "flexbox",
       "title": "Flexbox layout",
-      "description": "What: display: flex arranges child items in a row or column; gap, justify-content, and align-items control spacing and alignment. When: Nav bars, button rows, and centered content. Try: Add a fourth link or change justify-content to center.",
+      "description": "display: flex arranges child items in a row or column; gap, justify-content, and align-items control spacing and alignment. Nav bars, button rows, and centered content. Add a fourth link or change justify-content to center.",
       "outputType": "preview",
       "files": {
         "html": "<nav class=\"flex-nav\">\n  <a href=\"#\">Home</a>\n  <a href=\"#\">Lessons</a>\n  <a href=\"#\">About</a>\n</nav>\n<div class=\"flex-center\">\n  <div class=\"box\">Centered with flex</div>\n</div>",
@@ -29,7 +29,7 @@
     {
       "id": "grid-layout",
       "title": "CSS Grid layout",
-      "description": "What: display: grid creates rows and columns; grid-template-columns sets column sizes; gap adds space between cells. When: Card galleries, dashboards, and equal-width columns. Try: Change to repeat(2, 1fr) for two columns.",
+      "description": "display: grid creates rows and columns; grid-template-columns sets column sizes; gap adds space between cells. Card galleries, dashboards, and equal-width columns. Change to repeat(2, 1fr) for two columns.",
       "outputType": "preview",
       "files": {
         "html": "<div class=\"grid\">\n  <div class=\"cell\">HTML</div>\n  <div class=\"cell\">CSS</div>\n  <div class=\"cell\">JS</div>\n  <div class=\"cell\">Git</div>\n</div>",
@@ -40,7 +40,7 @@
     {
       "id": "positioning",
       "title": "Positioning",
-      "description": "What: static is default; relative moves from normal position; absolute is placed inside a relative parent; fixed stays on screen when scrolling. When: Badges, tooltips, sticky buttons, and overlays. Try: Change .badge from absolute to fixed.",
+      "description": "static is default; relative moves from normal position; absolute is placed inside a relative parent; fixed stays on screen when scrolling. Badges, tooltips, sticky buttons, and overlays. Change .badge from absolute to fixed.",
       "outputType": "preview",
       "files": {
         "html": "<div class=\"stage\">\n  <div class=\"box static\">static</div>\n  <div class=\"box relative\">relative (top: 10px)</div>\n  <div class=\"box absolute\">absolute</div>\n</div>\n<div class=\"fixed-badge\">fixed</div>",
@@ -51,7 +51,7 @@
     {
       "id": "css-float",
       "title": "CSS float",
-      "description": "What: float: left or right lets an element sit to one side while text wraps around it. clear: both stops wrapping below floated items. When: Images beside paragraphs (older layout; flex/grid are often better today). Try: Change float from left to right.",
+      "description": "float: left or right lets an element sit to one side while text wraps around it. clear: both stops wrapping below floated items. Images beside paragraphs (older layout; flex/grid are often better today). Change float from left to right.",
       "outputType": "preview",
       "files": {
         "html": "<div class=\"float-wrap\">\n  <div class=\"float-box\">Float left</div>\n  <p>Text wraps around the floated box. Float was common before flexbox and grid. For new layouts, prefer flex or grid — but you may see float in older code and textbooks.</p>\n  <p class=\"clear\">This paragraph uses clear: both so it appears below the float.</p>\n</div>",

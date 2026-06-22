@@ -7,7 +7,7 @@
     {
       "id": "img-tag",
       "title": "The img element",
-      "description": "What: The <img> element displays a picture using the src attribute. When: Always add alt text so screen readers and search engines understand the image. Try: Change the width or replace the image URL with another https link.",
+      "description": "The <img> element displays a picture using the src attribute. Always add alt text so screen readers and search engines understand the image. Change the width or replace the image URL with another https link.",
       "outputType": "preview",
       "files": {
         "html": "<h2>Campus photo</h2>\n<img src=\"https://picsum.photos/360/200\" alt=\"Random placeholder photo for learning HTML\" width=\"360\" height=\"200\">\n<p><small>alt describes the image if it cannot load.</small></p>",
@@ -18,7 +18,7 @@
     {
       "id": "hyperlinks",
       "title": "Hyperlinks",
-      "description": "What: The <a> element creates a hyperlink using href. When: Link to other pages, sections on the same page (#id), or external sites. Try: Change the external link to open MDN HTML docs.",
+      "description": "The <a> element creates a hyperlink using href. Link to other pages, sections on the same page (#id), or external sites. Change the external link to open MDN HTML docs.",
       "outputType": "preview",
       "files": {
         "html": "<h2>Navigation links</h2>\n<p><a href=\"#tips\">Jump to tips on this page</a></p>\n<p><a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML\" target=\"_blank\" rel=\"noopener\">Open MDN HTML guide (new tab)</a></p>\n<section id=\"tips\">\n  <h3>Tips section</h3>\n  <p>You jumped here using an internal anchor link (#tips).</p>\n</section>",
@@ -29,7 +29,7 @@
     {
       "id": "b-and-em",
       "title": "Bold vs emphasis: b and em",
-      "description": "What: <b> makes text visually bold; <em> adds emphasis and usually appears italic — screen readers treat them differently. When: Prefer <strong> and <em> for meaning; use <b> for visual bold without extra importance. Try: Change one <b> to <strong> and compare.",
+      "description": "<b> makes text visually bold; <em> adds emphasis and usually appears italic — screen readers treat them differently. Prefer <strong> and <em> for meaning; use <b> for visual bold without extra importance. Change one <b> to <strong> and compare.",
       "outputType": "preview",
       "files": {
         "html": "<p><b>Visual bold (b):</b> This word is bold for appearance only.</p>\n<p><strong>Strong importance:</strong> This text is bold because it matters.</p>\n<p><em>Emphasis (em):</em> Stress this phrase when reading aloud.</p>\n<p>Compare: <b>bold look</b> vs <em>spoken emphasis</em>.</p>",
@@ -40,7 +40,7 @@
     {
       "id": "mark-tag",
       "title": "The mark element",
-      "description": "What: The <mark> element highlights text as if marked with a highlighter pen. When: Search results, study notes, or key vocabulary. Try: Mark a different word in the sentence.",
+      "description": "The <mark> element highlights text as if marked with a highlighter pen. Search results, study notes, or key vocabulary. Mark a different word in the sentence.",
       "outputType": "preview",
       "files": {
         "html": "<h2>Search result</h2>\n<p>Students searched for <mark>HTML</mark> and found this lesson about <mark>tags</mark> and <mark>attributes</mark>.</p>\n<p>In your own notes, use <mark>mark</mark> to flag words to review before a test.</p>",
@@ -51,7 +51,7 @@
     {
       "id": "video-tag",
       "title": "The video element",
-      "description": "What: The <video> element plays video files with built-in browser controls. When: Tutorials, demos, or recorded lessons — no Flash plugin needed. Try: Change the width or add a poster image attribute.",
+      "description": "The <video> element plays video files with built-in browser controls. Tutorials, demos, or recorded lessons — no Flash plugin needed. Change the width or add a poster image attribute.",
       "outputType": "preview",
       "files": {
         "html": "<h2>Sample tutorial clip</h2>\n<video controls width=\"360\" src=\"https://www.w3schools.com/html/mov_bbb.mp4\">\n  Your browser does not support the video tag.\n</video>\n<p><small>Text inside <code>&lt;video&gt;</code> shows only if video cannot play.</small></p>",
@@ -62,7 +62,7 @@
     {
       "id": "audio-tag",
       "title": "The audio element",
-      "description": "What: The <audio> element plays sound files with controls like play and volume. When: Podcasts, pronunciation guides, or background narration. Try: Add a second audio line with a different src URL.",
+      "description": "The <audio> element plays sound files with controls like play and volume. Podcasts, pronunciation guides, or background narration. Add a second audio line with a different src URL.",
       "outputType": "preview",
       "files": {
         "html": "<h2>Listen: pronunciation guide</h2>\n<audio controls src=\"https://www.w3schools.com/html/horse.mp3\">\n  Your browser does not support the audio element.\n</audio>\n<p>Use <code>controls</code> so users can play, pause, and adjust volume.</p>",

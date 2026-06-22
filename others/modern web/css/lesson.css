@@ -455,6 +455,14 @@
 .code-editor-wrap .CodeMirror-line,
 .code-editor-wrap .CodeMirror-line span {
   font-family: inherit;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.code-editor-wrap .CodeMirror-wrap pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .code-editor-wrap .cm-readonly-example .CodeMirror-cursor {
@@ -567,6 +575,10 @@
   border: 0;
   background: var(--preview-bg); /* Live preview iframe background */
   overflow: hidden;
+}
+
+.output-panel--display-output iframe {
+  background-color: #d4edda;
 }
 
 .console-output {
