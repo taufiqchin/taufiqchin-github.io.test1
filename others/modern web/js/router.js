@@ -1,4 +1,6 @@
 const Router = (function () {
+  const STEM_MODULE_ID = "create-my-website";
+
   function getModuleId() {
     const params = new URLSearchParams(window.location.search);
     return params.get("module") || "";
@@ -26,6 +28,39 @@ const Router = (function () {
     `
       )
       .join("");
+  }
+
+  function escapeHtml(text) {
+    if (text == null) return "";
+    return String(text)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function exampleAnchorId(exampleId) {
+    return `example-${exampleId}`;
+  }
+
+  function renderStemSidebar(container, module) {
+    const examplesLabel =
+      typeof I18n !== "undefined" ? I18n.t("stemExamplesNav") : "Examples";
+    const exampleLinks = (module.examples || [])
+      .map(
+        (ex, i) => `
+        <a class="nav-link nav-link--example" href="#${exampleAnchorId(ex.id)}" data-example-anchor="${exampleAnchorId(ex.id)}">${escapeHtml(`${i + 1}. ${ex.title}`)}</a>
+      `
+      )
+      .join("");
+
+    container.innerHTML = `
+      <a class="nav-link nav-link--lesson active" href="${lessonUrl(STEM_MODULE_ID)}">${escapeHtml(module.title)}</a>
+      <div class="nav-track nav-track--stem-examples">
+        <div class="nav-track-title">${escapeHtml(examplesLabel)}</div>
+        ${exampleLinks}
+      </div>
+    `;
   }
 
   function moduleCardLabel(meta) {
@@ -63,5 +98,13 @@ const Router = (function () {
       .join("");
   }
 
-  return { getModuleId, lessonUrl, renderSidebar, renderHomeTracks };
+  return {
+    getModuleId,
+    lessonUrl,
+    renderSidebar,
+    renderStemSidebar,
+    renderHomeTracks,
+    exampleAnchorId,
+    STEM_MODULE_ID,
+  };
 })();

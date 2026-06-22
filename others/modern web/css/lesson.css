@@ -95,6 +95,37 @@
   background: var(--surface2); /* Active lesson background */
 }
 
+.lesson-sidebar--stem-focus #lesson-nav {
+  padding-top: 0.15rem;
+}
+
+.lesson-sidebar--stem-focus .nav-link:hover {
+  background: #d1e7dd; /* STEM sidebar hover — light muted green */
+}
+
+.lesson-sidebar--stem-focus .nav-link.active {
+  background: #c5dcc5; /* STEM sidebar selected — slightly deeper green */
+  border-left-color: #2e7d32;
+}
+
+.nav-link--solo {
+  line-height: 1.35;
+}
+
+.nav-link--lesson {
+  font-weight: 600;
+}
+
+.nav-track--stem-examples {
+  margin-top: 0.5rem;
+}
+
+.nav-link--example {
+  font-size: 0.82rem;
+  line-height: 1.35;
+  padding-left: 1.25rem;
+}
+
 .lesson-main {
   padding: 1.25rem 1.5rem 2rem;
   min-width: 0;
@@ -342,6 +373,7 @@
   border-radius: var(--radius);
   padding: 1rem;
   margin-bottom: 1rem;
+  scroll-margin-top: 1rem;
 }
 
 .example-card h3,

@@ -251,6 +251,7 @@ function runExampleOutput(panel, example, files) {
 async function renderExampleCard(example, number) {
   const card = document.createElement("article");
   card.className = "example-card";
+  card.id = Router.exampleAnchorId(example.id);
   card.dataset.exampleId = example.id;
   const title = number ? `${number}. ${example.title}` : example.title;
 
@@ -295,6 +296,61 @@ async function renderExampleCard(example, number) {
 }
 
 let sidebarMenuBound = false;
+let stemExampleNavBound = false;
+
+function setStemNavActive(anchor) {
+  const nav = document.getElementById("lesson-nav");
+  if (!nav) return;
+  nav.querySelectorAll(".nav-link--example").forEach((link) => {
+    link.classList.toggle("active", link.dataset.exampleAnchor === anchor);
+  });
+  nav.querySelector(".nav-link--lesson")?.classList.toggle("active", !anchor);
+}
+
+function scrollToStemExample(anchor, smooth = true) {
+  const el = document.getElementById(anchor);
+  if (!el) return;
+  el.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
+  setStemNavActive(anchor);
+  const base = Router.lessonUrl(Router.STEM_MODULE_ID);
+  history.replaceState(null, "", `${base}#${anchor}`);
+}
+
+function scrollToStemLessonTop(smooth = true) {
+  document.getElementById("lesson-header")?.scrollIntoView({
+    behavior: smooth ? "smooth" : "auto",
+    block: "start",
+  });
+  setStemNavActive(null);
+  history.replaceState(null, "", Router.lessonUrl(Router.STEM_MODULE_ID));
+}
+
+function bindStemExampleNav() {
+  const nav = document.getElementById("lesson-nav");
+  if (!nav || stemExampleNavBound) return;
+  stemExampleNavBound = true;
+  nav.addEventListener("click", (e) => {
+    const exampleLink = e.target.closest(".nav-link--example");
+    if (exampleLink) {
+      e.preventDefault();
+      scrollToStemExample(exampleLink.dataset.exampleAnchor);
+      return;
+    }
+    const lessonLink = e.target.closest(".nav-link--lesson");
+    if (lessonLink) {
+      e.preventDefault();
+      scrollToStemLessonTop();
+    }
+  });
+}
+
+function scrollToStemExampleFromHash() {
+  const hash = location.hash.slice(1);
+  if (!hash.startsWith("example-")) return;
+  requestAnimationFrame(() => {
+    if (document.getElementById(hash)) scrollToStemExample(hash, false);
+  });
+}
 
 function setupSidebarMenu() {
   const toggle = document.getElementById("sidebar-toggle");
@@ -387,9 +443,24 @@ async function loadLessonPage() {
 
   try {
     const index = await ContentAPI.loadIndex();
-    Router.renderSidebar(document.getElementById("lesson-nav"), index, moduleId);
+    const isStemModule = moduleId === Router.STEM_MODULE_ID;
+    const sidebar = document.getElementById("lesson-sidebar");
+    const homeLink = document.querySelector(".sidebar-home-link");
+    sidebar?.classList.toggle("lesson-sidebar--stem-focus", isStemModule);
+    if (homeLink) {
+      homeLink.href = isStemModule
+        ? Router.lessonUrl(Router.STEM_MODULE_ID)
+        : "index.html";
+    }
+    if (!isStemModule) {
+      Router.renderSidebar(document.getElementById("lesson-nav"), index, moduleId);
+    }
 
     const module = await ContentAPI.loadModule(moduleId);
+    if (isStemModule) {
+      Router.renderStemSidebar(document.getElementById("lesson-nav"), module);
+      bindStemExampleNav();
+    }
     document.getElementById("lesson-title").textContent = module.title;
     document.getElementById("lesson-summary").textContent = module.summary || "";
     document.title = `${module.title} — ${uiText("pageTitleLesson").split("—")[1]?.trim() || "Modern Web Resource Center"}`;
@@ -455,6 +526,10 @@ async function loadLessonPage() {
 
     for (const [i, ex] of (module.examples || []).entries()) {
       examplesEl.appendChild(await renderExampleCard(ex, i + 1));
+    }
+
+    if (isStemModule) {
+      scrollToStemExampleFromHash();
     }
 
     setupSidebarMenu();
