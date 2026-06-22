@@ -1,0 +1,25 @@
+{
+  "title": "Objek JavaScript",
+  "summary": "Literal objek, sifat, dan kaedah untuk data berstruktur.",
+  "examples": {
+    "object-literal": {
+      "title": "Literal objek",
+      "description": "Apa: Literal objek { key: value } menyimpan data berkaitan dalam satu pembolehubah — akses sifat dengan titik (user.name). Bila: Gunakan apabila beberapa nilai berkaitan antara satu sama lain. Cuba: Tambah sifat baharu seperti school ke objek user."
+    },
+    "method": {
+      "title": "Kaedah objek",
+      "description": "Apa: Kaedah ialah fungsi yang disimpan sebagai sifat objek — calc.sum(a, b) menjalankan operasi tambah. Bila: Gunakan apabila objek perlu melakukan tindakan pada datanya sendiri. Cuba: Tambah kaedah multiply ke objek calc."
+    },
+    "page-sections-data": {
+      "title": "Array objek untuk bahagian laman",
+      "description": "Apa: Catatan blog, ciri, atau ahli pasukan sering disimpan sebagai array objek — JavaScript gelung melaluinya untuk bina halaman. Bila: Gunakan apabila kandungan berulang datang dari senarai data. Cuba: Tambah objek keempat ke array sections."
+    }
+  },
+  "practice": {
+    "description": "Cipta objek product dengan name, price, dan kaedah display() yang return string berformat.",
+    "hints": [
+      "display boleh return `name: $price`",
+      "Panggil product.display() untuk #out"
+    ]
+  }
+}

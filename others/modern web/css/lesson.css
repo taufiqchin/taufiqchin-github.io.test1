@@ -4,7 +4,7 @@
 
 .lesson-layout {
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 247px 1fr;
   min-height: 100vh;
   min-height: 100dvh;
   align-items: stretch;
@@ -26,18 +26,30 @@
   box-sizing: border-box;
 }
 
-.lesson-sidebar h2 {
+.lesson-sidebar h2,
+.lesson-sidebar .sidebar-brand {
   margin: 0;
   padding: 0 1rem 0.75rem;
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--muted); /* "Lessons" sidebar heading */
+  color: var(--muted); /* Sidebar brand heading */
 }
 
 .sidebar-home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   color: inherit;
   text-decoration: none;
+}
+
+.sidebar-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 4px;
 }
 
 .sidebar-home-link:hover {
@@ -303,7 +315,7 @@
     left: 0;
     top: 0;
     z-index: 1001;
-    width: min(280px, 88vw);
+    width: min(288px, 88vw);
     height: 100vh;
     height: 100dvh;
     max-height: none;

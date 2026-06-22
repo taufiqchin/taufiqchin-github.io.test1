@@ -1,0 +1,45 @@
+{
+  "title": "Bina Halaman Laman Web Penuh",
+  "summary": "Gabungkan HTML, CSS, dan JavaScript dalam satu halaman siap.",
+  "guide": {
+    "title": "Senarai semak capstone",
+    "intro": "Anda telah mempelajari blok binaan untuk laman web moden. Pelajaran ini menggabungkannya dalam satu halaman yang boleh anda salin ke folder index.html anda sendiri.",
+    "steps": [
+      {
+        "title": "Cangkang susun atur",
+        "text": "Jalankan Contoh 1 untuk lihat navbar, sidebar, kandungan utama, dan footer dengan CSS responsif."
+      },
+      {
+        "title": "Menu mudah alih",
+        "text": "Jalankan Contoh 2 dan klik Menu pada skrin sempit untuk buka sidebar."
+      },
+      {
+        "title": "Jadikan milik anda",
+        "text": "Gunakan makmal latihan untuk tukar nama laman, pautan, dan tambah seksyen video atau borang hubungan."
+      },
+      {
+        "title": "Terbitkan",
+        "text": "Simpan sebagai index.html dalam folder projek anda. Buka dalam pelayar secara tempatan, atau muat naik ke GitHub Pages untuk kongsi dalam talian."
+      }
+    ],
+    "footer": "Tahniah — anda kini mempunyai kemahiran untuk bina dan sesuaikan laman web statik penuh."
+  },
+  "examples": {
+    "full-page-static": {
+      "title": "Susun atur halaman penuh (HTML + CSS)",
+      "description": "Apa: Ini cangkang susun atur siap yang setiap laman moden bermula — navigasi, sidebar, kandungan, dan footer dalam satu halaman responsif. Bila: Gunakan sebagai asas portfolio, laman pelajaran, atau projek sekolah. Cuba: Tukar nama laman dalam header atau tambah pautan sidebar keempat."
+    },
+    "full-page-interactive": {
+      "title": "Halaman penuh dengan menu mudah alih (HTML + CSS + JS)",
+      "description": "Apa: Laman sebenar sembunyikan sidebar pada telefon sehingga pengguna ketik butang menu — contoh ini menambah tingkah laku itu atas susun atur penuh. Bila: Bina laman yang berfungsi baik pada desktop dan telefon. Cuba: Ubah saiz pratonton atau gunakan paparan mudah alih dalam DevTools, kemudian klik Menu."
+    }
+  },
+  "practice": {
+    "description": "Sesuaikan halaman capstone: tukar nama laman, kemas kini pautan sidebar, dan tambah satu seksyen baharu — borang hubungan ringkas, tag video, atau kad kandungan tambahan dalam main.",
+    "hints": [
+      "Salin struktur dari Contoh 1 atau 2 di atas",
+      "Gunakan <video controls src=\"...\"> untuk media",
+      "Gunakan <form> di dalam <main> untuk hubungan"
+    ]
+  }
+}

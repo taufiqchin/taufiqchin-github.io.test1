@@ -1,0 +1,25 @@
+{
+  "title": "AJAX & JSON",
+  "summary": "Muat data dari pelayan tanpa memuat semula halaman penuh.",
+  "examples": {
+    "json-parse": {
+      "title": "JSON.parse",
+      "description": "Apa: JSON.parse menukar string JSON kepada objek JavaScript supaya anda boleh baca sifat seperti obj.name. Bila: Gunakan apabila data datang sebagai teks JSON dari fail atau pelayan. Cuba: Tambah sifat baharu dalam string JSON dan paparkannya."
+    },
+    "xhr-get": {
+      "title": "XMLHttpRequest GET",
+      "description": "Apa: XMLHttpRequest memuat fail dari pelayan secara tidak segerak — onreadystatechange menunggu respons siap. Bila: Gunakan cara lama untuk muat data (fetch() lebih moden). Cuba: Jalankan dengan pelayan tempatan (npx serve .) dan klik Load Content."
+    },
+    "fetch-json": {
+      "title": "Fetch JSON ke halaman",
+      "description": "Apa: Laman moden memuat data dari fail JSON atau API menggunakan fetch() — lebih pantas dan mudah daripada kod XHR lama. Bila: Gunakan apabila perlu senarai catatan, produk, atau data dari fail luar. Cuba: Jalankan dengan npx serve . dari folder projek, kemudian klik butang."
+    }
+  },
+  "practice": {
+    "description": "Parse array JSON ini dan senaraikan setiap name dalam halaman.",
+    "hints": [
+      "JSON.parse return array",
+      "Gunakan forEach dan createElement('li')"
+    ]
+  }
+}

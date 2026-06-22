@@ -1,3 +1,12 @@
+function escapeHtml(text) {
+  if (text == null) return "";
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 class CodeBlock {
   constructor(root, { readOnly = false, onRun = null, contentPaddingLines = 1 } = {}) {
     if (!root) throw new Error("CodeBlock requires a root element");
@@ -164,13 +173,17 @@ class CodeBlock {
   }
 }
 
+function uiText(key) {
+  return typeof I18n !== "undefined" ? I18n.t(key) : key;
+}
+
 function createOutputPanel(parent, id) {
   const panel = document.createElement("div");
   panel.className = "output-panel output-panel--side";
   panel.id = id;
   panel.innerHTML = `
-    <h4>Output</h4>
-    <p class="output-placeholder">Click Run example to see the result.</p>
+    <h4>${uiText("outputLabel")}</h4>
+    <p class="output-placeholder">${escapeHtml(uiText("runOutputPlaceholder"))}</p>
     <iframe title="Preview" sandbox="allow-scripts allow-same-origin" hidden></iframe>
     <pre class="console-output" hidden></pre>
   `;
@@ -182,8 +195,8 @@ const PREVIEW_RUN_OPTS = { autoHeight: true, minHeight: 60, maxHeight: null };
 
 function resetOutputPanel(panel) {
   panel.innerHTML = `
-    <h4>Output</h4>
-    <p class="output-placeholder">Click Run example to see the result.</p>
+    <h4>${uiText("outputLabel")}</h4>
+    <p class="output-placeholder">${escapeHtml(uiText("runOutputPlaceholder"))}</p>
     <iframe title="Preview" sandbox="allow-scripts allow-same-origin" hidden></iframe>
     <pre class="console-output" hidden></pre>
   `;
@@ -241,15 +254,15 @@ async function renderExampleCard(example) {
   card.dataset.exampleId = example.id;
 
   card.innerHTML = `
-    <h3>${example.title}</h3>
-    <p class="desc">${example.description}</p>
+    <h3>${escapeHtml(example.title)}</h3>
+    <p class="desc">${escapeHtml(example.description)}</p>
     <div class="lab-workspace">
       <div class="lab-code-col">
         <div class="example-editor"></div>
         <div class="card-actions">
-          <button type="button" class="btn btn--primary btn--small btn-run-example">Run example</button>
-          <button type="button" class="btn btn--small btn-reset-example">Reset</button>
-          ${example.fullDemoUrl ? `<a class="btn btn--small" href="${example.fullDemoUrl}" target="_blank" rel="noopener">Open full demo</a>` : ""}
+          <button type="button" class="btn btn--primary btn--small btn-run-example">${escapeHtml(uiText("runExample"))}</button>
+          <button type="button" class="btn btn--small btn-reset-example">${escapeHtml(uiText("reset"))}</button>
+          ${example.fullDemoUrl ? `<a class="btn btn--small" href="${example.fullDemoUrl}" target="_blank" rel="noopener">${escapeHtml(uiText("openFullDemo"))}</a>` : ""}
         </div>
       </div>
       <div class="lab-output-col"></div>
@@ -277,6 +290,8 @@ async function renderExampleCard(example) {
   return card;
 }
 
+let sidebarMenuBound = false;
+
 function setupSidebarMenu() {
   const toggle = document.getElementById("sidebar-toggle");
   const sidebar = document.getElementById("lesson-sidebar");
@@ -290,7 +305,7 @@ function setupSidebarMenu() {
     backdrop?.classList.remove("is-visible");
     backdrop?.setAttribute("aria-hidden", "true");
     toggle.setAttribute("aria-expanded", "false");
-    toggle.setAttribute("aria-label", "Open lessons menu");
+    toggle.setAttribute("aria-label", uiText("openMenu"));
     document.body.style.overflow = "";
   }
 
@@ -300,28 +315,33 @@ function setupSidebarMenu() {
     backdrop?.classList.add("is-visible");
     backdrop?.setAttribute("aria-hidden", "false");
     toggle.setAttribute("aria-expanded", "true");
-    toggle.setAttribute("aria-label", "Close lessons menu");
+    toggle.setAttribute("aria-label", uiText("closeMenu"));
     document.body.style.overflow = "hidden";
   }
 
-  toggle.addEventListener("click", () => {
-    if (sidebar.classList.contains("is-open")) closeSidebar();
-    else openSidebar();
-  });
+  if (!sidebarMenuBound) {
+    sidebarMenuBound = true;
+    toggle.addEventListener("click", () => {
+      if (sidebar.classList.contains("is-open")) closeSidebar();
+      else openSidebar();
+    });
 
-  backdrop?.addEventListener("click", closeSidebar);
+    backdrop?.addEventListener("click", closeSidebar);
 
-  document.getElementById("lesson-nav")?.addEventListener("click", (e) => {
-    if (mobileQuery.matches && e.target.closest(".nav-link")) closeSidebar();
-  });
+    document.getElementById("lesson-nav")?.addEventListener("click", (e) => {
+      if (mobileQuery.matches && e.target.closest(".nav-link")) closeSidebar();
+    });
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && sidebar.classList.contains("is-open")) closeSidebar();
-  });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && sidebar.classList.contains("is-open")) closeSidebar();
+    });
 
-  mobileQuery.addEventListener("change", (e) => {
-    if (!e.matches) closeSidebar();
-  });
+    mobileQuery.addEventListener("change", (e) => {
+      if (!e.matches) closeSidebar();
+    });
+  } else {
+    toggle.setAttribute("aria-label", uiText("openMenu"));
+  }
 }
 
 function renderGuide(module) {
@@ -334,15 +354,15 @@ function renderGuide(module) {
   const stepsEl = document.getElementById("lesson-guide-steps");
   const footerEl = document.getElementById("lesson-guide-footer");
 
-  titleEl.textContent = guide.title || "Before you start";
+  titleEl.textContent = guide.title || uiText("guideDefaultTitle");
   introEl.textContent = guide.intro || "";
   introEl.hidden = !guide.intro;
 
   stepsEl.innerHTML = (guide.steps || [])
     .map((step) => {
-      if (typeof step === "string") return `<li>${step}</li>`;
-      const heading = step.title ? `<strong>${step.title}</strong> ` : "";
-      return `<li>${heading}${step.text || ""}</li>`;
+      if (typeof step === "string") return `<li>${escapeHtml(step)}</li>`;
+      const heading = step.title ? `<strong>${escapeHtml(step.title)}</strong> ` : "";
+      return `<li>${heading}${escapeHtml(step.text || "")}</li>`;
     })
     .join("");
 
@@ -352,12 +372,12 @@ function renderGuide(module) {
   section.hidden = !guide.steps?.length;
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
+async function loadLessonPage() {
   const main = document.getElementById("lesson-main");
   const moduleId = Router.getModuleId();
 
   if (!moduleId) {
-    main.innerHTML = `<p class="error-msg">No module selected. <a href="index.html">Back to home</a></p>`;
+    main.innerHTML = `<p class="error-msg">${escapeHtml(uiText("noModule"))} <a href="index.html">${escapeHtml(uiText("backHome"))}</a></p>`;
     return;
   }
 
@@ -368,16 +388,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     const module = await ContentAPI.loadModule(moduleId);
     document.getElementById("lesson-title").textContent = module.title;
     document.getElementById("lesson-summary").textContent = module.summary || "";
-    document.title = `${module.title} — Modern Web Resource Center`;
+    document.title = `${module.title} — ${uiText("pageTitleLesson").split("—")[1]?.trim() || "Modern Web Resource Center"}`;
+
+    const examplesHeading = document.querySelector('section[aria-label="Examples"] h2');
+    const practiceHeading = document.querySelector('section[aria-label="Practice lab"] h2');
+    if (examplesHeading) examplesHeading.textContent = uiText("examplesSection");
+    if (practiceHeading) practiceHeading.textContent = uiText("practiceLab");
+
+    const runPracticeBtn = document.getElementById("btn-run-practice");
+    const resetPracticeBtn = document.getElementById("btn-reset-practice");
+    if (runPracticeBtn) runPracticeBtn.textContent = uiText("runExample");
+    if (resetPracticeBtn) resetPracticeBtn.textContent = uiText("reset");
 
     renderGuide(module);
 
     const examplesEl = document.getElementById("examples-list");
+    examplesEl.innerHTML = "";
+
+    const practiceOutParent = document.getElementById("practice-output");
+    practiceOutParent.innerHTML = "";
+    document.getElementById("practice-editor-root").innerHTML = "";
+
     const practiceRoot = document.getElementById("practice-editor-root");
-    const practiceOutput = createOutputPanel(
-      document.getElementById("practice-output"),
-      "practice-out"
-    );
+    const practiceOutput = createOutputPanel(practiceOutParent, "practice-out");
 
     const practiceBlock = new CodeBlock(practiceRoot, { readOnly: false });
     const starter = EditorRunner.preparePracticeStarter(
@@ -394,20 +427,24 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     document.getElementById("practice-desc").textContent =
-      module.practice?.description || "Edit and run your code.";
+      module.practice?.description || uiText("editPracticeDefault");
 
     const hintsEl = document.getElementById("practice-hints");
     if (module.practice?.hints?.length) {
-      hintsEl.innerHTML = module.practice.hints.map((h) => `<li>${h}</li>`).join("");
+      hintsEl.innerHTML = module.practice.hints.map((h) => `<li>${escapeHtml(h)}</li>`).join("");
       hintsEl.hidden = false;
     } else {
+      hintsEl.innerHTML = "";
       hintsEl.hidden = true;
     }
 
+    const newRunBtn = document.getElementById("btn-run-practice");
+    const newResetBtn = document.getElementById("btn-reset-practice");
+    newResetBtn.replaceWith(newResetBtn.cloneNode(true));
+    newRunBtn.replaceWith(newRunBtn.cloneNode(true));
     document.getElementById("btn-reset-practice").addEventListener("click", () => {
       practiceBlock.reset();
     });
-
     document.getElementById("btn-run-practice").addEventListener("click", () => {
       runPracticeOutput();
     });
@@ -418,6 +455,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     setupSidebarMenu();
   } catch (err) {
-    main.innerHTML = `<p class="error-msg">${err.message}<br><a href="index.html">Back to home</a></p>`;
+    main.innerHTML = `<p class="error-msg">${escapeHtml(err.message)}<br><a href="index.html">${escapeHtml(uiText("backHome"))}</a></p>`;
   }
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await I18n.init();
+  I18n.bindLangToggle();
+  I18n.applyPageUi();
+  await loadLessonPage();
+});
+
+window.addEventListener("langchange", async () => {
+  ContentAPI.clearModuleCache();
+  I18n.clearBmCache();
+  await I18n.loadModulesMetaBm();
+  I18n.applyPageUi();
+  await loadLessonPage();
 });

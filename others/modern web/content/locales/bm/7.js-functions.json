@@ -1,0 +1,25 @@
+{
+  "title": "Fungsi JavaScript",
+  "summary": "Isytihar fungsi, anak panah, dan kod boleh guna semula.",
+  "examples": {
+    "function-decl": {
+      "title": "Pengisytiharan fungsi",
+      "description": "Apa: Fungsi bernama mengambil parameter dan boleh return nilai — di sini greet(name) memulangkan ucapan. Bila: Gunakan apabila kod yang sama perlu dijalankan berkali-kali. Cuba: Tukar parameter \"World\" kepada nama anda."
+    },
+    "arrow-fn": {
+      "title": "Fungsi anak panah",
+      "description": "Apa: Sintaks anak panah (=>) ialah cara ringkas menulis fungsi mudah, contohnya (x) => x * 2. Bila: Gunakan untuk fungsi pendek satu baris. Cuba: Tulis fungsi triple yang darab nombor dengan 3."
+    },
+    "render-nav-links": {
+      "title": "Fungsi membina HTML menu",
+      "description": "Apa: Bar navigasi mengulang corak pautan yang sama — fungsi membina HTML menu sekali dan boleh digunakan semula pada setiap halaman. Bila: Gunakan apabila senarai item perlu dijana dari data. Cuba: Tambah nama pautan keempat ke dalam array."
+    }
+  },
+  "practice": {
+    "description": "Tulis fungsi area(width, height) yang return width * height dan paparkan hasil untuk 4 dan 5.",
+    "hints": [
+      "return hasil darab",
+      "Panggil area(4, 5) dan letakkan hasil dalam #result"
+    ]
+  }
+}

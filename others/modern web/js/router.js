@@ -14,11 +14,11 @@ const Router = (function () {
       .map(
         (track) => `
       <div class="nav-track">
-        <div class="nav-track-title">${track.title}</div>
+        <div class="nav-track-title">${typeof I18n !== "undefined" ? I18n.getTrackTitle(track.id, track.title) : track.title}</div>
         ${track.modules
           .map(
             (m) => `
-          <a class="nav-link${m.id === activeId ? " active" : ""}" href="${lessonUrl(m.id)}">${m.title}</a>
+          <a class="nav-link${m.id === activeId ? " active" : ""}" href="${lessonUrl(m.id)}">${typeof I18n !== "undefined" ? I18n.getModuleTitle(m.id, m.title) : m.title}</a>
         `
           )
           .join("")}
@@ -30,19 +30,21 @@ const Router = (function () {
 
   function renderHomeTracks(container, index) {
     const tracks = ContentAPI.modulesByTrack(index);
+    const lessonLabel = typeof I18n !== "undefined" ? I18n.t("lessonOrder") : "Lesson";
     container.innerHTML = tracks
       .map((track) => {
         const badgeClass = `track-badge--${track.id}`;
+        const trackTitle = typeof I18n !== "undefined" ? I18n.getTrackTitle(track.id, track.title) : track.title;
         return `
         <section class="track-section" id="track-${track.id}">
-          <h3><span class="track-badge ${badgeClass}">${track.id}</span> ${track.title}</h3>
+          <h3><span class="track-badge ${badgeClass}">${track.id}</span> ${trackTitle}</h3>
           <div class="module-grid">
             ${track.modules
               .map(
                 (m) => `
               <a class="module-card" href="${lessonUrl(m.id)}">
-                <h4>${m.title}</h4>
-                <p>Lesson ${m.order}</p>
+                <h4>${typeof I18n !== "undefined" ? I18n.getModuleTitle(m.id, m.title) : m.title}</h4>
+                <p>${lessonLabel} ${m.order}</p>
               </a>
             `
               )

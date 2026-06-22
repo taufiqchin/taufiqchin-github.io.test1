@@ -2,53 +2,76 @@
   "id": "css-2",
   "title": "CSS Layout & Styling",
   "track": "css",
-  "summary": "Flexbox, positioning, responsive units, and common layout patterns.",
+  "summary": "Lists, flexbox, grid, positioning, and float for page layout.",
   "examples": [
     {
-      "id": "flex-row",
-      "title": "Flexbox row",
-      "description": "display flex aligns items in a row with gap.",
+      "id": "list-style",
+      "title": "CSS list-style-type",
+      "description": "What: list-style-type changes bullet or number style on <ul> and <ol> lists. When: Customize menus, steps, or feature lists. Try: Change disc to square or decimal to lower-roman.",
       "outputType": "preview",
       "files": {
-        "html": "<nav class=\"bar\">\n  <a href=\"#\">Home</a>\n  <a href=\"#\">About</a>\n  <a href=\"#\">Contact</a>\n</nav>",
-        "css": ".bar {\n  display: flex;\n  gap: 1rem;\n  padding: 0.75rem 1rem;\n  background: #1e293b;\n  font-family: sans-serif;\n}\n.bar a { color: #93c5fd; text-decoration: none; }",
+        "html": "<h2>Subjects</h2>\n<ul class=\"disc-list\">\n  <li>HTML</li>\n  <li>CSS</li>\n  <li>JavaScript</li>\n</ul>\n<h2>Steps</h2>\n<ol class=\"num-list\">\n  <li>Open editor</li>\n  <li>Write code</li>\n  <li>Run in browser</li>\n</ol>",
+        "css": "body { font-family: system-ui, sans-serif; padding: 1.5rem; }\nh2 { font-size: 1rem; color: #2563eb; margin-bottom: 0.35rem; }\n.disc-list { list-style-type: disc; line-height: 1.8; }\n.num-list { list-style-type: decimal; line-height: 1.8; color: #334155; }",
         "js": ""
       }
     },
     {
-      "id": "grid-cards",
-      "title": "CSS Grid",
-      "description": "grid-template-columns creates a responsive card layout.",
+      "id": "flexbox",
+      "title": "Flexbox layout",
+      "description": "What: display: flex arranges child items in a row or column; gap, justify-content, and align-items control spacing and alignment. When: Nav bars, button rows, and centered content. Try: Add a fourth link or change justify-content to center.",
       "outputType": "preview",
       "files": {
-        "html": "<div class=\"grid\">\n  <div class=\"item\">A</div>\n  <div class=\"item\">B</div>\n  <div class=\"item\">C</div>\n</div>",
-        "css": ".grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 12px;\n  padding: 1rem;\n  font-family: sans-serif;\n}\n.item {\n  background: #dbeafe;\n  padding: 2rem;\n  text-align: center;\n  border-radius: 8px;\n}",
+        "html": "<nav class=\"flex-nav\">\n  <a href=\"#\">Home</a>\n  <a href=\"#\">Lessons</a>\n  <a href=\"#\">About</a>\n</nav>\n<div class=\"flex-center\">\n  <div class=\"box\">Centered with flex</div>\n</div>",
+        "css": ".flex-nav {\n  display: flex;\n  gap: 1rem;\n  padding: 0.75rem 1rem;\n  background: #1e293b;\n  font-family: sans-serif;\n}\n.flex-nav a { color: #93c5fd; text-decoration: none; }\n.flex-center {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  min-height: 100px;\n  background: #f1f5f9;\n  margin-top: 0.5rem;\n}\n.box { background: #2563eb; color: #fff; padding: 1rem 1.5rem; border-radius: 8px; }",
         "js": ""
       }
     },
     {
-      "id": "responsive-sidebar",
-      "title": "Responsive page with navbar and sidebar",
-      "description": "Purpose: Most websites use a top navbar plus a side menu and main content; on phones the layout should stack so nothing is too narrow. Output: A dark top nav, blue sidebar links, and a main area—on small screens the sidebar moves above the content. Try: Resize your browser window to see the layout change.",
+      "id": "grid-layout",
+      "title": "CSS Grid layout",
+      "description": "What: display: grid creates rows and columns; grid-template-columns sets column sizes; gap adds space between cells. When: Card galleries, dashboards, and equal-width columns. Try: Change to repeat(2, 1fr) for two columns.",
       "outputType": "preview",
       "files": {
-        "html": "<nav class=\"topnav\">\n  <a href=\"#\">Home</a>\n  <a href=\"#\">Docs</a>\n  <a href=\"#\">Contact</a>\n</nav>\n<div class=\"layout\">\n  <aside class=\"sidebar\">\n    <a href=\"#\">Dashboard</a>\n    <a href=\"#\">Projects</a>\n    <a href=\"#\">Settings</a>\n  </aside>\n  <main>\n    <h2>Main content</h2>\n    <p>Your page content goes here. This area grows to fill the space.</p>\n  </main>\n</div>",
-        "css": "body { margin: 0; font-family: system-ui, sans-serif; }\n.topnav { display: flex; gap: 1rem; padding: 0.75rem 1rem; background: #1e293b; }\n.topnav a { color: #93c5fd; text-decoration: none; }\n.layout { display: grid; grid-template-columns: 160px 1fr; min-height: 180px; }\n.sidebar { background: #dbeafe; padding: 1rem; }\n.sidebar a { display: block; color: #1e40af; text-decoration: none; margin-bottom: 0.5rem; }\nmain { padding: 1rem; }\nmain h2 { margin-top: 0; color: #1e293b; }\n@media (max-width: 520px) {\n  .layout { grid-template-columns: 1fr; }\n  .sidebar { display: flex; flex-wrap: wrap; gap: 0.75rem; }\n  .sidebar a { margin-bottom: 0; }\n}",
+        "html": "<div class=\"grid\">\n  <div class=\"cell\">HTML</div>\n  <div class=\"cell\">CSS</div>\n  <div class=\"cell\">JS</div>\n  <div class=\"cell\">Git</div>\n</div>",
+        "css": ".grid {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 12px;\n  padding: 1rem;\n  font-family: system-ui, sans-serif;\n}\n.cell {\n  background: #dbeafe;\n  padding: 1.5rem;\n  text-align: center;\n  border-radius: 8px;\n  font-weight: 600;\n  color: #1e40af;\n}",
+        "js": ""
+      }
+    },
+    {
+      "id": "positioning",
+      "title": "Positioning",
+      "description": "What: static is default; relative moves from normal position; absolute is placed inside a relative parent; fixed stays on screen when scrolling. When: Badges, tooltips, sticky buttons, and overlays. Try: Change .badge from absolute to fixed.",
+      "outputType": "preview",
+      "files": {
+        "html": "<div class=\"stage\">\n  <div class=\"box static\">static</div>\n  <div class=\"box relative\">relative (top: 10px)</div>\n  <div class=\"box absolute\">absolute</div>\n</div>\n<div class=\"fixed-badge\">fixed</div>",
+        "css": "body { font-family: system-ui, sans-serif; padding: 1rem; min-height: 200px; }\n.stage {\n  position: relative;\n  height: 140px;\n  background: #f1f5f9;\n  border: 1px dashed #94a3b8;\n  border-radius: 8px;\n  padding: 1rem;\n}\n.box {\n  display: inline-block;\n  padding: 0.5rem 0.75rem;\n  margin: 0.25rem;\n  background: #dbeafe;\n  border-radius: 4px;\n  font-size: 0.85rem;\n}\n.relative { position: relative; top: 10px; left: 8px; background: #fef08a; }\n.absolute { position: absolute; bottom: 12px; right: 12px; background: #bbf7d0; }\n.fixed-badge {\n  position: fixed;\n  bottom: 12px;\n  right: 12px;\n  background: #2563eb;\n  color: #fff;\n  padding: 0.4rem 0.75rem;\n  border-radius: 6px;\n  font-size: 0.8rem;\n}",
+        "js": ""
+      }
+    },
+    {
+      "id": "css-float",
+      "title": "CSS float",
+      "description": "What: float: left or right lets an element sit to one side while text wraps around it. clear: both stops wrapping below floated items. When: Images beside paragraphs (older layout; flex/grid are often better today). Try: Change float from left to right.",
+      "outputType": "preview",
+      "files": {
+        "html": "<div class=\"float-wrap\">\n  <div class=\"float-box\">Float left</div>\n  <p>Text wraps around the floated box. Float was common before flexbox and grid. For new layouts, prefer flex or grid — but you may see float in older code and textbooks.</p>\n  <p class=\"clear\">This paragraph uses clear: both so it appears below the float.</p>\n</div>",
+        "css": "body { font-family: Georgia, serif; padding: 1.5rem; max-width: 36rem; line-height: 1.6; }\n.float-box {\n  float: left;\n  width: 100px;\n  height: 80px;\n  margin: 0 1rem 0.5rem 0;\n  background: #7c3aed;\n  color: #fff;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 0.85rem;\n  border-radius: 6px;\n}\n.clear { clear: both; color: #64748b; font-size: 0.95rem; }",
         "js": ""
       }
     }
   ],
   "practice": {
-    "description": "Use flexbox to center a box vertically and horizontally in the viewport.",
+    "description": "Build a small page layout: flexbox nav bar at the top and a 3-column grid of cards below.",
     "outputType": "preview",
     "starter": {
-      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Practice</title>\n</head>\n<body>\n<div class=\"center-wrap\">\n  <div class=\"centered\">Centered!</div>\n</div>\n</body>\n</html>",
-      "css": ".center-wrap {\n  min-height: 200px;\n  /* add flex centering */\n}\n.centered {\n  padding: 1.5rem 2rem;\n  background: #22c55e;\n  color: #fff;\n  border-radius: 8px;\n  font-family: sans-serif;\n}",
+      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Layout Practice</title>\n</head>\n<body>\n<nav class=\"topnav\">\n  <a href=\"#\">Home</a>\n  <a href=\"#\">Lessons</a>\n</nav>\n<div class=\"card-grid\">\n  <div class=\"card\">One</div>\n  <div class=\"card\">Two</div>\n  <div class=\"card\">Three</div>\n</div>\n</body>\n</html>",
+      "css": "/* .topnav: display flex, gap, padding */\n/* .card-grid: display grid, 3 columns, gap */\n/* .card: background, padding, border-radius */",
       "js": ""
     },
     "hints": [
-      "justify-content and align-items on the parent",
-      "min-height gives room to center"
+      "display: flex on .topnav",
+      "grid-template-columns: repeat(3, 1fr) on .card-grid",
+      "Add gap for spacing between items"
     ]
   }
 }

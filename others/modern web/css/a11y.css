@@ -51,7 +51,25 @@ html.a11y-grayscale .output-panel iframe {
 .page-top-bar {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
   margin-bottom: 1rem;
+}
+
+.lang-toggle {
+  display: inline-flex;
+  gap: 0.25rem;
+  background: var(--surface);
+  padding: 0.2rem;
+  border-radius: 8px;
+  border: 1px solid var(--surface2);
+}
+
+.lang-btn.active {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--accent);
 }
 
 @media (max-width: 600px) {

@@ -1,0 +1,25 @@
+{
+  "title": "Pengenalan JavaScript",
+  "summary": "Pembolehubah, gelung, dan logik asas dalam skrip pelayar.",
+  "examples": {
+    "variables": {
+      "title": "Pembolehubah dan output",
+      "description": "Apa: let dan const menyimpan data; template literal (backtick dengan ${}) memasukkan nilai pembolehubah ke dalam teks. Bila: Gunakan const untuk nilai tetap dan let apabila nilai boleh berubah. Cuba: Tukar nilai name atau score dan lihat output berubah."
+    },
+    "for-loop": {
+      "title": "Gelung for (konsol)",
+      "description": "Apa: Gelung for mengulang kod sebilangan kali — di sini ia mengira dari 1 hingga 5. Bila: Gunakan apabila anda perlu ulang tindakan dengan nombor atau senarai. Cuba: Tukar syarat supaya gelung berhenti pada 10."
+    },
+    "if-else-greeting": {
+      "title": "If / else dalam halaman",
+      "description": "Apa: Laman web menggunakan if/else untuk papar mesej berbeza — contohnya selamat kembali vs lawatan pertama. Bila: Gunakan apabila tindakan bergantung pada syarat. Cuba: Tambah butang Tengah hari dengan mesej lain."
+    }
+  },
+  "practice": {
+    "description": "Gunakan gelung untuk log gandaan 3 dari 3 hingga 15 dalam output konsol.",
+    "hints": [
+      "Gunakan console.log di dalam gelung",
+      "i += 3 atau semak i % 3 === 0"
+    ]
+  }
+}

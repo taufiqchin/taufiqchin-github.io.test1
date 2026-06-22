@@ -1,54 +1,121 @@
 {
   "id": "css-1",
-  "title": "CSS Fundamentals",
+  "title": "Introduction to CSS",
   "track": "css",
-  "summary": "Selectors, colors, fonts, box model, and the cascade.",
+  "summary": "What CSS is, how to add it to HTML, syntax, selectors, box model, typography, and skinning.",
   "examples": [
     {
-      "id": "selectors",
-      "title": "Type and class selectors",
-      "description": "Style elements by tag and class name.",
+      "id": "what-is-css",
+      "title": "What is CSS?",
+      "description": "What: CSS (Cascading Style Sheets) controls how HTML looks — colors, fonts, spacing, and layout. When: Use CSS after you have HTML structure so the page is readable and attractive. Try: Change the heading color in the CSS panel and run again.",
       "outputType": "preview",
       "files": {
-        "html": "<h1 class=\"title\">CSS Basics</h1>\n<p class=\"lead\">Selectors target HTML elements.</p>\n<p>A normal paragraph.</p>",
-        "css": ".title { color: #7c3aed; }\n.lead { font-size: 1.15rem; font-weight: 600; }\np { color: #475569; font-family: sans-serif; }",
+        "html": "<h1>My School Page</h1>\n<p>HTML gives structure. CSS gives style.</p>\n<p>Without CSS, the page uses plain browser defaults.</p>",
+        "css": "h1 { color: #2563eb; font-family: system-ui, sans-serif; }\np { color: #475569; line-height: 1.6; max-width: 32rem; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "css-in-html",
+      "title": "Writing CSS in HTML",
+      "description": "What: You can write CSS inside the HTML file using a <style> block in the <head>. When: Good for small pages or quick tests. In this lab, the CSS panel works like an internal stylesheet. Try: Add a new rule for h1 in the CSS panel.",
+      "outputType": "preview",
+      "files": {
+        "html": "<h1>Internal CSS</h1>\n<p>This page is styled with CSS written in the same file (internal stylesheet).</p>",
+        "css": "/* Internal stylesheet — usually inside <style> in <head> */\nbody { font-family: Georgia, serif; padding: 1.5rem; background: #f8fafc; }\nh1 { color: #059669; margin-top: 0; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "css-split-file",
+      "title": "CSS in a separate file",
+      "description": "What: For larger sites, CSS lives in its own .css file and is linked with <link rel=\"stylesheet\" href=\"style.css\">. When: Keeps HTML clean and lets one CSS file style many pages. In this lab, the CSS panel acts as your external style.css file. Try: Add a border to p in the CSS panel.",
+      "outputType": "preview",
+      "files": {
+        "html": "<!-- In a real file: <link rel=\"stylesheet\" href=\"style.css\"> in <head> -->\n<h1>External CSS</h1>\n<p>The HTML file links to a separate CSS file. Here, the CSS panel is that file.</p>",
+        "css": "/* This content would be in style.css */\nbody { font-family: system-ui, sans-serif; padding: 1.5rem; }\nh1 { color: #7c3aed; }\np { color: #334155; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "css-syntax",
+      "title": "CSS syntax example",
+      "description": "What: A CSS rule looks like selector { property: value; }. Many rules together form a stylesheet. When: Every style you write follows this pattern. Try: Add a third rule that changes the background color of .note.",
+      "outputType": "preview",
+      "files": {
+        "html": "<h1>Syntax demo</h1>\n<p class=\"note\">Each line in CSS is a declaration.</p>",
+        "css": "/* selector { property: value; } */\nh1 {\n  color: #2563eb;\n  font-size: 1.5rem;\n}\n.note {\n  background: #fef08a;\n  padding: 0.5rem 0.75rem;\n  border-radius: 6px;\n}",
+        "js": ""
+      }
+    },
+    {
+      "id": "declaration-parts",
+      "title": "Declaration, selector, property and value",
+      "description": "What: The selector targets elements; each declaration has a property (what to change) and a value (the setting). When: Understanding these parts helps you read and debug CSS. Try: Change the value of color from #2563eb to #dc2626.",
+      "outputType": "preview",
+      "files": {
+        "html": "<p class=\"highlight\">Study the CSS comments to see selector, property, and value.</p>",
+        "css": "/* SELECTOR ↓ */\n.highlight {\n  /* PROPERTY: VALUE; */\n  color: #2563eb;      /* text color */\n  font-weight: 700;    /* bold text */\n  padding: 1rem;       /* space inside */\n  background: #eff6ff; /* light blue background */\n  border-radius: 8px;\n}",
+        "js": ""
+      }
+    },
+    {
+      "id": "selector-types",
+      "title": "Selectors: element, ID, class, universal, group",
+      "description": "What: Element (p), ID (#main), class (.card), universal (*), and group (h1, h2) selectors target different parts of the page. When: Use the right selector to style exactly what you need. Try: Add a new class .tag and style it.",
+      "outputType": "preview",
+      "files": {
+        "html": "<h1>Group selector</h1>\n<h2>Also styled by group</h2>\n<p id=\"main\">ID selector — one unique element.</p>\n<p class=\"card\">Class selector — reusable style.</p>\n<p>Element selector — all paragraphs.</p>",
+        "css": "* { box-sizing: border-box; }\nh1, h2 { color: #1e40af; font-family: system-ui, sans-serif; }\n#main { background: #dbeafe; padding: 0.5rem; border-radius: 4px; }\n.card { border: 2px solid #7c3aed; padding: 0.5rem; margin: 0.5rem 0; border-radius: 6px; }\np { color: #475569; }",
         "js": ""
       }
     },
     {
       "id": "box-model",
       "title": "Box model",
-      "description": "margin, border, padding, and content area.",
+      "description": "What: Every element is a box with content, padding (space inside), border (edge), and margin (space outside). When: Use the box model to control size and spacing. Try: Increase padding or margin and see the box grow.",
       "outputType": "preview",
       "files": {
-        "html": "<div class=\"box\">Content inside the box</div>",
-        "css": ".box {\n  width: 200px;\n  padding: 20px;\n  border: 4px solid #3b82f6;\n  margin: 16px;\n  background: #eff6ff;\n  font-family: sans-serif;\n}",
+        "html": "<div class=\"box\">Content area</div>\n<p class=\"label\">margin → border → padding → content</p>",
+        "css": "body { font-family: system-ui, sans-serif; padding: 1rem; }\n.box {\n  width: 180px;\n  padding: 20px;          /* inside space */\n  border: 4px solid #2563eb; /* edge */\n  margin: 24px;           /* outside space */\n  background: #eff6ff;  /* content background */\n  font-weight: 600;\n}\n.label { color: #64748b; font-size: 0.9rem; }",
         "js": ""
       }
     },
     {
-      "id": "style-sections",
-      "title": "Style header, main, and footer",
-      "description": "Purpose: After you build page sections in HTML, CSS gives each area its own look—colors, spacing, and borders—so the layout feels like a real website. Output: A colored header bar, padded main content, and a subtle footer strip. Try: Change the header background color or add a border to main.",
+      "id": "text-and-font",
+      "title": "Text and font",
+      "description": "What: Control fonts with font-family and font-size (px or em), colors with color, alignment with text-align, and lines with text-decoration. When: Make text readable and match your school or project theme. Try: Change font-size from 16px to 1.2em on .lead.",
       "outputType": "preview",
       "files": {
-        "html": "<header class=\"site-header\"><h1>Dev Portfolio</h1></header>\n<main class=\"site-main\">\n  <h2>About me</h2>\n  <p>I build websites with HTML, CSS, and JavaScript.</p>\n</main>\n<footer class=\"site-footer\">Built for learning</footer>",
-        "css": "body { margin: 0; font-family: system-ui, sans-serif; }\n.site-header { background: #2563eb; color: #fff; padding: 1rem; }\n.site-header h1 { margin: 0; font-size: 1.25rem; }\n.site-main { padding: 1.25rem; max-width: 36rem; }\n.site-main h2 { color: #1e293b; margin-top: 0; }\n.site-footer { background: #f1f5f9; color: #64748b; padding: 0.75rem 1rem; font-size: 0.85rem; border-top: 1px solid #dbeafe; }",
+        "html": "<h2 class=\"title\">Typography</h2>\n<p class=\"lead\">This paragraph uses px and em for sizing.</p>\n<p class=\"center\">Centered text with underline decoration.</p>",
+        "css": "body { font-family: Georgia, serif; padding: 1.5rem; color: #1e293b; }\n.title { font-size: 24px; color: #2563eb; }\n.lead { font-size: 1.15em; font-weight: 600; }\n.center {\n  text-align: center;\n  text-decoration: underline;\n  color: #059669;\n}",
+        "js": ""
+      }
+    },
+    {
+      "id": "css-skinning",
+      "title": "CSS skinning",
+      "description": "What: Skinning means applying a visual theme — colors, fonts, borders, and backgrounds — to the same HTML structure. When: Rebrand a page or switch between light/dark themes. Try: Change the header background and card border color to your school colors.",
+      "outputType": "preview",
+      "files": {
+        "html": "<header class=\"skin-header\"><h1>SMK Web Club</h1></header>\n<main class=\"skin-main\">\n  <div class=\"skin-card\">\n    <h2>Welcome</h2>\n    <p>Same HTML — different CSS can completely change the look.</p>\n  </div>\n</main>",
+        "css": "body { margin: 0; font-family: system-ui, sans-serif; background: #f1f5f9; }\n.skin-header { background: linear-gradient(90deg, #2563eb, #7c3aed); color: #fff; padding: 1.25rem; }\n.skin-header h1 { margin: 0; font-size: 1.35rem; }\n.skin-main { padding: 1.25rem; }\n.skin-card {\n  background: #fff;\n  border: 2px solid #c4b5fd;\n  border-radius: 12px;\n  padding: 1.25rem;\n  box-shadow: 0 4px 12px rgba(0,0,0,0.08);\n  max-width: 28rem;\n}\n.skin-card h2 { margin-top: 0; color: #5b21b6; }",
         "js": ""
       }
     }
   ],
   "practice": {
-    "description": "Style three cards with class .card: background, padding, border-radius, and a hover effect.",
+    "description": "Style a profile card with class .profile: use box model (padding, margin, border), set font-family and color, and add a colored header bar.",
     "outputType": "preview",
     "starter": {
-      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Practice</title>\n</head>\n<body>\n<div class=\"card\">One</div>\n<div class=\"card\">Two</div>\n<div class=\"card\">Three</div>\n</body>\n</html>",
-      "css": "/* Add .card and .card:hover styles */",
+      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>CSS Practice</title>\n</head>\n<body>\n<div class=\"profile\">\n  <h2>Student Name</h2>\n  <p>Form 4 — ICT</p>\n  <p>Learning HTML and CSS.</p>\n</div>\n</body>\n</html>",
+      "css": "/* Style .profile: padding, margin, border, font, colors */",
       "js": ""
     },
     "hints": [
-      ":hover changes style on mouse over",
-      "Use display or flex to lay out cards"
+      "Use .profile { } as a class selector",
+      "padding adds space inside; margin adds space outside",
+      "Try border-radius for rounded corners"
     ]
   }
 }

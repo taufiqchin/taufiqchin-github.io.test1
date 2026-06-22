@@ -1,42 +1,94 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modern Web Development — Resource Center</title>
+
+  <title data-i18n-title="pageTitleHome">Modern Web Development — Resource Center</title>
+
   <link rel="icon" type="image/png" href="../favicon/MT.png" />
+
   <link rel="stylesheet" href="css/main.css">
+
   <link rel="stylesheet" href="css/a11y.css">
+
+  <script src="js/i18n.js"></script>
+
   <script src="js/a11y.js"></script>
+
 </head>
+
 <body>
-  <a class="skip-link" href="#tracks-container">Skip to lessons</a>
+
+  <a class="skip-link" href="#tracks-container" data-i18n="skipToLessons">Skip to modules</a>
+
   <main class="container">
+
     <div class="page-top-bar">
-      <div class="a11y-toolbar" role="group" aria-label="Accessibility options">
-        <button type="button" class="btn btn--small a11y-btn" id="a11y-text-bigger" title="Increase text size" aria-label="Increase text size">A+</button>
-        <button type="button" class="btn btn--small a11y-btn" id="a11y-text-smaller" title="Decrease text size" aria-label="Decrease text size">A−</button>
-        <button type="button" class="btn btn--small a11y-btn" id="a11y-grayscale" title="Grayscale" aria-label="Toggle grayscale" aria-pressed="false">Gray</button>
-        <button type="button" class="btn btn--small a11y-btn" id="a11y-reset" title="Reset to normal" aria-label="Reset accessibility settings to normal">Reset</button>
+
+      <div class="lang-toggle" role="group" aria-label="Language">
+
+        <button type="button" class="btn btn--small lang-btn active" data-lang="en" aria-pressed="true">EN</button>
+
+        <button type="button" class="btn btn--small lang-btn" data-lang="bm" aria-pressed="false">BM</button>
+
       </div>
+
+      <div class="a11y-toolbar" role="group" data-i18n-title="a11yLabel" aria-label="Accessibility options">
+
+        <button type="button" class="btn btn--small a11y-btn" id="a11y-text-bigger" data-i18n-title="a11yBigger" title="Increase text size" aria-label="Increase text size">A+</button>
+
+        <button type="button" class="btn btn--small a11y-btn" id="a11y-text-smaller" data-i18n-title="a11ySmaller" title="Decrease text size" aria-label="Decrease text size">A−</button>
+
+        <button type="button" class="btn btn--small a11y-btn" id="a11y-grayscale" data-i18n-title="a11yGrayscale" title="Grayscale" aria-label="Toggle grayscale" aria-pressed="false">Gray</button>
+
+        <button type="button" class="btn btn--small a11y-btn" id="a11y-reset" data-i18n-title="a11yReset" title="Reset to normal" aria-label="Reset accessibility settings to normal">Reset</button>
+
+      </div>
+
     </div>
+
+
 
     <div id="tracks-container">
-      <p class="loading">Loading lessons…</p>
+
+      <p class="loading" data-i18n="loadingLessons">Loading Modern Web modules…</p>
+
     </div>
 
+
+
     <section class="hero">
-      <h2>Learn by reading, seeing, and doing</h2>
-      <p>Each lesson includes described code examples (with copy &amp; run), alternative snippets you can try, and a practice editor with live preview.</p>
+
+      <h2 data-i18n="heroTitle">Learn by reading, seeing, and doing</h2>
+
+      <p data-i18n="heroText">Each module includes described code examples (with copy &amp; run), alternative snippets you can try, and a practice editor with live preview.</p>
+
     </section>
+
   </main>
 
+
+
   <footer class="site-footer">
-    <p>Serve this site with <code>npx serve .</code> from the project folder (required for AJAX examples).</p>
+
+    <p data-i18n="footerText">Serve this site with npx serve . from the project folder (required for AJAX examples).</p>
+
   </footer>
 
+
+
   <script src="js/content.js"></script>
+
   <script src="js/router.js"></script>
+
   <script src="js/home.js"></script>
+
 </body>
+
 </html>
+

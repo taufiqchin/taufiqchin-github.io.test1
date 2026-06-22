@@ -1,0 +1,57 @@
+{
+  "tracks": {
+    "html": "HTML",
+    "css": "CSS",
+    "js": "JavaScript"
+  },
+  "modules": {
+    "html-intro": {
+      "title": "Pengenalan HTML",
+      "summary": "Pelajari tag HTML asas yang membentuk setiap laman web — dari head dan body hingga seksyen, senarai, dan susun atur semantik."
+    },
+    "html-media": {
+      "title": "Teks, Pautan, Multimedia & Benaman",
+      "summary": "Imej, pautan, penekanan teks, dan audio/video asli — cara menambah kandungan kaya yang boleh dilihat dan didengar pelajar."
+    },
+    "html-forms": {
+      "title": "Jadual & Borang",
+      "summary": "Bina jadual untuk data dan borang untuk input pengguna — medan teks, pilihan, menu lungsur, dan butang hantar."
+    },
+    "css-1": {
+      "title": "Pengenalan CSS",
+      "summary": "Apakah CSS, cara menambahnya pada HTML, sintaks, pemilih, model kotak, tipografi, dan pengkulitan."
+    },
+    "css-2": {
+      "title": "Susun Atur & Gaya CSS",
+      "summary": "Senarai, flexbox, grid, kedudukan, dan float untuk susun atur halaman."
+    },
+    "js-intro": {
+      "title": "Pengenalan JavaScript",
+      "summary": "Pembolehubah, gelung, dan logik asas dalam skrip pelayar."
+    },
+    "js-functions": {
+      "title": "Fungsi JavaScript",
+      "summary": "Isytihar fungsi, anak panah, dan kod boleh guna semula."
+    },
+    "js-events": {
+      "title": "DOM & Peristiwa",
+      "summary": "Tangkap klik, input, dan interaksi pengguna pada halaman."
+    },
+    "js-objects": {
+      "title": "Objek JavaScript",
+      "summary": "Literal objek, sifat, dan kaedah untuk data berstruktur."
+    },
+    "js-ajax-json": {
+      "title": "AJAX & JSON",
+      "summary": "Muat data dari pelayan tanpa memuat semula halaman penuh."
+    },
+    "js-api": {
+      "title": "API Web",
+      "summary": "localStorage, geolokasi, fetch, dan API pelayar moden."
+    },
+    "full-page-capstone": {
+      "title": "Bina Halaman Laman Web Penuh",
+      "summary": "Gabungkan HTML, CSS, dan JavaScript dalam satu halaman siap."
+    }
+  }
+}

@@ -18,15 +18,23 @@ const ContentAPI = (function () {
   }
 
   async function loadModule(moduleId) {
-    if (moduleCache.has(moduleId)) return moduleCache.get(moduleId);
+    const cacheKey = `${moduleId}:${typeof I18n !== "undefined" ? I18n.getLang() : "en"}`;
+    if (moduleCache.has(cacheKey)) return moduleCache.get(cacheKey);
     const index = await loadIndex();
     const meta = getModuleMeta(index, moduleId);
     if (!meta) throw new Error(`Unknown module: ${moduleId}`);
     const res = await fetch(meta.jsonPath);
     if (!res.ok) throw new Error(`Failed to load ${meta.jsonPath}`);
-    const data = await res.json();
-    moduleCache.set(moduleId, data);
+    let data = await res.json();
+    if (typeof I18n !== "undefined") {
+      data = await I18n.applyModuleLocale(data, meta.jsonPath, moduleId);
+    }
+    moduleCache.set(cacheKey, data);
     return data;
+  }
+
+  function clearModuleCache() {
+    moduleCache.clear();
   }
 
   async function fetchText(path) {
@@ -89,5 +97,6 @@ const ContentAPI = (function () {
     getModuleMeta,
     resolveExampleFiles,
     modulesByTrack,
+    clearModuleCache,
   };
 })();

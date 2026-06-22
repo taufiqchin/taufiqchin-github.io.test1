@@ -1,0 +1,50 @@
+{
+  "title": "Pengenalan CSS",
+  "summary": "Apakah CSS, cara menambahnya pada HTML, sintaks, pemilih, model kotak, tipografi, dan pengkulitan.",
+  "examples": {
+    "what-is-css": {
+      "title": "Apakah CSS?",
+      "description": "Apa: CSS (Cascading Style Sheets) mengawal rupa HTML — warna, fon, jarak, dan susun atur. Bila: Gunakan CSS selepas anda ada struktur HTML supaya halaman mudah dibaca dan menarik. Cuba: Tukar warna tajuk dalam panel CSS dan jalankan semula."
+    },
+    "css-in-html": {
+      "title": "Menulis CSS dalam HTML",
+      "description": "Apa: Anda boleh tulis CSS dalam fail HTML menggunakan blok <style> dalam <head>. Bila: Sesuai untuk halaman kecil atau ujian pantas. Dalam makmal ini, panel CSS berfungsi seperti stylesheet dalaman. Cuba: Tambah peraturan baharu untuk h1 dalam panel CSS."
+    },
+    "css-split-file": {
+      "title": "CSS dalam fail berasingan",
+      "description": "Apa: Untuk laman besar, CSS disimpan dalam fail .css dan dipaut dengan <link rel=\"stylesheet\" href=\"style.css\">. Bila: Menjaga HTML kemas dan satu fail CSS boleh menggayakan banyak halaman. Dalam makmal ini, panel CSS ialah fail style.css anda. Cuba: Tambah sempadan pada p dalam panel CSS."
+    },
+    "css-syntax": {
+      "title": "Contoh sintaks CSS",
+      "description": "Apa: Peraturan CSS berbentuk pemilih { sifat: nilai; }. Banyak peraturan membentuk stylesheet. Bila: Setiap gaya yang anda tulis ikut corak ini. Cuba: Tambah peraturan ketiga yang menukar warna latar belakang .note."
+    },
+    "declaration-parts": {
+      "title": "Deklarasi, pemilih, sifat dan nilai",
+      "description": "Apa: Pemilih mensasarkan elemen; setiap deklarasi ada sifat (apa yang diubah) dan nilai (tetapan). Bila: Memahami bahagian ini membantu anda baca dan nyahpepijat CSS. Cuba: Tukar nilai color dari #2563eb kepada #dc2626."
+    },
+    "selector-types": {
+      "title": "Pemilih: elemen, ID, kelas, universal, kumpulan",
+      "description": "Apa: Pemilih elemen (p), ID (#main), kelas (.card), universal (*), dan kumpulan (h1, h2) mensasarkan bahagian berbeza halaman. Bila: Gunakan pemilih yang betul untuk menggayakan tepat apa yang anda perlukan. Cuba: Tambah kelas .tag baharu dan gayakannya."
+    },
+    "box-model": {
+      "title": "Model kotak",
+      "description": "Apa: Setiap elemen ialah kotak dengan kandungan, padding (ruang dalam), border (tepi), dan margin (ruang luar). Bila: Gunakan model kotak untuk kawal saiz dan jarak. Cuba: Besarkan padding atau margin dan lihat kotak berubah."
+    },
+    "text-and-font": {
+      "title": "Teks dan fon",
+      "description": "Apa: Kawal fon dengan font-family dan font-size (px atau em), warna dengan color, penjajaran dengan text-align, dan garisan dengan text-decoration. Bila: Jadikan teks mudah dibaca dan sepadan dengan tema sekolah atau projek. Cuba: Tukar font-size dari 16px kepada 1.2em pada .lead."
+    },
+    "css-skinning": {
+      "title": "Pengkulitan CSS",
+      "description": "Apa: Pengkulitan bermaksud menggunakan tema visual — warna, fon, sempadan, latar belakang — pada struktur HTML yang sama. Bila: Rebrand halaman atau tukar antara tema cerah/gelap. Cuba: Tukar warna latar header dan sempadan kad kepada warna sekolah anda."
+    }
+  },
+  "practice": {
+    "description": "Gayakan kad profil dengan kelas .profile: gunakan model kotak (padding, margin, border), tetapkan font-family dan color, dan tambah bar header berwarna.",
+    "hints": [
+      "Gunakan .profile { } sebagai pemilih kelas",
+      "padding menambah ruang dalam; margin menambah ruang luar",
+      "Cuba border-radius untuk sudut bulat"
+    ]
+  }
+}

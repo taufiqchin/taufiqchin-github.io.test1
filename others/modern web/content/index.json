@@ -15,7 +15,7 @@
     {
       "id": "html-media",
       "track": "html",
-      "title": "Text, Multimedia & Embedding",
+      "title": "Text, Hyperlinks, Multimedia & Embedding",
       "order": 2,
       "jsonPath": "content/modules/2.html-media.json"
     },
@@ -29,7 +29,7 @@
     {
       "id": "css-1",
       "track": "css",
-      "title": "CSS Fundamentals",
+      "title": "Introduction to CSS",
       "order": 4,
       "jsonPath": "content/modules/4.css-1.json"
     },

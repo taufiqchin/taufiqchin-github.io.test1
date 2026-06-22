@@ -2,10 +2,10 @@
   "id": "html-intro",
   "title": "Introduction to HTML",
   "track": "html",
-  "summary": "Document structure, elements, attributes, and semantic markup.",
+  "summary": "Learn the core HTML tags that structure every web page — from head and body to sections, lists, and semantic layout.",
   "guide": {
     "title": "Before you start — set up on your computer",
-    "intro": "Do these steps once before Example 1: Basic page skeleton. You will save your own HTML file on the Desktop and open it in a browser.",
+    "intro": "Do these steps once before Example 1. You will save your own HTML file on the Desktop and open it in a browser.",
     "steps": [
       {
         "title": "Create a folder on your Desktop.",
@@ -25,58 +25,202 @@
       },
       {
         "title": "Get ready for Example 1.",
-        "text": "Scroll down to Basic page skeleton. Read the example, then build a complete page in your index.html — start with <!DOCTYPE html>, add <html>, <head>, and <body>, and put the example content inside <body>. Save the file (Ctrl+S), then refresh the browser tab to see your page."
+        "text": "Scroll down to The head element. Read each example, then try building a complete page in your index.html with <!DOCTYPE html>, <html>, <head>, and <body>. Save (Ctrl+S) and refresh the browser to see changes."
       }
     ],
-    "footer": "When your folder, index.html, and text editor are ready, continue to Example 1: Basic page skeleton below."
+    "footer": "When your folder, index.html, and text editor are ready, continue to Example 1 below."
   },
   "examples": [
     {
-      "id": "basic-skeleton",
-      "title": "Basic page skeleton",
-      "description": "Minimum valid HTML5 document with head and body.",
+      "id": "head-tag",
+      "title": "The head element",
+      "description": "What: The <head> element holds information about the page that is not shown on screen — charset, title, and links to CSS. When: Every HTML page needs exactly one <head> inside <html>. Try: Add <meta name=\"description\" content=\"My first page\"> inside the head in your own file.",
       "outputType": "preview",
       "files": {
-        "html": "<h1>Hello, HTML!</h1>\n<p>This is a paragraph inside the body.</p>",
-        "css": "body { font-family: system-ui, sans-serif; padding: 1.5rem; max-width: 40rem; margin: 0 auto; }\nh1 { color: #2563eb; }",
+        "html": "<p>This text is in the <strong>body</strong>. The <code>&lt;head&gt;</code> is invisible here but sets charset and page title for the browser.</p>\n<p class=\"note\">Open your browser tab title — that comes from <code>&lt;title&gt;</code> inside <code>&lt;head&gt;</code>.</p>",
+        "css": "body { font-family: system-ui, sans-serif; padding: 1.5rem; max-width: 36rem; line-height: 1.6; }\ncode { background: #f1f5f9; padding: 0.1rem 0.35rem; border-radius: 4px; }\n.note { color: #64748b; font-size: 0.95rem; }",
         "js": ""
       }
     },
     {
-      "id": "headings-list",
-      "title": "Headings and lists",
-      "description": "Heading levels h1–h3 and an unordered list.",
+      "id": "title-tag",
+      "title": "The title element",
+      "description": "What: The <title> element sets the name shown in the browser tab and in bookmarks. When: Put one <title> inside <head> on every page. Try: Change the title text and check the browser tab after you refresh.",
       "outputType": "preview",
       "files": {
-        "html": "<h1>Main title</h1>\n<h2>Section</h2>\n<ul>\n  <li>First item</li>\n  <li>Second item</li>\n</ul>",
-        "css": "body { font-family: Georgia, serif; padding: 1rem; }",
+        "html": "<h1>Page heading (visible)</h1>\n<p>The <code>&lt;title&gt;</code> tag does <em>not</em> appear on the page — it only names the tab.</p>\n<p>Example title for this lesson: <strong>Introduction to HTML</strong></p>",
+        "css": "body { font-family: system-ui, sans-serif; padding: 1.5rem; }\nh1 { color: #2563eb; margin-top: 0; }\ncode { background: #e8f1fb; padding: 0.1rem 0.3rem; border-radius: 4px; }",
         "js": ""
       }
     },
     {
-      "id": "semantic-layout",
-      "title": "Page sections with div and landmarks",
-      "description": "Purpose: Real websites split content into header, navigation, main, and footer so visitors and search engines understand the page. Output: A simple page with a site title, nav links, welcome text, and a copyright footer. Try: Add a new link in the nav or a second paragraph inside main.",
+      "id": "body-tag",
+      "title": "The body element",
+      "description": "What: The <body> element contains everything visitors see — text, images, links, and sections. When: Use one <body> per page, after <head>. Try: Add a second paragraph below the first one.",
       "outputType": "preview",
       "files": {
-        "html": "<header>\n  <h1>My Site</h1>\n  <nav>\n    <a href=\"#\">Home</a> |\n    <a href=\"#\">About</a> |\n    <a href=\"#\">Contact</a>\n  </nav>\n</header>\n<main>\n  <h2>Welcome</h2>\n  <p>This is the main content area where your page body lives.</p>\n</main>\n<footer>\n  <p>&copy; 2026 My Site</p>\n</footer>",
-        "css": "body { font-family: system-ui, sans-serif; margin: 0; line-height: 1.5; }\nheader { background: #e8f1fb; padding: 1rem; border-bottom: 1px solid #dbeafe; }\nheader h1 { margin: 0 0 0.5rem; color: #2563eb; }\nnav a { color: #1e40af; margin-right: 0.5rem; }\nmain { padding: 1rem; max-width: 40rem; }\nfooter { background: #f1f5f9; padding: 0.75rem 1rem; color: #64748b; font-size: 0.9rem; }",
+        "html": "<h1>Welcome to my page</h1>\n<p>Everything you see here lives inside the <code>&lt;body&gt;</code> element.</p>\n<p>Headings, paragraphs, images, and forms all go in the body.</p>",
+        "css": "body { font-family: Georgia, serif; padding: 1.5rem; background: #fafafa; max-width: 40rem; margin: 0 auto; }\nh1 { color: #1e40af; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "header-tag",
+      "title": "The header element",
+      "description": "What: The <header> element groups introductory content at the top — logo, site name, or opening banner. When: Use at the top of a page or inside an <article>. Try: Change the site name to your own name.",
+      "outputType": "preview",
+      "files": {
+        "html": "<header>\n  <h1>Student Learning Hub</h1>\n  <p>HTML Lesson 1 — Introduction</p>\n</header>\n<p>Content below the header starts here.</p>",
+        "css": "body { font-family: system-ui, sans-serif; margin: 0; }\nheader { background: #2563eb; color: #fff; padding: 1.25rem 1.5rem; }\nheader h1 { margin: 0 0 0.25rem; font-size: 1.5rem; }\nheader p { margin: 0; opacity: 0.9; font-size: 0.95rem; }\np { padding: 1rem 1.5rem; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "footer-tag",
+      "title": "The footer element",
+      "description": "What: The <footer> element holds closing information — copyright, contact, or links. When: Place at the bottom of a page or article. Try: Add your email or school name in the footer.",
+      "outputType": "preview",
+      "files": {
+        "html": "<main>\n  <h2>Lesson content</h2>\n  <p>Main content appears above the footer.</p>\n</main>\n<footer>\n  <p>&copy; 2026 Taufiq Chin — All rights reserved</p>\n  <p><small>Last updated: June 2026</small></p>\n</footer>",
+        "css": "body { font-family: system-ui, sans-serif; margin: 0; min-height: 12rem; display: flex; flex-direction: column; }\nmain { flex: 1; padding: 1.5rem; }\nfooter { background: #f1f5f9; padding: 1rem 1.5rem; color: #64748b; border-top: 1px solid #e2e8f0; }\nfooter p { margin: 0.25rem 0; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "section-tag",
+      "title": "The section element",
+      "description": "What: The <section> element groups related content under one theme, usually with its own heading. When: Use when a block of content has a clear topic (e.g. “About”, “Gallery”). Try: Add a second <section> with a different heading.",
+      "outputType": "preview",
+      "files": {
+        "html": "<section>\n  <h2>What is HTML?</h2>\n  <p>HTML stands for HyperText Markup Language. It describes the structure of a web page.</p>\n</section>\n<section>\n  <h2>Why learn HTML?</h2>\n  <p>Every website uses HTML. It is the foundation of web development.</p>\n</section>",
+        "css": "body { font-family: system-ui, sans-serif; padding: 1rem; max-width: 36rem; }\nsection { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1rem; }\nh2 { margin-top: 0; color: #2563eb; font-size: 1.1rem; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "p-tag",
+      "title": "The p element",
+      "description": "What: The <p> element defines a paragraph of text. When: Wrap each normal block of text in its own <p>. Browsers add space between paragraphs automatically. Try: Add a third paragraph with your own sentence.",
+      "outputType": "preview",
+      "files": {
+        "html": "<h2>My study notes</h2>\n<p>HTML uses tags written in angle brackets.</p>\n<p>Most tags come in pairs: an opening tag and a closing tag.</p>\n<p>Paragraphs help readers follow your ideas step by step.</p>",
+        "css": "body { font-family: Georgia, serif; padding: 1.5rem; line-height: 1.7; max-width: 34rem; }\nh2 { color: #1e293b; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "div-tag",
+      "title": "The div element",
+      "description": "What: The <div> is a generic block container with no special meaning — used to group elements for layout or styling. When: Use when no semantic tag (<section>, <article>, etc.) fits better. Try: Change the background color of one box in the CSS panel.",
+      "outputType": "preview",
+      "files": {
+        "html": "<div class=\"box box-a\">Box A — first group</div>\n<div class=\"box box-b\">Box B — second group</div>\n<div class=\"box box-c\">Box C — third group</div>",
+        "css": "body { font-family: system-ui, sans-serif; padding: 1rem; }\n.box { padding: 1rem; margin-bottom: 0.75rem; border-radius: 8px; color: #fff; }\n.box-a { background: #2563eb; }\n.box-b { background: #7c3aed; }\n.box-c { background: #059669; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "span-tag",
+      "title": "The span element",
+      "description": "What: The <span> is an inline container — it styles part of a sentence without starting a new line. When: Highlight a word or phrase inside a paragraph. Try: Wrap another word in <span class=\"highlight\">.",
+      "outputType": "preview",
+      "files": {
+        "html": "<p>HTML has <span class=\"highlight\">block</span> elements like <code>div</code> and <span class=\"highlight\">inline</span> elements like <code>span</code>.</p>\n<p>Inline elements flow with the text on the same line.</p>",
+        "css": "body { font-family: system-ui, sans-serif; padding: 1.5rem; max-width: 34rem; line-height: 1.6; }\n.highlight { background: #fef08a; padding: 0.1rem 0.3rem; border-radius: 3px; }\ncode { color: #7c3aed; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "nav-tag",
+      "title": "The nav element",
+      "description": "What: The <nav> element groups major navigation links — menus that help users move around the site. When: Use for main menus, not for every random link. Try: Add a third link called “Lessons”.",
+      "outputType": "preview",
+      "files": {
+        "html": "<header>\n  <h1>My Website</h1>\n  <nav>\n    <a href=\"#\">Home</a>\n    <a href=\"#\">About</a>\n    <a href=\"#\">Contact</a>\n  </nav>\n</header>\n<p>Click the links above (they are placeholders using #).</p>",
+        "css": "body { font-family: system-ui, sans-serif; margin: 0; }\nheader { background: #1e293b; color: #fff; padding: 1rem 1.25rem; }\nheader h1 { margin: 0 0 0.75rem; font-size: 1.25rem; }\nnav a { color: #93c5fd; margin-right: 1rem; text-decoration: none; }\nnav a:hover { text-decoration: underline; }\np { padding: 1rem 1.25rem; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "lists-ul-ol-li",
+      "title": "Lists: ul, ol, and li",
+      "description": "What: <ul> makes a bullet list, <ol> makes a numbered list, and <li> is each list item. When: Use ul for unordered steps or features; use ol when order matters (1, 2, 3). Try: Add one more item to each list.",
+      "outputType": "preview",
+      "files": {
+        "html": "<h2>Tools I use</h2>\n<ul>\n  <li>VS Code editor</li>\n  <li>Chrome browser</li>\n  <li>GitHub for saving code</li>\n</ul>\n<h2>Steps to publish a page</h2>\n<ol>\n  <li>Write HTML</li>\n  <li>Save the file</li>\n  <li>Upload to GitHub Pages</li>\n</ol>",
+        "css": "body { font-family: system-ui, sans-serif; padding: 1.5rem; max-width: 34rem; }\nh2 { color: #2563eb; font-size: 1rem; margin-bottom: 0.5rem; }\nul, ol { line-height: 1.8; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "html-comments",
+      "title": "HTML comments",
+      "description": "What: Comments use <!-- text --> and are ignored by the browser — they are notes for you and other developers. When: Explain tricky code or temporarily hide markup while testing. Try: Add your own comment above the heading.",
+      "outputType": "preview",
+      "files": {
+        "html": "<!-- This comment is hidden in the browser but visible in your code editor -->\n<h2>Visible heading</h2>\n<p>Comments do not appear on the page. They help you remember what each section does.</p>\n<!-- TODO: add a navigation menu here -->",
+        "css": "body { font-family: system-ui, sans-serif; padding: 1.5rem; max-width: 34rem; line-height: 1.6; }\nh2 { color: #059669; margin-top: 0; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "article-tag",
+      "title": "The article element",
+      "description": "What: The <article> element wraps self-contained content that could stand alone — a blog post, news item, or card. When: Each article should make sense if copied to another page. Try: Change the article title and author name.",
+      "outputType": "preview",
+      "files": {
+        "html": "<article>\n  <h2>How I learned HTML</h2>\n  <p><small>By Aina · 5 min read</small></p>\n  <p>I started with small examples, ran them in the browser, and changed one tag at a time.</p>\n</article>",
+        "css": "body { font-family: Georgia, serif; padding: 1.5rem; }\narticle { max-width: 32rem; border: 1px solid #e2e8f0; border-radius: 10px; padding: 1.25rem; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }\nh2 { margin-top: 0; color: #1e293b; }\nsmall { color: #64748b; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "aside-tag",
+      "title": "The aside element",
+      "description": "What: The <aside> element holds content related to the main topic but not the main focus — tips, links, or ads. When: Sidebars, pull quotes, or “Did you know?” boxes. Try: Add a second tip inside the aside.",
+      "outputType": "preview",
+      "files": {
+        "html": "<div class=\"layout\">\n  <main>\n    <h2>Main lesson</h2>\n    <p>This is the primary content students should read first.</p>\n  </main>\n  <aside>\n    <h3>Tip</h3>\n    <p>Save your file often with Ctrl+S while learning.</p>\n  </aside>\n</div>",
+        "css": "body { font-family: system-ui, sans-serif; padding: 1rem; }\n.layout { display: flex; gap: 1rem; flex-wrap: wrap; max-width: 42rem; }\nmain { flex: 2; min-width: 200px; }\naside { flex: 1; min-width: 160px; background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 1rem; }\naside h3 { margin-top: 0; font-size: 0.95rem; color: #b45309; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "embed-tag",
+      "title": "The embed element",
+      "description": "What: The <embed> element brings external content into your page — such as a PDF or plugin content. When: Use for embedded documents; for videos, <video> is often better. Try: Change the width value and see how the box resizes.",
+      "outputType": "preview",
+      "files": {
+        "html": "<h2>Embedded PDF sample</h2>\n<p>Below is an embedded document using <code>&lt;embed&gt;</code>:</p>\n<embed src=\"https://www.w3.org/WAI/WCAG21/Techniques/pdf/img/table-word.jpg\" type=\"image/jpeg\" width=\"400\" height=\"250\" title=\"Sample embedded content\">",
+        "css": "body { font-family: system-ui, sans-serif; padding: 1.5rem; max-width: 40rem; }\nh2 { color: #2563eb; font-size: 1.1rem; }\ncode { background: #f1f5f9; padding: 0.1rem 0.3rem; border-radius: 4px; }\nembed { display: block; margin-top: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "putting-together",
+      "title": "Putting it together",
+      "description": "What: Real pages combine header, nav, section, article, aside, and footer into one layout. When: Use this pattern for portfolios, lesson pages, and blogs. Try: Add a new link in nav or a second article card.",
+      "outputType": "preview",
+      "files": {
+        "html": "<header>\n  <h1>Web Dev Notes</h1>\n  <nav>\n    <a href=\"#\">Home</a> |\n    <a href=\"#\">Lessons</a> |\n    <a href=\"#\">About</a>\n  </nav>\n</header>\n<div class=\"page\">\n  <section>\n    <article>\n      <h2>Lesson 1 complete</h2>\n      <p>You now know the basic structural tags of HTML.</p>\n    </article>\n  </section>\n  <aside>\n    <h3>Next step</h3>\n    <p>Move on to images, links, and multimedia in Lesson 2.</p>\n  </aside>\n</div>\n<footer>\n  <p>&copy; 2026 — Keep practicing!</p>\n</footer>",
+        "css": "body { font-family: system-ui, sans-serif; margin: 0; line-height: 1.5; }\nheader { background: #e8f1fb; padding: 1rem; border-bottom: 1px solid #dbeafe; }\nheader h1 { margin: 0 0 0.5rem; color: #2563eb; font-size: 1.25rem; }\nnav a { color: #1e40af; margin-right: 0.35rem; }\n.page { display: flex; gap: 1rem; padding: 1rem; flex-wrap: wrap; }\nsection { flex: 2; min-width: 220px; }\narticle { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; }\narticle h2 { margin-top: 0; font-size: 1.1rem; }\naside { flex: 1; min-width: 160px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 1rem; }\naside h3 { margin-top: 0; font-size: 0.95rem; color: #166534; }\nfooter { background: #f1f5f9; padding: 0.75rem 1rem; color: #64748b; font-size: 0.9rem; }",
         "js": ""
       }
     }
   ],
   "practice": {
-    "description": "Create a valid page with one h1, a short paragraph, and a link to https://developer.mozilla.org/",
+    "description": "Build a page with header, nav (at least 2 links), one section, one article, an aside, a footer, and a ul list with 3 items.",
     "outputType": "preview",
     "starter": {
-      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <meta charset=\"UTF-8\">\n  <title>My Page</title>\n</head>\n<body>\n  <!-- Add h1, p, and a link here -->\n</body>\n</html>",
-      "css": "body { font-family: sans-serif; padding: 2rem; }",
+      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>My HTML Practice Page</title>\n</head>\n<body>\n  <!-- header -->\n  <!-- nav -->\n  <!-- section with article -->\n  <!-- aside -->\n  <!-- ul list -->\n  <!-- footer -->\n</body>\n</html>",
+      "css": "body { font-family: system-ui, sans-serif; margin: 0; line-height: 1.5; }\nheader { background: #e8f1fb; padding: 1rem; }\nnav a { margin-right: 1rem; }\nsection, aside { padding: 1rem; }\naside { background: #fffbeb; }",
       "js": ""
     },
     "hints": [
-      "Use <!DOCTYPE html> and lang on <html>",
-      "Only one <h1> per page",
-      "<a href=\"...\"> needs a closing tag"
+      "Use one <h1> inside <header>",
+      "Each <li> must be inside <ul> or <ol>",
+      "<article> goes inside <section> for this practice",
+      "Comments <!-- --> can help you plan each part"
     ]
   }
 }

@@ -1,0 +1,25 @@
+{
+  "title": "DOM & Peristiwa",
+  "summary": "Tangkap klik, input, dan interaksi pengguna pada halaman.",
+  "examples": {
+    "click-counter": {
+      "title": "Peristiwa klik",
+      "description": "Apa: addEventListener(\"click\", ...) menjalankan kod apabila butang diklik — di sini ia menambah kaunter. Bila: Gunakan untuk butang, pautan, atau sebarang elemen yang perlu bertindak balas kepada klik. Cuba: Tambah butang Reset yang menetapkan semula kaunter ke 0."
+    },
+    "input-live": {
+      "title": "Peristiwa input",
+      "description": "Apa: Peristiwa input berlaku setiap kali pengguna menaip dalam medan teks — kod mengganti teks paparan secara langsung. Bila: Gunakan untuk carian langsung, pratonton teks, atau borang interaktif. Cuba: Tambah mesej lalai apabila medan kosong."
+    },
+    "mobile-menu-toggle": {
+      "title": "Buka dan tutup sidebar",
+      "description": "Apa: Pada telefon bimbit, sidebar sering disembunyikan sehingga pengguna ketik butang menu — JavaScript menukar kelas CSS untuk tunjuk atau sembunyi. Bila: Bina menu responsif untuk skrin kecil. Cuba: Tukar label butang atau teks pautan sidebar."
+    }
+  },
+  "practice": {
+    "description": "Tambah butang yang menukar warna latar belakang halaman antara putih dan kuning muda.",
+    "hints": [
+      "document.body.style.background",
+      "Jejak on/off dengan pembolehubah boolean"
+    ]
+  }
+}

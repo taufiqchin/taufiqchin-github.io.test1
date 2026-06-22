@@ -1,54 +1,88 @@
 {
   "id": "html-media",
-  "title": "Text, Multimedia & Embedding",
+  "title": "Text, Hyperlinks, Multimedia & Embedding",
   "track": "html",
-  "summary": "Text formatting, images, audio, video, and embedded content.",
+  "summary": "Images, links, text emphasis, and native audio/video — how to add rich content students can see and hear.",
   "examples": [
     {
-      "id": "image-alt",
-      "title": "Image with alt text",
-      "description": "Always include alt for accessibility.",
+      "id": "img-tag",
+      "title": "The img element",
+      "description": "What: The <img> element displays a picture using the src attribute. When: Always add alt text so screen readers and search engines understand the image. Try: Change the width or replace the image URL with another https link.",
       "outputType": "preview",
       "files": {
-        "html": "<h2>Photo</h2>\n<img src=\"https://picsum.photos/320/180\" alt=\"Random placeholder landscape\" width=\"320\" height=\"180\">",
-        "css": "img { border-radius: 8px; display: block; margin-top: 0.5rem; }",
+        "html": "<h2>Campus photo</h2>\n<img src=\"https://picsum.photos/360/200\" alt=\"Random placeholder photo for learning HTML\" width=\"360\" height=\"200\">\n<p><small>alt describes the image if it cannot load.</small></p>",
+        "css": "body { font-family: system-ui, sans-serif; padding: 1.5rem; }\nh2 { color: #2563eb; font-size: 1.1rem; margin-bottom: 0.5rem; }\nimg { border-radius: 8px; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }\nsmall { color: #64748b; }",
         "js": ""
       }
     },
     {
-      "id": "emphasis",
-      "title": "Text emphasis",
-      "description": "strong, em, and mark for meaning and highlight.",
+      "id": "hyperlinks",
+      "title": "Hyperlinks",
+      "description": "What: The <a> element creates a hyperlink using href. When: Link to other pages, sections on the same page (#id), or external sites. Try: Change the external link to open MDN HTML docs.",
       "outputType": "preview",
       "files": {
-        "html": "<p><strong>Important:</strong> read the <em>instructions</em> before you <mark>submit</mark>.</p>",
-        "css": "body { font-family: sans-serif; padding: 1.5rem; }\nmark { background: #fef08a; }",
+        "html": "<h2>Navigation links</h2>\n<p><a href=\"#tips\">Jump to tips on this page</a></p>\n<p><a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML\" target=\"_blank\" rel=\"noopener\">Open MDN HTML guide (new tab)</a></p>\n<section id=\"tips\">\n  <h3>Tips section</h3>\n  <p>You jumped here using an internal anchor link (#tips).</p>\n</section>",
+        "css": "body { font-family: system-ui, sans-serif; padding: 1.5rem; max-width: 36rem; line-height: 1.6; }\na { color: #2563eb; }\na:hover { text-decoration: none; }\n#tips { margin-top: 1.5rem; padding: 1rem; background: #f0fdf4; border-radius: 8px; }\nh3 { margin-top: 0; color: #166534; }",
         "js": ""
       }
     },
     {
-      "id": "video-audio",
-      "title": "Video and audio",
-      "description": "Purpose: Many sites include tutorials, music, or podcasts using native HTML media tags—no extra plugins needed. Output: A short sample video with controls and an audio player below it. Try: Change the video width or add your own media URL (must be https).",
+      "id": "b-and-em",
+      "title": "Bold vs emphasis: b and em",
+      "description": "What: <b> makes text visually bold; <em> adds emphasis and usually appears italic — screen readers treat them differently. When: Prefer <strong> and <em> for meaning; use <b> for visual bold without extra importance. Try: Change one <b> to <strong> and compare.",
       "outputType": "preview",
       "files": {
-        "html": "<h2>Sample video</h2>\n<video controls width=\"320\" src=\"https://www.w3schools.com/html/mov_bbb.mp4\">\n  Your browser does not support video.\n</video>\n<h2>Sample audio</h2>\n<audio controls src=\"https://www.w3schools.com/html/horse.mp3\">\n  Your browser does not support audio.\n</audio>",
-        "css": "body { font-family: sans-serif; padding: 1.5rem; }\nh2 { color: #2563eb; font-size: 1rem; margin-top: 1.25rem; }\nvideo, audio { display: block; margin-top: 0.5rem; }",
+        "html": "<p><b>Visual bold (b):</b> This word is bold for appearance only.</p>\n<p><strong>Strong importance:</strong> This text is bold because it matters.</p>\n<p><em>Emphasis (em):</em> Stress this phrase when reading aloud.</p>\n<p>Compare: <b>bold look</b> vs <em>spoken emphasis</em>.</p>",
+        "css": "body { font-family: Georgia, serif; padding: 1.5rem; max-width: 34rem; line-height: 1.8; }\np { margin: 0.75rem 0; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "mark-tag",
+      "title": "The mark element",
+      "description": "What: The <mark> element highlights text as if marked with a highlighter pen. When: Search results, study notes, or key vocabulary. Try: Mark a different word in the sentence.",
+      "outputType": "preview",
+      "files": {
+        "html": "<h2>Search result</h2>\n<p>Students searched for <mark>HTML</mark> and found this lesson about <mark>tags</mark> and <mark>attributes</mark>.</p>\n<p>In your own notes, use <mark>mark</mark> to flag words to review before a test.</p>",
+        "css": "body { font-family: system-ui, sans-serif; padding: 1.5rem; max-width: 34rem; line-height: 1.7; }\nh2 { color: #2563eb; font-size: 1.1rem; }\nmark { background: #fef08a; padding: 0.1rem 0.25rem; border-radius: 3px; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "video-tag",
+      "title": "The video element",
+      "description": "What: The <video> element plays video files with built-in browser controls. When: Tutorials, demos, or recorded lessons — no Flash plugin needed. Try: Change the width or add a poster image attribute.",
+      "outputType": "preview",
+      "files": {
+        "html": "<h2>Sample tutorial clip</h2>\n<video controls width=\"360\" src=\"https://www.w3schools.com/html/mov_bbb.mp4\">\n  Your browser does not support the video tag.\n</video>\n<p><small>Text inside <code>&lt;video&gt;</code> shows only if video cannot play.</small></p>",
+        "css": "body { font-family: system-ui, sans-serif; padding: 1.5rem; }\nh2 { color: #2563eb; font-size: 1.1rem; }\nvideo { display: block; margin: 0.5rem 0; border-radius: 8px; }\nsmall { color: #64748b; }\ncode { background: #f1f5f9; padding: 0.1rem 0.3rem; border-radius: 4px; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "audio-tag",
+      "title": "The audio element",
+      "description": "What: The <audio> element plays sound files with controls like play and volume. When: Podcasts, pronunciation guides, or background narration. Try: Add a second audio line with a different src URL.",
+      "outputType": "preview",
+      "files": {
+        "html": "<h2>Listen: pronunciation guide</h2>\n<audio controls src=\"https://www.w3schools.com/html/horse.mp3\">\n  Your browser does not support the audio element.\n</audio>\n<p>Use <code>controls</code> so users can play, pause, and adjust volume.</p>",
+        "css": "body { font-family: system-ui, sans-serif; padding: 1.5rem; max-width: 34rem; }\nh2 { color: #2563eb; font-size: 1.1rem; }\naudio { display: block; margin: 0.75rem 0; width: 100%; max-width: 360px; }\ncode { background: #f1f5f9; padding: 0.1rem 0.3rem; border-radius: 4px; }",
         "js": ""
       }
     }
   ],
   "practice": {
-    "description": "Add an image with alt text and a figure caption using <figure> and <figcaption>.",
+    "description": "Create a page with one image (with alt text), one link to https://developer.mozilla.org/, one sentence using <em>, and one <mark> highlight.",
     "outputType": "preview",
     "starter": {
-      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Practice</title>\n</head>\n<body>\n<figure>\n  <!-- img + figcaption -->\n</figure>\n</body>\n</html>",
-      "css": "figure { max-width: 320px; font-family: sans-serif; }",
+      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Lesson 2 Practice</title>\n</head>\n<body>\n  <h1>My media practice</h1>\n  <!-- img with alt -->\n  <!-- a link -->\n  <!-- p with em -->\n  <!-- p with mark -->\n</body>\n</html>",
+      "css": "body { font-family: sans-serif; padding: 1.5rem; max-width: 40rem; }\nimg { max-width: 100%; border-radius: 8px; }\nmark { background: #fef08a; }",
       "js": ""
     },
     "hints": [
-      "Use picsum.photos or any https image URL",
-      "figcaption describes the image"
+      "img needs src and alt attributes",
+      "Use target=\"_blank\" for external links opened in a new tab",
+      "em is for emphasis, mark is for highlighted text"
     ]
   }
 }
