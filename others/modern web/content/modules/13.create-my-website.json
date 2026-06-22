@@ -1,0 +1,130 @@
+{
+  "id": "create-my-website",
+  "title": "STEM with Website Development",
+  "track": "project",
+  "summary": "Build your own simple STEM portfolio page step by step — copy each example into your project folder until you have a complete personal website.",
+  "guide": {
+    "title": "Before you start — set up on your computer",
+    "intro": "Do these steps once. You will build one file called index.html in a folder on your Desktop and open it in your browser.",
+    "steps": [
+      {
+        "title": "Create a folder on your Desktop.",
+        "text": "Right-click on an empty area of your Desktop → New → Folder. Name it My Website (or any name you like)."
+      },
+      {
+        "title": "Create index.html inside the folder.",
+        "text": "Open the folder. Right-click inside → New → Text Document. Rename it to index.html (include the .html extension). If Windows warns about changing the extension, click Yes."
+      },
+      {
+        "title": "Open index.html in a text editor.",
+        "text": "Right-click index.html → Open with → Notepad, or use VS Code if you have it. In VS Code you can type ! and press Tab to auto-generate an HTML skeleton — then check that <meta name=\"viewport\"> is inside <head> for a responsive site."
+      },
+      {
+        "title": "Work through each example below.",
+        "text": "Run the example here to preview it. Copy the HTML from the code panel into your index.html. Save (Ctrl+S), then double-click index.html to open it in your browser. Each example adds one new part to your page."
+      },
+      {
+        "title": "Add your own content.",
+        "text": "Replace the placeholder website title, your name, photo file name, about text, and YouTube video links with your real information."
+      },
+      {
+        "title": "Finish and share.",
+        "text": "When Example 7 looks good in your browser, you have your own simple website. Show it to your teacher or upload the folder to GitHub Pages if you want to share it online."
+      }
+    ],
+    "footer": "Take your time — copy, save, and refresh after each example. By the end you will have a personal website you built yourself."
+  },
+  "examples": [
+    {
+      "id": "html-skeleton",
+      "title": "HTML skeleton (responsive starter)",
+      "description": "Every website starts with this basic structure. The viewport meta tag helps your page look good on phones and tablets. Copy this entire file into your empty index.html. If you use VS Code, type ! and press Tab to generate a skeleton like this, then make sure the viewport line is inside <head>.",
+      "outputType": "preview",
+      "files": {
+        "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>My Website</title>\n</head>\n<body>\n\n</body>\n</html>",
+        "css": "body { font-family: system-ui, sans-serif; margin: 0; padding: 1.5rem; color: #64748b; }\np { margin: 0; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "site-title",
+      "title": "Website title with <h1>",
+      "description": "Add a main heading inside <body> for your website title — for example My STEM Portfolio or Robotics Club. Copy this HTML into your index.html (replace what you had, or add the <h1> line inside <body>). Change the text to your own title.",
+      "outputType": "preview",
+      "files": {
+        "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>My Website</title>\n</head>\n<body>\n  <h1>My STEM Portfolio</h1>\n</body>\n</html>",
+        "css": "body { font-family: system-ui, sans-serif; margin: 0; padding: 1.5rem; }\nh1 { color: #2563eb; margin-top: 0; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "student-name",
+      "title": "Your name with <h2>",
+      "description": "Add a second heading below the title for your name. Use <h2> because it is a smaller heading than the site title. Replace Your Name Here with your real name.",
+      "outputType": "preview",
+      "files": {
+        "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>My Website</title>\n</head>\n<body>\n  <h1>My STEM Portfolio</h1>\n  <h2>Your Name Here</h2>\n</body>\n</html>",
+        "css": "body { font-family: system-ui, sans-serif; margin: 0; padding: 1.5rem; line-height: 1.5; }\nh1 { color: #2563eb; margin: 0 0 0.35rem; }\nh2 { color: #475569; font-size: 1.15rem; font-weight: 600; margin: 0; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "profile-photo",
+      "title": "Your photo with <img>",
+      "description": "Add a photo of yourself. Save your picture in the same folder as index.html (for example photo.jpg), then set the src to that file name. The alt text describes the image for screen readers — change it to describe your photo.",
+      "outputType": "preview",
+      "files": {
+        "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>My Website</title>\n</head>\n<body>\n  <h1>My STEM Portfolio</h1>\n  <h2>Your Name Here</h2>\n  <img src=\"photo.jpg\" alt=\"Photo of me\" width=\"200\">\n</body>\n</html>",
+        "css": "body { font-family: system-ui, sans-serif; margin: 0; padding: 1.5rem; line-height: 1.5; }\nh1 { color: #2563eb; margin: 0 0 0.35rem; }\nh2 { color: #475569; font-size: 1.15rem; font-weight: 600; margin: 0 0 1rem; }\nimg { display: block; max-width: 220px; width: 100%; height: auto; border-radius: 12px; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "about-me",
+      "title": "About yourself with <p>",
+      "description": "Write a short paragraph about yourself — your school, hobbies, or why you enjoy STEM. You can write two or three sentences inside one <p> tag, or add more <p> tags for extra paragraphs.",
+      "outputType": "preview",
+      "files": {
+        "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>My Website</title>\n</head>\n<body>\n  <h1>My STEM Portfolio</h1>\n  <h2>Your Name Here</h2>\n  <img src=\"photo.jpg\" alt=\"Photo of me\" width=\"200\">\n  <p>Hello! I am a student who loves science, technology, engineering, and maths. I built this website to share a little about me and the videos I use when I study at home.</p>\n</body>\n</html>",
+        "css": "body { font-family: system-ui, sans-serif; margin: 0; padding: 1.5rem; line-height: 1.6; max-width: 40rem; }\nh1 { color: #2563eb; margin: 0 0 0.35rem; }\nh2 { color: #475569; font-size: 1.15rem; font-weight: 600; margin: 0 0 1rem; }\nimg { display: block; max-width: 220px; width: 100%; height: auto; border-radius: 12px; margin-bottom: 1rem; }\np { margin: 0; color: #334155; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "study-videos",
+      "title": "Embed two YouTube study videos",
+      "description": "Add two videos you like to use when studying. On YouTube, open a video → Share → Embed, then copy the iframe code. Paste it below and replace VIDEO_ID_1 and VIDEO_ID_2 in the src links with your own video IDs.",
+      "outputType": "preview",
+      "files": {
+        "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>My Website</title>\n</head>\n<body>\n  <h1>My STEM Portfolio</h1>\n  <h2>Your Name Here</h2>\n  <img src=\"photo.jpg\" alt=\"Photo of me\" width=\"200\">\n  <p>Hello! I am a student who loves science, technology, engineering, and maths. I built this website to share a little about me and the videos I use when I study at home.</p>\n\n  <section class=\"videos\">\n    <h2>Videos I use for study</h2>\n    <div class=\"video-wrap\">\n      <iframe src=\"https://www.youtube.com/embed/VIDEO_ID_1\" title=\"Study video 1\" allowfullscreen></iframe>\n    </div>\n    <div class=\"video-wrap\">\n      <iframe src=\"https://www.youtube.com/embed/VIDEO_ID_2\" title=\"Study video 2\" allowfullscreen></iframe>\n    </div>\n  </section>\n</body>\n</html>",
+        "css": "body { font-family: system-ui, sans-serif; margin: 0; padding: 1.5rem; line-height: 1.6; max-width: 42rem; }\nh1 { color: #2563eb; margin: 0 0 0.35rem; }\nh2 { color: #475569; font-size: 1.15rem; font-weight: 600; margin: 0 0 1rem; }\nimg { display: block; max-width: 220px; width: 100%; height: auto; border-radius: 12px; margin-bottom: 1rem; }\np { margin: 0 0 1rem; color: #334155; }\n.videos h2 { margin-top: 1.5rem; }\n.video-wrap { margin-bottom: 1rem; }\n.video-wrap iframe { width: 100%; max-width: 560px; aspect-ratio: 16 / 9; height: auto; border: 0; border-radius: 8px; background: #f1f5f9; }",
+        "js": ""
+      }
+    },
+    {
+      "id": "complete-website",
+      "title": "Your complete website (with styling)",
+      "description": "This is the finished version with simple CSS so your page looks neat and works on mobile. Copy the HTML and CSS into your project — save HTML as index.html and CSS as style.css in the same folder, then add <link rel=\"stylesheet\" href=\"style.css\"> inside <head>. Or keep the CSS in a <style> block if you prefer one file only.",
+      "outputType": "preview",
+      "files": {
+        "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>My STEM Portfolio</title>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <header>\n    <h1>My STEM Portfolio</h1>\n    <h2>Your Name Here</h2>\n  </header>\n  <img src=\"photo.jpg\" alt=\"Photo of me\" width=\"200\">\n  <p>Hello! I am a student who loves science, technology, engineering, and maths. I built this website to share a little about me and the videos I use when I study at home.</p>\n\n  <section class=\"videos\">\n    <h2>Videos I use for study</h2>\n    <div class=\"video-wrap\">\n      <iframe src=\"https://www.youtube.com/embed/VIDEO_ID_1\" title=\"Study video 1\" allowfullscreen></iframe>\n    </div>\n    <div class=\"video-wrap\">\n      <iframe src=\"https://www.youtube.com/embed/VIDEO_ID_2\" title=\"Study video 2\" allowfullscreen></iframe>\n    </div>\n  </section>\n\n  <footer>\n    <p>Made by me for STEM class &copy; 2026</p>\n  </footer>\n</body>\n</html>",
+        "css": "body {\n  font-family: system-ui, sans-serif;\n  margin: 0;\n  padding: 1.5rem;\n  line-height: 1.6;\n  max-width: 42rem;\n  color: #334155;\n  background: #f8fafc;\n}\n\nheader {\n  margin-bottom: 1rem;\n}\n\nh1 {\n  color: #2563eb;\n  margin: 0 0 0.25rem;\n  font-size: 1.75rem;\n}\n\nheader h2 {\n  color: #64748b;\n  font-size: 1.1rem;\n  font-weight: 600;\n  margin: 0;\n}\n\nimg {\n  display: block;\n  max-width: 220px;\n  width: 100%;\n  height: auto;\n  border-radius: 12px;\n  margin-bottom: 1rem;\n  border: 3px solid #dbeafe;\n}\n\n.videos h2 {\n  color: #1e40af;\n  font-size: 1.15rem;\n  margin: 1.5rem 0 0.75rem;\n}\n\n.video-wrap {\n  margin-bottom: 1rem;\n}\n\n.video-wrap iframe {\n  width: 100%;\n  max-width: 560px;\n  aspect-ratio: 16 / 9;\n  height: auto;\n  border: 0;\n  border-radius: 8px;\n}\n\nfooter {\n  margin-top: 2rem;\n  padding-top: 1rem;\n  border-top: 1px solid #e2e8f0;\n  font-size: 0.9rem;\n  color: #64748b;\n}\n\nfooter p {\n  margin: 0;\n}",
+        "js": ""
+      }
+    }
+  ],
+  "practice": {
+    "description": "Put your final website in your My Website folder: index.html with your real title, name, photo, about text, and two YouTube embeds. Open index.html in your browser to check everything works.",
+    "outputType": "preview",
+    "starter": {
+      "html": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>My STEM Portfolio</title>\n</head>\n<body>\n  <h1>My website title</h1>\n  <h2>My name</h2>\n  <img src=\"my-photo.jpg\" alt=\"My photo\" width=\"200\">\n  <p>Write about yourself here.</p>\n  <section class=\"videos\">\n    <h2>Videos I use for study</h2>\n    <!-- Paste two YouTube iframe embed codes below -->\n  </section>\n</body>\n</html>",
+      "css": "body { font-family: system-ui, sans-serif; margin: 0; padding: 1.5rem; line-height: 1.6; max-width: 42rem; }\nh1 { color: #2563eb; margin-top: 0; }\nh2 { color: #475569; font-size: 1.1rem; }\nimg { max-width: 220px; width: 100%; height: auto; border-radius: 12px; }\n.video-wrap iframe { width: 100%; max-width: 560px; aspect-ratio: 16 / 9; border: 0; border-radius: 8px; }",
+      "js": ""
+    },
+    "hints": [
+      "Keep index.html and your photo in the same folder",
+      "On YouTube: Share → Embed → copy the iframe",
+      "Save and refresh your browser after every change"
+    ]
+  }
+}

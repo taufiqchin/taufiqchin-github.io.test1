@@ -2,7 +2,8 @@
   "tracks": [
     { "id": "html", "title": "HTML" },
     { "id": "css", "title": "CSS" },
-    { "id": "js", "title": "JavaScript" }
+    { "id": "js", "title": "JavaScript" },
+    { "id": "project", "title": "Your Project" }
   ],
   "modules": [
     {
@@ -88,6 +89,13 @@
       "title": "Build a Full Website Page",
       "order": 12,
       "jsonPath": "content/modules/12.full-page-capstone.json"
+    },
+    {
+      "id": "create-my-website",
+      "track": "project",
+      "title": "STEM with Website Development",
+      "order": 13,
+      "jsonPath": "content/modules/13.create-my-website.json"
     }
   ]
 }

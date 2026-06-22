@@ -23,6 +23,7 @@
   --css: #2563eb; /* CSS track badge + active CSS code tab */
   --js: #f7df1e; /* JS track badge + active JS code tab */
   --js-text: #1e293b; /* Text on JS track badge (yellow background) */
+  --project: #059669; /* Project track badge */
 
   /* Code editor (examples & practice lab) */
   --preview-bg: #ffffff; /* Code editor area + live preview iframe background */
@@ -164,6 +165,11 @@ a:hover {
 .track-badge--js {
   background: var(--js); /* JS track badge background */
   color: var(--js-text);
+}
+
+.track-badge--project {
+  background: var(--project); /* Project track badge background */
+  color: var(--on-accent);
 }
 
 .module-grid {

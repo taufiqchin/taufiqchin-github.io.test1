@@ -2,7 +2,8 @@
   "tracks": {
     "html": "HTML",
     "css": "CSS",
-    "js": "JavaScript"
+    "js": "JavaScript",
+    "project": "Projek Anda"
   },
   "modules": {
     "html-intro": {
@@ -52,6 +53,10 @@
     "full-page-capstone": {
       "title": "Bina Halaman Laman Web Penuh",
       "summary": "Gabungkan HTML, CSS, dan JavaScript dalam satu halaman siap."
+    },
+    "create-my-website": {
+      "title": "STEM dengan Pembangunan Laman Web",
+      "summary": "Bina halaman portfolio STEM peribadi langkah demi langkah — salin setiap contoh ke folder projek anda sehingga laman web siap."
     }
   }
 }

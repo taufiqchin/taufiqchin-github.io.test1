@@ -28,9 +28,16 @@ const Router = (function () {
       .join("");
   }
 
+  function moduleCardLabel(meta) {
+    if (meta.id === "create-my-website") {
+      return typeof I18n !== "undefined" ? I18n.t("stemModule") : "STEM Module";
+    }
+    const lessonLabel = typeof I18n !== "undefined" ? I18n.t("lessonOrder") : "Lesson";
+    return `${lessonLabel} ${meta.order}`;
+  }
+
   function renderHomeTracks(container, index) {
     const tracks = ContentAPI.modulesByTrack(index);
-    const lessonLabel = typeof I18n !== "undefined" ? I18n.t("lessonOrder") : "Lesson";
     container.innerHTML = tracks
       .map((track) => {
         const badgeClass = `track-badge--${track.id}`;
@@ -44,7 +51,7 @@ const Router = (function () {
                 (m) => `
               <a class="module-card" href="${lessonUrl(m.id)}">
                 <h4>${typeof I18n !== "undefined" ? I18n.getModuleTitle(m.id, m.title) : m.title}</h4>
-                <p>${lessonLabel} ${m.order}</p>
+                <p>${moduleCardLabel(m)}</p>
               </a>
             `
               )

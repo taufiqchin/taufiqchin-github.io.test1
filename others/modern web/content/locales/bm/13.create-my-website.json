@@ -1,0 +1,73 @@
+{
+  "title": "STEM dengan Pembangunan Laman Web",
+  "summary": "Bina halaman portfolio STEM peribadi langkah demi langkah — salin setiap contoh ke folder projek anda sehingga laman web siap.",
+  "guide": {
+    "title": "Sebelum anda bermula — sediakan pada komputer anda",
+    "intro": "Lakukan langkah ini sekali. Anda akan membina satu fail bernama index.html dalam folder di Desktop dan membukanya dalam pelayar.",
+    "steps": [
+      {
+        "title": "Cipta folder di Desktop anda.",
+        "text": "Klik kanan pada kawasan kosong Desktop → New → Folder. Namakan My Website (atau nama lain yang anda suka)."
+      },
+      {
+        "title": "Cipta index.html dalam folder.",
+        "text": "Buka folder. Klik kanan di dalam → New → Text Document. Namakan semula kepada index.html (sertakan sambungan .html). Jika Windows memberi amaran tentang menukar sambungan, klik Yes."
+      },
+      {
+        "title": "Buka index.html dalam editor teks.",
+        "text": "Klik kanan index.html → Open with → Notepad, atau gunakan VS Code jika ada. Dalam VS Code anda boleh taip ! dan tekan Tab untuk jana rangka HTML — pastikan <meta name=\"viewport\"> ada dalam <head> untuk laman responsif."
+      },
+      {
+        "title": "Ikuti setiap contoh di bawah.",
+        "text": "Jalankan contoh di sini untuk pratonton. Salin HTML dari panel kod ke index.html anda. Simpan (Ctrl+S), kemudian double-click index.html untuk buka dalam pelayar. Setiap contoh menambah satu bahagian baharu pada halaman anda."
+      },
+      {
+        "title": "Tambah kandungan anda sendiri.",
+        "text": "Ganti tajuk laman, nama, nama fail foto, teks tentang diri, dan pautan video YouTube dengan maklumat sebenar anda."
+      },
+      {
+        "title": "Siap dan kongsi.",
+        "text": "Apabila Contoh 7 kelihatan baik dalam pelayar anda, anda sudah mempunyai laman web peribadi. Tunjukkan kepada guru anda atau muat naik folder ke GitHub Pages jika mahu kongsi dalam talian."
+      }
+    ],
+    "footer": "Ambil masa — salin, simpan, dan muat semula selepas setiap contoh. Akhirnya anda akan mempunyai laman web peribadi yang anda bina sendiri."
+  },
+  "examples": {
+    "html-skeleton": {
+      "title": "Rangka HTML (permulaan responsif)",
+      "description": "Setiap laman web bermula dengan struktur asas ini. Tag meta viewport membantu halaman kelihatan baik pada telefon dan tablet. Salin keseluruhan fail ini ke index.html kosong anda. Jika guna VS Code, taip ! dan tekan Tab untuk jana rangka seperti ini, pastikan baris viewport ada dalam <head>."
+    },
+    "site-title": {
+      "title": "Tajuk laman dengan <h1>",
+      "description": "Tambah tajuk utama dalam <body> untuk laman anda — contohnya Portfolio STEM Saya. Salin HTML ini ke index.html anda. Tukar teks kepada tajuk anda sendiri."
+    },
+    "student-name": {
+      "title": "Nama anda dengan <h2>",
+      "description": "Tambah tajuk kedua di bawah tajuk laman untuk nama anda. Guna <h2> kerana ia lebih kecil daripada tajuk laman. Ganti Your Name Here dengan nama sebenar anda."
+    },
+    "profile-photo": {
+      "title": "Foto anda dengan <img>",
+      "description": "Tambah foto diri anda. Simpan gambar dalam folder yang sama dengan index.html (contohnya photo.jpg), kemudian set src kepada nama fail itu. Teks alt menerangkan imej untuk pembaca skrin — tukar kepada penerangan foto anda."
+    },
+    "about-me": {
+      "title": "Tentang diri anda dengan <p>",
+      "description": "Tulis perenggan ringkas tentang diri anda — sekolah, hobi, atau mengapa anda suka STEM. Anda boleh tulis dua atau tiga ayat dalam satu tag <p>, atau tambah lebih banyak tag <p>."
+    },
+    "study-videos": {
+      "title": "Benam dua video YouTube untuk belajar",
+      "description": "Tambah dua video yang anda suka guna semasa belajar. Di YouTube, buka video → Share → Embed, salin kod iframe, dan ganti VIDEO_ID_1 serta VIDEO_ID_2 dalam pautan src dengan ID video anda."
+    },
+    "complete-website": {
+      "title": "Laman web lengkap anda (dengan gaya)",
+      "description": "Ini versi siap dengan CSS ringkas supaya halaman kelihatan kemas dan berfungsi pada telefon. Salin HTML dan CSS ke projek anda — simpan HTML sebagai index.html dan CSS sebagai style.css dalam folder yang sama, kemudian tambah <link rel=\"stylesheet\" href=\"style.css\"> dalam <head>."
+    }
+  },
+  "practice": {
+    "description": "Letakkan laman web akhir anda dalam folder My Website: index.html dengan tajuk, nama, foto, teks tentang diri, dan dua benaman YouTube sebenar. Buka index.html dalam pelayar untuk semak semuanya berfungsi.",
+    "hints": [
+      "Simpan index.html dan foto anda dalam folder yang sama",
+      "Di YouTube: Share → Embed → salin iframe",
+      "Simpan dan muat semula pelayar selepas setiap perubahan"
+    ]
+  }
+}
