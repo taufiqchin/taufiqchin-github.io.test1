@@ -73,14 +73,11 @@ html.a11y-grayscale .output-panel iframe {
 }
 
 @media (max-width: 600px) {
-  .lesson-title-row {
-    flex-direction: column;
-    align-items: stretch;
+  .lesson-title-row h1 {
+    font-size: 1.05rem;
   }
 
   .lesson-header-actions {
-    margin-left: 0;
-    width: 100%;
     justify-content: flex-start;
   }
 
