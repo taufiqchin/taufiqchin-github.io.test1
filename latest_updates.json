@@ -43,7 +43,7 @@
         "id": 11,
         "order": 2,
         "title": "Word Counter & Character Counter",
-        "image": "image/WordCounter.png",
+        "image": "image/WordCounter.PNG",
         "description": "The Word Counter & Character Counter is a simple yet effective tool designed to help users quickly analyze their text. It provides real-time feedback on the number of words, characters, and paragraphs in the input field. The tool is perfect for writers, students, and professionals who need to ensure their content meets specific length requirements.",
         "link": "others/Word Counter/index.html"
     },
