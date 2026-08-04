@@ -277,6 +277,125 @@ button {
     cursor: pointer;
 }
 
+.logo-option {
+    margin-top: 4px;
+}
+
+.logo-dropzone,
+.image-dropzone {
+    border: 2px dashed var(--glass-border);
+    border-radius: 12px;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.logo-dropzone:hover,
+.logo-dropzone.is-dragover,
+.image-dropzone:hover,
+.image-dropzone.is-dragover {
+    border-color: var(--accent-green);
+    background: rgba(46, 204, 113, 0.12);
+}
+
+.logo-dropzone.has-logo,
+.logo-dropzone.has-image,
+.image-dropzone.has-logo,
+.image-dropzone.has-image {
+    cursor: default;
+    border-style: solid;
+}
+
+.logo-dropzone-content,
+.image-dropzone-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+    color: var(--text-secondary);
+    pointer-events: none;
+}
+
+.logo-dropzone-content i,
+.image-dropzone-content i {
+    width: 28px;
+    height: 28px;
+    color: var(--accent-green);
+}
+
+.logo-dropzone-content p,
+.image-dropzone-content p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-main);
+}
+
+.logo-dropzone-content span,
+.image-dropzone-content span {
+    font-size: 0.8rem;
+}
+
+.logo-dropzone-loaded,
+.image-dropzone-loaded {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.logo-preview,
+.image-preview {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    background: #fff;
+    padding: 4px;
+    border: 1px solid var(--glass-border);
+}
+
+#logoPreview {
+    object-fit: contain;
+}
+
+#bgImagePreview {
+    object-fit: cover;
+}
+
+.logo-remove-btn,
+.image-remove-btn {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+    border: 1px solid var(--glass-border);
+}
+
+.logo-remove-btn:hover,
+.image-remove-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+}
+
+.logo-remove-btn i,
+.image-remove-btn i {
+    width: 14px;
+    height: 14px;
+}
+
+#bgOpacityOption {
+    opacity: 0.55;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+#bgOpacityOption.is-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
 .preview-panel {
     display: flex;
     flex-direction: column;

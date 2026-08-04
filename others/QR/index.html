@@ -75,6 +75,46 @@
                             <label>Size: <span id="sizeVal">300</span>px</label>
                             <input type="range" id="qrSize" min="100" max="1000" step="10" value="300">
                         </div>
+                        <div class="option logo-option">
+                            <label for="logoInput">Center logo</label>
+                            <div class="image-dropzone" id="logoDropzone">
+                                <input type="file" id="logoInput" accept="image/*" hidden>
+                                <div class="image-dropzone-content" id="logoDropzonePrompt">
+                                    <i data-lucide="image-plus"></i>
+                                    <p>Drag &amp; drop an image here</p>
+                                    <span>or click to browse</span>
+                                </div>
+                                <div class="image-dropzone-loaded" id="logoDropzoneLoaded" hidden>
+                                    <img id="logoPreview" class="image-preview" alt="Logo preview">
+                                    <button type="button" id="removeLogoBtn" class="image-remove-btn">
+                                        <i data-lucide="x"></i>
+                                        Remove logo
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="option logo-option">
+                            <label for="bgImageInput">QR background image</label>
+                            <div class="image-dropzone" id="bgImageDropzone">
+                                <input type="file" id="bgImageInput" accept="image/*" hidden>
+                                <div class="image-dropzone-content" id="bgImageDropzonePrompt">
+                                    <i data-lucide="wallpaper"></i>
+                                    <p>Drag &amp; drop a background</p>
+                                    <span>or click to browse</span>
+                                </div>
+                                <div class="image-dropzone-loaded" id="bgImageDropzoneLoaded" hidden>
+                                    <img id="bgImagePreview" class="image-preview" alt="Background preview">
+                                    <button type="button" id="removeBgImageBtn" class="image-remove-btn">
+                                        <i data-lucide="x"></i>
+                                        Remove background
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="option" id="bgOpacityOption">
+                            <label>Background image opacity: <span id="bgOpacityVal">22</span>%</label>
+                            <input type="range" id="bgOpacity" min="0" max="100" step="1" value="22">
+                        </div>
                     </div>
                 </div>
 
