@@ -1,4 +1,4 @@
-// Default poster canvas background only (not the app UI theme)
+// Default canvas background only (not the app UI theme)
 const DEFAULT_POSTER_BG_COLOR = '#f7d9bc';
 
 const BG_COLOR_PRESETS = [
@@ -10,95 +10,90 @@ const BG_COLOR_PRESETS = [
 ];
 
 const ASSET_TYPES = {
-  icon: {
-    label: 'App Icon',
-    group: 'Graphics',
+  'instagram-feed': {
+    label: 'Instagram,TikTok,Threads, FB Feed',
+    group: 'Feed Posts',
+    width: 1080,
+    height: 1080,
+    maxBytes: 8 * 1024 * 1024,
+    maxLabel: '8 MB',
+    formatNote: 'PNG or JPEG',
+    aspectNote: '1:1 square post',
+    filename: 'instagram-feed-1080x1080',
+  },
+
+  'instagram-story': {
+    label: 'Instagram, TikTok, Whatsapp Story / Reels',
+    group: 'Stories',
+    width: 1080,
+    height: 1920,
+    maxBytes: 8 * 1024 * 1024,
+    maxLabel: '8 MB',
+    formatNote: 'PNG or JPEG',
+    aspectNote: '9:16 vertical',
+    filename: 'instagram-story-1080x1920',
+  },
+
+
+  'facebook-feed-landscape': {
+    label: 'Facebook Feed (Landscape)',
+    group: 'Other Feed',
+    width: 1200,
+    height: 630,
+    maxBytes: 8 * 1024 * 1024,
+    maxLabel: '8 MB',
+    formatNote: 'PNG or JPEG',
+    aspectNote: '1.91:1 link/image post',
+    filename: 'facebook-feed-landscape-1200x630',
+  },
+  'facebook-feed-portrait': {
+    label: 'Facebook Feed (Portrait)',
+    group: 'Other Feed',
+    width: 1080,
+    height: 1350,
+    maxBytes: 8 * 1024 * 1024,
+    maxLabel: '8 MB',
+    formatNote: 'PNG or JPEG',
+    aspectNote: '4:5 portrait feed',
+    filename: 'facebook-feed-portrait-1080x1350',
+  },
+  
+
+  'app-logo': {
+    label: 'App Logo',
+    group: 'App Branding',
     width: 512,
     height: 512,
     maxBytes: 1024 * 1024,
     maxLabel: '1 MB',
     formatNote: 'PNG or JPEG',
-    aspectNote: '512×512 px',
-    filename: 'app-icon-512x512',
+    aspectNote: '512×512 square logo',
+    filename: 'app-logo-512x512',
+    logoMode: true,
   },
-  'feature-graphic': {
-    label: 'Feature Graphic',
-    group: 'Graphics',
-    width: 1024,
-    height: 500,
-    maxBytes: 15 * 1024 * 1024,
-    maxLabel: '15 MB',
-    formatNote: 'PNG or JPEG',
-    aspectNote: '1,024×500 px',
-    filename: 'feature-graphic-1024x500',
-  },
-  'phone-portrait': {
-    label: 'Phone Screenshot (Portrait 9:16)',
-    group: 'Phone',
+  'profile-picture': {
+    label: 'Profile Picture',
+    group: 'App Branding',
     width: 1080,
-    height: 1920,
-    maxBytes: 8 * 1024 * 1024,
-    maxLabel: '8 MB',
-    formatNote: 'PNG or JPEG',
-    aspectNote: '9:16 · 320–3,840 px per side',
-    promotionNote: '≥1080 px per side for promotion (4+ screenshots)',
-    filename: 'phone-screenshot-portrait-1080x1920',
-  },
-  'phone-landscape': {
-    label: 'Phone Screenshot (Landscape 16:9)',
-    group: 'Phone',
-    width: 1920,
     height: 1080,
     maxBytes: 8 * 1024 * 1024,
     maxLabel: '8 MB',
     formatNote: 'PNG or JPEG',
-    aspectNote: '16:9 · 320–3,840 px per side',
-    promotionNote: '≥1080 px per side for promotion (4+ screenshots)',
-    filename: 'phone-screenshot-landscape-1920x1080',
+    aspectNote: 'Circular fit · square export',
+    promotionNote: 'Photo fits inside a circle on your background color.',
+    filename: 'profile-picture-1080x1080',
+    profileMode: true,
   },
-  'tablet-7-portrait': {
-    label: '7-inch Tablet Screenshot (Portrait 9:16)',
-    group: 'Tablet',
-    width: 1080,
-    height: 1920,
+  'facebook-cover': {
+    label: 'Facebook Cover',
+    group: 'App Branding',
+    width: 1640,
+    height: 624,
     maxBytes: 8 * 1024 * 1024,
     maxLabel: '8 MB',
     formatNote: 'PNG or JPEG',
-    aspectNote: '9:16 · 320–3,840 px per side',
-    filename: 'tablet-7-screenshot-portrait-1080x1920',
-  },
-  'tablet-7-landscape': {
-    label: '7-inch Tablet Screenshot (Landscape 16:9)',
-    group: 'Tablet',
-    width: 1920,
-    height: 1080,
-    maxBytes: 8 * 1024 * 1024,
-    maxLabel: '8 MB',
-    formatNote: 'PNG or JPEG',
-    aspectNote: '16:9 · 320–3,840 px per side',
-    filename: 'tablet-7-screenshot-landscape-1920x1080',
-  },
-  'tablet-10-portrait': {
-    label: '10-inch Tablet Screenshot (Portrait 9:16)',
-    group: 'Tablet',
-    width: 1600,
-    height: 2844,
-    maxBytes: 8 * 1024 * 1024,
-    maxLabel: '8 MB',
-    formatNote: 'PNG or JPEG',
-    aspectNote: '9:16 · 1,080–7,680 px per side',
-    filename: 'tablet-10-screenshot-portrait-1600x2844',
-  },
-  'tablet-10-landscape': {
-    label: '10-inch Tablet Screenshot (Landscape 16:9)',
-    group: 'Tablet',
-    width: 2560,
-    height: 1440,
-    maxBytes: 8 * 1024 * 1024,
-    maxLabel: '8 MB',
-    formatNote: 'PNG or JPEG',
-    aspectNote: '16:9 · 1,080–7,680 px per side',
-    filename: 'tablet-10-screenshot-landscape-2560x1440',
+    aspectNote: '1640×624 page cover',
+    filename: 'facebook-cover-1640x624',
   },
 };
 
@@ -117,6 +112,7 @@ function createImageSlot() {
     alignV: 'center',
     borderRadius: 0,
     lockAspect: false,
+    fitMode: false,
     visible: true,
   };
 }
@@ -124,7 +120,7 @@ function createImageSlot() {
 function createTextLayer(id) {
   return {
     id,
-    content: 'Your headline here',
+    content: '',
     x: 80,
     y: 80,
     maxWidth: 400,
@@ -139,7 +135,7 @@ function createTextLayer(id) {
 
 function createDefaultState() {
   return {
-    assetType: 'feature-graphic',
+    assetType: 'instagram-feed',
     background: {
       mode: 'color',
       color: DEFAULT_POSTER_BG_COLOR,
@@ -150,7 +146,6 @@ function createDefaultState() {
     images: [createImageSlot(), createImageSlot()],
     texts: [createTextLayer(1)],
     nextTextId: 2,
-    showSafeZone: true,
     selected: null,
     exportFormat: 'png',
   };
@@ -224,6 +219,44 @@ function removeImageSlot(index) {
 
 function getAsset() {
   return ASSET_TYPES[state.assetType];
+}
+
+function getProfileCircleBounds(w, h) {
+  const size = Math.round(Math.min(w, h) * 0.9);
+  return {
+    x: (w - size) / 2,
+    y: (h - size) / 2,
+    width: size,
+    height: size,
+    radius: size / 2,
+  };
+}
+
+function applyAssetLayout(assetType) {
+  const asset = ASSET_TYPES[assetType];
+  if (!asset) return state;
+
+  if (asset.profileMode) {
+    const bounds = getProfileCircleBounds(asset.width, asset.height);
+    state.images[0] = {
+      ...state.images[0],
+      x: bounds.x,
+      y: bounds.y,
+      width: bounds.width,
+      height: bounds.height,
+      borderRadius: Math.round(bounds.radius),
+      fitMode: true,
+      lockAspect: true,
+      visible: true,
+    };
+    for (let i = 1; i < state.images.length; i++) {
+      state.images[i] = { ...state.images[i], fitMode: false };
+    }
+  } else {
+    state.images = state.images.map((slot) => ({ ...slot, fitMode: false }));
+  }
+
+  return state;
 }
 
 function formatAssetBadge(asset) {

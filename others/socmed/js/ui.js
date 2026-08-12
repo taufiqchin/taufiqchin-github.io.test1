@@ -21,6 +21,15 @@ const FONT_OPTIONS = [
   'Courier New, monospace',
 ];
 
+const ASSET_GROUP_ORDER = ['Feed Posts', 'Stories', 'Other Feed', 'App Branding'];
+
+const ASSET_ORDER_BY_GROUP = {
+  'Feed Posts': ['instagram-feed'],
+  Stories: ['instagram-story'],
+  'Other Feed': ['facebook-feed-landscape', 'facebook-feed-portrait'],
+  'App Branding': ['app-logo', 'profile-picture', 'facebook-cover'],
+};
+
 function initUI(elements, onChange) {
   previewCanvas = elements.previewCanvas;
   controlsEl = elements.controlsEl;
@@ -99,8 +108,10 @@ function setTextColor(id, hex) {
 }
 
 function bindStaticControls() {
-  document.getElementById('asset-type').addEventListener('change', (e) => {
+  document.getElementById('asset-type-list').addEventListener('change', (e) => {
+    if (e.target.name !== 'asset-type') return;
     setState({ assetType: e.target.value });
+    applyAssetLayout(e.target.value);
     renderAllControls();
     triggerChange();
   });
@@ -155,11 +166,6 @@ function bindStaticControls() {
     triggerChange();
   });
 
-  document.getElementById('show-safe-zone').addEventListener('change', (e) => {
-    setState({ showSafeZone: e.target.checked });
-    triggerChange();
-  });
-
   document.getElementById('add-text').addEventListener('click', () => {
     addTextLayer();
     renderTextControls();
@@ -194,8 +200,45 @@ function bindStaticControls() {
       showToast('Export failed. Please try again.', true);
     } finally {
       btn.disabled = false;
-      btn.textContent = 'Download Poster';
+      btn.textContent = 'Download';
     }
+  });
+}
+
+function renderAssetTypeControls() {
+  const container = document.getElementById('asset-type-list');
+  const state = getState();
+  container.innerHTML = '';
+
+  ASSET_GROUP_ORDER.forEach((groupName) => {
+    const keys = ASSET_ORDER_BY_GROUP[groupName];
+    if (!keys?.length) return;
+
+    const groupEl = document.createElement('div');
+    groupEl.className = 'asset-type-group';
+
+    const groupLabel = document.createElement('p');
+    groupLabel.className = 'asset-type-group-label';
+    groupLabel.textContent = groupName;
+    groupEl.appendChild(groupLabel);
+
+    keys.forEach((key) => {
+      const asset = ASSET_TYPES[key];
+      if (!asset) return;
+
+      const label = document.createElement('label');
+      label.className = 'asset-type-option';
+      label.innerHTML = `
+        <input type="radio" name="asset-type" value="${key}" ${state.assetType === key ? 'checked' : ''} />
+        <span class="asset-type-option-text">
+          <strong>${asset.label}</strong>
+          <span class="asset-type-size">${asset.width}×${asset.height}</span>
+        </span>
+      `;
+      groupEl.appendChild(label);
+    });
+
+    container.appendChild(groupEl);
   });
 }
 
@@ -203,7 +246,7 @@ function renderAllControls() {
   const state = getState();
   const asset = getAsset();
 
-  document.getElementById('asset-type').value = state.assetType;
+  renderAssetTypeControls();
   assetBadgeEl.textContent = formatAssetBadge(asset);
   const promoEl = document.getElementById('asset-promo');
   if (promoEl) {
@@ -211,9 +254,6 @@ function renderAllControls() {
     promoEl.style.display = asset.promotionNote ? 'block' : 'none';
   }
 
-  const safeZoneWrap = document.getElementById('safe-zone-wrap');
-  safeZoneWrap.style.display = state.assetType === 'feature-graphic' ? 'block' : 'none';
-  document.getElementById('show-safe-zone').checked = state.showSafeZone;
   document.getElementById('export-format').value = state.exportFormat;
 
   renderBackgroundControls();
@@ -258,22 +298,28 @@ function renderBackgroundControls() {
   renderBackgroundPresets();
 }
 
+function isProfileMode() {
+  return Boolean(getAsset().profileMode);
+}
+
 function renderImageControls() {
   imageSlotsEl.innerHTML = '';
   const state = getState();
+  const profileMode = isProfileMode();
 
   state.images.forEach((slot, index) => {
+    const isProfileSlot = profileMode && index === 0;
     const card = document.createElement('div');
     card.className = `card${state.selected?.type === 'image' && state.selected.index === index ? ' selected' : ''}`;
     card.innerHTML = `
       <div class="card-header">
-        <h3>Image ${index + 1}</h3>
+        <h3>${isProfileSlot ? 'Profile photo' : `Image ${index + 1}`}</h3>
         <div class="card-header-actions">
           <label class="toggle">
             <input type="checkbox" data-img-visible="${index}" ${slot.visible ? 'checked' : ''} />
             Show
           </label>
-          ${state.images.length > 1 ? `<button type="button" class="btn-small danger" data-img-remove="${index}">Remove</button>` : ''}
+          ${!isProfileSlot && state.images.length > 1 ? `<button type="button" class="btn-small danger" data-img-remove="${index}">Remove</button>` : ''}
         </div>
       </div>
       <label class="file-btn">
@@ -281,6 +327,7 @@ function renderImageControls() {
         <input type="file" accept="image/*" data-img-upload="${index}" hidden />
       </label>
       ${slot.fileName ? `<p class="image-file-name">${escapeHtml(slot.fileName)}</p>` : ''}
+      ${isProfileSlot ? '<p class="asset-promo">Photo fits inside the circle on your background color.</p>' : `
       <label>Rounded corners <span data-img-radius-val="${index}">${slot.borderRadius}px</span>
         <input type="range" data-img-radius="${index}" min="0" max="100" value="${slot.borderRadius}" />
       </label>
@@ -288,6 +335,11 @@ function renderImageControls() {
         <input type="checkbox" data-img-lock="${index}" ${slot.lockAspect ? 'checked' : ''} />
         Lock aspect ratio
       </label>
+      <label class="toggle">
+        <input type="checkbox" data-img-fit="${index}" ${slot.fitMode ? 'checked' : ''} />
+        Fit image (contain)
+      </label>
+      `}
     `;
     imageSlotsEl.appendChild(card);
   });
@@ -298,16 +350,38 @@ function renderImageControls() {
       const file = e.target.files[0];
       if (!file) return;
       const loaded = await loadImageFromFile(file);
-      const ratio = loaded.naturalHeight / loaded.naturalWidth;
-      updateImageSlot(index, {
-        src: loaded.src,
-        image: loaded.image,
-        fileName: file.name,
-        naturalWidth: loaded.naturalWidth,
-        naturalHeight: loaded.naturalHeight,
-        visible: true,
-        height: Math.round(getState().images[index].width * ratio),
-      });
+      const asset = getAsset();
+
+      if (asset.profileMode && index === 0) {
+        const bounds = getProfileCircleBounds(asset.width, asset.height);
+        updateImageSlot(index, {
+          src: loaded.src,
+          image: loaded.image,
+          fileName: file.name,
+          naturalWidth: loaded.naturalWidth,
+          naturalHeight: loaded.naturalHeight,
+          x: bounds.x,
+          y: bounds.y,
+          width: bounds.width,
+          height: bounds.height,
+          borderRadius: Math.round(bounds.radius),
+          fitMode: true,
+          lockAspect: true,
+          visible: true,
+        });
+      } else {
+        const ratio = loaded.naturalHeight / loaded.naturalWidth;
+        updateImageSlot(index, {
+          src: loaded.src,
+          image: loaded.image,
+          fileName: file.name,
+          naturalWidth: loaded.naturalWidth,
+          naturalHeight: loaded.naturalHeight,
+          visible: true,
+          height: Math.round(getState().images[index].width * ratio),
+        });
+      }
+
       setState({ selected: { type: 'image', index } });
       renderImageControls();
       triggerChange();
@@ -350,6 +424,11 @@ function bindImageInputs() {
 
   bind('[data-img-lock]', (e) => {
     updateImageSlot(Number(e.target.dataset.imgLock), { lockAspect: e.target.checked });
+  });
+
+  bind('[data-img-fit]', (e) => {
+    updateImageSlot(Number(e.target.dataset.imgFit), { fitMode: e.target.checked });
+    triggerChange();
   });
 }
 
@@ -613,7 +692,13 @@ function bindCanvasDrag() {
         slot.naturalWidth,
         slot.naturalHeight
       );
-      updateImageSlot(dragState.hit.index, next);
+      const updates = { ...next };
+      if (getAsset().profileMode && dragState.hit.index === 0) {
+        updates.borderRadius = Math.round(Math.min(next.width, next.height) / 2);
+        updates.fitMode = true;
+        updates.lockAspect = true;
+      }
+      updateImageSlot(dragState.hit.index, updates);
     } else if (dragState.hit.type === 'image') {
       const dx = pos.x - dragState.mouseX;
       const dy = pos.y - dragState.mouseY;
@@ -642,11 +727,32 @@ function bindCanvasDrag() {
 function scalePreviewCanvas() {
   const asset = getAsset();
   const wrap = previewCanvas.parentElement;
-  const maxW = wrap.clientWidth - 32;
-  const maxH = wrap.clientHeight - 32;
-  const scale = Math.min(maxW / asset.width, maxH / asset.height, 1);
-  previewCanvas.style.width = `${asset.width * scale}px`;
-  previewCanvas.style.height = `${asset.height * scale}px`;
+  const panel = wrap.closest('.preview-panel');
+  const wrapPadding = 32;
+
+  const maxW = Math.max(wrap.clientWidth - wrapPadding, 100);
+
+  let maxH = wrap.clientHeight - wrapPadding;
+  if (panel) {
+    const header = panel.querySelector('.preview-header');
+    const hint = panel.querySelector('.hint');
+    const panelStyles = getComputedStyle(panel);
+    const panelPadY =
+      parseFloat(panelStyles.paddingTop) + parseFloat(panelStyles.paddingBottom);
+    const headerH = header?.offsetHeight ?? 0;
+    const hintH = hint?.offsetHeight ?? 0;
+    const viewportH = window.innerHeight;
+    const panelTop = panel.getBoundingClientRect().top;
+    maxH = viewportH - panelTop - headerH - hintH - panelPadY - wrapPadding - 16;
+  }
+
+  maxH = Math.max(maxH, 120);
+
+  const scale = Math.min(maxW / asset.width, maxH / asset.height);
+  if (!Number.isFinite(scale) || scale <= 0) return;
+
+  previewCanvas.style.width = `${Math.round(asset.width * scale)}px`;
+  previewCanvas.style.height = `${Math.round(asset.height * scale)}px`;
 }
 
 function refreshPreview() {

@@ -8,6 +8,14 @@
         "link": "https://play.google.com/store/apps/details?id=com.taufiq.speechaac&pcampaignid=web_share"
     },
     {
+        "id": 14,
+        "order": 1,
+        "title": "Social Media Poster Maker",
+        "image": "image/socmed.PNG",
+        "description": "Social Media Maker is a web-based tool designed to help developers create professional-looking posters for their Google Play Store listings. It features a user-friendly interface with a live preview, allowing developers to customize the poster with their app's logo, title, description, and screenshots.",
+        "link": "others/socmed/index.html"
+    },
+    {
         "id": 12,
         "order": 1,
         "title": "Play Store Poster Maker",
