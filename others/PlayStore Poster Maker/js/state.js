@@ -117,6 +117,7 @@ function createImageSlot() {
     alignV: 'center',
     borderRadius: 0,
     lockAspect: false,
+    rotation: 0,
     visible: true,
   };
 }

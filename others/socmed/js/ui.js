@@ -560,50 +560,87 @@ function bindTextInputs() {
   });
 }
 
-function applyImageResize(handle, start, mouseX, mouseY, lockAspect, naturalW, naturalH) {
+function applyImageResize(handle, start, mouseX, mouseY, lockAspect, naturalW, naturalH, rotation = 0) {
   const min = 20;
-  const right = start.x + start.width;
-  const bottom = start.y + start.height;
-  let x = start.x;
-  let y = start.y;
-  let width = start.width;
-  let height = start.height;
+  if (!rotation) {
+    const right = start.x + start.width;
+    const bottom = start.y + start.height;
+    let x = start.x;
+    let y = start.y;
+    let width = start.width;
+    let height = start.height;
 
-  switch (handle) {
-    case 'se':
-      width = Math.max(min, mouseX - start.x);
-      height = Math.max(min, mouseY - start.y);
-      break;
-    case 'sw':
-      width = Math.max(min, right - mouseX);
-      x = right - width;
-      height = Math.max(min, mouseY - start.y);
-      break;
-    case 'ne':
-      width = Math.max(min, mouseX - start.x);
-      height = Math.max(min, bottom - mouseY);
-      y = bottom - height;
-      break;
-    case 'nw':
-      width = Math.max(min, right - mouseX);
-      x = right - width;
-      height = Math.max(min, bottom - mouseY);
-      y = bottom - height;
-      break;
-    default:
-      break;
+    switch (handle) {
+      case 'se':
+        width = Math.max(min, mouseX - start.x);
+        height = Math.max(min, mouseY - start.y);
+        break;
+      case 'sw':
+        width = Math.max(min, right - mouseX);
+        x = right - width;
+        height = Math.max(min, mouseY - start.y);
+        break;
+      case 'ne':
+        width = Math.max(min, mouseX - start.x);
+        height = Math.max(min, bottom - mouseY);
+        y = bottom - height;
+        break;
+      case 'nw':
+        width = Math.max(min, right - mouseX);
+        x = right - width;
+        height = Math.max(min, bottom - mouseY);
+        y = bottom - height;
+        break;
+      default:
+        break;
+    }
+
+    if (lockAspect && naturalW && naturalH) {
+      const ratio = naturalH / naturalW;
+      height = Math.max(min, Math.round(width * ratio));
+      if (handle === 'sw' || handle === 'nw') x = right - width;
+      if (handle === 'ne' || handle === 'nw') y = bottom - height;
+    }
+
+    return {
+      x: Math.round(x),
+      y: Math.round(y),
+      width: Math.round(width),
+      height: Math.round(height),
+    };
   }
+
+  const opposite = { nw: 'se', se: 'nw', ne: 'sw', sw: 'ne' };
+  const opp = opposite[handle];
+  const anchorLocal = {
+    nw: { x: -start.width / 2, y: -start.height / 2 },
+    ne: { x: start.width / 2, y: -start.height / 2 },
+    se: { x: start.width / 2, y: start.height / 2 },
+    sw: { x: -start.width / 2, y: start.height / 2 },
+  }[opp];
+  const startSlot = { ...start, rotation };
+  const anchorWorld = transformLocalPoint(startSlot, anchorLocal.x, anchorLocal.y);
+  const dragWorld = { x: mouseX, y: mouseY };
+  const newCx = (anchorWorld.x + dragWorld.x) / 2;
+  const newCy = (anchorWorld.y + dragWorld.y) / 2;
+
+  const rad = -degToRad(rotation);
+  const dx = dragWorld.x - anchorWorld.x;
+  const dy = dragWorld.y - anchorWorld.y;
+  const cos = Math.cos(rad);
+  const sin = Math.sin(rad);
+  let width = Math.max(min, Math.abs(dx * cos - dy * sin));
+  let height = Math.max(min, Math.abs(dx * sin + dy * cos));
 
   if (lockAspect && naturalW && naturalH) {
     const ratio = naturalH / naturalW;
-    height = Math.max(min, Math.round(width * ratio));
-    if (handle === 'sw' || handle === 'nw') x = right - width;
-    if (handle === 'ne' || handle === 'nw') y = bottom - height;
+    if (width / height > naturalW / naturalH) width = height / ratio;
+    else height = width * ratio;
   }
 
   return {
-    x: Math.round(x),
-    y: Math.round(y),
+    x: Math.round(newCx - width / 2),
+    y: Math.round(newCy - height / 2),
     width: Math.round(width),
     height: Math.round(height),
   };
@@ -627,13 +664,22 @@ function bindCanvasDrag() {
     });
     const state = getState();
 
-    if (hit.type === 'image' && hit.handle) {
+    if (hit.type === 'image' && hit.handle === 'rotate') {
+      const slot = state.images[hit.index];
+      dragState = {
+        mode: 'rotate',
+        hit,
+        startRotation: slot.rotation || 0,
+        startAngle: computeImageRotationAngle(slot, pos.x, pos.y),
+      };
+    } else if (hit.type === 'image' && hit.handle) {
       const slot = state.images[hit.index];
       dragState = {
         mode: 'resize',
         hit,
         handle: hit.handle,
         startSlot: { x: slot.x, y: slot.y, width: slot.width, height: slot.height },
+        startRotation: slot.rotation || 0,
         mouseX: pos.x,
         mouseY: pos.y,
       };
@@ -681,7 +727,14 @@ function bindCanvasDrag() {
     if (!dragState) return;
     const pos = canvasToLogical(previewCanvas, e.clientX, e.clientY);
 
-    if (dragState.mode === 'resize' && dragState.hit.type === 'image') {
+    if (dragState.mode === 'rotate' && dragState.hit.type === 'image') {
+      const slot = getState().images[dragState.hit.index];
+      const angle = computeImageRotationAngle(slot, pos.x, pos.y);
+      updateImageSlot(dragState.hit.index, {
+        rotation: dragState.startRotation + (angle - dragState.startAngle),
+      });
+      previewCanvas.style.cursor = 'grabbing';
+    } else if (dragState.mode === 'resize' && dragState.hit.type === 'image') {
       const slot = getState().images[dragState.hit.index];
       const next = applyImageResize(
         dragState.handle,
@@ -690,7 +743,8 @@ function bindCanvasDrag() {
         pos.y,
         slot.lockAspect,
         slot.naturalWidth,
-        slot.naturalHeight
+        slot.naturalHeight,
+        dragState.startRotation
       );
       const updates = { ...next };
       if (getAsset().profileMode && dragState.hit.index === 0) {
@@ -699,7 +753,7 @@ function bindCanvasDrag() {
         updates.lockAspect = true;
       }
       updateImageSlot(dragState.hit.index, updates);
-    } else if (dragState.hit.type === 'image') {
+    } else if (dragState.mode === 'move' && dragState.hit.type === 'image') {
       const dx = pos.x - dragState.mouseX;
       const dy = pos.y - dragState.mouseY;
       updateImageSlot(dragState.hit.index, {

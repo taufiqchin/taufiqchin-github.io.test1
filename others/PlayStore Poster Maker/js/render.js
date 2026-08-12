@@ -82,13 +82,17 @@ function computeCoverCrop(img, boxW, boxH, alignH, alignV) {
 function drawImageRounded(ctx, slot) {
   if (!slot.visible || !slot.image) return;
 
-  const { x, y, width, height, borderRadius, alignH, alignV, image } = slot;
+  const { x, y, width, height, borderRadius, alignH, alignV, image, rotation } = slot;
   const crop = computeCoverCrop(image, width, height, alignH, alignV);
+  const cx = x + width / 2;
+  const cy = y + height / 2;
 
   ctx.save();
-  roundRectPath(ctx, x, y, width, height, borderRadius);
+  ctx.translate(cx, cy);
+  ctx.rotate(degToRad(rotation || 0));
+  roundRectPath(ctx, -width / 2, -height / 2, width, height, borderRadius);
   ctx.clip();
-  ctx.drawImage(image, crop.sx, crop.sy, crop.sw, crop.sh, x, y, width, height);
+  ctx.drawImage(image, crop.sx, crop.sy, crop.sw, crop.sh, -width / 2, -height / 2, width, height);
   ctx.restore();
 }
 
@@ -182,12 +186,31 @@ function drawSelectionBox(ctx, state) {
   if (sel.type === 'image') {
     const slot = state.images[sel.index];
     if (slot?.visible && slot.image) {
-      ctx.strokeRect(slot.x, slot.y, slot.width, slot.height);
+      const corners = getImageHandlePoints(slot);
+      const topCenter = getTopCenterPoint(slot);
+      const rotatePt = getRotationHandlePoint(slot);
+
+      ctx.beginPath();
+      ctx.moveTo(corners[0].x, corners[0].y);
+      corners.slice(1).forEach((pt) => ctx.lineTo(pt.x, pt.y));
+      ctx.closePath();
+      ctx.stroke();
+
       ctx.setLineDash([]);
+      ctx.beginPath();
+      ctx.moveTo(topCenter.x, topCenter.y);
+      ctx.lineTo(rotatePt.x, rotatePt.y);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(rotatePt.x, rotatePt.y, ROTATE_HANDLE_RADIUS, 0, Math.PI * 2);
       ctx.fillStyle = '#ffffff';
+      ctx.fill();
       ctx.strokeStyle = '#4f8cff';
-      ctx.lineWidth = 2;
-      getImageHandlePoints(slot).forEach((pt) => {
+      ctx.stroke();
+
+      ctx.fillStyle = '#ffffff';
+      corners.forEach((pt) => {
         ctx.fillRect(pt.x - HANDLE_SIZE / 2, pt.y - HANDLE_SIZE / 2, HANDLE_SIZE, HANDLE_SIZE);
         ctx.strokeRect(pt.x - HANDLE_SIZE / 2, pt.y - HANDLE_SIZE / 2, HANDLE_SIZE, HANDLE_SIZE);
       });
@@ -204,18 +227,62 @@ function drawSelectionBox(ctx, state) {
 }
 
 const HANDLE_SIZE = 14;
+const ROTATE_HANDLE_OFFSET = 32;
+const ROTATE_HANDLE_RADIUS = 8;
+
+function degToRad(deg) {
+  return (deg * Math.PI) / 180;
+}
+
+function getImageCenter(slot) {
+  return {
+    cx: slot.x + slot.width / 2,
+    cy: slot.y + slot.height / 2,
+  };
+}
+
+function transformLocalPoint(slot, localX, localY) {
+  const { cx, cy } = getImageCenter(slot);
+  const rad = degToRad(slot.rotation || 0);
+  const cos = Math.cos(rad);
+  const sin = Math.sin(rad);
+  return {
+    x: cx + localX * cos - localY * sin,
+    y: cy + localX * sin + localY * cos,
+  };
+}
 
 function getImageHandlePoints(slot) {
-  const { x, y, width, height } = slot;
+  const hw = slot.width / 2;
+  const hh = slot.height / 2;
   return [
-    { x, y, handle: 'nw' },
-    { x: x + width, y, handle: 'ne' },
-    { x: x + width, y: y + height, handle: 'se' },
-    { x, y: y + height, handle: 'sw' },
+    { ...transformLocalPoint(slot, -hw, -hh), handle: 'nw' },
+    { ...transformLocalPoint(slot, hw, -hh), handle: 'ne' },
+    { ...transformLocalPoint(slot, hw, hh), handle: 'se' },
+    { ...transformLocalPoint(slot, -hw, hh), handle: 'sw' },
   ];
 }
 
+function getTopCenterPoint(slot) {
+  return transformLocalPoint(slot, 0, -slot.height / 2);
+}
+
+function getRotationHandlePoint(slot) {
+  return transformLocalPoint(slot, 0, -slot.height / 2 - ROTATE_HANDLE_OFFSET);
+}
+
+function hitTestPointDistance(x1, y1, x2, y2) {
+  const dx = x1 - x2;
+  const dy = y1 - y2;
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
 function hitTestImageHandle(slot, canvasX, canvasY) {
+  const rotatePt = getRotationHandlePoint(slot);
+  if (hitTestPointDistance(canvasX, canvasY, rotatePt.x, rotatePt.y) <= ROTATE_HANDLE_RADIUS + 4) {
+    return 'rotate';
+  }
+
   for (const pt of getImageHandlePoints(slot)) {
     if (
       canvasX >= pt.x - HANDLE_SIZE &&
@@ -229,8 +296,31 @@ function hitTestImageHandle(slot, canvasX, canvasY) {
   return null;
 }
 
+function pointInRotatedSlot(slot, px, py) {
+  const { cx, cy } = getImageCenter(slot);
+  const rad = -degToRad(slot.rotation || 0);
+  const dx = px - cx;
+  const dy = py - cy;
+  const cos = Math.cos(rad);
+  const sin = Math.sin(rad);
+  const localX = dx * cos - dy * sin;
+  const localY = dx * sin + dy * cos;
+  return Math.abs(localX) <= slot.width / 2 && Math.abs(localY) <= slot.height / 2;
+}
+
+function computeImageRotationAngle(slot, mouseX, mouseY) {
+  const { cx, cy } = getImageCenter(slot);
+  return (Math.atan2(mouseY - cy, mouseX - cx) * 180) / Math.PI;
+}
+
 function getResizeCursor(handle) {
-  const map = { nw: 'nwse-resize', se: 'nwse-resize', ne: 'nesw-resize', sw: 'nesw-resize' };
+  const map = {
+    nw: 'nwse-resize',
+    se: 'nwse-resize',
+    ne: 'nesw-resize',
+    sw: 'nesw-resize',
+    rotate: 'grab',
+  };
   return map[handle] || 'grab';
 }
 
@@ -283,12 +373,7 @@ function hitTest(state, canvasX, canvasY) {
   for (let i = state.images.length - 1; i >= 0; i--) {
     const slot = state.images[i];
     if (!slot.visible || !slot.image) continue;
-    if (
-      canvasX >= slot.x &&
-      canvasX <= slot.x + slot.width &&
-      canvasY >= slot.y &&
-      canvasY <= slot.y + slot.height
-    ) {
+    if (pointInRotatedSlot(slot, canvasX, canvasY)) {
       return { type: 'image', index: i };
     }
   }

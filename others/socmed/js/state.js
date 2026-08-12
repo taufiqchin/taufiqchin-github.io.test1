@@ -113,6 +113,7 @@ function createImageSlot() {
     borderRadius: 0,
     lockAspect: false,
     fitMode: false,
+    rotation: 0,
     visible: true,
   };
 }
