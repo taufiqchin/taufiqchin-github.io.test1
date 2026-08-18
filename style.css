@@ -365,8 +365,13 @@ body {
 }
 
 .update-link {
-  font-size: 13px;
+  font-size: 15px;
   margin-bottom: 12px;
+}
+
+.update-link .update-open-link {
+  color: #009688;
+  cursor: pointer;
 }
 
 .read-more-btn {

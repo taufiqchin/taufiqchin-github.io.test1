@@ -171,12 +171,50 @@ function loadLatestUpdates() {
                     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" style="color: #009688;">$1</a>')}
                         </div>
                         <button class="read-more-btn" onclick="toggleReadMore(this)">Read More</button>
-                        ${update.link ? `<div class="update-link"><strong>Link:</strong> <a href="${update.link}" target="_blank" style="color: #009688;">Visit <i class="fa fa-external-link"></i></a></div>` : ''}
+                        ${update.link ? `<div class="update-link"><strong>Link:</strong> <a class="update-open-link" href="#" data-href="${update.link}">Click here to open page <i class="fa fa-external-link"></i></a></div>` : ''}
                     </div>
                 </div>
             `).join('');
+
+            bindLatestUpdateOpenLinks(container);
         })
         .catch(error => console.error("Error loading latest updates:", error));
+}
+
+let cachedUpdatePassword = null;
+
+function bindLatestUpdateOpenLinks(container) {
+    container.querySelectorAll(".update-open-link").forEach((link) => {
+        link.addEventListener("click", (event) => {
+            event.preventDefault();
+            openLatestUpdateLink(link.dataset.href);
+        });
+    });
+}
+
+async function loadUpdatePassword() {
+    if (cachedUpdatePassword !== null) return cachedUpdatePassword;
+    const response = await fetch("zpwd.txt");
+    if (!response.ok) throw new Error("Could not load password file");
+    cachedUpdatePassword = (await response.text()).trim();
+    return cachedUpdatePassword;
+}
+
+async function openLatestUpdateLink(url) {
+    if (!url) return;
+    try {
+        const expected = await loadUpdatePassword();
+        const entered = prompt("Enter password to open this page:");
+        if (entered === null) return;
+        if (entered.trim() === expected) {
+            window.open(url, "_blank");
+        } else {
+            alert("Incorrect password.");
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Could not verify password. Try again.");
+    }
 }
 
 function toggleReadMore(button) {
