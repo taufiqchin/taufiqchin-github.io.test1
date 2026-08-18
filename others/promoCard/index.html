@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Promo Card Maker</title>
+  <link rel="icon" type="image/png" href="../favicon/MT.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Mochiy+Pop+One&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <main class="app-layout">
+    <aside class="panel controls-panel">
+      <div class="sidebar-brand">
+        <h1>Promo Card Maker</h1>
+        <p>Upload a card image, place the code and QR, then download</p>
+      </div>
+
+      <section class="section">
+        <h2>Card image</h2>
+        <label class="file-btn">
+          Upload image
+          <input type="file" id="image-input" accept="image/*" hidden />
+        </label>
+        <p id="image-name" class="hint-inline">No image yet</p>
+      </section>
+
+      <section class="section">
+        <h2>Promo codes</h2>
+        <label>
+          Code
+          <textarea id="promo-input" placeholder="Type or paste promo codes" rows="4" spellcheck="false"></textarea>
+        </label>
+        <label class="file-btn">
+          Upload Excel (1 column)
+          <input type="file" id="excel-input" accept=".xlsx,.xls,.csv" hidden />
+        </label>
+        <label class="file-btn">
+          Upload text file (comma separated)
+          <input type="file" id="text-input" accept=".txt,.csv,text/plain" hidden />
+        </label>
+        <div id="code-picker-wrap" class="code-picker-wrap" hidden>
+          <label>
+            Preview code
+            <select id="code-picker"></select>
+          </label>
+          <p id="code-count" class="hint-inline"></p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>QR redeem link</h2>
+        <label>
+          Open this page when scanned
+          <select id="redeem-preset">
+            <option value="play" selected>Google Play — Redeem code</option>
+            <option value="apple">Apple — Redeem code</option>
+            <option value="custom">Custom URL</option>
+          </select>
+        </label>
+        <label>
+          URL with {CODE}
+          <input type="text" id="url-template" value="https://play.google.com/redeem?code={CODE}" spellcheck="false" />
+        </label>
+        <p class="hint-inline">Scanning the QR opens this page with the promo code filled in. Put <code>{CODE}</code> where the code should go. For Apple offer codes, replace <code>YOUR_APP_ID</code> with your numeric App Store id.</p>
+        <p id="qr-resolved" class="resolved-url"></p>
+      </section>
+
+      <section class="section">
+        <h2>Text style</h2>
+        <label>
+          Font
+          <select id="font-family">
+            <option value="Fredoka" selected>Fredoka</option>
+            <option value="Mochiy Pop One">Mochiy Pop One (Mochibop)</option>
+          </select>
+        </label>
+        <label>
+          Size <span id="font-size-val">48px</span>
+          <input type="range" id="font-size" min="18" max="120" value="48" />
+        </label>
+        <label>Color</label>
+        <div class="color-row">
+          <input type="color" id="font-color" value="#ffffff" />
+          <input type="text" id="font-color-hex" class="hex-input" value="#ffffff" maxlength="7" spellcheck="false" />
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>QR size</h2>
+        <label>
+          Size <span id="qr-size-val">22%</span>
+          <input type="range" id="qr-size" min="8" max="90" value="22" />
+        </label>
+        <p class="hint-inline">Drag the corner handle on the QR to resize it to fit the image.</p>
+      </section>
+
+      <section class="section">
+        <button type="button" id="download-btn" class="btn-primary" disabled>Download PNG</button>
+        <p id="export-status" class="hint-inline"></p>
+      </section>
+    </aside>
+
+    <section class="panel preview-panel">
+      <div class="preview-header">
+        <h2>Live Preview</h2>
+        <p id="status-line" class="status-line">Upload an image to start</p>
+      </div>
+      <div class="preview-stage">
+        <div id="empty-state" class="empty-state">Upload an image to start</div>
+        <div id="promo-card" class="promo-card" hidden>
+          <img id="card-image" alt="Promo card background" />
+          <div id="text-layer" class="overlay-layer text-layer"></div>
+          <div id="qr-layer" class="overlay-layer qr-layer">
+            <canvas id="qr-canvas"></canvas>
+            <span class="resize-handle" id="qr-resize" title="Resize QR"></span>
+          </div>
+        </div>
+      </div>
+      <p class="hint">Drag the promo code and the QR to place them. Drag the QR corner to resize. Same layout is used for every code.</p>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

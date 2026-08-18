@@ -1,0 +1,362 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #e3d49e;
+  --panel: #faf7f4;
+  --surface: #fffcf9;
+  --input-bg: #fffcf9;
+  --border: #ddd4cb;
+  --text: #2c2a28;
+  --muted: #6b6560;
+  --accent: #5b8fc7;
+  --accent-hover: #4a7db5;
+  --danger: #d64545;
+  --radius: 10px;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app-layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  min-height: 100vh;
+}
+
+.panel {
+  padding: 1rem 1.25rem;
+}
+
+.controls-panel {
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  max-height: 100vh;
+  padding: 0.7rem 0.85rem;
+  font-size: 0.82rem;
+}
+
+.sidebar-brand {
+  margin-bottom: 0.7rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebar-brand h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+  color: var(--accent);
+}
+
+.sidebar-brand p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.section {
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.section h2 {
+  margin: 0 0 0.45rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  margin-top: 0.2rem;
+  padding: 0.35rem 0.45rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--input-bg);
+  color: var(--text);
+  font: inherit;
+}
+
+#promo-input {
+  min-height: 6.5rem;
+  font-size: calc(1em + 4px);
+  line-height: 1.4;
+  resize: vertical;
+}
+
+input[type="range"] {
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+input[type="color"] {
+  width: 42px;
+  height: 32px;
+  padding: 2px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.color-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.hex-input {
+  flex: 1;
+  margin-top: 0;
+}
+
+.file-btn {
+  display: inline-block;
+  margin-bottom: 0.4rem;
+  margin-right: 0.35rem;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.78rem;
+}
+
+.file-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.hint-inline {
+  margin: 0.2rem 0 0.4rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.hint-list {
+  margin: 0 0 0.5rem;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  font-size: 0.68rem;
+  line-height: 1.45;
+  word-break: break-all;
+}
+
+.hint-list code,
+.hint-inline code,
+.resolved-url code {
+  font-size: 0.68rem;
+}
+
+.resolved-url {
+  margin: 0;
+  padding: 0.4rem 0.5rem;
+  border-radius: 6px;
+  background: #e8f0fa;
+  color: var(--text);
+  font-size: 0.72rem;
+  word-break: break-all;
+}
+
+.code-picker-wrap {
+  margin-top: 0.4rem;
+}
+
+.preview-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.preview-header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--accent);
+}
+
+.status-line {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: right;
+}
+
+.preview-stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  padding: 0.5rem;
+}
+
+.empty-state {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.promo-card {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  max-height: calc(100vh - 8rem);
+  line-height: 0;
+  box-shadow: 0 8px 28px rgba(44, 42, 40, 0.18);
+  user-select: none;
+  overflow: hidden;
+}
+
+.promo-card img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100vh - 8rem);
+  height: auto;
+  width: auto;
+  pointer-events: none;
+}
+
+.overlay-layer {
+  position: absolute;
+  cursor: grab;
+  touch-action: none;
+}
+
+.overlay-layer:active {
+  cursor: grabbing;
+}
+
+.text-layer {
+  left: 8%;
+  top: 72%;
+  max-width: 70%;
+  line-height: 1.15;
+  font-family: Fredoka, sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+  white-space: nowrap;
+}
+
+.qr-layer {
+  left: 72%;
+  top: 68%;
+  width: 22%;
+  padding: 0;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.qr-layer canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: transparent;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.85));
+}
+
+.resize-handle {
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #fff;
+  border-radius: 2px;
+  background: var(--accent);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+  cursor: nwse-resize;
+  touch-action: none;
+}
+
+.promo-card.exporting .resize-handle {
+  display: none;
+}
+
+.promo-card.exporting .overlay-layer {
+  cursor: default;
+}
+
+.hint {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+@media (max-width: 900px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .controls-panel {
+    max-height: none;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .preview-panel {
+    min-height: auto;
+  }
+
+  .promo-card,
+  .promo-card img {
+    max-height: 70vh;
+  }
+}
