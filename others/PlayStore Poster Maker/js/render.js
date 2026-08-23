@@ -79,11 +79,25 @@ function computeCoverCrop(img, boxW, boxH, alignH, alignV) {
   return { sx, sy, sw, sh };
 }
 
+function computeFitDimensions(img, boxW, boxH) {
+  const imgW = img.naturalWidth;
+  const imgH = img.naturalHeight;
+  const scale = Math.min(boxW / imgW, boxH / imgH);
+  const dw = imgW * scale;
+  const dh = imgH * scale;
+  return {
+    dx: (boxW - dw) / 2,
+    dy: (boxH - dh) / 2,
+    dw,
+    dh,
+  };
+}
+
 function drawImageRounded(ctx, slot) {
   if (!slot.visible || !slot.image) return;
 
-  const { x, y, width, height, borderRadius, alignH, alignV, image, rotation } = slot;
-  const crop = computeCoverCrop(image, width, height, alignH, alignV);
+  const { x, y, width, height, borderRadius, image, rotation } = slot;
+  const fitMode = slot.fitMode !== false;
   const cx = x + width / 2;
   const cy = y + height / 2;
 
@@ -92,7 +106,34 @@ function drawImageRounded(ctx, slot) {
   ctx.rotate(degToRad(rotation || 0));
   roundRectPath(ctx, -width / 2, -height / 2, width, height, borderRadius);
   ctx.clip();
-  ctx.drawImage(image, crop.sx, crop.sy, crop.sw, crop.sh, -width / 2, -height / 2, width, height);
+
+  if (fitMode) {
+    const fit = computeFitDimensions(image, width, height);
+    ctx.drawImage(
+      image,
+      0,
+      0,
+      image.naturalWidth,
+      image.naturalHeight,
+      -width / 2 + fit.dx,
+      -height / 2 + fit.dy,
+      fit.dw,
+      fit.dh
+    );
+  } else {
+    ctx.drawImage(
+      image,
+      0,
+      0,
+      image.naturalWidth,
+      image.naturalHeight,
+      -width / 2,
+      -height / 2,
+      width,
+      height
+    );
+  }
+
   ctx.restore();
 }
 

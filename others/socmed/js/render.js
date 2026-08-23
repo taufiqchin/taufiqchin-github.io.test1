@@ -96,7 +96,8 @@ function computeFitDimensions(img, boxW, boxH) {
 function drawImageRounded(ctx, slot) {
   if (!slot.visible || !slot.image) return;
 
-  const { x, y, width, height, borderRadius, alignH, alignV, image, fitMode, rotation } = slot;
+  const { x, y, width, height, borderRadius, image, rotation } = slot;
+  const fitMode = slot.fitMode !== false;
   const cx = x + width / 2;
   const cy = y + height / 2;
 
@@ -110,8 +111,17 @@ function drawImageRounded(ctx, slot) {
     const fit = computeFitDimensions(image, width, height);
     ctx.drawImage(image, -width / 2 + fit.dx, -height / 2 + fit.dy, fit.dw, fit.dh);
   } else {
-    const crop = computeCoverCrop(image, width, height, alignH, alignV);
-    ctx.drawImage(image, crop.sx, crop.sy, crop.sw, crop.sh, -width / 2, -height / 2, width, height);
+    ctx.drawImage(
+      image,
+      0,
+      0,
+      image.naturalWidth,
+      image.naturalHeight,
+      -width / 2,
+      -height / 2,
+      width,
+      height
+    );
   }
 
   ctx.restore();

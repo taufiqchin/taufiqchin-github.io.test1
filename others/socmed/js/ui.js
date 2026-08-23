@@ -332,12 +332,12 @@ function renderImageControls() {
         <input type="range" data-img-radius="${index}" min="0" max="100" value="${slot.borderRadius}" />
       </label>
       <label class="toggle">
-        <input type="checkbox" data-img-lock="${index}" ${slot.lockAspect ? 'checked' : ''} />
+        <input type="checkbox" data-img-lock="${index}" ${slot.lockAspect !== false ? 'checked' : ''} />
         Lock aspect ratio
       </label>
       <label class="toggle">
-        <input type="checkbox" data-img-fit="${index}" ${slot.fitMode ? 'checked' : ''} />
-        Fit image (contain)
+        <input type="checkbox" data-img-fit="${index}" ${slot.fitMode !== false ? 'checked' : ''} />
+        Fit image inside box
       </label>
       `}
     `;
@@ -378,6 +378,8 @@ function renderImageControls() {
           naturalWidth: loaded.naturalWidth,
           naturalHeight: loaded.naturalHeight,
           visible: true,
+          fitMode: true,
+          lockAspect: true,
           height: Math.round(getState().images[index].width * ratio),
         });
       }
@@ -560,11 +562,76 @@ function bindTextInputs() {
   });
 }
 
+function getCornerLocal(handle, w, h) {
+  const hw = w / 2;
+  const hh = h / 2;
+  return (
+    {
+      nw: { x: -hw, y: -hh },
+      ne: { x: hw, y: -hh },
+      se: { x: hw, y: hh },
+      sw: { x: -hw, y: hh },
+    }[handle] || { x: 0, y: 0 }
+  );
+}
+
 function applyImageResize(handle, start, mouseX, mouseY, lockAspect, naturalW, naturalH, rotation = 0) {
   const min = 20;
+  const right = start.x + start.width;
+  const bottom = start.y + start.height;
+  const ratio = naturalW && naturalH ? naturalH / naturalW : start.height / start.width;
+  const opposite = { nw: 'se', se: 'nw', ne: 'sw', sw: 'ne' };
+
+  if (lockAspect) {
+    const opp = opposite[handle];
+
+    if (rotation) {
+      const startSlot = { ...start, rotation };
+      const anchorLocal = getCornerLocal(opp, start.width, start.height);
+      const handleLocal = getCornerLocal(handle, start.width, start.height);
+      const anchorWorld = transformLocalPoint(startSlot, anchorLocal.x, anchorLocal.y);
+      const handleStartWorld = transformLocalPoint(startSlot, handleLocal.x, handleLocal.y);
+      const origDist = Math.hypot(
+        handleStartWorld.x - anchorWorld.x,
+        handleStartWorld.y - anchorWorld.y
+      );
+      const newDist = Math.hypot(mouseX - anchorWorld.x, mouseY - anchorWorld.y);
+      const scale = origDist > 0 ? newDist / origDist : 1;
+      const width = Math.max(min, Math.round(start.width * scale));
+      const height = Math.max(min, Math.round(width * ratio));
+      const anchorLocalNew = getCornerLocal(opp, width, height);
+      const rad = degToRad(rotation);
+      const cos = Math.cos(rad);
+      const sin = Math.sin(rad);
+      const newCx = anchorWorld.x - (anchorLocalNew.x * cos - anchorLocalNew.y * sin);
+      const newCy = anchorWorld.y - (anchorLocalNew.x * sin + anchorLocalNew.y * cos);
+      return {
+        x: Math.round(newCx - width / 2),
+        y: Math.round(newCy - height / 2),
+        width,
+        height,
+      };
+    }
+
+    const anchor = {
+      se: { x: start.x, y: start.y },
+      sw: { x: right, y: start.y },
+      ne: { x: start.x, y: bottom },
+      nw: { x: right, y: bottom },
+    }[handle];
+    const dx = mouseX - anchor.x;
+    const dy = mouseY - anchor.y;
+    const scale = Math.max(Math.abs(dx) / start.width, Math.abs(dy) / start.height);
+    const width = Math.max(min, Math.round(start.width * scale));
+    const height = Math.max(min, Math.round(width * ratio));
+    let x = anchor.x;
+    let y = anchor.y;
+    if (handle === 'sw' || handle === 'nw') x = anchor.x - width;
+    if (handle === 'ne' || handle === 'nw') y = anchor.y - height;
+    return { x, y, width, height };
+  }
+
   if (!rotation) {
-    const right = start.x + start.width;
-    const bottom = start.y + start.height;
     let x = start.x;
     let y = start.y;
     let width = start.width;
@@ -595,13 +662,6 @@ function applyImageResize(handle, start, mouseX, mouseY, lockAspect, naturalW, n
         break;
     }
 
-    if (lockAspect && naturalW && naturalH) {
-      const ratio = naturalH / naturalW;
-      height = Math.max(min, Math.round(width * ratio));
-      if (handle === 'sw' || handle === 'nw') x = right - width;
-      if (handle === 'ne' || handle === 'nw') y = bottom - height;
-    }
-
     return {
       x: Math.round(x),
       y: Math.round(y),
@@ -610,14 +670,8 @@ function applyImageResize(handle, start, mouseX, mouseY, lockAspect, naturalW, n
     };
   }
 
-  const opposite = { nw: 'se', se: 'nw', ne: 'sw', sw: 'ne' };
   const opp = opposite[handle];
-  const anchorLocal = {
-    nw: { x: -start.width / 2, y: -start.height / 2 },
-    ne: { x: start.width / 2, y: -start.height / 2 },
-    se: { x: start.width / 2, y: start.height / 2 },
-    sw: { x: -start.width / 2, y: start.height / 2 },
-  }[opp];
+  const anchorLocal = getCornerLocal(opp, start.width, start.height);
   const startSlot = { ...start, rotation };
   const anchorWorld = transformLocalPoint(startSlot, anchorLocal.x, anchorLocal.y);
   const dragWorld = { x: mouseX, y: mouseY };
@@ -629,14 +683,8 @@ function applyImageResize(handle, start, mouseX, mouseY, lockAspect, naturalW, n
   const dy = dragWorld.y - anchorWorld.y;
   const cos = Math.cos(rad);
   const sin = Math.sin(rad);
-  let width = Math.max(min, Math.abs(dx * cos - dy * sin));
-  let height = Math.max(min, Math.abs(dx * sin + dy * cos));
-
-  if (lockAspect && naturalW && naturalH) {
-    const ratio = naturalH / naturalW;
-    if (width / height > naturalW / naturalH) width = height / ratio;
-    else height = width * ratio;
-  }
+  const width = Math.max(min, Math.abs(dx * cos - dy * sin));
+  const height = Math.max(min, Math.abs(dx * sin + dy * cos));
 
   return {
     x: Math.round(newCx - width / 2),
@@ -741,7 +789,7 @@ function bindCanvasDrag() {
         dragState.startSlot,
         pos.x,
         pos.y,
-        slot.lockAspect,
+        slot.lockAspect !== false,
         slot.naturalWidth,
         slot.naturalHeight,
         dragState.startRotation
