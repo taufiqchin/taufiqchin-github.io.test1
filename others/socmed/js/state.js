@@ -127,7 +127,7 @@ function createTextLayer(id) {
     maxWidth: 400,
     fontSize: 48,
     fontFamily: 'Arial, sans-serif',
-    color: '#2c2a28',
+    color: '#635045',
     bold: true,
     italic: false,
     align: 'left',
