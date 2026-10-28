@@ -66,10 +66,10 @@
     {
         "id": 11,
         "order": 2,
-        "title": "Image Quality Enhancer",
-        "image": "image/imageenhancer.png",
-        "description": "The Image Quality Enhancer is a powerful standalone tool designed to improve the visual quality of images by reducing noise, enhancing details, and correcting color balance. It features an intuitive interface with real-time preview capabilities, allowing users to apply various enhancement filters and adjustments. The tool supports a wide range of image formats and provides high-quality output suitable for both web and print applications.",
-        "link": ""
+        "title": "Image Shrink",
+        "image": "image/Image Shrink.png",
+        "description": "Image Shrink is a web-based tool designed to help users reduce the size of their images while maintaining their quality. It features a user-friendly interface with a live preview, allowing users to customize the image size and quality. The tool supports a wide range of image formats and provides high-quality output suitable for both web and print applications.",
+        "link": "others/Image Shrink/index.html"
     },
     {
         "id": 3,
