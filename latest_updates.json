@@ -67,9 +67,9 @@
         "id": 11,
         "order": 2,
         "title": "Image Shrink",
-        "image": "image/Image Shrink.png",
+        "image": "image/Image Shrink.PNG",
         "description": "Image Shrink is a web-based tool designed to help users reduce the size of their images while maintaining their quality. It features a user-friendly interface with a live preview, allowing users to customize the image size and quality. The tool supports a wide range of image formats and provides high-quality output suitable for both web and print applications.",
-        "link": "others/Image Shrink/index.html"
+        "link": "others/image shrink size option/index.html"
     },
     {
         "id": 3,
