@@ -1,4 +1,5 @@
 const HEADER_NAMES = new Set(["code", "promo", "promo code", "promocode", "codes"]);
+const DEFAULT_IMAGE_URL = "PromoCard/Promo%20card%20AAC.png";
 
 const state = {
   imageUrl: null,
@@ -191,6 +192,29 @@ function showCard() {
   updateDownloadLabel();
 }
 
+function setCardImage(source, name) {
+  if (state.imageUrl && state.imageUrl.startsWith("blob:")) {
+    URL.revokeObjectURL(state.imageUrl);
+  }
+  state.imageUrl = source;
+  els.imageName.textContent = name;
+  els.cardImage.onload = () => {
+    state.naturalWidth = els.cardImage.naturalWidth;
+    state.naturalHeight = els.cardImage.naturalHeight;
+    showCard();
+    updateOverlays();
+  };
+  els.cardImage.onerror = () => {
+    state.imageUrl = null;
+    els.emptyState.hidden = false;
+    els.card.hidden = true;
+    els.statusLine.textContent = "Could not load the card image";
+    els.exportStatus.textContent = `Could not load ${name}.`;
+    updateDownloadLabel();
+  };
+  els.cardImage.src = source;
+}
+
 function makeDraggable(layer, posKey) {
   layer.addEventListener("pointerdown", (event) => {
     if (exporting || event.button !== 0 || !state.imageUrl) return;
@@ -348,16 +372,7 @@ function bindEvents() {
   els.imageInput.addEventListener("change", () => {
     const file = els.imageInput.files[0];
     if (!file) return;
-    if (state.imageUrl) URL.revokeObjectURL(state.imageUrl);
-    state.imageUrl = URL.createObjectURL(file);
-    els.imageName.textContent = file.name;
-    els.cardImage.onload = () => {
-      state.naturalWidth = els.cardImage.naturalWidth;
-      state.naturalHeight = els.cardImage.naturalHeight;
-      showCard();
-      updateOverlays();
-    };
-    els.cardImage.src = state.imageUrl;
+    setCardImage(URL.createObjectURL(file), file.name);
   });
 
   els.promoInput.addEventListener("input", () => {
@@ -477,6 +492,7 @@ function init() {
   bindElements();
   initQr();
   bindEvents();
+  setCardImage(DEFAULT_IMAGE_URL, "Promo card AAC.png");
   renderCodePicker();
   updateOverlays();
   updateDownloadLabel();

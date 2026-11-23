@@ -1,16 +1,16 @@
 :root {
-    --primary: #28a745;
-    --primary-hover: #218838;
-    --bg-dark: #006039;
-    /* Rolex Green */
-    --card-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.15);
-    --text-main: #ffffff;
-    --text-secondary: #c2cfcc;
-    --accent-green: #2ecc71;
-    --accent-teal: #2dd4bf;
-    --accent-pink: #ec4899;
-    --btn-grad: linear-gradient(135deg, #2ecc71 0%, #2dd4bf 100%);
+    --primary: #2675d8;
+    --primary-hover: #1d5fb3;
+    --bg-light: #edf5ff;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --glass-border: rgba(46, 99, 164, 0.18);
+    --text-main: #183454;
+    --text-secondary: #617895;
+    --accent-blue: #2675d8;
+    --accent-cyan: #20b9dc;
+    --accent-red: #e94d5b;
+    --accent-gold: #e8b844;
+    --btn-grad: linear-gradient(135deg, #2675d8 0%, #20b9dc 100%);
 }
 
 * {
@@ -21,7 +21,10 @@
 }
 
 body {
-    background: var(--bg-dark);
+    background:
+        radial-gradient(ellipse at 12% 8%, rgba(32, 185, 220, 0.14), transparent 34%),
+        radial-gradient(ellipse at 88% 18%, rgba(233, 77, 91, 0.1), transparent 28%),
+        var(--bg-light);
     color: var(--text-main);
     min-height: 100vh;
     padding: 20px;
@@ -44,19 +47,19 @@ body {
 }
 
 .blob-1 {
-    background: var(--accent-green);
+    background: var(--accent-blue);
     top: -100px;
     left: -100px;
 }
 
 .blob-2 {
-    background: var(--accent-teal);
+    background: var(--accent-cyan);
     bottom: -100px;
     right: -100px;
 }
 
 .blob-3 {
-    background: var(--accent-green);
+    background: var(--accent-red);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -116,7 +119,7 @@ body {
 .logo i {
     width: 32px;
     height: 32px;
-    color: var(--accent-green);
+    color: var(--accent-blue);
 }
 
 .logo h1 {
@@ -138,9 +141,10 @@ body {
     background: var(--card-bg);
     backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
+    border-top: 3px solid var(--accent-gold);
     border-radius: 24px;
     padding: 30px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 32px rgba(44, 85, 133, 0.12);
 }
 
 /* Common Buttons */
@@ -160,22 +164,22 @@ button {
 .primary-btn {
     background: var(--btn-grad);
     color: white;
-    box-shadow: 0 4px 20px rgba(74, 222, 128, 0.4);
+    box-shadow: 0 4px 18px rgba(38, 117, 216, 0.22);
 }
 
 .primary-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(74, 222, 128, 0.5);
+    box-shadow: 0 6px 22px rgba(38, 117, 216, 0.3);
 }
 
 .secondary-btn {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text-main);
+    background: #fff;
+    color: var(--accent-blue);
     border: 1px solid var(--glass-border);
 }
 
 .secondary-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: #f3f8ff;
 }
 
 /* Generator Grid */
@@ -198,7 +202,7 @@ button {
     min-width: 80px;
     flex-direction: column;
     padding: 10px;
-    background: rgba(255, 255, 255, 0.05);
+    background: #f1f6fd;
     color: var(--text-secondary);
 }
 
@@ -229,11 +233,23 @@ button {
 .input-group input,
 .input-group textarea,
 .input-group select {
-    background: rgba(0, 0, 0, 0.2);
+    background: #fff;
     border: 1px solid var(--glass-border);
     border-radius: 10px;
     padding: 12px;
     color: var(--text-main);
+}
+
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+    color: #8b9bb0;
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+    outline: 2px solid rgba(38, 117, 216, 0.22);
+    border-color: var(--accent-blue);
 }
 
 .customization-area {
@@ -273,7 +289,7 @@ button {
 
 .option input[type="range"] {
     width: 100%;
-    accent-color: #000000;
+    accent-color: var(--accent-blue);
     cursor: pointer;
 }
 
@@ -286,7 +302,7 @@ button {
     border: 2px dashed var(--glass-border);
     border-radius: 12px;
     padding: 16px;
-    background: rgba(0, 0, 0, 0.15);
+    background: #f7faff;
     cursor: pointer;
     transition: border-color 0.2s ease, background 0.2s ease;
 }
@@ -295,8 +311,8 @@ button {
 .logo-dropzone.is-dragover,
 .image-dropzone:hover,
 .image-dropzone.is-dragover {
-    border-color: var(--accent-green);
-    background: rgba(46, 204, 113, 0.12);
+    border-color: var(--accent-cyan);
+    background: #e9f9ff;
 }
 
 .logo-dropzone.has-logo,
@@ -322,7 +338,7 @@ button {
 .image-dropzone-content i {
     width: 28px;
     height: 28px;
-    color: var(--accent-green);
+    color: var(--accent-blue);
 }
 
 .logo-dropzone-content p,
@@ -368,14 +384,14 @@ button {
 .image-remove-btn {
     padding: 8px 14px;
     font-size: 0.85rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: #f1f6fd;
     color: var(--text-secondary);
     border: 1px solid var(--glass-border);
 }
 
 .logo-remove-btn:hover,
 .image-remove-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: #e7f2ff;
     color: var(--text-main);
 }
 
@@ -406,7 +422,8 @@ button {
 .qr-container {
     width: 100%;
     aspect-ratio: 1/1;
-    background: rgba(255, 255, 255, 0.05);
+    background: linear-gradient(145deg, #f8fbff, #e4f2ff);
+    border: 1px solid var(--glass-border);
     border-radius: 20px;
     display: flex;
     align-items: center;
